@@ -1,4 +1,4 @@
-package com.example.projket_knk;
+package com.example.projekt_knk;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
