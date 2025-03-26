@@ -1,0 +1,67 @@
+
+#################### Tabelat per bazen e te dhenave ###########################
+
+
+CREATE TABLE Klientet (
+    ID_Klienti SERIAL PRIMARY KEY,
+    Emri VARCHAR(255) NOT NULL,
+    Mbiemri VARCHAR(255) NOT NULL,
+    Nr_Personal VARCHAR(20) UNIQUE NOT NULL,
+    Telefoni VARCHAR(20) NOT NULL
+); 
+
+CREATE TABLE Veturat (
+    ID_Vetura SERIAL PRIMARY KEY,
+    Targat VARCHAR(20) UNIQUE NOT NULL,
+    Modeli VARCHAR(255) NOT NULL,
+    Ngjyra VARCHAR(50) NOT NULL,
+    Viti_Prodhimit YEAR NOT NULL,
+    Kilometrazha INT NOT NULL,
+    Kapaciteti INT NOT NULL,
+    Karburanti ENUM('Benzinë', 'Naftë', 'Elektrike', 'Hibrid') NOT NULL,
+    Cmimi_ditor DECIMAL(10,2) NOT NULL,
+    Statusi ENUM('Në dispozicion', 'E rezervuar', 'Në servis') NOT NULL
+);
+
+CREATE TABLE Rezervimet (
+    ID_Rezervimi SERIAL PRIMARY KEY,
+    ID_Klienti INT REFERENCES Klientet(ID_Klienti) ON DELETE CASCADE,
+    ID_Vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
+    Data_Fillimit DATE NOT NULL,
+    Data_Perfundimit DATE NOT NULL,
+    Statusi ENUM('Aktiv', 'Anuluar', 'Përfunduar') NOT NULL
+);
+
+CREATE TABLE Kontrata (
+    ID_Kontrata SERIAL PRIMARY KEY,
+    ID_Rezervimi INT REFERENCES Rezervimet(ID_Rezervimi) ON DELETE CASCADE,
+    Shuma_Totale REAL NOT NULL,
+    Metoda ENUM('Kartë Krediti', 'Cash') NOT NULL,
+    Data_Leshimit TIMESTAMP NOT NULL
+);
+
+CREATE TABLE Sigurimi (
+    ID_Sigurimi SERIAL PRIMARY KEY,
+    ID_Vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
+    Kompania VARCHAR(255) NOT NULL,
+    Data_Fillimit DATE NOT NULL,
+    Data_Mbarimit DATE NOT NULL,
+    Kosto DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE Ofertat (
+    ID_Oferta SERIAL PRIMARY KEY,
+    ID_Vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
+    Zbritja DECIMAL(10,2) NOT NULL,
+    Data_Fillimit DATE NOT NULL,
+    Data_Mbarimit DATE NOT NULL
+);
+
+CREATE TABLE Vleresimet (
+    ID_Vleresimi SERIAL PRIMARY KEY,
+    ID_Klienti INT REFERENCES Klientet(ID_Klienti) ON DELETE CASCADE,
+    ID_Vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
+    Rating INT CHECK (Rating BETWEEN 1 AND 5) NOT NULL,
+    Koment TEXT,
+    Data TIMESTAMP NOT NULL
+);
