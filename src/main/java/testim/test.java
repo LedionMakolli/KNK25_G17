@@ -24,7 +24,8 @@ public class test {
                 String email = resultSet.getString ("email");
                 int age = resultSet.getInt("age");
 
-                System.out.println("ID: " + id + "Emri: " + emri + "Email: " + email + "Age: " + age);
+                System.out.println("ID: " + id + "\n" + "Emri: " + "\n" + emri + "Email: " + "\n" + email + "Age: " + age);
+                System.out.println("----------------------");
             }
             conn.close();
         }catch (SQLException e){
