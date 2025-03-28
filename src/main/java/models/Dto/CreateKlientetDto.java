@@ -1,47 +1,47 @@
 package models.Dto;
 
 public class CreateKlientetDto {
-    private String Emri;
-    private String Mbiemri;
-    private String Nr_personal;
-    private String Nr_telefonit;
+    private String emri;
+    private String mbiemri;
+    private String nr_personal;
+    private String telefoni;
 
-    public CreateKlientetDto(String emri, String mbiemri, String Nr_personal, String Nr_telefonit) {
-        this.Emri=emri;
-        this.Mbiemri=mbiemri;
-        this.Nr_personal=Nr_personal;
-        this.Nr_telefonit=Nr_telefonit;
+    public CreateKlientetDto(String emri, String mbiemri, String nr_personal, String telefoni) {
+        this.emri=emri;
+        this.mbiemri=mbiemri;
+        this.nr_personal=nr_personal;
+        this.telefoni=telefoni;
     }
 
     public void setEmri(String emri) {
-        Emri = emri;
+        this.emri = emri;
     }
 
     public void setMbiemri(String mbiemri) {
-        Mbiemri = mbiemri;
+        this.mbiemri = mbiemri;
     }
 
     public void setNr_personal(String nr_personal) {
-        Nr_personal = nr_personal;
+        this.nr_personal = nr_personal;
     }
 
     public void setNr_telefonit(String nr_telefonit) {
-        Nr_telefonit = nr_telefonit;
+        this.telefoni = nr_telefonit;
     }
 
     public String getEmri() {
-        return Emri;
+        return emri;
     }
 
     public String getMbiemri() {
-        return Mbiemri;
+        return mbiemri;
     }
 
     public String getNr_personal() {
-        return Nr_personal;
+        return nr_personal;
     }
 
     public String getNr_telefonit() {
-        return Nr_telefonit;
+        return telefoni;
     }
 }
