@@ -1,7 +1,8 @@
 package models.Dto;
 
 import models.enums.Karburanti;
-import models.enums.Statusi;
+import models.enums.Statusi_Vetura;
+import models.enums.Statusi_Vetura;
 
 public class UpdateVeturatDto {
     private int ID_Vetura;
@@ -9,10 +10,10 @@ public class UpdateVeturatDto {
     private int kilometrazha;
     private Karburanti karburanti;
     private int cmimi_ditor;
-    private Statusi statusi;
+    private Statusi_Vetura statusi;
 
     public UpdateVeturatDto(int ID_Vetura, String ngjyra, int kilometrazha, Karburanti karburanti,
-                            int cmimi_ditor, Statusi statusi) {
+                            int cmimi_ditor, Statusi_Vetura statusi) {
         this.ID_Vetura = ID_Vetura;
         this.ngjyra = ngjyra;
         this.kilometrazha = kilometrazha;
@@ -37,7 +38,7 @@ public class UpdateVeturatDto {
         this.cmimi_ditor = cmimi_ditor;
     }
 
-    public void setStatusi(Statusi statusi) {
+    public void setStatusi(Statusi_Vetura statusi) {
         this.statusi = statusi;
     }
 
@@ -61,7 +62,7 @@ public class UpdateVeturatDto {
         return cmimi_ditor;
     }
 
-    public Statusi getStatusi() {
+    public Statusi_Vetura getStatusi() {
         return statusi;
     }
 }

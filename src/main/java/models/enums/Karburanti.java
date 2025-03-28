@@ -1,8 +1,8 @@
 package models.enums;
 
 public enum Karburanti {
-    BENZINE,
-    NAFTE,
-    ELEKTRIKE,
-    HIBRID
+    Benzine,
+    Nafte,
+    Elektrike,
+    Hibrid
 }
