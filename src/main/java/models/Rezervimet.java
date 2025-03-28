@@ -30,5 +30,16 @@ String statusi=resultSet.getString("statusi");
 
 return new Rezervimet(id_rezervimet, id_klienti, id_vetura, data_fillimit, data_mbarimit, statusi);
 }
+public int getId_rezervimet(){return id_rezervimet;}
+
+public int getId_klienti(){return id_klienti;}
+
+public int getId_vetura(){return id_vetura;}
+
+public String getData_fillimit(){return data_fillimit;}
+
+public String getData_mbarimit(){return data_mbarimit;}
+
+public String getStatusi(){return statusi;}
 
 }
