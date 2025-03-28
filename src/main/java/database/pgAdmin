@@ -8,7 +8,7 @@ CREATE TABLE Klientet (
     Mbiemri VARCHAR(255) NOT NULL,
     Nr_Personal VARCHAR(20) UNIQUE NOT NULL,
     Telefoni VARCHAR(20) NOT NULL
-); 
+);
 
 CREATE TABLE Veturat (
     ID_Vetura SERIAL PRIMARY KEY,
