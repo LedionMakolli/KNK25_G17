@@ -22,9 +22,9 @@ public class Klientet {
         String emri=resultSet.getString("emri");
         String mbiemri=resultSet.getString("mbiemri");
         String nr_personal=resultSet.getString("nr_personal");
-        String nr_telefonit=resultSet.getString("telefoni");
+        String telefoni=resultSet.getString("telefoni");
 
-        return new Klientet(id_klienti, emri, mbiemri, nr_personal, nr_telefonit);
+        return new Klientet(id_klienti, emri, mbiemri, nr_personal, telefoni);
     }
 
     public int getId_klienti() {

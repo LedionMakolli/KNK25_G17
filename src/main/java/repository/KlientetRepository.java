@@ -1,9 +1,8 @@
 package repository;
 
 import database.DBConnection;
-import models.Klientet;
-import models.Dto.CreateKlientetDto;
-import models.Dto.UpdateKlientetDto;
+import models.*;
+import models.Dto.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -75,14 +74,31 @@ public class KlientetRepository {
         String query= """
                 UPDATE KLIENTET
                 SET telefoni=?
-                WHERE ID=?
+                WHERE id_klienti=?
                 """;
         try {
-
+            PreparedStatement pstm=this.connection.prepareStatement(query);
+            pstm.setString(1, KlientetDto.getTelefoni());
+            pstm.setInt(2, KlientetDto.getId_klienti());
+            pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return this.getById(KlientetDto.getId_klienti());
+    }
 
+    // Metoda 5. delete Klient
+    public boolean delete(int id) {
+        String query="DELETE FROM KLIENTET WHERE ID=?";
+
+        try {
+            PreparedStatement pstm=this.connection.prepareStatement(query);
+            pstm.setInt(1, id);
+            return pstm.executeUpdate()==1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
