@@ -1,14 +1,16 @@
 package models;
 
+import models.enums.Karburanti;
+import models.enums.Statusi;
+
 public class Veturat {
-    private int ID_Vetura;
+    private int id_vetura;
     private String targat;
     private String modeli;
     private String ngjyra;
-    private String viti;
+    private String viti_prodhimit;
     private int kilometrazha;
-    private int kapaciteti;
-    private double Cmimi_Ditor;
-    // stausi enum
-    // karburanti enum;
+    private Karburanti karburanti;
+    private int cmimi_ditor;
+    private Statusi statusi;
 }
