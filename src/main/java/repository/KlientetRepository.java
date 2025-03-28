@@ -6,8 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+<<<<<<< Updated upstream
 import models.Klientet;
 
+=======
+import models.Dto.CreateKlientetDto;
+import models.Dto.UpdateKlientetDto;
+import models.Klientet;
+>>>>>>> Stashed changes
 
 public class KlientetRepository {
     private Connection connection;
@@ -30,4 +36,8 @@ public class KlientetRepository {
         }
         return klientet;
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
