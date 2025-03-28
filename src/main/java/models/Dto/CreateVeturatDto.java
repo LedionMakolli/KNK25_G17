@@ -16,7 +16,6 @@ import models.enums.Statusi;
 //}
 
 public class CreateVeturatDto {
-    private int id_vetura;
     private String targat;
     private String modeli;
     private String ngjyra;
@@ -26,10 +25,9 @@ public class CreateVeturatDto {
     private int cmimi_ditor;
     private Statusi statusi;
 
-    public CreateVeturatDto(int id_vetura, String targat, String modeli, String ngjyra,
+    public CreateVeturatDto(String targat, String modeli, String ngjyra,
                             String viti_prodhimit, int kilometrazha, Karburanti karburanti,
                             int cmimi_ditor, Statusi statusi) {
-        this.id_vetura = id_vetura;
         this.targat = targat;
         this.modeli = modeli;
         this.ngjyra = ngjyra;
@@ -39,15 +37,6 @@ public class CreateVeturatDto {
         this.cmimi_ditor = cmimi_ditor;
         this.statusi = statusi;
     }
-
-    public int getId_vetura() {
-        return id_vetura;
-    }
-
-    public void setId_vetura(int id_vetura) {
-        this.id_vetura = id_vetura;
-    }
-
     public String getTargat() {
         return targat;
     }

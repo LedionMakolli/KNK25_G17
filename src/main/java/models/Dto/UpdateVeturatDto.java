@@ -1,12 +1,67 @@
 package models.Dto;
 
+import models.enums.Karburanti;
+import models.enums.Statusi;
+
 public class UpdateVeturatDto {
     private int ID_Vetura;
-    private String targat;
-    private String modeli;
     private String ngjyra;
-    private String viti;
     private int kilometrazha;
-    private int kapaciteti;
-    private double Cmimi_Ditor;
+    private Karburanti karburanti;
+    private int cmimi_ditor;
+    private Statusi statusi;
+
+    public UpdateVeturatDto(int ID_Vetura, String ngjyra, int kilometrazha, Karburanti karburanti,
+                            int cmimi_ditor, Statusi statusi) {
+        this.ID_Vetura = ID_Vetura;
+        this.ngjyra = ngjyra;
+        this.kilometrazha = kilometrazha;
+        this.karburanti = karburanti;
+        this.cmimi_ditor = cmimi_ditor;
+        this.statusi = statusi;
+    }
+
+    public void setNgjyra(String ngjyra) {
+        this.ngjyra = ngjyra;
+    }
+
+    public void setKilometrazha(int kilometrazha) {
+        this.kilometrazha = kilometrazha;
+    }
+
+    public void setKarburanti(Karburanti karburanti) {
+        this.karburanti = karburanti;
+    }
+
+    public void setCmimi_ditor(int cmimi_ditor) {
+        this.cmimi_ditor = cmimi_ditor;
+    }
+
+    public void setStatusi(Statusi statusi) {
+        this.statusi = statusi;
+    }
+
+    public int getID_Vetura() {
+        return ID_Vetura;
+    }
+
+    public String getNgjyra() {
+        return ngjyra;
+    }
+
+    public int getKilometrazha() {
+        return kilometrazha;
+    }
+
+    public Karburanti getKarburanti() {
+        return karburanti;
+    }
+
+    public int getCmimi_ditor() {
+        return cmimi_ditor;
+    }
+
+    public Statusi getStatusi() {
+        return statusi;
+    }
 }
