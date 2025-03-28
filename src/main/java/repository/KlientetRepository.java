@@ -9,8 +9,11 @@ import java.util.ArrayList;
 public class KlientetRepository {
     private Connection connection;
 
-    public KlientetRepository() {
+    public KlientetRepository() throws SQLException {
         this.connection = DBConnection.getConnection();
+        if(connection.isValid(1000)) {
+            System.out.println("Lidhja me bazen e te dhenave eshte krijuar me sukes");
+        }
     }
 
     // definimi i 5 metodave: getAll, getById, create, update, delete
@@ -32,13 +35,15 @@ public class KlientetRepository {
 
     // 2. Metoda getById
 
-    public Klientet getById(int id) {
-        String query="SELECT * FROM KLIENTET WHERE ID=?";
+    public Klientet getById(int id_klienti) {
+        String query="SELECT * FROM KLIENTET WHERE id_klienti=?";
         try {
             PreparedStatement pstm=this.connection.prepareStatement(query);
-            pstm.setInt(1, id);
+            pstm.setInt(1, id_klienti);
             ResultSet resultSet=pstm.executeQuery();
+            System.out.println("Ne rregull deri ketu");
             if(resultSet.next()) {
+                System.out.println("edhe ketu");
                 return Klientet.getInstance(resultSet);
             }
         } catch (SQLException e) {
@@ -53,7 +58,7 @@ public class KlientetRepository {
                 values (?, ?, ?, ?)
                 """;
         try {
-            PreparedStatement pstm=this.connection.prepareStatement(query);
+            PreparedStatement pstm=this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, KlientetDto.getEmri());
             pstm.setString(2, KlientetDto.getMbiemri());
             pstm.setString(3, KlientetDto.getNr_personal());

@@ -18,7 +18,7 @@ public class Klientet {
         this.telefoni = nr_telefonit;
     }
     public static Klientet getInstance(ResultSet resultSet) throws SQLException {
-        int id_klienti=resultSet.getInt("ID_klienti");
+        int id_klienti=resultSet.getInt("id_klienti");
         String emri=resultSet.getString("emri");
         String mbiemri=resultSet.getString("mbiemri");
         String nr_personal=resultSet.getString("nr_personal");
