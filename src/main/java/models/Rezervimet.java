@@ -12,13 +12,13 @@ public class Rezervimet {
     private String statusi;
     // statusi me enum e zene apo e lire
 
-private Rezervimet(int ID_Rezervimet, int ID_Klienti, int ID_Vetura, String Data_Fillimit, String Data_Mbarimit, String Statusi){
-    this.id_rezervimet=ID_Rezervimet;
-    this.id_klienti=ID_Klienti;
-    this.id_vetura=ID_Vetura;
-    this.data_fillimit=Data_Fillimit;
-    this.data_mbarimit=Data_Mbarimit;
-    this.statusi=Statusi;
+private Rezervimet(int id_rezervimet, int id_klienti, int id_vetura, String data_fillimit, String data_mbarimit, String statusi){
+    this.id_rezervimet=id_rezervimet;
+    this.id_klienti=id_klienti;
+    this.id_vetura=id_vetura;
+    this.data_fillimit=data_fillimit;
+    this.data_mbarimit=data_mbarimit;
+    this.statusi=statusi;
 }
 public static Rezervimet getInstance(ResultSet resultSet) throws SQLException {
 int id_rezervimet=resultSet.getInt("id_rezervimet");
