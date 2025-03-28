@@ -1,37 +1,23 @@
 package models.Dto;
 
 public class UpdateKlientetDto {
-    private String emri;
-    private String mbiemri;
+    private int id_klienti;
     private String telefoni;
 
-    public UpdateKlientetDto(String emri, String mbiemri, String Nr_telefonit) {
-        this.emri=emri;
-        this.mbiemri=mbiemri;
-        this.telefoni=Nr_telefonit;
+    public UpdateKlientetDto(int id_klienti, String telefoni) {
+        this.id_klienti=id_klienti;
+        this.telefoni=telefoni;
     }
 
-    public void setEmri(String emri) {
-        this.emri = emri;
+    public void setTelefoni(String telefoni) {
+        this.telefoni = telefoni;
     }
 
-    public void setMbiemri(String mbiemri) {
-        this.mbiemri = mbiemri;
+    public int getId_klienti() {
+        return id_klienti;
     }
 
-    public void setNr_telefonit(String nr_telefonit) {
-        this.telefoni = nr_telefonit;
-    }
-
-    public String getEmri() {
-        return emri;
-    }
-
-    public String getMbiemri() {
-        return mbiemri;
-    }
-
-    public String getNr_telefonit() {
+    public String getTelefoni() {
         return telefoni;
     }
 }
