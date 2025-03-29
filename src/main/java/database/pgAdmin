@@ -2,25 +2,25 @@
 #################### Tabelat per bazen e te dhenave ###########################
 
 
-CREATE TABLE Klientet (
-    ID_Klienti SERIAL PRIMARY KEY,
-    Emri VARCHAR(255) NOT NULL,
-    Mbiemri VARCHAR(255) NOT NULL,
-    Nr_Personal VARCHAR(20) UNIQUE NOT NULL,
-    Telefoni VARCHAR(20) NOT NULL
+CREATE TABLE KLIENTET (
+    ID_Klienti serial primary key,
+    Emri varchar(255) not null,
+    Mbiemri VARCHAR(255) not null,
+    Nr_Personal varchar(20) unique not null,
+    Telefoni varchar(20) unique not null
 );
 
 CREATE TABLE Veturat (
     ID_Vetura SERIAL PRIMARY KEY,
-    Targat VARCHAR(20) UNIQUE NOT NULL,
-    Modeli VARCHAR(255) NOT NULL,
-    Ngjyra VARCHAR(50) NOT NULL,
-    Viti_Prodhimit YEAR NOT NULL,
-    Kilometrazha INT NOT NULL,
-    Kapaciteti INT NOT NULL,
-    Karburanti ENUM('Benzinë', 'Naftë', 'Elektrike', 'Hibrid') NOT NULL,
-    Cmimi_ditor DECIMAL(10,2) NOT NULL,
-    Statusi ENUM('Në dispozicion', 'E rezervuar', 'Në servis') NOT NULL
+    Targat VARCHAR(15) NOT NULL UNIQUE,
+    Modeli VARCHAR(50) NOT NULL,
+    Ngjyra VARCHAR(20),
+    Viti_Prodhimit DECIMAL(5) CHECK (Viti_Prodhimit >= 1900),
+    Kilometrazha DECIMAL(10,2) CHECK (Kilometrazha >= 0),
+    Numri_Uleseve INT CHECK (Numri_Uleseve > 0),
+    Karburanti Karburanti NOT NULL,
+    Cmimi_ditor DECIMAL(10,2) CHECK (Cmimi_ditor >= 0),
+    Statusi Statusi DEFAULT 'NE_DISPOZICION'
 );
 
 CREATE TABLE Rezervimet (
