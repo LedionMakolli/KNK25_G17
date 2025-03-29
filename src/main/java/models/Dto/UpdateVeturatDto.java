@@ -2,26 +2,24 @@ package models.Dto;
 
 import models.enums.Karburanti;
 import models.enums.Statusi_Vetura;
-import models.enums.Statusi_Vetura;
-
 import java.math.BigDecimal;
 
 public class UpdateVeturatDto {
     private int ID_Vetura;
     private String ngjyra;
     private BigDecimal kilometrazha;
-    private int kapaciteti;
+    private int numri_uleseve;
     private Karburanti karburanti;
     private int cmimi_ditor;
     private Statusi_Vetura statusi;
 
     public UpdateVeturatDto(int ID_Vetura, String ngjyra, BigDecimal kilometrazha,
-                            Karburanti karburanti, int kapaciteti,
+                            Karburanti karburanti, int numri_uleseve,
                             int cmimi_ditor, Statusi_Vetura statusi) {
         this.ID_Vetura = ID_Vetura;
         this.ngjyra = ngjyra;
         this.kilometrazha = kilometrazha;
-        this.kapaciteti=kapaciteti;
+        this.numri_uleseve=numri_uleseve;
         this.karburanti = karburanti;
         this.cmimi_ditor = cmimi_ditor;
         this.statusi = statusi;
@@ -34,8 +32,8 @@ public class UpdateVeturatDto {
         this.kilometrazha = kilometrazha;
     }
 
-    public void setKapaciteti(int kapaciteti) {
-        this.kapaciteti = kapaciteti;
+    public void setNumriUleseve(int numri_uleseve) {
+        this.numri_uleseve = numri_uleseve;
     }
 
     public void setKarburanti(Karburanti karburanti) {
@@ -62,8 +60,8 @@ public class UpdateVeturatDto {
         return kilometrazha;
     }
 
-    public int getKapaciteti() {
-        return kapaciteti;
+    public int getNumriUleseve() {
+        return numri_uleseve;
     }
 
     public Karburanti getKarburanti() {

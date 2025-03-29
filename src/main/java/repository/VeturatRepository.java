@@ -12,7 +12,7 @@ public class VeturatRepository {
     public VeturatRepository() throws SQLException {
         this.connection= DBConnection.getConnection();
         if(connection.isValid(1000)) {
-            System.out.println("Lidhja me bazen e te dhenave eshte krijuar me sukes");
+            System.out.println("DB Connected");
         }
     }
     // 1. metoda getAll
@@ -49,7 +49,7 @@ public class VeturatRepository {
     public Veturat create(CreateVeturatDto veturatDto) {
         String query= """
                 INSERT INTO VETURAT (TARGAT, MODELI, NGJYRA, VITI_PRODHIMIT,
-                KILOMETRAZHA, KAPACITETI, KARBURANTI, CMIMI_DITOR, STATUSI)
+                KILOMETRAZHA, NUMRI_ULESEVE, KARBURANTI, CMIMI_DITOR, STATUSI)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
         try {
@@ -59,8 +59,9 @@ public class VeturatRepository {
             pstm.setString(3, veturatDto.getNgjyra());
             pstm.setInt(4, veturatDto.getVitiProdhimit());
             pstm.setBigDecimal(5, veturatDto.getKilometrazha());
-            pstm.setInt(6, veturatDto.getKapaciteti());
-            pstm.setObject(7, veturatDto.getKarburanti(), Types.OTHER);            pstm.setInt(8, veturatDto.getCmimiDitor());
+            pstm.setInt(6, veturatDto.getNumriUleseve());
+            pstm.setObject(7, veturatDto.getKarburanti(), Types.OTHER);
+            pstm.setInt(8, veturatDto.getCmimiDitor());
             pstm.setObject(9, veturatDto.getStatusi().name(), Types.OTHER);
             pstm.execute();
             ResultSet result=pstm.getGeneratedKeys();

@@ -14,20 +14,20 @@ public class Veturat {
     private String ngjyra;
     private int viti_prodhimit;
     private BigDecimal kilometrazha;
-    private int kapaciteti;
+    private int numri_uleseve;
     private Karburanti karburanti;
     private int cmimi_ditor;
     private Statusi_Vetura statusi;
 
     private Veturat(int id_vetura, String targat, String modeli, String ngjyra,
-                   int viti_prodhimit, BigDecimal kilometrazha, int kapaciteti, Karburanti karburanti, int cmimi_ditor, Statusi_Vetura statusi) {
+                   int viti_prodhimit, BigDecimal kilometrazha, int numri_uleseve, Karburanti karburanti, int cmimi_ditor, Statusi_Vetura statusi) {
         this.id_vetura = id_vetura;
         this.targat = targat;
         this.modeli = modeli;
         this.ngjyra = ngjyra;
         this.viti_prodhimit = viti_prodhimit;
         this.kilometrazha = kilometrazha;
-        this.kapaciteti=kapaciteti;
+        this.numri_uleseve=numri_uleseve;
         this.karburanti = karburanti;
         this.cmimi_ditor = cmimi_ditor;
         this.statusi = statusi;
@@ -39,13 +39,13 @@ public class Veturat {
         String ngjyra=resultSet.getString("ngjyra");
         int viti_prodhimit=resultSet.getInt("viti_prodhimit");
         BigDecimal kilometrazha=resultSet.getBigDecimal("kilometrazha");
-        int kapaciteti=resultSet.getInt("kapaciteti");
+        int numri_uleseve=resultSet.getInt("numri_uleseve");
         String karburantiStr = resultSet.getString("karburanti");
         Karburanti karburanti = Karburanti.valueOf(karburantiStr.toUpperCase());
         int cmimi_ditor=resultSet.getInt("cmimi_ditor");
         String statusiStr = resultSet.getString("statusi");
         Statusi_Vetura statusi = Statusi_Vetura.valueOf(statusiStr.toUpperCase());
-        return new Veturat(id_vetura,targat,modeli,ngjyra,viti_prodhimit,kilometrazha,kapaciteti,karburanti, cmimi_ditor, statusi);
+        return new Veturat(id_vetura,targat,modeli,ngjyra,viti_prodhimit,kilometrazha,numri_uleseve,karburanti, cmimi_ditor, statusi);
     }
 
     public int getIdvetura() {
@@ -72,8 +72,8 @@ public class Veturat {
         return kilometrazha;
     }
 
-    public int getKapaciteti() {
-        return kapaciteti;
+    public int getNumriUleseve() {
+        return numri_uleseve;
     }
 
     public Karburanti getKarburanti() {

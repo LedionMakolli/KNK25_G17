@@ -23,20 +23,20 @@ public class CreateVeturatDto {
     private String ngjyra;
     private int viti_prodhimit;
     private BigDecimal kilometrazha;
-    private int kapaciteti;
+    private int numri_uleseve;
     private Karburanti karburanti;
     private int cmimi_ditor;
     private Statusi_Vetura statusi;
 
     public CreateVeturatDto(String targat, String modeli, String ngjyra,
-                            int viti_prodhimit, BigDecimal kilometrazha, int kapaciteti, Karburanti karburanti,
+                            int viti_prodhimit, BigDecimal kilometrazha, int numri_uleseve, Karburanti karburanti,
                             int cmimi_ditor, Statusi_Vetura statusi) {
         this.targat = targat;
         this.modeli = modeli;
         this.ngjyra = ngjyra;
         this.viti_prodhimit = viti_prodhimit;
         this.kilometrazha = kilometrazha;
-        this.kapaciteti=kapaciteti;
+        this.numri_uleseve=numri_uleseve;
         this.karburanti = karburanti;
         this.cmimi_ditor = cmimi_ditor;
         this.statusi = statusi;
@@ -62,8 +62,8 @@ public class CreateVeturatDto {
         this.kilometrazha = kilometrazha;
     }
 
-    public void setKapaciteti(int kapaciteti) {
-        this.kapaciteti = kapaciteti;
+    public void setNumriUleseve(int numri_uleseve) {
+        this.numri_uleseve = numri_uleseve;
     }
 
     public void setKarburanti(Karburanti karburanti) {
@@ -98,8 +98,8 @@ public class CreateVeturatDto {
         return kilometrazha;
     }
 
-    public int getKapaciteti() {
-        return kapaciteti;
+    public int getNumriUleseve() {
+        return numri_uleseve;
     }
 
     public Karburanti getKarburanti() {
