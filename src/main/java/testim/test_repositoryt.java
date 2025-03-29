@@ -30,27 +30,10 @@ public class test_repositoryt {
 
 //         Test per funksionimin e tabeles Veturat
         VeturatRepository veturatRepository=new VeturatRepository();
-        CreateVeturatDto vetura1=new CreateVeturatDto("01-977-PE", "Ferrari", "BLACK",
-                2015,new BigDecimal(120000), 5, Karburanti.BENZINE, 200, Statusi_Vetura.NE_DISPOZICION);
-        veturatRepository.create(vetura1);
+//        CreateVeturatDto vetura1=new CreateVeturatDto("01-977-PE", "Ferrari", "BLACK",
+//                2015,new BigDecimal(120000), 5, Karburanti.BENZINE, 200, Statusi_Vetura.NE_DISPOZICION);
+//        veturatRepository.create(vetura1);
         Veturat veturaERe=veturatRepository.getById(1);
-        if (veturaERe != null) {
-            System.out.println("----------------------------------------");
-            System.out.println("Vetura u krijua me sukses!");
-            System.out.println("Detajet e veturës:");
-            System.out.println("ID: " + veturaERe.getIdvetura());
-            System.out.println("Targat: " + veturaERe.getTargat());
-            System.out.println("Modeli: " + veturaERe.getModeli());
-            System.out.println("Ngjyra: " + veturaERe.getNgjyra());
-            System.out.println("Viti i prodhimit: " + veturaERe.getVitiProdhimit());
-            System.out.println("Kilometrazha: " + veturaERe.getKilometrazha() + " km");
-            System.out.println("Kapaciteti: " + veturaERe.getNumriUleseve() + " Ulese");
-            System.out.println("Karburanti: " + veturaERe.getKarburanti());
-            System.out.println("Çmimi ditor: " + veturaERe.getCmimiditor() + " €");
-            System.out.println("Statusi: " + veturaERe.getStatusi());
-            System.out.println("----------------------------------------");
-        } else {
-            System.out.println("Krijimi i veturës dështoi!");
-        }
+        veturaERe.getTeDhenat();
     }
 }

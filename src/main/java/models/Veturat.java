@@ -87,4 +87,19 @@ public class Veturat {
     public Statusi_Vetura getStatusi() {
         return statusi;
     }
+    public void getTeDhenat() {
+        System.out.println("----------------------------------------");
+        System.out.println("Detajet e veturës:");
+        System.out.println("ID: " + getIdvetura());
+        System.out.println("Targat: " + getTargat());
+        System.out.println("Modeli: " + getModeli());
+        System.out.println("Ngjyra: " + getNgjyra());
+        System.out.println("Viti i prodhimit: " + getVitiProdhimit());
+        System.out.println("Kilometrazha: " + getKilometrazha() + " km");
+        System.out.println("Kapaciteti: " + getNumriUleseve() + " Ulese");
+        System.out.println("Karburanti: " + getKarburanti());
+        System.out.println("Çmimi ditor: " + getCmimiditor() + " €");
+        System.out.println("Statusi: " + getStatusi());
+        System.out.println("----------------------------------------");
+    }
 }
