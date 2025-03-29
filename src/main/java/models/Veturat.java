@@ -3,6 +3,7 @@ package models;
 import models.enums.Karburanti;
 import models.enums.Statusi_Vetura;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,14 +13,14 @@ public class Veturat {
     private String modeli;
     private String ngjyra;
     private int viti_prodhimit;
-    private int kilometrazha;
+    private BigDecimal kilometrazha;
     private int kapaciteti;
     private Karburanti karburanti;
     private int cmimi_ditor;
     private Statusi_Vetura statusi;
 
     private Veturat(int id_vetura, String targat, String modeli, String ngjyra,
-                   int viti_prodhimit, int kilometrazha, int kapaciteti, Karburanti karburanti, int cmimi_ditor, Statusi_Vetura statusi) {
+                   int viti_prodhimit, BigDecimal kilometrazha, int kapaciteti, Karburanti karburanti, int cmimi_ditor, Statusi_Vetura statusi) {
         this.id_vetura = id_vetura;
         this.targat = targat;
         this.modeli = modeli;
@@ -37,7 +38,7 @@ public class Veturat {
         String modeli=resultSet.getString("modeli");
         String ngjyra=resultSet.getString("ngjyra");
         int viti_prodhimit=resultSet.getInt("viti_prodhimit");
-        int kilometrazha=resultSet.getInt("kilometrazha");
+        BigDecimal kilometrazha=resultSet.getBigDecimal("kilometrazha");
         int kapaciteti=resultSet.getInt("kapaciteti");
         String karburantiStr = resultSet.getString("karburanti");
         Karburanti karburanti = Karburanti.valueOf(karburantiStr.toUpperCase());
@@ -47,7 +48,7 @@ public class Veturat {
         return new Veturat(id_vetura,targat,modeli,ngjyra,viti_prodhimit,kilometrazha,kapaciteti,karburanti, cmimi_ditor, statusi);
     }
 
-    public int getId_vetura() {
+    public int getIdvetura() {
         return id_vetura;
     }
 
@@ -63,11 +64,11 @@ public class Veturat {
         return ngjyra;
     }
 
-    public int getViti_prodhimit() {
+    public int getVitiProdhimit() {
         return viti_prodhimit;
     }
 
-    public int getKilometrazha() {
+    public BigDecimal getKilometrazha() {
         return kilometrazha;
     }
 
@@ -79,7 +80,7 @@ public class Veturat {
         return karburanti;
     }
 
-    public int getCmimi_ditor() {
+    public int getCmimiditor() {
         return cmimi_ditor;
     }
 
