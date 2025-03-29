@@ -2,7 +2,6 @@ package models;
 
 import models.enums.Karburanti;
 import models.enums.Statusi_Vetura;
-
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -87,7 +86,7 @@ public class Veturat {
     public Statusi_Vetura getStatusi() {
         return statusi;
     }
-    public void getTeDhenat() {
+    public void printoTeDhenatPerVeturen() {
         System.out.println("----------------------------------------");
         System.out.println("Detajet e veturës:");
         System.out.println("ID: " + getIdvetura());

@@ -46,7 +46,7 @@ public class Klientet {
     public String getTelefoni() {
         return telefoni;
     }
-    public void getTeDhenat() {
+    public void printoTeDhenatPerKlientin() {
         System.out.println("Klienti u gjet:");
         System.out.println("ID: " + getId_klienti());
         System.out.println("Emri: " + getEmri());
