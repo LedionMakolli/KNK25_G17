@@ -41,9 +41,7 @@ public class KlientetRepository {
             PreparedStatement pstm=this.connection.prepareStatement(query);
             pstm.setInt(1, id_klienti);
             ResultSet resultSet=pstm.executeQuery();
-            System.out.println("Ne rregull deri ketu");
             if(resultSet.next()) {
-                System.out.println("edhe ketu");
                 return Klientet.getInstance(resultSet);
             }
         } catch (SQLException e) {

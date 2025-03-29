@@ -3,8 +3,11 @@ package repository;
 import database.DBConnection;
 import models.*;
 import models.Dto.*;
+import models.enums.Statusi_Vetura;
+
+import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class VeturatRepository {
     private Connection connection;
@@ -75,13 +78,54 @@ public class VeturatRepository {
         return null;
     }
     // 4. metoda update
-//    public Veturat update(UpdateVeturatDto veturatDto) {
-//        String query= """
-//                update users
-//                set email=?
-//                where id=?
-//                """;
-//    } qysh me mundesu me ndryshu prej atyne qe mujn mu ndryshu veq ata qe don perdoruesi
+    public Veturat update(UpdateVeturatDto VeturatDto) {
+        StringBuilder query = new StringBuilder("UPDATE veturat SET ");
+        List<Object> params = new ArrayList<>();
+
+        // Kontrollo dhe shto ndryshimet
+        boolean hasUpdates = false;
+
+        if (VeturatDto.getNgjyra() != null) {
+            query.append("ngjyra = ?, ");
+            params.add(VeturatDto.getNgjyra());
+            hasUpdates = true;
+        }
+        if (VeturatDto.getKilometrazha() != null) {
+            query.append("kilometrazha = ?, ");
+            params.add(VeturatDto.getKilometrazha());
+            hasUpdates = true;
+        }
+        if (VeturatDto.getCmimiDitor() > 0) {
+            query.append("cmimi_ditor = ?, ");
+            params.add(VeturatDto.getCmimiDitor());
+            hasUpdates = true;
+        }
+        if (VeturatDto.getStatusi() != null) {
+            query.append("statusi = ?, ");
+            params.add(VeturatDto.getStatusi().name());
+            hasUpdates = true;
+        }
+        if (!hasUpdates) {
+            return getById(VeturatDto.getIDVetura());
+        }
+        query.setLength(query.length() - 2);
+        query.append(" WHERE ID_Vetura = ?");
+        params.add(VeturatDto.getIDVetura());
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query.toString())) {
+
+            for (int i = 0; i < params.size(); i++) {
+                stmt.setObject(i + 1, params.get(i));
+            }
+
+            stmt.executeUpdate();
+            return getById(VeturatDto.getIDVetura());
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Gabim gjatë përditësimit", e);
+        }
+    }
     // 5. metoda delete
     public boolean delete(int id_vetura) {
         String query="DELETE FROM VETURAT WHERE id_vetura=?";

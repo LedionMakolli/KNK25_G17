@@ -46,4 +46,13 @@ public class Klientet {
     public String getTelefoni() {
         return telefoni;
     }
+    public void getTeDhenat() {
+        System.out.println("Klienti u gjet:");
+        System.out.println("ID: " + getId_klienti());
+        System.out.println("Emri: " + getEmri());
+        System.out.println("Mbiemri: " + getMbiemri());
+        System.out.println("Nr Personal: " + getNr_personal());
+        System.out.println("Telefoni: " + getTelefoni());
+    }
+
 }
