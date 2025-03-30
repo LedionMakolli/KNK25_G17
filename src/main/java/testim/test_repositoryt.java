@@ -40,7 +40,15 @@ public class test_repositoryt {
 //         Test per funksionimin e tabeles UpdateVeturat
         VeturatRepository veturatRepository=new VeturatRepository();
 
-        UpdateVeturatDto updateVetura1=new UpdateVeturatDto(1, null, new BigDecimal("120000"), 0, null);
-        veturatRepository.update(updateVetura1);
+//        UpdateVeturatDto updateVetura1=new UpdateVeturatDto(1, null, new BigDecimal("120000"), 0, null);
+//        UpdateVeturatDto updateVetura1=new UpdateVeturatDto(0, null, null, 0, null);
+//        veturatRepository.update(updateVetura1);
+        ArrayList<Veturat> veturat=veturatRepository.filter(null, "E bardhë", 0, 5,
+                Karburanti.BENZINE, 50, null);
+        veturat.forEach(
+                v-> {
+                    v.printoTeDhenatPerVeturen();
+                }
+        );
     }
 }

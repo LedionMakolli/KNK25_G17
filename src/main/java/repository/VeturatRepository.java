@@ -3,6 +3,7 @@ package repository;
 import database.DBConnection;
 import models.*;
 import models.Dto.*;
+import models.enums.Karburanti;
 import models.enums.Statusi_Vetura;
 
 import java.math.BigDecimal;
@@ -79,9 +80,9 @@ public class VeturatRepository {
     }
     // 4. metoda update
     public Veturat update(UpdateVeturatDto VeturatDto) {
-        StringBuilder query = new StringBuilder("UPDATE veturat SET ");
-        boolean hasUpdates=false;
+        StringBuilder query = new StringBuilder("UPDATE VETURAT SET ");
         List<Object> parametrat = new ArrayList<>();
+        boolean hasUpdates=false;
 
         if (VeturatDto.getNgjyra() != null) {
             query.append("ngjyra = ?, ");
@@ -132,5 +133,64 @@ public class VeturatRepository {
             e.printStackTrace();
         }
         return false;
+    }
+    // 6. metoda filtro
+    public ArrayList<Veturat> filter(String modeli, String ngjyra, int viti_prodhimit,
+                                     int numri_uleseve, Karburanti karburanti, int cmimi_ditor,
+                                     Statusi_Vetura statusi) {
+        ArrayList<Veturat> veturat=new ArrayList<Veturat>();
+        StringBuilder query=new StringBuilder("SELECT * FROM VETURAT WHERE 1=1");
+        List<Object> parametrat=new ArrayList<>();
+
+        if(modeli!=null) {
+            query.append(" and modeli= ?");
+            parametrat.add(modeli);
+        }
+        if(ngjyra!=null) {
+            query.append(" and ngjyra= ?");
+            parametrat.add(ngjyra);
+        }
+        if(viti_prodhimit>0) {
+            query.append(" and viti_prodhimit=?");
+            parametrat.add(viti_prodhimit);
+        } else if(viti_prodhimit<0) {
+            throw new IllegalArgumentException("Viti i prodhimit eshte jo valid");
+        }
+        if(numri_uleseve>0) {
+            query.append(" and numri_uleseve=?");
+            parametrat.add(numri_uleseve);
+        } else if(numri_uleseve<0){
+            throw new IllegalArgumentException("Numri i uleseve eshte jo valid");
+        }
+        if (karburanti != null) {
+            query.append(" and karburanti::text = ?");
+            parametrat.add(karburanti.name());
+        }
+
+        if(cmimi_ditor>0) {
+            query.append(" and cmimi_ditor=?");
+            parametrat.add(cmimi_ditor);
+        } else if(cmimi_ditor<0) {
+            throw new IllegalArgumentException("Cmimi ditor eshte jo valid");
+        }
+        if(statusi!=null) {
+            query.append(" and statusi::text = ?");
+            parametrat.add(statusi.name());
+        }
+        try {
+            PreparedStatement pstm=connection.prepareStatement(query.toString());
+            for(int i=0; i<parametrat.size(); i++) {
+                pstm.setObject(i+1, parametrat.get(i));
+            }
+            ResultSet resultSet=pstm.executeQuery();
+            if(resultSet.next()) {
+                veturat.add(Veturat.getInstance(resultSet));
+            } else {
+                System.out.println("Nuk u gjeten te dhenat ne baze te filtrimit tuaj.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return veturat;
     }
 }
