@@ -80,50 +80,46 @@ public class VeturatRepository {
     // 4. metoda update
     public Veturat update(UpdateVeturatDto VeturatDto) {
         StringBuilder query = new StringBuilder("UPDATE veturat SET ");
-        List<Object> params = new ArrayList<>();
-
-        // Kontrollo dhe shto ndryshimet
-        boolean hasUpdates = false;
+        boolean hasUpdates=false;
+        List<Object> parametrat = new ArrayList<>();
 
         if (VeturatDto.getNgjyra() != null) {
             query.append("ngjyra = ?, ");
-            params.add(VeturatDto.getNgjyra());
-            hasUpdates = true;
+            parametrat.add(VeturatDto.getNgjyra());
+            hasUpdates=true;
         }
         if (VeturatDto.getKilometrazha() != null) {
             query.append("kilometrazha = ?, ");
-            params.add(VeturatDto.getKilometrazha());
-            hasUpdates = true;
+            parametrat.add(VeturatDto.getKilometrazha());
+            hasUpdates=true;
         }
         if (VeturatDto.getCmimiDitor() > 0) {
             query.append("cmimi_ditor = ?, ");
-            params.add(VeturatDto.getCmimiDitor());
-            hasUpdates = true;
+            parametrat.add(VeturatDto.getCmimiDitor());
+            hasUpdates=true;
         }
         if (VeturatDto.getStatusi() != null) {
             query.append("statusi = ?, ");
-            params.add(VeturatDto.getStatusi().name());
-            hasUpdates = true;
+            parametrat.add(VeturatDto.getStatusi());
+            hasUpdates=true;
         }
         if (!hasUpdates) {
             return getById(VeturatDto.getIDVetura());
         }
         query.setLength(query.length() - 2);
-        query.append(" WHERE ID_Vetura = ?");
-        params.add(VeturatDto.getIDVetura());
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query.toString())) {
+        query.append(" WHERE ID_VETURA=?");
+        parametrat.add(VeturatDto.getIDVetura());
 
-            for (int i = 0; i < params.size(); i++) {
-                stmt.setObject(i + 1, params.get(i));
+        try {
+            PreparedStatement pstm = connection.prepareStatement(query.toString());
+            for(int i=0; i<parametrat.size(); i++) {
+                pstm.setObject(i+1, parametrat.get(i));
             }
-
-            stmt.executeUpdate();
+            pstm.executeUpdate();
             return getById(VeturatDto.getIDVetura());
-
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë përditësimit", e);
+            throw new RuntimeException("Gabim gjate perditesimit!", e);
         }
     }
     // 5. metoda delete
