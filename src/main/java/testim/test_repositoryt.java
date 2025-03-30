@@ -40,7 +40,7 @@ public class test_repositoryt {
 //         Test per funksionimin e tabeles UpdateVeturat
         VeturatRepository veturatRepository=new VeturatRepository();
 
-        UpdateVeturatDto updateVetura1=new UpdateVeturatDto(1, null, new BigDecimal("140000"), 230, null);
+        UpdateVeturatDto updateVetura1=new UpdateVeturatDto(1, null, new BigDecimal("120000"), 0, null);
         veturatRepository.update(updateVetura1);
     }
 }

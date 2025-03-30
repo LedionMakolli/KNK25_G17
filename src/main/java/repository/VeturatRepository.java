@@ -106,8 +106,7 @@ public class VeturatRepository {
         if (!hasUpdates) {
             return getById(VeturatDto.getIDVetura());
         }
-        query.setLength(query.length() - 2);
-
+        query.setLength(query.length()-2);
         query.append(" WHERE ID_VETURA=?");
         parametrat.add(VeturatDto.getIDVetura());
 
