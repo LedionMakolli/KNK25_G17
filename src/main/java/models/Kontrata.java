@@ -27,11 +27,11 @@ public class Kontrata {
         return new Kontrata(id_kontrata, id_rezervimet, shuma, pagesa);
     }
 
-    public int getId_kontrata() {
+    public int getIdkontrata() {
         return id_kontrata;
     }
 
-    public int getId_rezervimet() {
+    public int getIdrezervimet() {
         return id_rezervimet;
     }
 
@@ -43,5 +43,13 @@ public class Kontrata {
         return pagesa;
     }
 
-    
+    public void printoTeDhenatPerKontraten(){
+        System.out.println("----------------------------------------");
+        System.out.println("Detajet e Kontrates");
+        System.out.println("ID: " + getIdkontrata());
+        System.out.println("ID rezervimi: " + getIdrezervimet());
+        System.out.println("Shuma: " + getShuma() + "€");
+        System.out.println("Pagesa: " + getPagesa());
+        System.out.println("----------------------------------------");
+    }
 }
