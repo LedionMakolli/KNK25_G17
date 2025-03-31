@@ -1,9 +1,47 @@
 package models.Dto;
 
 public class CreateOfertatDto {
-    private int ID_Oferta;
-    private int ID_Vetura;
+    private int id_vetura;
     private int zbritja;
-    private String Data_Fillimit;
-    private String Data_Mbarimit;
+    private String data_fillimit;
+    private String data_mbarimit;
+
+    public CreateOfertatDto(int id_vetura, int zbritja, String data_fillimit, String data_mbarimit) {
+        this.id_vetura = id_vetura;
+        this.zbritja = zbritja;
+        this.data_fillimit = data_fillimit;
+        this.data_mbarimit = data_mbarimit;
+    }
+
+    public void setId_vetura(int id_vetura) {
+        this.id_vetura = id_vetura;
+    }
+
+    public void setZbritja(int zbritja) {
+        this.zbritja = zbritja;
+    }
+
+    public void setData_fillimit(String data_fillimit) {
+        this.data_fillimit = data_fillimit;
+    }
+
+    public void setData_mbarimit(String data_mbarimit) {
+        this.data_mbarimit = data_mbarimit;
+    }
+
+    public int getId_vetura() {
+        return id_vetura;
+    }
+
+    public int getZbritja() {
+        return zbritja;
+    }
+
+    public String getData_fillimit() {
+        return data_fillimit;
+    }
+
+    public String getData_mbarimit() {
+        return data_mbarimit;
+    }
 }

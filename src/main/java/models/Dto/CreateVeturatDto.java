@@ -95,22 +95,22 @@ public class CreateVeturatDto {
     }
 
     public BigDecimal getKilometrazha() {
-        return kilometrazha;
-    }
+            return kilometrazha;
+        }
 
-    public int getNumriUleseve() {
-        return numri_uleseve;
-    }
+        public int getNumriUleseve() {
+            return numri_uleseve;
+        }
 
-    public Karburanti getKarburanti() {
-        return karburanti;
-    }
+        public Karburanti getKarburanti() {
+            return karburanti;
+        }
 
-    public int getCmimiDitor() {
-        return cmimi_ditor;
-    }
+        public int getCmimiDitor() {
+            return cmimi_ditor;
+        }
 
-    public Statusi_Vetura getStatusi() {
-        return statusi;
+        public Statusi_Vetura getStatusi() {
+            return statusi;
     }
 }
