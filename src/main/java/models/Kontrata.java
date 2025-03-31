@@ -27,4 +27,21 @@ public class Kontrata {
         return new Kontrata(id_kontrata, id_rezervimet, shuma, pagesa);
     }
 
+    public int getId_kontrata() {
+        return id_kontrata;
+    }
+
+    public int getId_rezervimet() {
+        return id_rezervimet;
+    }
+
+    public double getShuma() {
+        return shuma;
+    }
+
+    public Pagesa getPagesa() {
+        return pagesa;
+    }
+
+    
 }
