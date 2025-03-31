@@ -1,47 +1,47 @@
 package models.Dto;
 
 public class CreateOfertatDto {
-    private int ID_Vetura;
+    private int id_vetura;
     private int zbritja;
-    private String Data_Fillimit;
-    private String Data_Mbarimit;
+    private String data_fillimit;
+    private String data_mbarimit;
 
-    public CreateOfertatDto(int ID_Vetura, int zbritja, String data_Fillimit, String data_Mbarimit) {
-        this.ID_Vetura = ID_Vetura;
+    public CreateOfertatDto(int id_vetura, int zbritja, String data_fillimit, String data_mbarimit) {
+        this.id_vetura = id_vetura;
         this.zbritja = zbritja;
-        Data_Fillimit = data_Fillimit;
-        Data_Mbarimit = data_Mbarimit;
+        this.data_fillimit = data_fillimit;
+        this.data_mbarimit = data_mbarimit;
     }
 
-    public void setID_Vetura(int ID_Vetura) {
-        this.ID_Vetura = ID_Vetura;
+    public void setId_vetura(int id_vetura) {
+        this.id_vetura = id_vetura;
     }
 
     public void setZbritja(int zbritja) {
         this.zbritja = zbritja;
     }
 
-    public void setData_Fillimit(String data_Fillimit) {
-        Data_Fillimit = data_Fillimit;
+    public void setData_Fillimit(String data_fillimit) {
+        this.data_fillimit = data_fillimit;
     }
 
-    public void setData_Mbarimit(String data_Mbarimit) {
-        Data_Mbarimit = data_Mbarimit;
+    public void setData_Mbarimit(String data_mbarimit) {
+        this.data_mbarimit = data_mbarimit;
     }
 
-    public int getID_Vetura() {
-        return ID_Vetura;
+    public int getId_vetura() {
+        return id_vetura;
     }
 
     public int getZbritja() {
         return zbritja;
     }
 
-    public String getData_Fillimit() {
-        return Data_Fillimit;
+    public String getData_fillimit() {
+        return data_fillimit;
     }
 
-    public String getData_Mbarimit() {
-        return Data_Mbarimit;
+    public String getData_mbarimit() {
+        return data_mbarimit;
     }
 }
