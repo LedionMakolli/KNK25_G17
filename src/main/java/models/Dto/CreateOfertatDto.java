@@ -21,11 +21,11 @@ public class CreateOfertatDto {
         this.zbritja = zbritja;
     }
 
-    public void setData_Fillimit(String data_fillimit) {
+    public void setData_fillimit(String data_fillimit) {
         this.data_fillimit = data_fillimit;
     }
 
-    public void setData_Mbarimit(String data_mbarimit) {
+    public void setData_mbarimit(String data_mbarimit) {
         this.data_mbarimit = data_mbarimit;
     }
 
