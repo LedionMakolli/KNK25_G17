@@ -18,7 +18,7 @@ public class Kontrata {
         this.pagesa = pagesa;
     }
 
-    public Kontrata getInstace(ResultSet resultSet) throws SQLException {
+    public static Kontrata getInstace(ResultSet resultSet) throws SQLException {
         int id_kontrata = resultSet.getInt("id_kontrata");
         int id_rezervimet = resultSet.getInt("id_rezervimet");
         double shuma = resultSet.getDouble("shuma");
