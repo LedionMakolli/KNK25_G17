@@ -1,8 +1,30 @@
 package models;
 
+import models.enums.Pagesa;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Kontrata {
-    private int ID_Kontrata;
-    private int ID_Rezervimet;
+    private int id_kontrata;
+    private int id_rezervimet;
     private double shuma;
-    // metode enum per llojin e pagese
+    private Pagesa pagesa;
+
+    private Kontrata(int id_kontrata, int id_rezervimet, double shuma, Pagesa pagesa) {
+        this.id_kontrata = id_kontrata;
+        this.id_rezervimet = id_rezervimet;
+        this.shuma = shuma;
+        this.pagesa = pagesa;
+    }
+
+    public Kontrata getInstace(ResultSet resultSet) throws SQLException {
+        int id_kontrata = resultSet.getInt("id_kontrata");
+        int id_rezervimet = resultSet.getInt("id_rezervimet");
+        double shuma = resultSet.getDouble("shuma");
+        String pagesaStr = resultSet.getString("pagesa");
+        Pagesa pagesa = Pagesa.valueOf(pagesaStr.toUpperCase());
+        return new Kontrata(id_kontrata, id_rezervimet, shuma, pagesa);
+    }
+
 }
