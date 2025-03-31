@@ -32,5 +32,21 @@ public class KontrataRepository {
         }
         return kontrata;
     }
-    
+
+    // metoda getById
+
+    public Kontrata getById(int kontarta_id) {
+        String query = "SELECT * FROM KONTRATA WHERE id_kontrata = ?";
+        try{
+            PreparedStatement pstm = connection.prepareStatement(query);
+            pstm.setInt(1,kontarta_id);
+            ResultSet resultSet = pstm.executeQuery();
+            if (resultSet.next()){
+                return Kontrata.getInstace(resultSet);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
