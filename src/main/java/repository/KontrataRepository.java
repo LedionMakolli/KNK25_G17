@@ -1,8 +1,8 @@
 package repository;
 
 import database.DBConnection;
-import models.Dto.CreateKontrataDto;
-import models.Kontrata;
+import models.Dto.*;
+import models.*;
 
 
 import java.sql.*;
