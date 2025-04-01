@@ -7,6 +7,7 @@ import models.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class KontrataRepository {
     private Connection connection;
@@ -62,6 +63,7 @@ public class KontrataRepository {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setDouble(1,KontrataDto.getShuma());
             pstm.setObject(2,KontrataDto.getPagesa(), Types.OTHER);
+            pstm.setDate(3,KontrataDto.getData());
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()){
@@ -76,6 +78,46 @@ public class KontrataRepository {
 
     // metoda update
 
+    public Kontrata update(UpdateKontrataDto KontrataDto){
+        StringBuilder query = new StringBuilder("UPDATE KONTRATA SET ");
+        List<Object> parametrat = new ArrayList<>();
+        boolean hasUpdate = false;
+
+        if (KontrataDto.getShuma() > 0){
+            query.append("shuma = ?, ");
+            parametrat.add(KontrataDto.getShuma());
+            hasUpdate = true;
+        }
+        if (KontrataDto.getPagesa() != null){
+            query.append("pagesa = ?, ");
+            parametrat.add(KontrataDto.getPagesa());
+            hasUpdate = true;
+        }
+        if (KontrataDto.getData() != null){
+            query.append("data = ?, ");
+            parametrat.add(KontrataDto.getData());
+            hasUpdate = true;
+        }
+
+        if (!hasUpdate){
+            return getById(KontrataDto.getId_kontrata());
+        }
+        query.setLength(query.length()-2);
+        query.append(" WHERE id_kontrata = ?");
+        parametrat.add(KontrataDto.getId_kontrata());
+
+        try{
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for (int i = 0; i<parametrat.size(); i++){
+                pstm.setObject(i+1,parametrat.get(i));
+            }
+            pstm.execute();
+            return getById(KontrataDto.getId_kontrata());
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     // metoda delete
