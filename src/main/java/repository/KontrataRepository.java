@@ -57,13 +57,14 @@ public class KontrataRepository {
     // metoda create
 
     public Kontrata create(CreateKontrataDto KontrataDto){
-        String query = " INSERT INTO KONTRATA ";
+        String query = "INSERT INTO Kontrata (id_rezervimet, shuma, pagesa, data) VALUES (?, ?, ?, ?)";
 
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setDouble(1,KontrataDto.getShuma());
-            pstm.setObject(2,KontrataDto.getPagesa(), Types.OTHER);
-            pstm.setDate(3,KontrataDto.getData());
+            pstm.setInt(1,KontrataDto.getId_rezervimet());
+            pstm.setDouble(2,KontrataDto.getShuma());
+            pstm.setObject(3,KontrataDto.getPagesa(), Types.OTHER);
+            pstm.setDate(4,KontrataDto.getData());
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()){
@@ -89,8 +90,8 @@ public class KontrataRepository {
             hasUpdate = true;
         }
         if (KontrataDto.getPagesa() != null){
-            query.append("pagesa = ?, ");
-            parametrat.add(KontrataDto.getPagesa());
+            query.append("pagesa = CAST(? AS Pagesa), ");
+            parametrat.add(KontrataDto.getPagesa().name());
             hasUpdate = true;
         }
         if (KontrataDto.getData() != null){
@@ -109,7 +110,11 @@ public class KontrataRepository {
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query.toString());
             for (int i = 0; i<parametrat.size(); i++){
-                pstm.setObject(i+1,parametrat.get(i));
+                if (parametrat.get(i) instanceof String && i == parametrat.size()-1){
+                    pstm.setObject(i+1,parametrat.get(i), Types.OTHER);
+                }else {
+                    pstm.setObject(i + 1, parametrat.get(i));
+                }
             }
             pstm.execute();
             return getById(KontrataDto.getId_kontrata());
