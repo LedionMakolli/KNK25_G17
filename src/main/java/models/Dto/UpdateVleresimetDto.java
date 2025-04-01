@@ -1,12 +1,12 @@
 package models.Dto;
 
-public class UpdateVlersimetDto {
+public class UpdateVleresimetDto {
     private int ID_Klienti;
     private int ID_Vetura;
     private String text;
     private String data;
 
-    public UpdateVlersimetDto(int ID_Klienti, int ID_Vetura, String text, String data) {
+    public UpdateVleresimetDto(int ID_Klienti, int ID_Vetura, String text, String data) {
         this.ID_Klienti = ID_Klienti;
         this.ID_Vetura = ID_Vetura;
         this.text = text;
