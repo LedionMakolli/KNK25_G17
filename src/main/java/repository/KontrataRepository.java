@@ -7,6 +7,7 @@ import models.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class KontrataRepository {
     private Connection connection;
@@ -76,6 +77,41 @@ public class KontrataRepository {
 
     // metoda update
 
+    public Kontrata update(UpdateKontrataDto KontrataDto){
+        StringBuilder query = new StringBuilder("UPDATE KONTRATA SET ");
+        List<Object> parametrat = new ArrayList<>();
+        boolean hasUpdate = false;
+
+        if (KontrataDto.getShuma() > 0){
+            query.append("shuma = ?, ");
+            parametrat.add(KontrataDto.getShuma());
+            hasUpdate = true;
+        }
+        if (KontrataDto.getPagesa() != null){
+            query.append("pagesa = ?, ");
+            parametrat.add(KontrataDto.getPagesa());
+            hasUpdate = true;
+        }
+
+        if (!hasUpdate){
+            return getById(KontrataDto.getId_kontrata());
+        }
+        query.setLength(query.length()-2);
+        query.append(" WHERE id_kontrata = ?");
+        parametrat.add(KontrataDto.getId_kontrata());
+
+        try{
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for (int i = 0; i<parametrat.size(); i++){
+                pstm.setObject(i+1,parametrat.get(i));
+            }
+            pstm.execute();
+            return getById(KontrataDto.getId_kontrata());
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     // metoda delete
