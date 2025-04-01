@@ -3,6 +3,7 @@ package models.Dto;
 import models.enums.Pagesa;
 
 import java.sql.Date;
+import java.time.LocalTime;
 
 public class CreateKontrataDto {
     private int id_kontrata;
