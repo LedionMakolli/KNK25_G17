@@ -13,6 +13,8 @@ CREATE TABLE KLIENTET (
     Emri varchar(255) not null,
     Mbiemri VARCHAR(255) not null,
     Nr_Personal varchar(20) unique not null,
+    username varchar(30) not null,                username edhe password duhet mi kqyr prap
+    Password varchar(30) not null,
     Telefoni varchar(20) unique not null
 );
 
