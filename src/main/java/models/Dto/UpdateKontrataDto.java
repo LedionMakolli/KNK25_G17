@@ -2,17 +2,21 @@ package models.Dto;
 
 import models.enums.Pagesa;
 
+import java.sql.Date;
+
 public class UpdateKontrataDto {
     private int id_kontrata;
     private int id_rezervimet;
     private double shuma;
     private Pagesa pagesa;
+    private Date data;
 
-    public UpdateKontrataDto(int id_kontrata, int id_rezervimet, double shuma, Pagesa pagesa) {
+    public UpdateKontrataDto(int id_kontrata, double shuma, Pagesa pagesa, Date data) {
         this.id_kontrata = id_kontrata;
         this.id_rezervimet = id_rezervimet;
         this.shuma = shuma;
         this.pagesa = pagesa;
+        this.data = data;
     }
 
     public int getId_kontrata() {
@@ -29,5 +33,9 @@ public class UpdateKontrataDto {
 
     public Pagesa getPagesa() {
         return pagesa;
+    }
+
+    public Date getData() {
+        return data;
     }
 }

@@ -1,14 +1,22 @@
 
 #################### Tabelat per bazen e te dhenave ###########################
 
+-----   ENUMS    ----
+
+-- CREATE TYPE Karburanti AS ENUM ('BENZINE', 'NAFTE', 'ELEKTRIKE', 'HIBRID');
+-- CREATE TYPE Statusi_Veturat AS ENUM ('NE_DISPOZICION', 'E_REZERVUAR', 'NE_SERVIS');
+
+-----   Klientet    ----
 
 CREATE TABLE KLIENTET (
-    ID_Klienti serial primary key,
+    ID_klienti serial primary key,
     Emri varchar(255) not null,
     Mbiemri VARCHAR(255) not null,
     Nr_Personal varchar(20) unique not null,
     Telefoni varchar(20) unique not null
 );
+
+-----   Veturat    ----
 
 CREATE TABLE Veturat (
     ID_Vetura SERIAL PRIMARY KEY,
@@ -32,13 +40,19 @@ CREATE TABLE Rezervimet (
     Statusi ENUM('Aktiv', 'Anuluar', 'Përfunduar') NOT NULL
 );
 
+-----   Kontrata    ----
+
+CREATE TYPE Pagesa AS ENUM ('KESH', 'KARTELE');
+
 CREATE TABLE Kontrata (
-    ID_Kontrata SERIAL PRIMARY KEY,
-    ID_Rezervimi INT REFERENCES Rezervimet(ID_Rezervimi) ON DELETE CASCADE,
-    Shuma_Totale REAL NOT NULL,
-    Metoda ENUM('Kartë Krediti', 'Cash') NOT NULL,
-    Data_Leshimit TIMESTAMP NOT NULL
+    id_kontrata SERIAL PRIMARY KEY,
+    id_rezervimet INT NOT NULL,
+    shuma REAL NOT NULL,
+    pagesa Pagesa NOT NULL,
+    data TIMESTAMP NOT NULL
 );
+
+
 
 CREATE TABLE Sigurimi (
     ID_Sigurimi SERIAL PRIMARY KEY,

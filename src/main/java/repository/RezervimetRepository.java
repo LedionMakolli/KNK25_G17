@@ -1,9 +1,8 @@
 package repository;
 
 import database.DBConnection;
-import models.Dto.CreateKlientetDto;
-import models.Dto.CreateRezervimetDto;
-import models.Rezervimet;
+import models.Dto.*;
+import models.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -74,3 +73,5 @@ public ArrayList<Rezervimet> getAll() {
     return null;
  }
 }
+
+//4. Metoda update
