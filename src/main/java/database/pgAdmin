@@ -32,13 +32,19 @@ CREATE TABLE Rezervimet (
     Statusi ENUM('Aktiv', 'Anuluar', 'Përfunduar') NOT NULL
 );
 
+-----   Kontrata    ----
+
+CREATE TYPE Pagesa AS ENUM ('KESH', 'KARTELE');
+
 CREATE TABLE Kontrata (
-    ID_Kontrata SERIAL PRIMARY KEY,
-    ID_Rezervimi INT REFERENCES Rezervimet(ID_Rezervimi) ON DELETE CASCADE,
-    Shuma_Totale REAL NOT NULL,
-    Metoda ENUM('Kartë Krediti', 'Cash') NOT NULL,
-    Data_Leshimit TIMESTAMP NOT NULL
+    id_kontrata SERIAL PRIMARY KEY,
+    id_rezervimet INT NOT NULL,
+    shuma REAL NOT NULL,
+    pagesa Pagesa NOT NULL,
+    data TIMESTAMP NOT NULL
 );
+
+
 
 CREATE TABLE Sigurimi (
     ID_Sigurimi SERIAL PRIMARY KEY,
