@@ -1,9 +1,9 @@
 package models.Dto;
 
 public class CreateVlersimetDto {
-    private int ID_Vlersimi;
-    private int ID_Klienti;
-    private int ID_Vetura;
+    private int id_vlersimi;
+    private int id_klienti;
+    private int id_vetura;
     private String text;
     private String data;
 }
