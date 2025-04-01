@@ -27,7 +27,7 @@ public class KontrataRepository {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                kontrata.add(Kontrata.getInstace(resultSet));
+                kontrata.add(Kontrata.getInstance(resultSet));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -44,7 +44,7 @@ public class KontrataRepository {
             pstm.setInt(1,kontarta_id);
             ResultSet resultSet = pstm.executeQuery();
             if (resultSet.next()){
-                return Kontrata.getInstace(resultSet);
+                return Kontrata.getInstance(resultSet);
             }
         }catch (SQLException e){
             e.printStackTrace();
