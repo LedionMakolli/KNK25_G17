@@ -73,6 +73,34 @@ public ArrayList<Rezervimet> getAll() {
     }
     return null;
  }
+ //4. Metoda update
+public int getIdVeturaByModeli(String modeli){
+    String query = "SELECT ID_Vetura FROM VETURA WHERE Modeli=?";
+   PreparedStatement preparedStatement = null;
+   ResultSet resultSet = null;
+    try{
+preparedStatement = connection.prepareStatement(query);
+preparedStatement.setString(1, modeli);
+resultSet = preparedStatement.executeQuery();
+if(resultSet.next()){
+    return resultSet.getInt("ID_Vetura");
+}
+    }catch(SQLException e){
+        e.printStackTrace();
+    }
+    return -1;
+}
+
+
+
+
+
+
+
+
+
+
+
  //5. Metoda delete
 public boolean delete(int id_rezervimet){
     String query = "DELETE FROM REZERVIMET WHERE id_rezervimet=?";
