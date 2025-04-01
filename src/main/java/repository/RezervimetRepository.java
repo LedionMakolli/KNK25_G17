@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class RezervimetRepository {
+
 private Connection connection;
 
 public RezervimetRepository() throws SQLException{
@@ -72,6 +73,16 @@ public ArrayList<Rezervimet> getAll() {
     }
     return null;
  }
+ //5. Metoda delete
+public boolean delete(int id_rezervimet){
+    String query = "DELETE FROM REZERVIMET WHERE id_rezervimet=?";
+    try{
+         PreparedStatement pstm = connection.prepareStatement(query);
+         pstm.setInt(1, id_rezervimet);
+         return pstm.executeUpdate()==1;
+     }catch(SQLException e){
+         e.printStackTrace();
+     }
+     return false;
+ }
 }
-
-//4. Metoda update
