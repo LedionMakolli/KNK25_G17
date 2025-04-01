@@ -63,6 +63,7 @@ public class KontrataRepository {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setDouble(1,KontrataDto.getShuma());
             pstm.setObject(2,KontrataDto.getPagesa(), Types.OTHER);
+            pstm.setDate(3,KontrataDto.getData());
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()){
@@ -90,6 +91,11 @@ public class KontrataRepository {
         if (KontrataDto.getPagesa() != null){
             query.append("pagesa = ?, ");
             parametrat.add(KontrataDto.getPagesa());
+            hasUpdate = true;
+        }
+        if (KontrataDto.getData() != null){
+            query.append("data = ?, ");
+            parametrat.add(KontrataDto.getData());
             hasUpdate = true;
         }
 
