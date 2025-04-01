@@ -1,15 +1,17 @@
 package models.Dto;
 
+import models.enums.Kompania;
+
 import java.util.Date;
 
 public class CreateSigurimiDto {
-    private String kompania;
+    private Kompania kompania;
     private Date data_fillimit;
     private Date data_mbarimit;
     private double kosto;
 
 
-    private CreateSigurimiDto(int id_sigurimi, int id_vetura, String kompania, Date data_fillimit, Date data_mbarimit, double kosto) {
+    private CreateSigurimiDto(int id_sigurimi, int id_vetura, Kompania kompania, Date data_fillimit, Date data_mbarimit, double kosto) {
 
         this.kompania = kompania;
         this.data_fillimit = data_fillimit;
@@ -18,7 +20,7 @@ public class CreateSigurimiDto {
     }
 
 
-    public String getKompania() {
+    public Kompania getKompania() {
         return kompania;
     }
 
@@ -35,7 +37,7 @@ public class CreateSigurimiDto {
     }
 
 
-public void setKompania(String kompania){
+public void setKompania(Kompania kompania){
     this.kompania=kompania;
 }
     public void setData_fillimit(Date data_fillimit){
