@@ -12,7 +12,7 @@ public class Rezervimet {
     private int id_vetura;
     private Date data_fillimit;   //LocalDate
     private Date data_mbarimit;
-    private Statusi_Rezervimet statusi_rezervimet;
+    private Statusi_Rezervimet statusi_rezervimet; //mundemi me shtu vetine created_at per kohen e sakte kur eshte shtuar rreshti tek rezervimet
 
 
 private Rezervimet(int id_rezervimet, int id_klienti, int id_vetura, Date data_fillimit, Date data_mbarimit, Statusi_Rezervimet statusi_rezervimet){

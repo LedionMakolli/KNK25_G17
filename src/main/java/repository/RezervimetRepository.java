@@ -73,3 +73,5 @@ public ArrayList<Rezervimet> getAll() {
     return null;
  }
 }
+
+//4. Metoda update
