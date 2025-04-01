@@ -3,7 +3,7 @@
 
 
 CREATE TABLE KLIENTET (
-    ID_Klienti serial primary key,
+    ID_klienti serial primary key,
     Emri varchar(255) not null,
     Mbiemri VARCHAR(255) not null,
     Nr_Personal varchar(20) unique not null,
