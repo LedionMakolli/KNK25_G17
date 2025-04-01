@@ -6,8 +6,10 @@ import models.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RezervimetRepository {
+
 private Connection connection;
 
 public RezervimetRepository() throws SQLException{
@@ -72,6 +74,86 @@ public ArrayList<Rezervimet> getAll() {
     }
     return null;
  }
+ //4. Metoda update
+//public int getIdVeturaByModeli(String modeli){
+//    String query = "SELECT ID_Vetura FROM VETURA WHERE Modeli=?";
+//   PreparedStatement preparedStatement = null;
+//   ResultSet resultSet = null;
+//    try{
+//preparedStatement = connection.prepareStatement(query);
+//preparedStatement.setString(1, modeli);
+//resultSet = preparedStatement.executeQuery();
+//if(resultSet.next()){
+//    return resultSet.getInt("ID_Vetura");
+//}
+//    }catch(SQLException e){
+//        e.printStackTrace();
+//    }
+//    return -1;
+//}
+
+public Rezervimet update(UpdateRezervimetDto rezervimetDto, String modeli_vetures){
+    StringBuilder query = new StringBuilder("UPDATE REZERVIMET SET");
+    List<Object> parametrat = new ArrayList<>();
+    boolean hasUpdates =false;
+
+
+//    if(rezervimetDto.getId_vetura() != null){
+//        query.append("id_vetura=?, ");
+//        parametrat.add(rezervimetDto.getId_vetura());
+//        hasUpdates=true;
+//    }
+
+    if(rezervimetDto.getData_fillimit() != null){
+        query.append("data_fillimit=?, ");
+        parametrat.add(rezervimetDto.getData_fillimit());
+        hasUpdates=true;
+    }
+
+    if(rezervimetDto.getData_mbarimit() != null){
+        query.append("data_mbarimit=?, ");
+        parametrat.add(rezervimetDto.getData_mbarimit());
+        hasUpdates=true;
+    }
+    if(!hasUpdates){
+        return getById(rezervimetDto.getId_rezervimet());
+    }
+    query.setLength(query.length()-2);
+    query.append("WHERE id_rezervimet=?");
+    parametrat.add(rezervimetDto.getId_rezervimet());
+
+    try{
+        PreparedStatement pstm = connection.prepareStatement(query.toString());
+        for(int i=0; i< parametrat.size(); i++){
+            pstm.setObject(i+1, parametrat.get(i));
+        }
+        pstm.executeUpdate();
+        return getById(rezervimetDto.getId_rezervimet());
+    }catch(SQLException e){
+        throw new RuntimeException("Gabim gjate perditesimit", e);
+    }
+
 }
 
-//4. Metoda update
+
+
+
+
+
+
+
+
+
+ //5. Metoda delete
+public boolean delete(int id_rezervimet){
+    String query = "DELETE FROM REZERVIMET WHERE id_rezervimet=?";
+    try{
+         PreparedStatement pstm = connection.prepareStatement(query);
+         pstm.setInt(1, id_rezervimet);
+         return pstm.executeUpdate()==1;
+     }catch(SQLException e){
+         e.printStackTrace();
+     }
+     return false;
+ }
+}
