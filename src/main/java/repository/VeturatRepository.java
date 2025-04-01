@@ -135,9 +135,8 @@ public class VeturatRepository {
         return false;
     }
     // 6. metoda filtro
-    public ArrayList<Veturat> filter(String modeli, String ngjyra, int viti_prodhimit,
-                                     int numri_uleseve, Karburanti karburanti, int cmimi_ditor,
-                                     Statusi_Vetura statusi) {
+    public ArrayList<Veturat> filter(String modeli, String ngjyra, int viti_prodhimit, int numri_uleseve,
+                                     Karburanti karburanti, int cmimi_ditor, Statusi_Vetura statusi) {
         ArrayList<Veturat> veturat=new ArrayList<Veturat>();
         StringBuilder query=new StringBuilder("SELECT * FROM VETURAT WHERE 1=1");
         List<Object> parametrat=new ArrayList<>();
