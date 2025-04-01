@@ -1,14 +1,12 @@
 package models.Dto;
 
 public class UpdateOfertatDto {
-    private int id_oferta;
     private int id_vetura;
     private int zbritja;
     private String data_fillimit;
     private String data_mbarimit;
 
-    public UpdateOfertatDto(int id_oferta, int id_vetura, int zbritja, String data_fillimit, String data_mbarimit) {
-        this.id_oferta = id_oferta;
+    public UpdateOfertatDto(int id_vetura, int zbritja, String data_fillimit, String data_mbarimit) {
         this.id_vetura = id_vetura;
         this.zbritja = zbritja;
         this.data_fillimit = data_fillimit;
@@ -29,10 +27,6 @@ public class UpdateOfertatDto {
 
     public void setData_Mbarimit(String data_mbarimit) {
         this.data_mbarimit = data_mbarimit;
-    }
-
-    public int getId_oferta() {
-        return id_oferta;
     }
 
     public int getId_vetura() {
