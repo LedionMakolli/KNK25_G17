@@ -1,7 +1,9 @@
 package repository;
 
 import database.DBConnection;
+import models.Dto.CreateKontrataDto;
 import models.Kontrata;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -48,5 +50,47 @@ public class KontrataRepository {
             e.printStackTrace();
         }
         return null;
+
     }
+
+    // metoda create
+
+    public Kontrata create(CreateKontrataDto KontrataDto){
+        String query = " INSERT INTO KONTRATA ";
+
+        try{
+            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstm.setDouble(1,KontrataDto.getShuma());
+            pstm.setObject(2,KontrataDto.getPagesa(), Types.OTHER);
+            pstm.execute();
+            ResultSet resultSet = pstm.getGeneratedKeys();
+            if (resultSet.next()){
+                int id = resultSet.getInt(1);
+                return this.getById(id);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // metoda update
+
+
+
+    // metoda delete
+
+    public boolean delete(int id_kontrata){
+        String query = "DELETE FROM KONTRATA WHERE id_kontrata = ?";
+        try {
+            PreparedStatement pstm = connection.prepareStatement(query);
+            pstm.setInt(1,id_kontrata);
+
+            return pstm.executeUpdate() == 1;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
