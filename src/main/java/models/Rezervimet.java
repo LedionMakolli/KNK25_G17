@@ -49,4 +49,12 @@ public Date getData_mbarimit(){return data_mbarimit;}
 
 public Statusi_Rezervimet getStatusi(){return statusi_rezervimet;}
 
+    public void printoTeDhenatRezervimet(){
+    System.out.println("ID_Rezervimet: " + getId_rezervimet());
+    System.out.println("ID_Klienti: " + getId_klienti());
+    System.out.println("ID_Vetura: " + getId_vetura());
+    System.out.println("Data_Fillimit: " + getData_fillimit());
+    System.out.println("Data_Mbarimit: " + getData_mbarimit());
+    System.out.println("Statusi: " + getStatusi());
+    }
 }
