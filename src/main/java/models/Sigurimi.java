@@ -11,13 +11,13 @@ import java.util.Date;
 public class Sigurimi {
     private int id_sigurimi;
     private int id_vetura;
-    private String kompania;
+    private Kompania kompania;
     private Date data_fillimit;
     private Date data_mbarimit;
     private double kosto;
 
 
-    private Sigurimi(int id_sigurimi, int id_vetura, String kompania, Date data_fillimit, Date data_mbarimit, double kosto) {
+    private Sigurimi(int id_sigurimi, int id_vetura, Kompania kompania, Date data_fillimit, Date data_mbarimit, double kosto) {
         this.id_sigurimi = id_sigurimi;
         this.id_vetura = id_vetura;
         this.kompania = kompania;
@@ -45,7 +45,7 @@ public class Sigurimi {
         return id_vetura;
     }
 
-    public String getKompania() {
+    public Kompania getKompania() {
         return kompania;
     }
 
