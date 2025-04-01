@@ -1,9 +1,12 @@
 
 #################### Tabelat per bazen e te dhenave ###########################
 
-Enums:
+-----   ENUMS    ----
+
 -- CREATE TYPE Karburanti AS ENUM ('BENZINE', 'NAFTE', 'ELEKTRIKE', 'HIBRID');
 -- CREATE TYPE Statusi_Veturat AS ENUM ('NE_DISPOZICION', 'E_REZERVUAR', 'NE_SERVIS');
+
+-----   Klientet    ----
 
 CREATE TABLE KLIENTET (
     ID_klienti serial primary key,
@@ -12,6 +15,8 @@ CREATE TABLE KLIENTET (
     Nr_Personal varchar(20) unique not null,
     Telefoni varchar(20) unique not null
 );
+
+-----   Veturat    ----
 
 CREATE TABLE Veturat (
     ID_Vetura SERIAL PRIMARY KEY,
