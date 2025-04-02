@@ -98,6 +98,28 @@ public ArrayList<Rezervimet> getAll() {
         parametrat.add(rezervimetDto.getData_mbarimit());
         hasUpdates=true;
     }
+
+    if(rezervimetDto.getStatusi_rezervimet() != null){
+        query.append("statusi_rezervimet=?,");
+        parametrat.add(rezervimetDto.getStatusi_rezervimet());
+        hasUpdates=true;
+
+        try{
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for(int i=0; i<parametrat.size(); i++){
+                if(parametrat.get(i) instanceof String && i== parametrat.size()-1){
+                    pstm.setObject(i+1, parametrat.get(i));
+                } else {
+                    pstm.setObject(i+1, parametrat.get(i));
+                }
+            }
+            pstm.execute();
+            return getById(rezervimetDto.getId_rezervimet());
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
     if(!hasUpdates){
         return getById(rezervimetDto.getId_rezervimet());
     }
