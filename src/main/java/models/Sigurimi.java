@@ -11,13 +11,13 @@ import java.util.Date;
 public class Sigurimi {
     private int id_sigurimi;
     private int id_vetura;
-    private String kompania;
+    private Kompania kompania;
     private Date data_fillimit;
     private Date data_mbarimit;
     private double kosto;
 
 
-    private Sigurimi(int id_sigurimi, int id_vetura, String kompania, Date data_fillimit, Date data_mbarimit, double kosto) {
+    private Sigurimi(int id_sigurimi, int id_vetura, Kompania kompania, Date data_fillimit, Date data_mbarimit, double kosto) {
         this.id_sigurimi = id_sigurimi;
         this.id_vetura = id_vetura;
         this.kompania = kompania;
@@ -37,7 +37,7 @@ public class Sigurimi {
         return new Sigurimi(id_sigurimi, id_vetura, kompania, data_fillimit, data_mbarimit, kosto);
     }
 
-    public int getIdsigurimi() {
+    public int getIdSigurimi() {
         return id_sigurimi;
     }
 
@@ -45,7 +45,7 @@ public class Sigurimi {
         return id_vetura;
     }
 
-    public String getKompania() {
+    public Kompania getKompania() {
         return kompania;
     }
 
@@ -61,10 +61,10 @@ public class Sigurimi {
         return kosto;
     }
 
-    public void printoTeDhenatPerVeturen() {
+    public void printoTeDhenatPerSigurimineVetures() {
         System.out.println("----------------------------------------");
         System.out.println("Të dhënat e Sigurimit:");
-        System.out.println("ID Sigurimi: " + getIdsigurimi());
+        System.out.println("ID Sigurimi: " + getIdSigurimi());
         System.out.println("ID vetura: " + getIdvetura());
         System.out.println("Kompania e Sigurimit: " + getKompania());
         System.out.println("Data e Regjistrimit: " + getDataFillimit());

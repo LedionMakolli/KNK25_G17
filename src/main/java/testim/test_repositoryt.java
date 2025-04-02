@@ -4,6 +4,7 @@ import models.Dto.*;
 import models.enums.Karburanti;
 import models.enums.Statusi_Vetura;
 import repository.KlientetRepository;
+import repository.SigurimiRepository;
 import repository.VeturatRepository;
 
 import java.math.BigDecimal;
@@ -38,7 +39,7 @@ public class test_repositoryt {
 //        );
 
 //         Test per funksionimin e tabeles UpdateVeturat
-        VeturatRepository veturatRepository=new VeturatRepository();
+        SigurimiRepository sigurimiRepository=new SigurimiRepository();
 
 //        UpdateVeturatDto updateVetura1=new UpdateVeturatDto(1, null, new BigDecimal("120000"), 0, null);
 //        UpdateVeturatDto updateVetura1=new UpdateVeturatDto(0, null, null, 0, null);

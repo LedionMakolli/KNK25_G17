@@ -8,6 +8,8 @@ public class Klientet {
     private String emri;
     private String mbiemri;
     private String nr_personal;
+//    private String username;
+//    private String client_password;  qysh duhet me rujt passwordin e enkriptum??
     private String telefoni;
 
     private Klientet(int ID_klienti, String emri, String mbiemri, String nr_personal, String nr_telefonit) {
