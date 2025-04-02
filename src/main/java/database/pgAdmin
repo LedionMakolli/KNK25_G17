@@ -33,6 +33,8 @@ CREATE TABLE Veturat (
     Statusi Statusi DEFAULT 'NE_DISPOZICION'
 );
 
+-----   REZERVIMET    ----
+
 CREATE TABLE Rezervimet (
     id_rezervimet SERIAL PRIMARY KEY,
     id_klienti INT REFERENCES Klientet(ID_Klienti) ON DELETE CASCADE,
