@@ -3,14 +3,14 @@ package models.Dto;
 public class CreateKlientetDto {
     private String emri;
     private String mbiemri;
-    private String nr_personal;
-    private String telefoni;
+    private String nrPersonal;
+    private String nrTelefoni;
 
-    public CreateKlientetDto(String emri, String mbiemri, String nr_personal, String telefoni) {
-        this.emri=emri;
-        this.mbiemri=mbiemri;
-        this.nr_personal=nr_personal;
-        this.telefoni=telefoni;
+    public CreateKlientetDto(String emri, String mbiemri, String nrPersonal, String nrTelefoni) {
+        this.emri = emri;
+        this.mbiemri = mbiemri;
+        this.nrPersonal = nrPersonal;
+        this.nrTelefoni = nrTelefoni;
     }
 
     public void setEmri(String emri) {
@@ -21,12 +21,12 @@ public class CreateKlientetDto {
         this.mbiemri = mbiemri;
     }
 
-    public void setNr_personal(String nr_personal) {
-        this.nr_personal = nr_personal;
+    public void setNrPersonal(String nrPersonal) {
+        this.nrPersonal = nrPersonal;
     }
 
-    public void setNr_telefonit(String nr_telefonit) {
-        this.telefoni = nr_telefonit;
+    public void setNrTelefoni(String nrTelefoni) {
+        this.nrTelefoni = nrTelefoni;
     }
 
     public String getEmri() {
@@ -37,11 +37,11 @@ public class CreateKlientetDto {
         return mbiemri;
     }
 
-    public String getNr_personal() {
-        return nr_personal;
+    public String getNrPersonal() {
+        return nrPersonal;
     }
 
-    public String getNr_telefonit() {
-        return telefoni;
+    public String getNrTelefoni() {
+        return nrTelefoni;
     }
 }

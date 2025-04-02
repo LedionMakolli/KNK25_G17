@@ -9,28 +9,28 @@
 -----   Klientet    ----
 
 CREATE TABLE KLIENTET (
-    ID_klienti serial primary key,
-    Emri varchar(255) not null,
-    Mbiemri VARCHAR(255) not null,
-    Nr_Personal varchar(20) unique not null,
+    idKlienti serial primary key,
+    emri varchar(255) not null,
+    mbiemri VARCHAR(255) not null,
+    nrPersonal varchar(20) unique not null,
     username varchar(30) not null,                username edhe password duhet mi kqyr prap
     Password varchar(30) not null,
-    Telefoni varchar(20) unique not null
+    nrTelefoni varchar(20) unique not null
 );
 
 -----   Veturat    ----
 
 CREATE TABLE Veturat (
-    ID_Vetura SERIAL PRIMARY KEY,
-    Targat VARCHAR(15) NOT NULL UNIQUE,
-    Modeli VARCHAR(50) NOT NULL,
-    Ngjyra VARCHAR(20),
-    Viti_Prodhimit DECIMAL(5) CHECK (Viti_Prodhimit >= 1900),
-    Kilometrazha DECIMAL(10,2) CHECK (Kilometrazha >= 0),
-    Numri_Uleseve INT CHECK (Numri_Uleseve > 0),
-    Karburanti Karburanti NOT NULL,
-    Cmimi_ditor DECIMAL(10,2) CHECK (Cmimi_ditor >= 0),
-    Statusi Statusi DEFAULT 'NE_DISPOZICION'
+    idVetura SERIAL PRIMARY KEY,
+    targat VARCHAR(15) NOT NULL UNIQUE,
+    modeli VARCHAR(50) NOT NULL,
+    ngjyra VARCHAR(20),
+    vitiProdhimit DECIMAL(5) CHECK (vitiProdhimit >= 1900),
+    kilometrazha DECIMAL(10,2) CHECK (kilometrazha >= 0),
+    numriUleseve INT CHECK (numriUleseve > 0),
+    karburanti Karburanti NOT NULL,
+    cmimiDitor DECIMAL(10,2) CHECK (cmimiDitor >= 0),
+    statusi Statusi DEFAULT 'NE_DISPOZICION'
 );
 
 -----   REZERVIMET    ----

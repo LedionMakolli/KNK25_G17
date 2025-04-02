@@ -1,8 +1,6 @@
 package models;
 
-import models.enums.Karburanti;
 import models.enums.Kompania;
-import models.enums.Statusi_Vetura;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

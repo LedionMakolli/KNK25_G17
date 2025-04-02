@@ -1,22 +1,22 @@
 package models.Dto;
 
-import models.enums.Karburanti;
-import models.enums.Statusi_Vetura;
+import models.enums.StatusiVetura;
 import java.math.BigDecimal;
 
+
 public class UpdateVeturatDto {
-    private int ID_Vetura;
+    private int idVetura;
     private String ngjyra;
     private BigDecimal kilometrazha;
-    private int cmimi_ditor;
-    private Statusi_Vetura statusi;
+    private int cmimiDitor;
+    private StatusiVetura statusi;
 
-    public UpdateVeturatDto(int ID_Vetura, String ngjyra, BigDecimal kilometrazha,
-                            int cmimi_ditor, Statusi_Vetura statusi) {
-        this.ID_Vetura = ID_Vetura;
+    public UpdateVeturatDto(int idVetura, String ngjyra, BigDecimal kilometrazha,
+                            int cmimiDitor, StatusiVetura statusi) {
+        this.idVetura = idVetura;
         this.ngjyra = ngjyra;
         this.kilometrazha = kilometrazha;
-        this.cmimi_ditor = cmimi_ditor;
+        this.cmimiDitor = cmimiDitor;
         this.statusi = statusi;
     }
     public void setNgjyra(String ngjyra) {
@@ -27,16 +27,16 @@ public class UpdateVeturatDto {
         this.kilometrazha = kilometrazha;
     }
 
-    public void setCmimiditor(int cmimi_ditor) {
-        this.cmimi_ditor = cmimi_ditor;
+    public void setCmimiDitor(int cmimiDitor) {
+        this.cmimiDitor = cmimiDitor;
     }
 
-    public void setStatusi(Statusi_Vetura statusi) {
+    public void setStatusi(StatusiVetura statusi) {
         this.statusi = statusi;
     }
 
-    public int getIDVetura() {
-        return ID_Vetura;
+    public int getIdVetura() {
+        return idVetura;
     }
 
     public String getNgjyra() {
@@ -48,10 +48,10 @@ public class UpdateVeturatDto {
     }
 
     public int getCmimiDitor() {
-        return cmimi_ditor;
+        return cmimiDitor;
     }
 
-    public Statusi_Vetura getStatusi() {
+    public StatusiVetura getStatusi() {
         return statusi;
     }
 }

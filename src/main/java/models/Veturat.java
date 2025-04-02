@@ -1,54 +1,55 @@
 package models;
 
 import models.enums.Karburanti;
-import models.enums.Statusi_Vetura;
+import models.enums.StatusiVetura;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Veturat {
-    private int id_vetura;
+    private int idVetura;
     private String targat;
     private String modeli;
     private String ngjyra;
-    private int viti_prodhimit;
+    private int vitiProdhimit;
     private BigDecimal kilometrazha;
-    private int numri_uleseve;
+    private int numriUleseve;
     private Karburanti karburanti;
-    private int cmimi_ditor;
-    private Statusi_Vetura statusi;
+    private int cmimiDitor;
+    private StatusiVetura statusi;
 
-    private Veturat(int id_vetura, String targat, String modeli, String ngjyra,
-                   int viti_prodhimit, BigDecimal kilometrazha, int numri_uleseve, Karburanti karburanti, int cmimi_ditor, Statusi_Vetura statusi) {
-        this.id_vetura = id_vetura;
+    private Veturat(int idVetura, String targat, String modeli, String ngjyra,
+                   int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
+                    Karburanti karburanti, int cmimiDitor, StatusiVetura statusi) {
+        this.idVetura = idVetura;
         this.targat = targat;
         this.modeli = modeli;
         this.ngjyra = ngjyra;
-        this.viti_prodhimit = viti_prodhimit;
+        this.vitiProdhimit = vitiProdhimit;
         this.kilometrazha = kilometrazha;
-        this.numri_uleseve=numri_uleseve;
+        this.numriUleseve=numriUleseve;
         this.karburanti = karburanti;
-        this.cmimi_ditor = cmimi_ditor;
+        this.cmimiDitor = cmimiDitor;
         this.statusi = statusi;
     }
     public static Veturat getInstance(ResultSet resultSet) throws SQLException {
-        int id_vetura=resultSet.getInt("id_vetura");
+        int idVetura=resultSet.getInt("id_vetura");
         String targat=resultSet.getString("targat");
         String modeli=resultSet.getString("modeli");
         String ngjyra=resultSet.getString("ngjyra");
-        int viti_prodhimit=resultSet.getInt("viti_prodhimit");
+        int vitiProdhimit=resultSet.getInt("viti_prodhimit");
         BigDecimal kilometrazha=resultSet.getBigDecimal("kilometrazha");
-        int numri_uleseve=resultSet.getInt("numri_uleseve");
+        int numriUleseve=resultSet.getInt("numri_uleseve");
         String karburantiStr = resultSet.getString("karburanti");
         Karburanti karburanti = Karburanti.valueOf(karburantiStr.toUpperCase());
-        int cmimi_ditor=resultSet.getInt("cmimi_ditor");
+        int cmimiDitor=resultSet.getInt("cmimi_ditor");
         String statusiStr = resultSet.getString("statusi");
-        Statusi_Vetura statusi = Statusi_Vetura.valueOf(statusiStr.toUpperCase());
-        return new Veturat(id_vetura,targat,modeli,ngjyra,viti_prodhimit,kilometrazha,numri_uleseve,karburanti, cmimi_ditor, statusi);
+        StatusiVetura statusi = StatusiVetura.valueOf(statusiStr.toUpperCase());
+        return new Veturat(idVetura,targat,modeli,ngjyra,vitiProdhimit,kilometrazha,numriUleseve,karburanti, cmimiDitor, statusi);
     }
 
-    public int getIdvetura() {
-        return id_vetura;
+    public int getIdVetura() {
+        return idVetura;
     }
 
     public String getTargat() {
@@ -64,7 +65,7 @@ public class Veturat {
     }
 
     public int getVitiProdhimit() {
-        return viti_prodhimit;
+        return vitiProdhimit;
     }
 
     public BigDecimal getKilometrazha() {
@@ -72,24 +73,24 @@ public class Veturat {
     }
 
     public int getNumriUleseve() {
-        return numri_uleseve;
+        return numriUleseve;
     }
 
     public Karburanti getKarburanti() {
         return karburanti;
     }
 
-    public int getCmimiditor() {
-        return cmimi_ditor;
+    public int getCmimiDitor() {
+        return cmimiDitor;
     }
 
-    public Statusi_Vetura getStatusi() {
+    public StatusiVetura getStatusi() {
         return statusi;
     }
     public void printoTeDhenatPerVeturen() {
         System.out.println("----------------------------------------");
         System.out.println("Detajet e veturës:");
-        System.out.println("ID: " + getIdvetura());
+        System.out.println("ID: " + getIdVetura());
         System.out.println("Targat: " + getTargat());
         System.out.println("Modeli: " + getModeli());
         System.out.println("Ngjyra: " + getNgjyra());
@@ -97,7 +98,7 @@ public class Veturat {
         System.out.println("Kilometrazha: " + getKilometrazha() + " km");
         System.out.println("Kapaciteti: " + getNumriUleseve() + " Ulese");
         System.out.println("Karburanti: " + getKarburanti());
-        System.out.println("Çmimi ditor: " + getCmimiditor() + " €");
+        System.out.println("Çmimi ditor: " + getCmimiDitor() + " €");
         System.out.println("Statusi: " + getStatusi());
         System.out.println("----------------------------------------");
     }

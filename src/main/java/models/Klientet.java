@@ -4,33 +4,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Klientet {
-    private int id_klienti;
+    private int idKlienti;
     private String emri;
     private String mbiemri;
-    private String nr_personal;
-//    private String username;
-//    private String client_password;  qysh duhet me rujt passwordin e enkriptum??
-    private String telefoni;
+    private String nrPersonal;
+    //    private String klientUsername;
+//    private String klientPassword;
+    private String nrTelefoni;
 
-    private Klientet(int ID_klienti, String emri, String mbiemri, String nr_personal, String nr_telefonit) {
-        this.id_klienti = ID_klienti;
+    private Klientet(int idKlienti, String emri, String mbiemri, String nrPersonal, String nrTelefoni) {
+        this.idKlienti = idKlienti;
         this.emri = emri;
         this.mbiemri = mbiemri;
-        this.nr_personal = nr_personal;
-        this.telefoni = nr_telefonit;
+        this.nrPersonal = nrPersonal;
+        this.nrTelefoni = nrTelefoni;
     }
+
     public static Klientet getInstance(ResultSet resultSet) throws SQLException {
-        int id_klienti=resultSet.getInt("id_klienti");
-        String emri=resultSet.getString("emri");
-        String mbiemri=resultSet.getString("mbiemri");
-        String nr_personal=resultSet.getString("nr_personal");
-        String telefoni=resultSet.getString("telefoni");
+        int idKlienti = resultSet.getInt("id_klienti");
+        String emri = resultSet.getString("emri");
+        String mbiemri = resultSet.getString("mbiemri");
+        String nrPersonal = resultSet.getString("nr_personal");
+        String nrTelefoni = resultSet.getString("telefoni");
 
-        return new Klientet(id_klienti, emri, mbiemri, nr_personal, telefoni);
+        return new Klientet(idKlienti, emri, mbiemri, nrPersonal, nrTelefoni);
     }
 
-    public int getId_klienti() {
-        return id_klienti;
+    public int getIdKlienti() {
+        return idKlienti;
     }
 
     public String getEmri() {
@@ -41,20 +42,20 @@ public class Klientet {
         return mbiemri;
     }
 
-    public String getNr_personal() {
-        return nr_personal;
+    public String getNrPersonal() {
+        return nrPersonal;
     }
 
-    public String getTelefoni() {
-        return telefoni;
+    public String getNrTelefoni() {
+        return nrTelefoni;
     }
+
     public void printoTeDhenatPerKlientin() {
         System.out.println("Klienti u gjet:");
-        System.out.println("ID: " + getId_klienti());
+        System.out.println("ID: " + getIdKlienti());
         System.out.println("Emri: " + getEmri());
         System.out.println("Mbiemri: " + getMbiemri());
-        System.out.println("Nr Personal: " + getNr_personal());
-        System.out.println("Telefoni: " + getTelefoni());
+        System.out.println("Nr Personal: " + getNrPersonal());
+        System.out.println("Telefoni: " + getNrTelefoni());
     }
-
 }
