@@ -9,11 +9,13 @@ public class UpdateRezervimetDto {
     private int id_vetura;
     private Date data_fillimit;
     private Date data_mbarimit;
+    private Statusi_Rezervimet statusi_rezervimet;
 
-    public UpdateRezervimetDto(int id_vetura, Date data_fillimit, Date data_mbarimit){
+    public UpdateRezervimetDto(int id_vetura, Date data_fillimit, Date data_mbarimit, Statusi_Rezervimet statusi_rezervimet){
         this.id_vetura = id_vetura;
         this.data_fillimit = data_fillimit;
         this.data_mbarimit= data_mbarimit;
+        this.statusi_rezervimet  = statusi_rezervimet;
     }
  public UpdateRezervimetDto(){}
 
@@ -38,7 +40,7 @@ public class UpdateRezervimetDto {
         this.data_mbarimit=data_mbarimit;
     }
 
-    public Statusi_Rezervimet getStatusi_rezervimet(Statusi_Rezervimet statusi_rezervimet){
+    public Statusi_Rezervimet getStatusi_rezervimet(){
         return statusi_rezervimet;
     }
 }

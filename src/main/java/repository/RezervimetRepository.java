@@ -98,6 +98,12 @@ public ArrayList<Rezervimet> getAll() {
         parametrat.add(rezervimetDto.getData_mbarimit());
         hasUpdates=true;
     }
+
+    if(rezervimetDto.getStatusi_rezervimet() != null){
+        query.append("statusi_rezervimet=?,");
+        parametrat.add(rezervimetDto.getStatusi_rezervimet());
+        hasUpdates=true;
+    }
     if(!hasUpdates){
         return getById(rezervimetDto.getId_rezervimet());
     }
