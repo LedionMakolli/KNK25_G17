@@ -61,7 +61,7 @@ public class Sigurimi {
         return kosto;
     }
 
-    public void printoTeDhenatPerVeturen() {
+    public void printoTeDhenatPerSigurimineVetures() {
         System.out.println("----------------------------------------");
         System.out.println("Të dhënat e Sigurimit:");
         System.out.println("ID Sigurimi: " + getIdSigurimi());

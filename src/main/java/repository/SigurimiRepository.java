@@ -52,15 +52,16 @@ public class SigurimiRepository {
 
     public Sigurimi create(CreateSigurimiDto sigurimiDto) {
         String query = """
-            INSERT INTO SIGURIMI (KOMPANIA, DATA_FILLIMIT, DATA_MBARIMIT, KOSTO)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO SIGURIMI (ID_Vetura,KOMPANIA, DATA_FILLIMIT, DATA_MBARIMIT, KOSTO)
+            VALUES (?, ?, ?, ?,?)
         """;
         try {
             PreparedStatement pstm = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setString(1, sigurimiDto.getKompania().toString());
-            pstm.setDate(2, new java.sql.Date(sigurimiDto.getDataFillimit().getTime()));
-            pstm.setDate(3, new java.sql.Date(sigurimiDto.getDataMbarimit().getTime()));
-            pstm.setDouble(4, sigurimiDto.getKosto());
+            pstm.setInt(1, sigurimiDto.getId_vetura());
+            pstm.setString(2, sigurimiDto.getKompania().toString());
+            pstm.setDate(3, new java.sql.Date(sigurimiDto.getDataFillimit().getTime()));
+            pstm.setDate(4, new java.sql.Date(sigurimiDto.getDataMbarimit().getTime()));
+            pstm.setDouble(5, sigurimiDto.getKosto());
 
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
