@@ -1,5 +1,7 @@
 package models.Dto;
 
+import models.enums.Statusi_Rezervimet;
+
 import java.sql.Date;
 
 public class UpdateRezervimetDto {
@@ -34,5 +36,9 @@ public class UpdateRezervimetDto {
     }
     public void setData_mbarimit(Date data_mbarimit){
         this.data_mbarimit=data_mbarimit;
+    }
+
+    public Statusi_Rezervimet getStatusi_rezervimet(Statusi_Rezervimet statusi_rezervimet){
+        return statusi_rezervimet;
     }
 }
