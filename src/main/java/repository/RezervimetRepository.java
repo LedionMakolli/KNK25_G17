@@ -92,48 +92,48 @@ public ArrayList<Rezervimet> getAll() {
 //    return -1;
 //}
 
-public Rezervimet update(UpdateRezervimetDto rezervimetDto, String modeli_vetures){
-    StringBuilder query = new StringBuilder("UPDATE REZERVIMET SET");
-    List<Object> parametrat = new ArrayList<>();
-    boolean hasUpdates =false;
-
-
-//    if(rezervimetDto.getId_vetura() != null){
-//        query.append("id_vetura=?, ");
-//        parametrat.add(rezervimetDto.getId_vetura());
+//public Rezervimet update(UpdateRezervimetDto rezervimetDto, String modeli_vetures){
+//    StringBuilder query = new StringBuilder("UPDATE REZERVIMET SET");
+//    List<Object> parametrat = new ArrayList<>();
+//    boolean hasUpdates =false;
+//
+//
+////    if(rezervimetDto.getId_vetura() != null){
+////        query.append("id_vetura=?, ");
+////        parametrat.add(rezervimetDto.getId_vetura());
+////        hasUpdates=true;
+////    }
+//
+//    if(rezervimetDto.getData_fillimit() != null){
+//        query.append("data_fillimit=?, ");
+//        parametrat.add(rezervimetDto.getData_fillimit());
 //        hasUpdates=true;
 //    }
+//
+//    if(rezervimetDto.getData_mbarimit() != null){
+//        query.append("data_mbarimit=?, ");
+//        parametrat.add(rezervimetDto.getData_mbarimit());
+//        hasUpdates=true;
+//    }
+//    if(!hasUpdates){
+//        return getById(rezervimetDto.getId_rezervimet());
+//    }
+//    query.setLength(query.length()-2);
+//    query.append("WHERE id_rezervimet=?");
+//    parametrat.add(rezervimetDto.getId_rezervimet());
+//
+//    try{
+//        PreparedStatement pstm = connection.prepareStatement(query.toString());
+//        for(int i=0; i< parametrat.size(); i++){
+//            pstm.setObject(i+1, parametrat.get(i));
+//        }
+//        pstm.executeUpdate();
+//        return getById(rezervimetDto.getId_rezervimet());
+//    }catch(SQLException e){
+//        throw new RuntimeException("Gabim gjate perditesimit", e);
+//    }
 
-    if(rezervimetDto.getData_fillimit() != null){
-        query.append("data_fillimit=?, ");
-        parametrat.add(rezervimetDto.getData_fillimit());
-        hasUpdates=true;
-    }
-
-    if(rezervimetDto.getData_mbarimit() != null){
-        query.append("data_mbarimit=?, ");
-        parametrat.add(rezervimetDto.getData_mbarimit());
-        hasUpdates=true;
-    }
-    if(!hasUpdates){
-        return getById(rezervimetDto.getId_rezervimet());
-    }
-    query.setLength(query.length()-2);
-    query.append("WHERE id_rezervimet=?");
-    parametrat.add(rezervimetDto.getId_rezervimet());
-
-    try{
-        PreparedStatement pstm = connection.prepareStatement(query.toString());
-        for(int i=0; i< parametrat.size(); i++){
-            pstm.setObject(i+1, parametrat.get(i));
-        }
-        pstm.executeUpdate();
-        return getById(rezervimetDto.getId_rezervimet());
-    }catch(SQLException e){
-        throw new RuntimeException("Gabim gjate perditesimit", e);
-    }
-
-}
+//}
 
 
 

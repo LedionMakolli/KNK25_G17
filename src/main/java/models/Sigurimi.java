@@ -37,7 +37,7 @@ public class Sigurimi {
         return new Sigurimi(id_sigurimi, id_vetura, kompania, data_fillimit, data_mbarimit, kosto);
     }
 
-    public int getIdsigurimi() {
+    public int getIdSigurimi() {
         return id_sigurimi;
     }
 
@@ -64,7 +64,7 @@ public class Sigurimi {
     public void printoTeDhenatPerVeturen() {
         System.out.println("----------------------------------------");
         System.out.println("Të dhënat e Sigurimit:");
-        System.out.println("ID Sigurimi: " + getIdsigurimi());
+        System.out.println("ID Sigurimi: " + getIdSigurimi());
         System.out.println("ID vetura: " + getIdvetura());
         System.out.println("Kompania e Sigurimit: " + getKompania());
         System.out.println("Data e Regjistrimit: " + getDataFillimit());
