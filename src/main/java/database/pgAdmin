@@ -13,6 +13,8 @@ CREATE TABLE KLIENTET (
     Emri varchar(255) not null,
     Mbiemri VARCHAR(255) not null,
     Nr_Personal varchar(20) unique not null,
+    username varchar(30) not null,                username edhe password duhet mi kqyr prap
+    Password varchar(30) not null,
     Telefoni varchar(20) unique not null
 );
 
@@ -32,12 +34,14 @@ CREATE TABLE Veturat (
 );
 
 CREATE TABLE Rezervimet (
-    ID_Rezervimi SERIAL PRIMARY KEY,
-    ID_Klienti INT REFERENCES Klientet(ID_Klienti) ON DELETE CASCADE,
-    ID_Vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
-    Data_Fillimit DATE NOT NULL,
-    Data_Perfundimit DATE NOT NULL,
-    Statusi ENUM('Aktiv', 'Anuluar', 'Përfunduar') NOT NULL
+    id_rezervimet SERIAL PRIMARY KEY,
+    id_klienti INT REFERENCES Klientet(ID_Klienti) ON DELETE CASCADE,
+    id_vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
+    data_fillimit DATE NOT NULL,
+    data_mbarimit DATE NOT NULL,
+    statusi_rezervimet Statusi_Rezervimet NOT NULL DEFAULT 'REZERVIMI_AKTIV',
+    created_At TIMESTAMP DEFAULT NOW(),
+    CHECK (data_fillimit < data_mbarimit)
 );
 
 -----   Kontrata    ----
