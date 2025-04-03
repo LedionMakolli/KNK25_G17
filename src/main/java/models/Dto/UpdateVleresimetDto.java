@@ -3,6 +3,7 @@ package models.Dto;
 public class UpdateVleresimetDto {
     private int ID_Klienti;
     private int ID_Vetura;
+    private int rating;
     private String text;
     private String data;
 

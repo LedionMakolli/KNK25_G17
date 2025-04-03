@@ -1,24 +1,30 @@
 package models.Dto;
 
 public class CreateVleresimetDto {
-    private int id_klienti;
-    private int id_vetura;
+    private int idKlienti;
+    private int idVetura;
+    private int rating;
     private String text;
     private String data;
 
-    public CreateVleresimetDto(int id_klienti, int id_vetura, String text, String data) {
-        this.id_klienti = id_klienti;
-        this.id_vetura = id_vetura;
+    public CreateVleresimetDto(int idKlienti, int idVetura, int rating, String text, String data) {
+        this.idKlienti = idKlienti;
+        this.idVetura = idVetura;
+        this.rating = rating;
         this.text = text;
         this.data = data;
     }
 
-    public void setId_klienti(int id_klienti) {
-        this.id_klienti = id_klienti;
+    public void setIdKlienti(int idKlienti) {
+        this.idKlienti = idKlienti;
     }
 
-    public void setId_vetura(int id_vetura) {
-        this.id_vetura = id_vetura;
+    public void setIdVetura(int idVetura) {
+        this.idVetura = idVetura;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public void setText(String text) {
@@ -29,12 +35,16 @@ public class CreateVleresimetDto {
         this.data = data;
     }
 
-    public int getId_klienti() {
-        return id_klienti;
+    public int getIdKlienti() {
+        return idKlienti;
     }
 
-    public int getId_vetura() {
-        return id_vetura;
+    public int getIdVetura() {
+        return idVetura;
+    }
+
+    public int getRating() {
+        return rating;
     }
 
     public String getText() {
