@@ -39,3 +39,4 @@ build/
 *.xml
 *.iml
 /.idea/
+/.mvn/
