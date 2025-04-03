@@ -1,44 +1,31 @@
 package models.Dto;
-import models.*;
-import models.enums.Karburanti;
-import models.enums.Statusi_Vetura;
 
+import models.enums.Karburanti;
+import models.enums.StatusiVetura;
 import java.math.BigDecimal;
-//enum Karburanti {
-//    BENZINE,
-//    NAFTE,
-//    ELEKTRIKE,
-//    HIBRID
-//}
-//
-//enum Statusi {
-//    NE_DIZPONIM,
-//    E_REZERVUAR,
-//    NE_SERVIS
-//}
 
 public class CreateVeturatDto {
     private String targat;
     private String modeli;
     private String ngjyra;
-    private int viti_prodhimit;
+    private int vitiProdhimit;
     private BigDecimal kilometrazha;
-    private int numri_uleseve;
+    private int numriUleseve;
     private Karburanti karburanti;
-    private int cmimi_ditor;
-    private Statusi_Vetura statusi;
+    private int cmimiDitor;
+    private StatusiVetura statusi;
 
     public CreateVeturatDto(String targat, String modeli, String ngjyra,
-                            int viti_prodhimit, BigDecimal kilometrazha, int numri_uleseve, Karburanti karburanti,
-                            int cmimi_ditor, Statusi_Vetura statusi) {
+                            int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
+                            Karburanti karburanti, int cmimiDitor, StatusiVetura statusi) {
         this.targat = targat;
         this.modeli = modeli;
         this.ngjyra = ngjyra;
-        this.viti_prodhimit = viti_prodhimit;
+        this.vitiProdhimit = vitiProdhimit;
         this.kilometrazha = kilometrazha;
-        this.numri_uleseve=numri_uleseve;
+        this.numriUleseve = numriUleseve;
         this.karburanti = karburanti;
-        this.cmimi_ditor = cmimi_ditor;
+        this.cmimiDitor = cmimiDitor;
         this.statusi = statusi;
     }
 
@@ -54,27 +41,27 @@ public class CreateVeturatDto {
         this.ngjyra = ngjyra;
     }
 
-    public void setVitiprodhimit(int viti_prodhimit) {
-        this.viti_prodhimit = viti_prodhimit;
+    public void setVitiProdhimit(int vitiProdhimit) {
+        this.vitiProdhimit = vitiProdhimit;
     }
 
     public void setKilometrazha(BigDecimal kilometrazha) {
         this.kilometrazha = kilometrazha;
     }
 
-    public void setNumriUleseve(int numri_uleseve) {
-        this.numri_uleseve = numri_uleseve;
+    public void setNumriUleseve(int numriUleseve) {
+        this.numriUleseve = numriUleseve;
     }
 
     public void setKarburanti(Karburanti karburanti) {
         this.karburanti = karburanti;
     }
 
-    public void setCmimiditor(int cmimi_ditor) {
-        this.cmimi_ditor = cmimi_ditor;
+    public void setCmimiDitor(int cmimiDitor) {
+        this.cmimiDitor = cmimiDitor;
     }
 
-    public void setStatusi(Statusi_Vetura statusi) {
+    public void setStatusi(StatusiVetura statusi) {
         this.statusi = statusi;
     }
 
@@ -91,26 +78,26 @@ public class CreateVeturatDto {
     }
 
     public int getVitiProdhimit() {
-        return viti_prodhimit;
+        return vitiProdhimit;
     }
 
     public BigDecimal getKilometrazha() {
-            return kilometrazha;
-        }
+        return kilometrazha;
+    }
 
-        public int getNumriUleseve() {
-            return numri_uleseve;
-        }
+    public int getNumriUleseve() {
+        return numriUleseve;
+    }
 
-        public Karburanti getKarburanti() {
-            return karburanti;
-        }
+    public Karburanti getKarburanti() {
+        return karburanti;
+    }
 
-        public int getCmimiDitor() {
-            return cmimi_ditor;
-        }
+    public int getCmimiDitor() {
+        return cmimiDitor;
+    }
 
-        public Statusi_Vetura getStatusi() {
-            return statusi;
+    public StatusiVetura getStatusi() {
+        return statusi;
     }
 }

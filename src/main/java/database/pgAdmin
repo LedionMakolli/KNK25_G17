@@ -1,44 +1,64 @@
 
 #################### Tabelat per bazen e te dhenave ###########################
 
+-----   ENUMS    ----
+
+-- CREATE TYPE Karburanti AS ENUM ('BENZINE', 'NAFTE', 'ELEKTRIKE', 'HIBRID');
+-- CREATE TYPE Statusi_Veturat AS ENUM ('NE_DISPOZICION', 'E_REZERVUAR', 'NE_SERVIS');
+
+-----   Klientet    ----
 
 CREATE TABLE KLIENTET (
-    ID_Klienti serial primary key,
-    Emri varchar(255) not null,
-    Mbiemri VARCHAR(255) not null,
-    Nr_Personal varchar(20) unique not null,
-    Telefoni varchar(20) unique not null
+    idKlienti serial primary key,
+    emri varchar(255) not null,
+    mbiemri VARCHAR(255) not null,
+    nrPersonal varchar(20) unique not null,
+    username varchar(30) not null,                username edhe password duhet mi kqyr prap
+    Password varchar(30) not null,
+    nrTelefoni varchar(20) unique not null
 );
+
+-----   Veturat    ----
 
 CREATE TABLE Veturat (
-    ID_Vetura SERIAL PRIMARY KEY,
-    Targat VARCHAR(15) NOT NULL UNIQUE,
-    Modeli VARCHAR(50) NOT NULL,
-    Ngjyra VARCHAR(20),
-    Viti_Prodhimit DECIMAL(5) CHECK (Viti_Prodhimit >= 1900),
-    Kilometrazha DECIMAL(10,2) CHECK (Kilometrazha >= 0),
-    Numri_Uleseve INT CHECK (Numri_Uleseve > 0),
-    Karburanti Karburanti NOT NULL,
-    Cmimi_ditor DECIMAL(10,2) CHECK (Cmimi_ditor >= 0),
-    Statusi Statusi DEFAULT 'NE_DISPOZICION'
+    idVetura SERIAL PRIMARY KEY,
+    targat VARCHAR(15) NOT NULL UNIQUE,
+    modeli VARCHAR(50) NOT NULL,
+    ngjyra VARCHAR(20),
+    vitiProdhimit DECIMAL(5) CHECK (vitiProdhimit >= 1900),
+    kilometrazha DECIMAL(10,2) CHECK (kilometrazha >= 0),
+    numriUleseve INT CHECK (numriUleseve > 0),
+    karburanti Karburanti NOT NULL,
+    cmimiDitor DECIMAL(10,2) CHECK (cmimiDitor >= 0),
+    statusi Statusi DEFAULT 'NE_DISPOZICION'
 );
+
+-----   REZERVIMET    ----
 
 CREATE TABLE Rezervimet (
-    ID_Rezervimi SERIAL PRIMARY KEY,
-    ID_Klienti INT REFERENCES Klientet(ID_Klienti) ON DELETE CASCADE,
-    ID_Vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
-    Data_Fillimit DATE NOT NULL,
-    Data_Perfundimit DATE NOT NULL,
-    Statusi ENUM('Aktiv', 'Anuluar', 'Përfunduar') NOT NULL
+    id_rezervimet SERIAL PRIMARY KEY,
+    id_klienti INT REFERENCES Klientet(ID_Klienti) ON DELETE CASCADE,
+    id_vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
+    data_fillimit DATE NOT NULL,
+    data_mbarimit DATE NOT NULL,
+    statusi_rezervimet Statusi_Rezervimet NOT NULL DEFAULT 'REZERVIMI_AKTIV',
+    created_At TIMESTAMP DEFAULT NOW(),
+    CHECK (data_fillimit < data_mbarimit)
 );
 
+-----   Kontrata    ----
+
+CREATE TYPE Pagesa AS ENUM ('KESH', 'KARTELE');
+
 CREATE TABLE Kontrata (
-    ID_Kontrata SERIAL PRIMARY KEY,
-    ID_Rezervimi INT REFERENCES Rezervimet(ID_Rezervimi) ON DELETE CASCADE,
-    Shuma_Totale REAL NOT NULL,
-    Metoda ENUM('Kartë Krediti', 'Cash') NOT NULL,
-    Data_Leshimit TIMESTAMP NOT NULL
+    id_kontrata SERIAL PRIMARY KEY,
+    id_rezervimet INT NOT NULL,
+    shuma REAL NOT NULL,
+    pagesa Pagesa NOT NULL,
+    data TIMESTAMP NOT NULL
 );
+
+
 
 CREATE TABLE Sigurimi (
     ID_Sigurimi SERIAL PRIMARY KEY,

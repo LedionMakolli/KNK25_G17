@@ -35,11 +35,11 @@ public class KlientetRepository {
 
     // 2. Metoda getById
 
-    public Klientet getById(int id_klienti) {
+    public Klientet getById(int idKlienti) {
         String query="SELECT * FROM KLIENTET WHERE id_klienti=?";
         try {
             PreparedStatement pstm=this.connection.prepareStatement(query);
-            pstm.setInt(1, id_klienti);
+            pstm.setInt(1, idKlienti);
             ResultSet resultSet=pstm.executeQuery();
             if(resultSet.next()) {
                 return Klientet.getInstance(resultSet);
@@ -50,17 +50,17 @@ public class KlientetRepository {
         return null;
     }
     // 3. Metoda Create
-    public Klientet create(CreateKlientetDto KlientetDto) {
+    public Klientet create(CreateKlientetDto klientetDto) {
         String query= """
                 INSERT INTO KLIENTET (emri, mbiemri, nr_personal, telefoni) 
                 values (?, ?, ?, ?)
                 """;
         try {
             PreparedStatement pstm=this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setString(1, KlientetDto.getEmri());
-            pstm.setString(2, KlientetDto.getMbiemri());
-            pstm.setString(3, KlientetDto.getNr_personal());
-            pstm.setString(4, KlientetDto.getNr_telefonit());
+            pstm.setString(1, klientetDto.getEmri());
+            pstm.setString(2, klientetDto.getMbiemri());
+            pstm.setString(3, klientetDto.getNrPersonal());
+            pstm.setString(4, klientetDto.getNrTelefoni());
             pstm.execute();
             ResultSet result=pstm.getGeneratedKeys();
             if(result.next()) {
@@ -73,7 +73,7 @@ public class KlientetRepository {
         return null;
     }
     // Metoda 4. Update
-    public Klientet update(UpdateKlientetDto KlientetDto) {
+    public Klientet update(UpdateKlientetDto klientetDto) {
         String query= """
                 UPDATE KLIENTET
                 SET telefoni=?
@@ -81,13 +81,13 @@ public class KlientetRepository {
                 """;
         try {
             PreparedStatement pstm=this.connection.prepareStatement(query);
-            pstm.setString(1, KlientetDto.getTelefoni());
-            pstm.setInt(2, KlientetDto.getId_klienti());
+            pstm.setString(1, klientetDto.getNrTelefoni());
+            pstm.setInt(2, klientetDto.getIdKlienti());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return this.getById(KlientetDto.getId_klienti());
+        return this.getById(klientetDto.getIdKlienti());
     }
 
     // Metoda 5. delete Klient

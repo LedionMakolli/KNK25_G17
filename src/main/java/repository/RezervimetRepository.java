@@ -6,8 +6,10 @@ import models.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RezervimetRepository {
+
 private Connection connection;
 
 public RezervimetRepository() throws SQLException{
@@ -71,5 +73,92 @@ public ArrayList<Rezervimet> getAll() {
       e.printStackTrace();
     }
     return null;
+ }
+ //4. Metoda update
+    public Rezervimet update(UpdateRezervimetDto rezervimetDto, String modeli_vetures){
+    StringBuilder query = new StringBuilder("UPDATE REZERVIMET SET");
+    List<Object> parametrat = new ArrayList<>();
+    boolean hasUpdates =false;
+
+
+    if(rezervimetDto.getId_vetura() > 0){
+        query.append("id_vetura=?, ");
+        parametrat.add(rezervimetDto.getId_vetura());
+        hasUpdates=true;
+    }
+
+    if(rezervimetDto.getData_fillimit() != null){
+        query.append("data_fillimit=?, ");
+        parametrat.add(rezervimetDto.getData_fillimit());
+        hasUpdates=true;
+    }
+
+    if(rezervimetDto.getData_mbarimit() != null){
+        query.append("data_mbarimit=?, ");
+        parametrat.add(rezervimetDto.getData_mbarimit());
+        hasUpdates=true;
+    }
+
+    if(rezervimetDto.getStatusi_rezervimet() != null){
+        query.append("statusi_rezervimet=?,");
+        parametrat.add(rezervimetDto.getStatusi_rezervimet());
+        hasUpdates=true;
+
+        try{
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for(int i=0; i<parametrat.size(); i++){
+                if(parametrat.get(i) instanceof String && i== parametrat.size()-1){
+                    pstm.setObject(i+1, parametrat.get(i));
+                } else {
+                    pstm.setObject(i+1, parametrat.get(i));
+                }
+            }
+            pstm.execute();
+            return getById(rezervimetDto.getId_rezervimet());
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    if(!hasUpdates){
+        return getById(rezervimetDto.getId_rezervimet());
+    }
+    query.setLength(query.length()-2);
+    query.append("WHERE id_rezervimet=?");
+    parametrat.add(rezervimetDto.getId_rezervimet());
+
+    try{
+        PreparedStatement pstm = connection.prepareStatement(query.toString());
+        for(int i=0; i< parametrat.size(); i++){
+            pstm.setObject(i+1, parametrat.get(i));
+        }
+        pstm.executeUpdate();
+        return getById(rezervimetDto.getId_rezervimet());
+    }catch(SQLException e){
+        throw new RuntimeException("Gabim gjate perditesimit", e);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+ //5. Metoda delete
+public boolean delete(int id_rezervimet){
+    String query = "DELETE FROM REZERVIMET WHERE id_rezervimet=?";
+    try{
+         PreparedStatement pstm = connection.prepareStatement(query);
+         pstm.setInt(1, id_rezervimet);
+         return pstm.executeUpdate()==1;
+     }catch(SQLException e){
+         e.printStackTrace();
+     }
+     return false;
  }
 }

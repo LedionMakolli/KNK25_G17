@@ -1,14 +1,7 @@
 package testim;
-import models.*;
-import models.Dto.*;
-import models.enums.Karburanti;
-import models.enums.Statusi_Vetura;
-import repository.KlientetRepository;
-import repository.VeturatRepository;
+import repository.SigurimiRepository;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class test_repositoryt {
     public static void main(String[] args) throws SQLException {
@@ -38,7 +31,7 @@ public class test_repositoryt {
 //        );
 
 //         Test per funksionimin e tabeles UpdateVeturat
-        VeturatRepository veturatRepository=new VeturatRepository();
+        SigurimiRepository sigurimiRepository=new SigurimiRepository();
 
 //        UpdateVeturatDto updateVetura1=new UpdateVeturatDto(1, null, new BigDecimal("120000"), 0, null);
 //        UpdateVeturatDto updateVetura1=new UpdateVeturatDto(0, null, null, 0, null);

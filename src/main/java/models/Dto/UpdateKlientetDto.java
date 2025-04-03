@@ -1,23 +1,23 @@
 package models.Dto;
 
 public class UpdateKlientetDto {
-    private int id_klienti;
-    private String telefoni;
+    private int idKlienti;
+    private String nrTelefoni;
 
-    public UpdateKlientetDto(int id_klienti, String telefoni) {
-        this.id_klienti=id_klienti;
-        this.telefoni=telefoni;
+    public UpdateKlientetDto(int idKlienti, String nrTelefoni) {
+        this.idKlienti=idKlienti;
+        this.nrTelefoni=nrTelefoni;
     }
 
-    public void setTelefoni(String telefoni) {
-        this.telefoni = telefoni;
+    public void setNrTelefoni(String nrTelefoni) {
+        this.nrTelefoni = nrTelefoni;
     }
 
-    public int getId_klienti() {
-        return id_klienti;
+    public int getIdKlienti() {
+        return idKlienti;
     }
 
-    public String getTelefoni() {
-        return telefoni;
+    public String getNrTelefoni() {
+        return nrTelefoni;
     }
 }
