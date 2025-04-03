@@ -1,13 +1,15 @@
 package models.Dto;
 
+import java.sql.Timestamp;
+
 public class UpdateVleresimetDto {
     private int idKlienti;
     private int idVetura;
     private int rating;
     private String text;
-    private String data;
+    private Timestamp data;
 
-    public UpdateVleresimetDto(int idKlienti, int idVetura, int rating, String text, String data) {
+    public UpdateVleresimetDto(int idKlienti, int idVetura, int rating, String text, Timestamp data) {
         this.idKlienti = idKlienti;
         this.idVetura = idVetura;
         this.rating = rating;
@@ -31,7 +33,7 @@ public class UpdateVleresimetDto {
         this.text = text;
     }
 
-    public void setData(String data) {
+    public void setData(Timestamp data) {
         this.data = data;
     }
 
@@ -51,7 +53,7 @@ public class UpdateVleresimetDto {
         return text;
     }
 
-    public String getData() {
+    public Timestamp getData() {
         return data;
     }
 }

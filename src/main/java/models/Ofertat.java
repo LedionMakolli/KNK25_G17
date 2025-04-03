@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -7,10 +8,10 @@ public class Ofertat {
     private int idOferta;
     private int idVetura;
     private double zbritja;
-    private String dataFillimit;
-    private String dataMbarimit;
+    private Date dataFillimit;
+    private Date dataMbarimit;
 
-    private Ofertat(int idOferta, int idVetura, double zbritja, String dataFillimit, String dataMbarimit) {
+    private Ofertat(int idOferta, int idVetura, double zbritja, Date dataFillimit, Date dataMbarimit) {
         this.idOferta = idOferta;
         this.idVetura = idVetura;
         this.zbritja = zbritja;
@@ -21,9 +22,9 @@ public class Ofertat {
     public static Ofertat getInstance(ResultSet resultSet) throws SQLException {
         int idOferta = resultSet.getInt("idOferta");
         int idVetura = resultSet.getInt("idVetura");
-        double zbritja = resultSet.getInt("zbritja");
-        String dataFillimit = resultSet.getString("dataFillimit");
-        String dataMbarimit = resultSet.getString("dataMbarimit");
+        double zbritja = resultSet.getDouble("zbritja");
+        Date dataFillimit = resultSet.getDate("dataFillimit");
+        Date dataMbarimit = resultSet.getDate("dataMbarimit");
 
         return new Ofertat(idOferta, idVetura, zbritja, dataFillimit, dataMbarimit);
     }
@@ -40,11 +41,11 @@ public class Ofertat {
         return zbritja;
     }
 
-    public String getDataFillimit() {
+    public Date getDataFillimit() {
         return dataFillimit;
     }
 
-    public String getDataMbarimit() {
+    public Date getDataMbarimit() {
         return dataMbarimit;
     }
 
