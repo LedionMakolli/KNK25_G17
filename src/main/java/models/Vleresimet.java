@@ -2,6 +2,7 @@ package models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class Vleresimet {
     private int idVleresimi;
@@ -9,9 +10,9 @@ public class Vleresimet {
     private int idVetura;
     private int rating;
     private String text;
-    private String data;
+    private Timestamp data;
 
-    private Vleresimet(int idVleresimi, int idKlienti, int idVetura, int rating, String text, String data) {
+    private Vleresimet(int idVleresimi, int idKlienti, int idVetura, int rating, String text, Timestamp data) {
         this.idVleresimi = idVleresimi;
         this.idKlienti = idKlienti;
         this.idVetura = idVetura;
@@ -26,7 +27,7 @@ public class Vleresimet {
         int idVetura = rs.getInt("idVetura");
         int rating = rs.getInt("rating");
         String text = rs.getString("text");
-        String data = rs.getString("data");
+        Timestamp data = rs.getTimestamp("data");
 
         return new Vleresimet(idVleresimi, idKlienti, idVetura, rating, text, data);
     }
@@ -51,7 +52,7 @@ public class Vleresimet {
         return text;
     }
 
-    public String getData() {
+    public Timestamp getData() {
         return data;
     }
 }
