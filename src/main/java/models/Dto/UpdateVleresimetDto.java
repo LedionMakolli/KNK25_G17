@@ -1,25 +1,30 @@
 package models.Dto;
 
 public class UpdateVleresimetDto {
-    private int ID_Klienti;
-    private int ID_Vetura;
+    private int idKlienti;
+    private int idVetura;
     private int rating;
     private String text;
     private String data;
 
-    public UpdateVleresimetDto(int ID_Klienti, int ID_Vetura, String text, String data) {
-        this.ID_Klienti = ID_Klienti;
-        this.ID_Vetura = ID_Vetura;
+    public UpdateVleresimetDto(int idKlienti, int idVetura, int rating, String text, String data) {
+        this.idKlienti = idKlienti;
+        this.idVetura = idVetura;
+        this.rating = rating;
         this.text = text;
         this.data = data;
     }
 
-    public void setID_Klienti(int ID_Klienti) {
-        this.ID_Klienti = ID_Klienti;
+    public void setIdKlienti(int idKlienti) {
+        this.idKlienti = idKlienti;
     }
 
-    public void setID_Vetura(int ID_Vetura) {
-        this.ID_Vetura = ID_Vetura;
+    public void setIdVetura(int idVetura) {
+        this.idVetura = idVetura;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public void setText(String text) {
@@ -30,12 +35,16 @@ public class UpdateVleresimetDto {
         this.data = data;
     }
 
-    public int getID_Klienti() {
-        return ID_Klienti;
+    public int getIdKlienti() {
+        return idKlienti;
     }
 
-    public int getID_Vetura() {
-        return ID_Vetura;
+    public int getIdVetura() {
+        return idVetura;
+    }
+
+    public int getRating() {
+        return rating;
     }
 
     public String getText() {
