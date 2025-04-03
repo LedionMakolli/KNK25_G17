@@ -1,47 +1,47 @@
 package models.Dto;
 
 public class CreateOfertatDto {
-    private int id_vetura;
-    private int zbritja;
-    private String data_fillimit;
-    private String data_mbarimit;
+    private int idVetura;
+    private double zbritja;
+    private String dataFillimit;
+    private String dataMbarimit;
 
-    public CreateOfertatDto(int id_vetura, int zbritja, String data_fillimit, String data_mbarimit) {
-        this.id_vetura = id_vetura;
+    public CreateOfertatDto(int idVetura, double zbritja, String dataFillimit, String dataMbarimit) {
+        this.idVetura = idVetura;
         this.zbritja = zbritja;
-        this.data_fillimit = data_fillimit;
-        this.data_mbarimit = data_mbarimit;
+        this.dataFillimit = dataFillimit;
+        this.dataMbarimit = dataMbarimit;
     }
 
-    public void setId_vetura(int id_vetura) {
-        this.id_vetura = id_vetura;
+    public void setIdVetura(int idVetura) {
+        this.idVetura = idVetura;
     }
 
-    public void setZbritja(int zbritja) {
+    public void setZbritja(double zbritja) {
         this.zbritja = zbritja;
     }
 
-    public void setData_fillimit(String data_fillimit) {
-        this.data_fillimit = data_fillimit;
+    public void setDataFillimit(String dataFillimit) {
+        this.dataFillimit = dataFillimit;
     }
 
-    public void setData_mbarimit(String data_mbarimit) {
-        this.data_mbarimit = data_mbarimit;
+    public void setDataMbarimit(String dataMbarimit) {
+        this.dataMbarimit = dataMbarimit;
     }
 
-    public int getId_vetura() {
-        return id_vetura;
+    public int getIdVetura() {
+        return idVetura;
     }
 
-    public int getZbritja() {
+    public double getZbritja() {
         return zbritja;
     }
 
-    public String getData_fillimit() {
-        return data_fillimit;
+    public String getDataFillimit() {
+        return dataFillimit;
     }
 
-    public String getData_mbarimit() {
-        return data_mbarimit;
+    public String getDataMbarimit() {
+        return dataMbarimit;
     }
 }
