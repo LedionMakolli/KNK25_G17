@@ -4,48 +4,48 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Ofertat {
-    private int id_oferta;
-    private int id_vetura;
+    private int idOferta;
+    private int idVetura;
     private double zbritja;
-    private String data_fillimit;
-    private String data_mbarimit;
+    private String dataFillimit;
+    private String dataMbarimit;
 
-    private Ofertat(int id_oferta, int id_vetura, double zbritja, String data_fillimit, String data_mbarimit) {
-        this.id_oferta = id_oferta;
-        this.id_vetura = id_vetura;
+    private Ofertat(int idOferta, int idVetura, double zbritja, String dataFillimit, String dataMbarimit) {
+        this.idOferta = idOferta;
+        this.idVetura = idVetura;
         this.zbritja = zbritja;
-        this.data_fillimit = data_fillimit;
-        this.data_mbarimit = data_mbarimit;
+        this.dataFillimit = dataFillimit;
+        this.dataMbarimit = dataMbarimit;
     }
 
     public static Ofertat getInstance(ResultSet resultSet) throws SQLException {
-        int id_oferta = resultSet.getInt("id_oferta");
-        int id_vetura = resultSet.getInt("id_vetura");
+        int idOferta = resultSet.getInt("idOferta");
+        int idVetura = resultSet.getInt("idVetura");
         double zbritja = resultSet.getInt("zbritja");
-        String data_fillimit = resultSet.getString("data_fillimit");
-        String data_mbarimit = resultSet.getString("data_mbarimit");
+        String dataFillimit = resultSet.getString("dataFillimit");
+        String dataMbarimit = resultSet.getString("dataMbarimit");
 
-        return new Ofertat(id_oferta, id_vetura, zbritja, data_fillimit, data_mbarimit);
+        return new Ofertat(idOferta, idVetura, zbritja, dataFillimit, dataMbarimit);
     }
 
-    public int getId_oferta() {
-        return id_oferta;
+    public int getIdOferta() {
+        return idOferta;
     }
 
-    public int getId_vetura() {
-        return id_vetura;
+    public int getIdVetura() {
+        return idVetura;
     }
 
     public double getZbritja() {
         return zbritja;
     }
 
-    public String getData_fillimit() {
-        return data_fillimit;
+    public String getDataFillimit() {
+        return dataFillimit;
     }
 
-    public String getData_mbarimit() {
-        return data_mbarimit;
+    public String getDataMbarimit() {
+        return dataMbarimit;
     }
 
 }
