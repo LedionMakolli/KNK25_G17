@@ -8,7 +8,7 @@
 
 -----   Klientet    ----
 
-CREATE TABLE KLIENTET (
+CREATE TABLE Klientet (
     idKlienti serial primary key,
     emri varchar(255) not null,
     mbiemri VARCHAR(255) not null,
@@ -69,19 +69,24 @@ CREATE TABLE Sigurimi (
     Kosto DECIMAL(10,2) NOT NULL
 );
 
+-----   Ofertat    ----
+
 CREATE TABLE Ofertat (
-    ID_Oferta SERIAL PRIMARY KEY,
-    ID_Vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
-    Zbritja DECIMAL(10,2) NOT NULL,
-    Data_Fillimit DATE NOT NULL,
-    Data_Mbarimit DATE NOT NULL
+    idOferta SERIAL PRIMARY KEY,
+    idVetura INT REFERENCES Veturat(idVetura) ON DELETE CASCADE,
+    zbritja DECIMAL(10,2) NOT NULL,
+    dataFillimit DATE NOT NULL,
+    dataMbarimit DATE NOT NULL
+    CHECK (dataMbarimit >= dataFillimit)
 );
 
+-----   Vleresimet    ----
+
 CREATE TABLE Vleresimet (
-    ID_Vleresimi SERIAL PRIMARY KEY,
-    ID_Klienti INT REFERENCES Klientet(ID_Klienti) ON DELETE CASCADE,
-    ID_Vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
-    Rating INT CHECK (Rating BETWEEN 1 AND 5) NOT NULL,
-    Koment TEXT,
-    Data TIMESTAMP NOT NULL
+    idVleresimi SERIAL PRIMARY KEY,
+    idKlienti INT REFERENCES Klientet(idKlienti) ON DELETE CASCADE,
+    idVetura INT REFERENCES Veturat(idVetura) ON DELETE CASCADE,
+    rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
+    text TEXT,
+    data TIMESTAMP NOT NULL
 );
