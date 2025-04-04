@@ -16,6 +16,22 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
 
     abstract Model fromResultSet(ResultSet rs);
 
+    // metoda getAll
+    public ArrayList<Model> getAll(){
+        ArrayList<Model> models = new ArrayList<>();
+        String query = "SELECT * FROM " + this.tableName;
+        try{
+            Statement statement = this.connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while(rs.next()) {
+                models.add(this.fromResultSet(rs));
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return models;
+    }
+
     // metoda getById
     Model getById (int id) {
         String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
@@ -31,7 +47,6 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         }
         return null;
     }
-
 
 
 }
