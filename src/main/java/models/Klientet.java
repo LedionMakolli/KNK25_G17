@@ -21,10 +21,10 @@ public class Klientet {
     }
 
     public static Klientet getInstance(ResultSet resultSet) throws SQLException {
-        int idKlienti = resultSet.getInt("id_klienti");
+        int idKlienti = resultSet.getInt("idklienti");
         String emri = resultSet.getString("emri");
         String mbiemri = resultSet.getString("mbiemri");
-        String nrPersonal = resultSet.getString("nr_personal");
+        String nrPersonal = resultSet.getString("nrpersonal");
         String nrTelefoni = resultSet.getString("telefoni");
 
         return new Klientet(idKlienti, emri, mbiemri, nrPersonal, nrTelefoni);
