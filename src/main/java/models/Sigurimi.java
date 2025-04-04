@@ -7,40 +7,40 @@ import java.sql.SQLException;
 import java.util.Date;
 
 public class Sigurimi {
-    private int id_sigurimi;
-    private int id_vetura;
+    private int idSigurimi;
+    private int idVetura;
     private Kompania kompania;
-    private Date data_fillimit;
-    private Date data_mbarimit;
+    private Date dataFillimit;
+    private Date dataMbarimit;
     private double kosto;
 
 
-    private Sigurimi(int id_sigurimi, int id_vetura, Kompania kompania, Date data_fillimit, Date data_mbarimit, double kosto) {
-        this.id_sigurimi = id_sigurimi;
-        this.id_vetura = id_vetura;
+    private Sigurimi(int idSigurimi, int idVetura, Kompania kompania, Date dataFillimit, Date dataMbarimit, double kosto) {
+        this.idSigurimi = idSigurimi;
+        this.idVetura = idVetura;
         this.kompania = kompania;
-        this.data_fillimit = data_fillimit;
-        this.data_mbarimit = data_mbarimit;
+        this.dataFillimit = dataFillimit;
+        this.dataMbarimit = dataMbarimit;
         this.kosto = kosto;
     }
 
     public static Sigurimi getInstance(ResultSet resultSet) throws SQLException {
-        int id_sigurimi = resultSet.getInt("id_sigurimi");
-        int id_vetura = resultSet.getInt("id_vetura");
+        int idSigurimi = resultSet.getInt("idSigurimi");
+        int idVetura = resultSet.getInt("idVetura");
         String kompaniaStr = resultSet.getString("kompania");
         Kompania kompania = Kompania.valueOf(kompaniaStr.toUpperCase());
-        Date data_fillimit = resultSet.getDate("data_fillimit");
-        Date data_mbarimit = resultSet.getDate("data_mbarimit");
+        Date dataFillimit = resultSet.getDate("dataFillimit");
+        Date dataMbarimit = resultSet.getDate("dataMbarimit");
         double kosto = resultSet.getDouble("kosto");
         return new Sigurimi(id_sigurimi, id_vetura, kompania, data_fillimit, data_mbarimit, kosto);
     }
 
     public int getIdSigurimi() {
-        return id_sigurimi;
+        return idSigurimi;
     }
 
     public int getIdvetura() {
-        return id_vetura;
+        return idVetura;
     }
 
     public Kompania getKompania() {
@@ -48,11 +48,11 @@ public class Sigurimi {
     }
 
     public Date getDataFillimit() {
-        return data_fillimit;
+        return dataFillimit;
     }
 
     public Date getDataMbarimit() {
-        return data_mbarimit;
+        return dataMbarimit;
     }
 
     public double getKosto() {

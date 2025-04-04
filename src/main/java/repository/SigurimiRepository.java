@@ -57,7 +57,7 @@ public class SigurimiRepository {
         """;
         try {
             PreparedStatement pstm = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setInt(1, sigurimiDto.getId_vetura());
+            pstm.setInt(1, sigurimiDto.getIdVetura());
             pstm.setString(2, sigurimiDto.getKompania().toString());
             pstm.setDate(3, new java.sql.Date(sigurimiDto.getDataFillimit().getTime()));
             pstm.setDate(4, new java.sql.Date(sigurimiDto.getDataMbarimit().getTime()));

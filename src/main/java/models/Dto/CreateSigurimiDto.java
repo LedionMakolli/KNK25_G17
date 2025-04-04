@@ -5,34 +5,34 @@ import models.enums.Kompania;
 import java.util.Date;
 
 public class CreateSigurimiDto {
-    private int id_vetura;
+    private int idVetura;
     private Kompania kompania;
-    private Date data_fillimit;
-    private Date data_mbarimit;
+    private Date dataFillimit;
+    private Date dataMbarimit;
     private double kosto;
 
 
-    private CreateSigurimiDto(int id_sigurimi, int id_vetura, Kompania kompania, Date data_fillimit, Date data_mbarimit, double kosto) {
-        this.id_vetura=id_vetura;
+    private CreateSigurimiDto(int id_sigurimi, int idVetura, Kompania kompania, Date dataFillimit, Date dataMbarimit, double kosto) {
+        this.idVetura = idVetura;
         this.kompania = kompania;
-        this.data_fillimit = data_fillimit;
-        this.data_mbarimit = data_mbarimit;
+        this.dataFillimit = dataFillimit;
+        this.dataMbarimit = dataMbarimit;
         this.kosto = kosto;
     }
 
-    public int getId_vetura() {
-        return id_vetura;
+    public int getIdVetura() {
+        return idVetura;
     }
     public Kompania getKompania() {
         return kompania;
     }
 
     public Date getDataFillimit() {
-        return data_fillimit;
+        return dataFillimit;
     }
 
     public Date getDataMbarimit() {
-        return data_mbarimit;
+        return dataMbarimit;
     }
 
     public double getKosto() {
@@ -43,15 +43,15 @@ public class CreateSigurimiDto {
 public void setKompania(Kompania kompania){
     this.kompania=kompania;
 }
-    public void setId_vetura(int id_vetura){
-        this.id_vetura=id_vetura;
+    public void setIdVetura(int idVetura){
+        this.idVetura = idVetura;
     }
-    public void setData_fillimit(Date data_fillimit){
-        this.data_fillimit=data_fillimit;
+    public void setDataFillimit(Date dataFillimit){
+        this.dataFillimit = dataFillimit;
     }
 
-    public void setData_mbarimit(Date data_mbarimit){
-        this.data_mbarimit=data_mbarimit;
+    public void setDataMbarimit(Date dataMbarimit){
+        this.dataMbarimit = dataMbarimit;
     }
 
     public void setKosto(double kosto){
