@@ -32,7 +32,7 @@ public class Sigurimi {
         Date dataFillimit = resultSet.getDate("dataFillimit");
         Date dataMbarimit = resultSet.getDate("dataMbarimit");
         double kosto = resultSet.getDouble("kosto");
-        return new Sigurimi(id_sigurimi, id_vetura, kompania, data_fillimit, data_mbarimit, kosto);
+        return new Sigurimi(idSigurimi, idVetura, kompania, dataFillimit, dataMbarimit, kosto);
     }
 
     public int getIdSigurimi() {
