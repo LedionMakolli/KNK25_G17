@@ -7,15 +7,15 @@ import models.enums.Karburanti;
 import models.enums.StatusiVetura;
 import java.sql.*;
 import java.util.*;
+import repository.BaseRepository;
 
-public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto, UpdateVeturatDto>{
-    private Connection connection;
+public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto, UpdateVeturatDto> {
 
     public VeturatRepository() throws SQLException {
         super("veturat");
     }
     @Override
-    Veturat fromResultSet(ResultSet rs) {
+    public Veturat fromResultSet(ResultSet rs) {
         try {
             return Veturat.getInstance(rs);
         } catch (SQLException e) {
@@ -23,36 +23,6 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
             return null;
         }
     }
-//    // 1. metoda getAll
-//    public ArrayList<Veturat> getAll() {
-//        ArrayList<Veturat> veturat=new ArrayList<>();
-//        String query="SELECT * FROM VETURAT";
-//        try {
-//            Statement statement=this.connection.createStatement();
-//            ResultSet resultSet= statement.executeQuery(query);
-//            while(resultSet.next()) {
-//                veturat.add(Veturat.getInstance(resultSet));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return veturat;
-//    }
-//    // 2. metoda getById
-//    public Veturat getById(int idVetura) {
-//        String query="SELECT * FROM VETURAT WHERE idVetura=?";
-//        try {
-//            PreparedStatement preparedStatement=connection.prepareStatement(query);
-//            preparedStatement.setInt(1, idVetura);
-//            ResultSet resultSet=preparedStatement.executeQuery();
-//            if(resultSet.next()) {
-//                return Veturat.getInstance(resultSet);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
     // 3. metoda create
     public Veturat create(CreateVeturatDto veturatDto) {
         String query= """
@@ -126,18 +96,6 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
             throw new RuntimeException("Gabim gjate perditesimit!", e);
         }
     }
-//    // 5. metoda delete
-//    public boolean delete(int id_vetura) {
-//        String query="DELETE FROM VETURAT WHERE id_vetura=?";
-//        try {
-//            PreparedStatement preparedStatement=connection.prepareStatement(query);
-//            preparedStatement.setInt(1, id_vetura);
-//            return preparedStatement.executeUpdate()==1;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return false;
-//    }
     // 6. metoda filtro
     public ArrayList<Veturat> filter(String modeli, String ngjyra, int viti_prodhimit, int numri_uleseve,
                                      Karburanti karburanti, int cmimi_ditor, StatusiVetura statusi) {

@@ -13,7 +13,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         this.connection = DBConnection.getConnection();
         this.tableName = tableName;
     }
-    Model fromResultSet(ResultSet rs);
+    abstract Model fromResultSet(ResultSet rs);
 
     // metoda getAll
     public ArrayList<Model> getAll(){
