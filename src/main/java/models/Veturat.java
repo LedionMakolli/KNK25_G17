@@ -1,13 +1,13 @@
 package models;
 
 import models.enums.Karburanti;
-import models.enums.StatusiVetura;
+import models.enums.StatusiVeturaEnum;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Veturat {
-    private int idVetura;
+    private int id;
     private String targat;
     private String modeli;
     private String ngjyra;
@@ -16,12 +16,12 @@ public class Veturat {
     private int numriUleseve;
     private Karburanti karburanti;
     private int cmimiDitor;
-    private StatusiVetura statusi;
+    private StatusiVeturaEnum statusi;
 
-    private Veturat(int idVetura, String targat, String modeli, String ngjyra,
+    private Veturat(int id, String targat, String modeli, String ngjyra,
                    int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
-                    Karburanti karburanti, int cmimiDitor, StatusiVetura statusi) {
-        this.idVetura = idVetura;
+                    Karburanti karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
+        this.id = id;
         this.targat = targat;
         this.modeli = modeli;
         this.ngjyra = ngjyra;
@@ -33,7 +33,7 @@ public class Veturat {
         this.statusi = statusi;
     }
     public static Veturat getInstance(ResultSet resultSet) throws SQLException {
-        int idVetura=resultSet.getInt("idvetura");
+        int id=resultSet.getInt("id");
         String targat=resultSet.getString("targat");
         String modeli=resultSet.getString("modeli");
         String ngjyra=resultSet.getString("ngjyra");
@@ -44,12 +44,12 @@ public class Veturat {
         Karburanti karburanti = Karburanti.valueOf(karburantiStr.toUpperCase());
         int cmimiDitor=resultSet.getInt("cmimiditor");
         String statusiStr = resultSet.getString("statusi");
-        StatusiVetura statusi = StatusiVetura.valueOf(statusiStr.toUpperCase());
-        return new Veturat(idVetura,targat,modeli,ngjyra,vitiProdhimit,kilometrazha,numriUleseve,karburanti, cmimiDitor, statusi);
+        StatusiVeturaEnum statusi = StatusiVeturaEnum.valueOf(statusiStr.toUpperCase());
+        return new Veturat(id,targat,modeli,ngjyra,vitiProdhimit,kilometrazha,numriUleseve,karburanti, cmimiDitor, statusi);
     }
 
-    public int getIdVetura() {
-        return idVetura;
+    public int getId() {
+        return id;
     }
 
     public String getTargat() {
@@ -84,13 +84,13 @@ public class Veturat {
         return cmimiDitor;
     }
 
-    public StatusiVetura getStatusi() {
+    public StatusiVeturaEnum getStatusi() {
         return statusi;
     }
     public void printoTeDhenatPerVeturen() {
         System.out.println("----------------------------------------");
         System.out.println("Detajet e veturës:");
-        System.out.println("ID: " + getIdVetura());
+        System.out.println("ID: " + getId());
         System.out.println("Targat: " + getTargat());
         System.out.println("Modeli: " + getModeli());
         System.out.println("Ngjyra: " + getNgjyra());

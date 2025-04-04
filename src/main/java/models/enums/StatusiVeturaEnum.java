@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum StatusiVetura {
+public enum StatusiVeturaEnum {
     NE_DISPOZICION,
     E_REZERVUAR,
     NE_SERVIS

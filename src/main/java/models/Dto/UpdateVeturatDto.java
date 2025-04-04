@@ -1,19 +1,19 @@
 package models.Dto;
 
-import models.enums.StatusiVetura;
+import models.enums.StatusiVeturaEnum;
 import java.math.BigDecimal;
 
 
 public class UpdateVeturatDto {
-    private int idVetura;
+    private int id;
     private String ngjyra;
     private BigDecimal kilometrazha;
     private int cmimiDitor;
-    private StatusiVetura statusi;
+    private StatusiVeturaEnum statusi;
 
-    public UpdateVeturatDto(int idVetura, String ngjyra, BigDecimal kilometrazha,
-                            int cmimiDitor, StatusiVetura statusi) {
-        this.idVetura = idVetura;
+    public UpdateVeturatDto(int id, String ngjyra, BigDecimal kilometrazha,
+                            int cmimiDitor, StatusiVeturaEnum statusi) {
+        this.id = id;
         this.ngjyra = ngjyra;
         this.kilometrazha = kilometrazha;
         this.cmimiDitor = cmimiDitor;
@@ -31,12 +31,12 @@ public class UpdateVeturatDto {
         this.cmimiDitor = cmimiDitor;
     }
 
-    public void setStatusi(StatusiVetura statusi) {
+    public void setStatusi(StatusiVeturaEnum statusi) {
         this.statusi = statusi;
     }
 
-    public int getIdVetura() {
-        return idVetura;
+    public int getId() {
+        return id;
     }
 
     public String getNgjyra() {
@@ -51,7 +51,7 @@ public class UpdateVeturatDto {
         return cmimiDitor;
     }
 
-    public StatusiVetura getStatusi() {
+    public StatusiVeturaEnum getStatusi() {
         return statusi;
     }
 }

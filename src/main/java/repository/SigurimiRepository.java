@@ -4,7 +4,7 @@ import database.DBConnection;
 import models.Dto.CreateSigurimiDto;
 import models.Dto.UpdateSigurimiDto;
 import models.Sigurimi;
-import models.enums.Kompania;
+import models.enums.KompaniaEnum;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -122,7 +122,7 @@ public class SigurimiRepository {
         return false;
     }
 
-    public ArrayList<Sigurimi> filter(Kompania kompania, Date dataFillimit, Date dataMbarimit, double kosto) {
+    public ArrayList<Sigurimi> filter(KompaniaEnum kompania, Date dataFillimit, Date dataMbarimit, double kosto) {
         ArrayList<Sigurimi> sigurimet = new ArrayList<>();
         StringBuilder query = new StringBuilder("SELECT * FROM SIGURIMI WHERE 1=1");
         List<Object> parametrat = new ArrayList<>();

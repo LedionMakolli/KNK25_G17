@@ -4,15 +4,15 @@
 -----   ENUMS    ----
 
 -- CREATE TYPE Karburanti AS ENUM ('BENZINE', 'NAFTE', 'ELEKTRIKE', 'HIBRID');
--- CREATE TYPE Statusi_Veturat AS ENUM ('NE_DISPOZICION', 'E_REZERVUAR', 'NE_SERVIS');
+-- CREATE TYPE StatusiVeturaEnum AS ENUM ('NE_DISPOZICION', 'E_REZERVUAR', 'NE_SERVIS');
 
 -----   Klientet    ----
 
 CREATE TABLE Klientet (
-    idKlienti serial primary key,
+    id serial primary key,
     emri varchar(255) not null,
     mbiemri VARCHAR(255) not null,
-    nrPersonal varchar(20) unique not null,
+    nrPersonal varchar(20) unique not null,       mos i shkruni kto dyja ndb niher
     username varchar(30) not null,                username edhe password duhet mi kqyr prap
     Password varchar(30) not null,
     nrTelefoni varchar(20) unique not null
@@ -21,7 +21,7 @@ CREATE TABLE Klientet (
 -----   Veturat    ----
 
 CREATE TABLE Veturat (
-    idVetura SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     targat VARCHAR(15) NOT NULL UNIQUE,
     modeli VARCHAR(50) NOT NULL,
     ngjyra VARCHAR(20),

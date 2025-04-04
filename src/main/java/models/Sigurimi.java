@@ -1,6 +1,6 @@
 package models;
 
-import models.enums.Kompania;
+import models.enums.KompaniaEnum;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,13 +9,13 @@ import java.util.Date;
 public class Sigurimi {
     private int idSigurimi;
     private int idVetura;
-    private Kompania kompania;
+    private KompaniaEnum kompania;
     private Date dataFillimit;
     private Date dataMbarimit;
     private double kosto;
 
 
-    private Sigurimi(int idSigurimi, int idVetura, Kompania kompania, Date dataFillimit, Date dataMbarimit, double kosto) {
+    private Sigurimi(int idSigurimi, int idVetura, KompaniaEnum kompania, Date dataFillimit, Date dataMbarimit, double kosto) {
         this.idSigurimi = idSigurimi;
         this.idVetura = idVetura;
         this.kompania = kompania;
@@ -28,7 +28,7 @@ public class Sigurimi {
         int idSigurimi = resultSet.getInt("idSigurimi");
         int idVetura = resultSet.getInt("idVetura");
         String kompaniaStr = resultSet.getString("kompania");
-        Kompania kompania = Kompania.valueOf(kompaniaStr.toUpperCase());
+        KompaniaEnum kompania = KompaniaEnum.valueOf(kompaniaStr.toUpperCase());
         Date dataFillimit = resultSet.getDate("dataFillimit");
         Date dataMbarimit = resultSet.getDate("dataMbarimit");
         double kosto = resultSet.getDouble("kosto");
@@ -43,7 +43,7 @@ public class Sigurimi {
         return idVetura;
     }
 
-    public Kompania getKompania() {
+    public KompaniaEnum getKompania() {
         return kompania;
     }
 

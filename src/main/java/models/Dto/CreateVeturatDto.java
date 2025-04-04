@@ -1,7 +1,7 @@
 package models.Dto;
 
 import models.enums.Karburanti;
-import models.enums.StatusiVetura;
+import models.enums.StatusiVeturaEnum;
 import java.math.BigDecimal;
 
 public class CreateVeturatDto {
@@ -13,11 +13,11 @@ public class CreateVeturatDto {
     private int numriUleseve;
     private Karburanti karburanti;
     private int cmimiDitor;
-    private StatusiVetura statusi;
+    private StatusiVeturaEnum statusi;
 
     public CreateVeturatDto(String targat, String modeli, String ngjyra,
                             int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
-                            Karburanti karburanti, int cmimiDitor, StatusiVetura statusi) {
+                            Karburanti karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
         this.targat = targat;
         this.modeli = modeli;
         this.ngjyra = ngjyra;
@@ -61,7 +61,7 @@ public class CreateVeturatDto {
         this.cmimiDitor = cmimiDitor;
     }
 
-    public void setStatusi(StatusiVetura statusi) {
+    public void setStatusi(StatusiVeturaEnum statusi) {
         this.statusi = statusi;
     }
 
@@ -97,7 +97,7 @@ public class CreateVeturatDto {
         return cmimiDitor;
     }
 
-    public StatusiVetura getStatusi() {
+    public StatusiVeturaEnum getStatusi() {
         return statusi;
     }
 }

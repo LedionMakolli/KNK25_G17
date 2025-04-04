@@ -37,7 +37,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             statement.setInt(1, id);
-            ResultSet rs = statement.executeQuery(query);
+            ResultSet rs = statement.executeQuery();
             if(rs.next()) {
                 return this.fromResultSet(rs);
             }

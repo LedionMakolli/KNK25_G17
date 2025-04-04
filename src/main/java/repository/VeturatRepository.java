@@ -1,13 +1,11 @@
 package repository;
 
-import database.DBConnection;
 import models.*;
 import models.Dto.*;
 import models.enums.Karburanti;
-import models.enums.StatusiVetura;
+import models.enums.StatusiVeturaEnum;
 import java.sql.*;
 import java.util.*;
-import repository.BaseRepository;
 
 public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto, UpdateVeturatDto> {
 
@@ -69,36 +67,36 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
             hasUpdates=true;
         }
         if (VeturatDto.getCmimiDitor() > 0) {
-            query.append("cmimi_ditor = ?, ");
+            query.append("cmimiditor = ?, ");
             parametrat.add(VeturatDto.getCmimiDitor());
             hasUpdates=true;
         }
         if (VeturatDto.getStatusi() != null) {
             query.append("statusi = ?, ");
-            parametrat.add(VeturatDto.getStatusi());
+            parametrat.add(VeturatDto.getStatusi().name());
             hasUpdates=true;
         }
         if (!hasUpdates) {
-            return getById(VeturatDto.getIdVetura());
+            return getById(VeturatDto.getId());
         }
         query.setLength(query.length()-2);
-        query.append(" WHERE ID_VETURA=?");
-        parametrat.add(VeturatDto.getIdVetura());
+        query.append(" WHERE id=?");
+        parametrat.add(VeturatDto.getId());
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query.toString());
             for(int i=0; i<parametrat.size(); i++) {
-                preparedStatement.setObject(i+1, parametrat.get(i));
+                preparedStatement.setObject(i+1, parametrat.get(i), Types.OTHER);
             }
             preparedStatement.executeUpdate();
-            return getById(VeturatDto.getIdVetura());
+            return getById(VeturatDto.getId());
         } catch (SQLException e) {
             throw new RuntimeException("Gabim gjate perditesimit!", e);
         }
     }
     // 6. metoda filtro
     public ArrayList<Veturat> filter(String modeli, String ngjyra, int viti_prodhimit, int numri_uleseve,
-                                     Karburanti karburanti, int cmimi_ditor, StatusiVetura statusi) {
+                                     Karburanti karburanti, int cmimi_ditor, StatusiVeturaEnum statusi) {
         ArrayList<Veturat> veturat=new ArrayList<Veturat>();
         StringBuilder query=new StringBuilder("SELECT * FROM VETURAT WHERE 1=1");
         List<Object> parametrat=new ArrayList<>();
@@ -112,13 +110,13 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
             parametrat.add(ngjyra);
         }
         if(viti_prodhimit>0) {
-            query.append(" and viti_prodhimit=?");
+            query.append(" and vitiprodhimit=?");
             parametrat.add(viti_prodhimit);
         } else if(viti_prodhimit<0) {
             throw new IllegalArgumentException("Viti i prodhimit eshte jo valid");
         }
         if(numri_uleseve>0) {
-            query.append(" and numri_uleseve=?");
+            query.append(" and numriuleseve=?");
             parametrat.add(numri_uleseve);
         } else if(numri_uleseve<0){
             throw new IllegalArgumentException("Numri i uleseve eshte jo valid");
@@ -129,7 +127,7 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
         }
 
         if(cmimi_ditor>0) {
-            query.append(" and cmimi_ditor=?");
+            query.append(" and cmimiditor=?");
             parametrat.add(cmimi_ditor);
         } else if(cmimi_ditor<0) {
             throw new IllegalArgumentException("Cmimi ditor eshte jo valid");

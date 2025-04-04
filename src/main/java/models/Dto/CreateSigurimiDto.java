@@ -1,18 +1,18 @@
 package models.Dto;
 
-import models.enums.Kompania;
+import models.enums.KompaniaEnum;
 
 import java.util.Date;
 
 public class CreateSigurimiDto {
     private int idVetura;
-    private Kompania kompania;
+    private KompaniaEnum kompania;
     private Date dataFillimit;
     private Date dataMbarimit;
     private double kosto;
 
 
-    private CreateSigurimiDto(int id_sigurimi, int idVetura, Kompania kompania, Date dataFillimit, Date dataMbarimit, double kosto) {
+    private CreateSigurimiDto(int id_sigurimi, int idVetura, KompaniaEnum kompania, Date dataFillimit, Date dataMbarimit, double kosto) {
         this.idVetura = idVetura;
         this.kompania = kompania;
         this.dataFillimit = dataFillimit;
@@ -23,7 +23,7 @@ public class CreateSigurimiDto {
     public int getIdVetura() {
         return idVetura;
     }
-    public Kompania getKompania() {
+    public KompaniaEnum getKompania() {
         return kompania;
     }
 
@@ -40,7 +40,7 @@ public class CreateSigurimiDto {
     }
 
 
-public void setKompania(Kompania kompania){
+public void setKompania(KompaniaEnum kompania){
     this.kompania=kompania;
 }
     public void setIdVetura(int idVetura){
