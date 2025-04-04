@@ -48,6 +48,19 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         return null;
     }
 
+    // metoda delete
+    boolean delete(int id) {
+        String query = "DELETE FROM " + this.tableName + " WHERE id = ?";
+        try{
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setInt(1, id);
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }
 
