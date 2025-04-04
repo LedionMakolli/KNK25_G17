@@ -33,16 +33,16 @@ public class Veturat {
         this.statusi = statusi;
     }
     public static Veturat getInstance(ResultSet resultSet) throws SQLException {
-        int idVetura=resultSet.getInt("id_vetura");
+        int idVetura=resultSet.getInt("idvetura");
         String targat=resultSet.getString("targat");
         String modeli=resultSet.getString("modeli");
         String ngjyra=resultSet.getString("ngjyra");
-        int vitiProdhimit=resultSet.getInt("viti_prodhimit");
+        int vitiProdhimit=resultSet.getInt("vitiprodhimit");
         BigDecimal kilometrazha=resultSet.getBigDecimal("kilometrazha");
-        int numriUleseve=resultSet.getInt("numri_uleseve");
+        int numriUleseve=resultSet.getInt("numriuleseve");
         String karburantiStr = resultSet.getString("karburanti");
         Karburanti karburanti = Karburanti.valueOf(karburantiStr.toUpperCase());
-        int cmimiDitor=resultSet.getInt("cmimi_ditor");
+        int cmimiDitor=resultSet.getInt("cmimiditor");
         String statusiStr = resultSet.getString("statusi");
         StatusiVetura statusi = StatusiVetura.valueOf(statusiStr.toUpperCase());
         return new Veturat(idVetura,targat,modeli,ngjyra,vitiProdhimit,kilometrazha,numriUleseve,karburanti, cmimiDitor, statusi);
