@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Klientet {
-    private int idKlienti;
+    private int id;
     private String emri;
     private String mbiemri;
     private String nrPersonal;
@@ -12,8 +12,8 @@ public class Klientet {
 //    private String klientPassword;
     private String nrTelefoni;
 
-    private Klientet(int idKlienti, String emri, String mbiemri, String nrPersonal, String nrTelefoni) {
-        this.idKlienti = idKlienti;
+    private Klientet(int id, String emri, String mbiemri, String nrPersonal, String nrTelefoni) {
+        this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
         this.nrPersonal = nrPersonal;
@@ -21,17 +21,17 @@ public class Klientet {
     }
 
     public static Klientet getInstance(ResultSet resultSet) throws SQLException {
-        int idKlienti = resultSet.getInt("idklienti");
+        int id = resultSet.getInt("id");
         String emri = resultSet.getString("emri");
         String mbiemri = resultSet.getString("mbiemri");
         String nrPersonal = resultSet.getString("nrpersonal");
-        String nrTelefoni = resultSet.getString("telefoni");
+        String nrTelefoni = resultSet.getString("nrtelefoni");
 
-        return new Klientet(idKlienti, emri, mbiemri, nrPersonal, nrTelefoni);
+        return new Klientet(id, emri, mbiemri, nrPersonal, nrTelefoni);
     }
 
-    public int getIdKlienti() {
-        return idKlienti;
+    public int getId() {
+        return id;
     }
 
     public String getEmri() {
@@ -52,10 +52,11 @@ public class Klientet {
 
     public void printoTeDhenatPerKlientin() {
         System.out.println("Klienti u gjet:");
-        System.out.println("ID: " + getIdKlienti());
+        System.out.println("ID: " + getId());
         System.out.println("Emri: " + getEmri());
         System.out.println("Mbiemri: " + getMbiemri());
         System.out.println("Nr Personal: " + getNrPersonal());
         System.out.println("Telefoni: " + getNrTelefoni());
+        System.out.println("------------------------------");
     }
 }

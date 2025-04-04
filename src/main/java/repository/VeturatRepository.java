@@ -24,8 +24,8 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
     // 3. metoda create
     public Veturat create(CreateVeturatDto veturatDto) {
         String query= """
-                INSERT INTO VETURAT (TARGAT, MODELI, NGJYRA, VITI_PRODHIMIT,
-                KILOMETRAZHA, NUMRI_ULESEVE, KARBURANTI, CMIMI_DITOR, STATUSI)
+                INSERT INTO VETURAT (TARGAT, MODELI, NGJYRA, VITIPRODHIMIT,
+                KILOMETRAZHA, NUMRIULESEVE, KARBURANTI, CMIMIDITOR, STATUSI)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
         try {
@@ -95,8 +95,8 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
         }
     }
     // 6. metoda filtro
-    public ArrayList<Veturat> filter(String modeli, String ngjyra, int viti_prodhimit, int numri_uleseve,
-                                     Karburanti karburanti, int cmimi_ditor, StatusiVeturaEnum statusi) {
+    public ArrayList<Veturat> filter(String modeli, String ngjyra, int vitiProdhimit, int numriUleseve,
+                                     Karburanti karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
         ArrayList<Veturat> veturat=new ArrayList<Veturat>();
         StringBuilder query=new StringBuilder("SELECT * FROM VETURAT WHERE 1=1");
         List<Object> parametrat=new ArrayList<>();
@@ -109,16 +109,16 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
             query.append(" and ngjyra= ?");
             parametrat.add(ngjyra);
         }
-        if(viti_prodhimit>0) {
+        if(vitiProdhimit>0) {
             query.append(" and vitiprodhimit=?");
-            parametrat.add(viti_prodhimit);
-        } else if(viti_prodhimit<0) {
+            parametrat.add(vitiProdhimit);
+        } else if(vitiProdhimit<0) {
             throw new IllegalArgumentException("Viti i prodhimit eshte jo valid");
         }
-        if(numri_uleseve>0) {
+        if(numriUleseve>0) {
             query.append(" and numriuleseve=?");
-            parametrat.add(numri_uleseve);
-        } else if(numri_uleseve<0){
+            parametrat.add(numriUleseve);
+        } else if(numriUleseve<0){
             throw new IllegalArgumentException("Numri i uleseve eshte jo valid");
         }
         if (karburanti != null) {
@@ -126,10 +126,10 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
             parametrat.add(karburanti.name());
         }
 
-        if(cmimi_ditor>0) {
+        if(cmimiDitor>0) {
             query.append(" and cmimiditor=?");
-            parametrat.add(cmimi_ditor);
-        } else if(cmimi_ditor<0) {
+            parametrat.add(cmimiDitor);
+        } else if(cmimiDitor<0) {
             throw new IllegalArgumentException("Cmimi ditor eshte jo valid");
         }
         if(statusi!=null) {

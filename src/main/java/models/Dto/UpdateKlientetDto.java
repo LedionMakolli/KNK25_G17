@@ -1,11 +1,11 @@
 package models.Dto;
 
 public class UpdateKlientetDto {
-    private int idKlienti;
+    private int id;
     private String nrTelefoni;
 
-    public UpdateKlientetDto(int idKlienti, String nrTelefoni) {
-        this.idKlienti=idKlienti;
+    public UpdateKlientetDto(int id, String nrTelefoni) {
+        this.id=id;
         this.nrTelefoni=nrTelefoni;
     }
 
@@ -13,8 +13,8 @@ public class UpdateKlientetDto {
         this.nrTelefoni = nrTelefoni;
     }
 
-    public int getIdKlienti() {
-        return idKlienti;
+    public int getId() {
+        return id;
     }
 
     public String getNrTelefoni() {

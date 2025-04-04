@@ -6,53 +6,26 @@ import models.Dto.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class KlientetRepository {
-    private Connection connection;
+public class KlientetRepository extends BaseRepository<Klientet, CreateKlientetDto, UpdateKlientetDto> {
 
     public KlientetRepository() throws SQLException {
-        this.connection = DBConnection.getConnection();
-        if(connection.isValid(1000)) {
-            System.out.println("Lidhja me bazen e te dhenave eshte krijuar me sukes");
-        }
+        super("klientet");
     }
 
-    // definimi i 5 metodave: getAll, getById, create, update, delete
-    // 1. metoda getAll
-    public ArrayList<Klientet> getAll() {
-        ArrayList<Klientet> klientet = new ArrayList<>();
-        String query = "SELECT * FROM KLIENTET";
+    @Override
+    public Klientet fromResultSet(ResultSet rs) {
         try {
-            Statement statement = this.connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                klientet.add(Klientet.getInstance(resultSet));
-            }
-        } catch (SQLException e) {
+            return Klientet.getInstance(rs);
+        } catch(SQLException e) {
             e.printStackTrace();
+            return null;
         }
-        return klientet;
     }
 
-    // 2. Metoda getById
-
-    public Klientet getById(int idKlienti) {
-        String query="SELECT * FROM KLIENTET WHERE id_klienti=?";
-        try {
-            PreparedStatement pstm=this.connection.prepareStatement(query);
-            pstm.setInt(1, idKlienti);
-            ResultSet resultSet=pstm.executeQuery();
-            if(resultSet.next()) {
-                return Klientet.getInstance(resultSet);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
     // 3. Metoda Create
     public Klientet create(CreateKlientetDto klientetDto) {
         String query= """
-                INSERT INTO KLIENTET (emri, mbiemri, nr_personal, telefoni) 
+                INSERT INTO KLIENTET (emri, mbiemri, nrpersonal, nrtelefoni) 
                 values (?, ?, ?, ?)
                 """;
         try {
@@ -76,18 +49,19 @@ public class KlientetRepository {
     public Klientet update(UpdateKlientetDto klientetDto) {
         String query= """
                 UPDATE KLIENTET
-                SET telefoni=?
-                WHERE id_klienti=?
+                SET nrtelefoni=?
+                WHERE id=?
                 """;
         try {
             PreparedStatement pstm=this.connection.prepareStatement(query);
             pstm.setString(1, klientetDto.getNrTelefoni());
-            pstm.setInt(2, klientetDto.getIdKlienti());
+            pstm.setInt(2, klientetDto.getId());
             pstm.executeUpdate();
+            System.out.println("Perditesimi u krye me sukses!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return this.getById(klientetDto.getIdKlienti());
+        return this.getById(klientetDto.getId());
     }
 
     // Metoda 5. delete Klient
