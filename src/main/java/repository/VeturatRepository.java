@@ -8,45 +8,51 @@ import models.enums.StatusiVetura;
 import java.sql.*;
 import java.util.*;
 
-public class VeturatRepository {
+public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto, UpdateVeturatDto>{
     private Connection connection;
 
     public VeturatRepository() throws SQLException {
-        this.connection= DBConnection.getConnection();
-        if(connection.isValid(1000)) {
-            System.out.println("DB Connected");
-        }
+        super("veturat");
     }
-    // 1. metoda getAll
-    public ArrayList<Veturat> getAll() {
-        ArrayList<Veturat> veturat=new ArrayList<>();
-        String query="SELECT * FROM VETURAT";
+    @Override
+    Veturat fromResultSet(ResultSet rs) {
         try {
-            Statement statement=this.connection.createStatement();
-            ResultSet resultSet= statement.executeQuery(query);
-            while(resultSet.next()) {
-                veturat.add(Veturat.getInstance(resultSet));
-            }
+            return Veturat.getInstance(rs);
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
-        return veturat;
     }
-    // 2. metoda getById
-    public Veturat getById(int idVetura) {
-        String query="SELECT * FROM VETURAT WHERE idVetura=?";
-        try {
-            PreparedStatement preparedStatement=connection.prepareStatement(query);
-            preparedStatement.setInt(1, idVetura);
-            ResultSet resultSet=preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                return Veturat.getInstance(resultSet);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    // 1. metoda getAll
+//    public ArrayList<Veturat> getAll() {
+//        ArrayList<Veturat> veturat=new ArrayList<>();
+//        String query="SELECT * FROM VETURAT";
+//        try {
+//            Statement statement=this.connection.createStatement();
+//            ResultSet resultSet= statement.executeQuery(query);
+//            while(resultSet.next()) {
+//                veturat.add(Veturat.getInstance(resultSet));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return veturat;
+//    }
+//    // 2. metoda getById
+//    public Veturat getById(int idVetura) {
+//        String query="SELECT * FROM VETURAT WHERE idVetura=?";
+//        try {
+//            PreparedStatement preparedStatement=connection.prepareStatement(query);
+//            preparedStatement.setInt(1, idVetura);
+//            ResultSet resultSet=preparedStatement.executeQuery();
+//            if(resultSet.next()) {
+//                return Veturat.getInstance(resultSet);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
     // 3. metoda create
     public Veturat create(CreateVeturatDto veturatDto) {
         String query= """
@@ -120,18 +126,18 @@ public class VeturatRepository {
             throw new RuntimeException("Gabim gjate perditesimit!", e);
         }
     }
-    // 5. metoda delete
-    public boolean delete(int id_vetura) {
-        String query="DELETE FROM VETURAT WHERE id_vetura=?";
-        try {
-            PreparedStatement preparedStatement=connection.prepareStatement(query);
-            preparedStatement.setInt(1, id_vetura);
-            return preparedStatement.executeUpdate()==1;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+//    // 5. metoda delete
+//    public boolean delete(int id_vetura) {
+//        String query="DELETE FROM VETURAT WHERE id_vetura=?";
+//        try {
+//            PreparedStatement preparedStatement=connection.prepareStatement(query);
+//            preparedStatement.setInt(1, id_vetura);
+//            return preparedStatement.executeUpdate()==1;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
     // 6. metoda filtro
     public ArrayList<Veturat> filter(String modeli, String ngjyra, int viti_prodhimit, int numri_uleseve,
                                      Karburanti karburanti, int cmimi_ditor, StatusiVetura statusi) {
