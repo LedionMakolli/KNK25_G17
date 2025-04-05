@@ -1,6 +1,6 @@
 package models;
 
-import models.enums.Pagesa;
+import models.enums.PagesaEnum;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,10 +9,10 @@ public class Kontrata {
     private int id_kontrata;
     private int id_rezervimet;
     private double shuma;
-    private Pagesa pagesa;
+    private PagesaEnum pagesa;
     private String data;
 
-    private Kontrata(int id_kontrata, int id_rezervimet, double shuma, Pagesa pagesa, String data) {
+    private Kontrata(int id_kontrata, int id_rezervimet, double shuma, PagesaEnum pagesa, String data) {
         this.id_kontrata = id_kontrata;
         this.id_rezervimet = id_rezervimet;
         this.shuma = shuma;
@@ -25,7 +25,7 @@ public class Kontrata {
         int id_rezervimet = resultSet.getInt("id_rezervimet");
         double shuma = resultSet.getDouble("shuma");
         String pagesaStr = resultSet.getString("pagesa");
-        Pagesa pagesa = Pagesa.valueOf(pagesaStr.toUpperCase());
+        PagesaEnum pagesa = PagesaEnum.valueOf(pagesaStr.toUpperCase());
         String data = resultSet.getString("data");
         return new Kontrata(id_kontrata, id_rezervimet, shuma, pagesa, data);
     }
@@ -42,7 +42,7 @@ public class Kontrata {
         return shuma;
     }
 
-    public Pagesa getPagesa() {
+    public PagesaEnum getPagesa() {
         return pagesa;
     }
 

@@ -1,6 +1,6 @@
 package models;
 
-import models.enums.StatusiMirembatja;
+import models.enums.StatusiMirembatjaEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,6 +12,6 @@ public class Mirembajtja {
     private LocalDate dataFillimit;
     private LocalDate dataMbarimit;
     private BigDecimal kosto;
-    private StatusiMirembatja statusi;
+    private StatusiMirembatjaEnum statusi;
     private Integer idStafi;  // Integer per te lejuar NULL (nese fshihet punetori..)
 }
