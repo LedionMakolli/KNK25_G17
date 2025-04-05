@@ -3,21 +3,15 @@ package models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Klientet {
-    private int id;
-    private String emri;
-    private String mbiemri;
+public class Klientet extends User {
+    private int idKlienti;
     private String nrPersonal;
-    //    private String klientUsername;
-    //    private String klientPassword;
-    private String nrTelefoni;
 
-    private Klientet(int id, String emri, String mbiemri, String nrPersonal, String nrTelefoni) {
-        this.id = id;
-        this.emri = emri;
-        this.mbiemri = mbiemri;
-        this.nrPersonal = nrPersonal;
-        this.nrTelefoni = nrTelefoni;
+    private Klientet(int id, String emri, String mbiemri, String email, String password, String nrTelefoni,
+                     String roli, int idKlienti, String nrPersonal) {
+        super(id, emri, mbiemri, email, password, nrTelefoni, roli);
+        this.idKlienti=idKlienti;
+        this.nrPersonal=nrPersonal;
     }
 
     public static Klientet getInstance(ResultSet resultSet) throws SQLException {
@@ -29,26 +23,14 @@ public class Klientet {
 
         return new Klientet(id, emri, mbiemri, nrPersonal, nrTelefoni);
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getEmri() {
-        return emri;
-    }
-
-    public String getMbiemri() {
-        return mbiemri;
+    public int getIdKlienti() {
+        return this.idKlienti;
     }
 
     public String getNrPersonal() {
         return nrPersonal;
     }
 
-    public String getNrTelefoni() {
-        return nrTelefoni;
-    }
 
     public void printoTeDhenatPerKlientin() {
         System.out.println("Klienti u gjet:");

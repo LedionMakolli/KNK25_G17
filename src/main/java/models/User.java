@@ -9,14 +9,16 @@ public class User {
     private String mbiemri;
     private String email;
     private String password;
+    private String nrTelefonit;
     private String roli; // "ADMIN", "CLIENT", "STAFF"
 
-    protected User(int id, String emri, String mbiemri, String email, String password, String roli) {
+    protected User(int id, String emri, String mbiemri, String email, String password, String nrTelefonit, String roli) {
         this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
         this.email = email;
         this.password = password;
+        this.nrTelefonit=nrTelefonit;
         this.roli = roli;
     }
 
@@ -26,8 +28,9 @@ public class User {
         String mbiemri = rs.getString("mbiemri");
         String email = rs.getString("email");
         String password = rs.getString("password");
+        String nrTelefonit=rs.getString("nrtelefonit")
         String roli = rs.getString("roli");
-
-        return new User(id, emri, mbiemri, email, password, roli);
+        return new User(id, emri, mbiemri, email, password, nrTelefonit, roli);
     }
+    
 }
