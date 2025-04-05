@@ -12,11 +12,11 @@
 --     id SERIAL PRIMARY KEY,
 --     emri VARCHAR(255),
 --     mbiemri VARCHAR(255),
--- 	email VARCHAR(255) UNIQUE,
--- 	password VARCHAR(255),
+-- 	   email VARCHAR(255) UNIQUE,
+-- 	   password VARCHAR(255),
 --     nrtelefonit VARCHAR(20),
 --     roli VARCHAR(255),
--- 	nrpersonal VARCHAR(20)
+-- 	   nrpersonal VARCHAR(20)
 -- );
 
 ----- Stafi ----
@@ -51,13 +51,13 @@ CREATE TABLE Veturat (
 -----   REZERVIMET    ----
 
 CREATE TABLE Rezervimet (
-    id_rezervimet SERIAL PRIMARY KEY,
-    id_klienti INT REFERENCES Klientet(ID_Klienti) ON DELETE CASCADE,
-    id_vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
-    data_fillimit DATE NOT NULL,
-    data_mbarimit DATE NOT NULL,
-    statusi_rezervimet Statusi_Rezervimet NOT NULL DEFAULT 'REZERVIMI_AKTIV',
-    created_At TIMESTAMP DEFAULT NOW(),
+    id SERIAL PRIMARY KEY,
+    idKlienti INT REFERENCES Klientet(id) ON DELETE CASCADE,
+    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    dataFillimit DATE NOT NULL,
+    dataMbarimit DATE NOT NULL,
+    statusiRezervimet Statusi_Rezervimet NOT NULL DEFAULT 'REZERVIMI_AKTIV',
+    createdAt TIMESTAMP DEFAULT NOW(),
     CHECK (data_fillimit < data_mbarimit)
 );
 
@@ -66,29 +66,29 @@ CREATE TABLE Rezervimet (
 CREATE TYPE Pagesa AS ENUM ('KESH', 'KARTELE');
 
 CREATE TABLE Kontrata (
-    id_kontrata SERIAL PRIMARY KEY,
-    id_rezervimet INT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    idRezervimet INT NOT NULL,
     shuma REAL NOT NULL,
     pagesa Pagesa NOT NULL,
     data TIMESTAMP NOT NULL
 );
 
-
+-----   Sigurimi    ----
 
 CREATE TABLE Sigurimi (
-    ID_Sigurimi SERIAL PRIMARY KEY,
-    ID_Vetura INT REFERENCES Veturat(ID_Vetura) ON DELETE CASCADE,
-    Kompania VARCHAR(255) NOT NULL,
-    Data_Fillimit DATE NOT NULL,
-    Data_Mbarimit DATE NOT NULL,
-    Kosto DECIMAL(10,2) NOT NULL
+    id SERIAL PRIMARY KEY,
+    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    kompania VARCHAR(255) NOT NULL,
+    dataFillimit DATE NOT NULL,
+    dataMbarimit DATE NOT NULL,
+    kosto DECIMAL(10,2) NOT NULL
 );
 
 -----   Ofertat    ----
 
 CREATE TABLE Ofertat (
-    idOferta SERIAL PRIMARY KEY,
-    idVetura INT REFERENCES Veturat(idVetura) ON DELETE CASCADE,
+    id SERIAL PRIMARY KEY,
+    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
     zbritja DECIMAL(10,2) NOT NULL,
     dataFillimit DATE NOT NULL,
     dataMbarimit DATE NOT NULL
@@ -98,9 +98,9 @@ CREATE TABLE Ofertat (
 -----   Vleresimet    ----
 
 CREATE TABLE Vleresimet (
-    idVleresimi SERIAL PRIMARY KEY,
-    idKlienti INT REFERENCES Klientet(idKlienti) ON DELETE CASCADE,
-    idVetura INT REFERENCES Veturat(idVetura) ON DELETE CASCADE,
+    id SERIAL PRIMARY KEY,
+    idKlienti INT REFERENCES Klientet(id) ON DELETE CASCADE,
+    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
     text TEXT,
     data TIMESTAMP NOT NULL
