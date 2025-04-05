@@ -3,7 +3,6 @@ package models.Dto;
 import models.enums.StatusiVeturaEnum;
 import java.math.BigDecimal;
 
-
 public class UpdateVeturatDto {
     private int id;
     private String ngjyra;

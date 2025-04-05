@@ -25,7 +25,7 @@ public class KlientetRepository extends BaseRepository<Klientet, CreateKlientetD
     // 3. Metoda Create
     public Klientet create(CreateKlientetDto klientetDto) {
         String query= """
-                INSERT INTO KLIENTET (emri, mbiemri, nrpersonal, nrtelefoni) 
+                INSERT INTO KLIENTET (emri, mbiemri, nrpersonal, nrtelefonit) 
                 values (?, ?, ?, ?)
                 """;
         try {
@@ -33,7 +33,7 @@ public class KlientetRepository extends BaseRepository<Klientet, CreateKlientetD
             pstm.setString(1, klientetDto.getEmri());
             pstm.setString(2, klientetDto.getMbiemri());
             pstm.setString(3, klientetDto.getNrPersonal());
-            pstm.setString(4, klientetDto.getNrTelefoni());
+            pstm.setString(4, klientetDto.getNrTelefonit());
             pstm.execute();
             ResultSet result=pstm.getGeneratedKeys();
             if(result.next()) {
@@ -49,12 +49,12 @@ public class KlientetRepository extends BaseRepository<Klientet, CreateKlientetD
     public Klientet update(UpdateKlientetDto klientetDto) {
         String query= """
                 UPDATE KLIENTET
-                SET nrtelefoni=?
+                SET nrtelefonit=?
                 WHERE id=?
                 """;
         try {
             PreparedStatement pstm=this.connection.prepareStatement(query);
-            pstm.setString(1, klientetDto.getNrTelefoni());
+            pstm.setString(1, klientetDto.getNrTelefonit());
             pstm.setInt(2, klientetDto.getId());
             pstm.executeUpdate();
             System.out.println("Perditesimi u krye me sukses!");

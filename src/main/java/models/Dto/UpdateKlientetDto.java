@@ -1,23 +1,8 @@
 package models.Dto;
 
-public class UpdateKlientetDto {
-    private int id;
-    private String nrTelefoni;
+public class UpdateKlientetDto extends UpdateUserDto{
 
-    public UpdateKlientetDto(int id, String nrTelefoni) {
-        this.id=id;
-        this.nrTelefoni=nrTelefoni;
-    }
-
-    public void setNrTelefoni(String nrTelefoni) {
-        this.nrTelefoni = nrTelefoni;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNrTelefoni() {
-        return nrTelefoni;
+    public UpdateKlientetDto(int id, String email, String password, String nrTelefonit, String roli, String pozita) {
+        super(id, email, password, nrTelefonit, roli);
     }
 }
