@@ -1,6 +1,6 @@
 package models;
 
-import models.enums.Statusi_Rezervimet;
+import models.enums.StatusiRezervimet;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -12,10 +12,10 @@ public class Rezervimet {
     private int id_vetura;
     private Date data_fillimit;   //LocalDate
     private Date data_mbarimit;
-    private Statusi_Rezervimet statusi_rezervimet; //mundemi me shtu vetine created_at per kohen e sakte kur eshte shtuar rreshti tek rezervimet
+    private StatusiRezervimet statusi_rezervimet; //mundemi me shtu vetine created_at per kohen e sakte kur eshte shtuar rreshti tek rezervimet
 
 
-private Rezervimet(int id_rezervimet, int id_klienti, int id_vetura, Date data_fillimit, Date data_mbarimit, Statusi_Rezervimet statusi_rezervimet){
+private Rezervimet(int id_rezervimet, int id_klienti, int id_vetura, Date data_fillimit, Date data_mbarimit, StatusiRezervimet statusi_rezervimet){
     this.id_rezervimet=id_rezervimet;
     this.id_klienti=id_klienti;
     this.id_vetura=id_vetura;
@@ -31,7 +31,7 @@ Date data_fillimit=resultSet.getDate("data_fillimit");
 Date data_mbarimit =resultSet.getDate("data_mbarimit");
 String statusiString=resultSet.getString("statusi_rezervimet");
 
-Statusi_Rezervimet statusi_rezervimet= Statusi_Rezervimet.valueOf(statusiString);
+StatusiRezervimet statusi_rezervimet= StatusiRezervimet.valueOf(statusiString);
 
 
 
@@ -47,7 +47,7 @@ public Date getData_fillimit(){return data_fillimit;}
 
 public Date getData_mbarimit(){return data_mbarimit;}
 
-public Statusi_Rezervimet getStatusi(){return statusi_rezervimet;}
+public StatusiRezervimet getStatusi(){return statusi_rezervimet;}
 
     public void printoTeDhenatRezervimet(){
     System.out.println("ID_Rezervimet: " + getId_rezervimet());
