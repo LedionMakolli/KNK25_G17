@@ -1,6 +1,5 @@
 package repository;
 
-import database.DBConnection;
 import models.Dto.*;
 import models.*;
 
@@ -9,49 +8,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KontrataRepository {
+public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataDto, UpdateDokumentetDto> {
     private Connection connection;
 
     public KontrataRepository() throws SQLException{
-        this.connection = DBConnection.getConnection();
-        if (connection.isValid(1000)) {
-            System.out.println("DB Connected");
-        }
+        super("Kontrata");
     }
 
-    // metoda getAll
-
-    public ArrayList<Kontrata> getAll(){
-        ArrayList<Kontrata> kontrata = new ArrayList<>();
-        String query = "SELECT * FROM KONTRATA";
+    @Override
+    public Kontrata fromResultSet(ResultSet rs){
         try{
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                kontrata.add(Kontrata.getInstance(resultSet));
-            }
+            return Kontrata.getInstance(rs);
         }catch (SQLException e){
             e.printStackTrace();
+            return null;
         }
-        return kontrata;
-    }
-
-    // metoda getById
-
-    public Kontrata getById(int kontarta_id) {
-        String query = "SELECT * FROM KONTRATA WHERE id_kontrata = ?";
-        try{
-            PreparedStatement pstm = connection.prepareStatement(query);
-            pstm.setInt(1,kontarta_id);
-            ResultSet resultSet = pstm.executeQuery();
-            if (resultSet.next()){
-                return Kontrata.getInstance(resultSet);
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return null;
-
     }
 
     // metoda create
@@ -122,22 +93,6 @@ public class KontrataRepository {
             e.printStackTrace();
         }
         return null;
-    }
-
-
-    // metoda delete
-
-    public boolean delete(int id_kontrata){
-        String query = "DELETE FROM KONTRATA WHERE id_kontrata = ?";
-        try {
-            PreparedStatement pstm = connection.prepareStatement(query);
-            pstm.setInt(1,id_kontrata);
-
-            return pstm.executeUpdate() == 1;
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return false;
     }
 
 }
