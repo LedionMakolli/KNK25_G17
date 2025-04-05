@@ -36,7 +36,7 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
     public User create(CreateUserDto userDto) {
         String query = """
                 INSERT INTO USERS (EMRI, MBIEMRI, EMAIL, PASSWORD, ROLI)
-                VALUES (?, ?, ?)
+                VALUES (?, ?, ?, ?, ?)
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
