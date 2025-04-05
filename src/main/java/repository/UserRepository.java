@@ -60,12 +60,10 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
     // metoda update
     public User update(UpdateUserDto userDto) {
         String query = """
-                UPDATE USERS
-                SET EMAIL = ?
-                SET PASSWORD = ?
-                SET ROLI = ?
-                WHERE ID = ?
-                """;
+            UPDATE USERS
+            SET EMAIL = ?, PASSWORD = ?, ROLI = ?
+            WHERE ID = ?
+            """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setString(1, userDto.getEmail());
@@ -73,9 +71,11 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
             pstm.setString(3, userDto.getRoli());
             pstm.setInt(4, userDto.getId());
             pstm.executeUpdate();
+            return this.getById(userDto.getId());
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return this.getById(userDto.getId());
+        return null;
     }
+
 }

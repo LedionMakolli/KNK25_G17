@@ -5,13 +5,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Stafi extends User {
-    private int idStafi;
     private String pozita;  // "Menaxher", "Staf", "Mekanik"
     private LocalDate dataPunesimit;
 
-    private Stafi(int id, String emri, String mbiemri, String email, String password, String nrTelefonit, String roli, int idStafi, String pozita, LocalDate dataPunesimit) {
+    private Stafi(int id, String emri, String mbiemri, String email, String password, String nrTelefonit, String roli, String pozita, LocalDate dataPunesimit) {
         super(id, emri, mbiemri, email, password, nrTelefonit, roli);
-        this.idStafi = idStafi;
         this.pozita = pozita;
         this.dataPunesimit = dataPunesimit;
     }
@@ -23,14 +21,9 @@ public class Stafi extends User {
         String password=resultSet.getString("password");
         String nrTelefonit = resultSet.getString("nrtelefonit");
         String roli=resultSet.getString("roli");
-        int idStafi=resultSet.getInt("idstafi");
         String pozita = resultSet.getString("pozita");
         LocalDate datapunesimit=resultSet.getDate("datapunesimit").toLocalDate();
-        return new Stafi(id,emri,mbiemri,email,password,nrTelefonit,roli,idStafi,pozita,datapunesimit);
-    }
-
-    public int getIdStafi() {
-        return idStafi;
+        return new Stafi(id,emri,mbiemri,email,password,nrTelefonit,roli,pozita,datapunesimit);
     }
 
     public String getPozita() {
@@ -48,7 +41,6 @@ public class Stafi extends User {
         System.out.println("Email: " + getEmail()); // passwordi
         System.out.println("Telefoni: " + getNrTelefonit());
         System.out.println("Roli: " + getRoli());
-        System.out.println("Id Stafi: " + getIdStafi());
         System.out.println("Pozita: " + getPozita());
         System.out.println("Data e punesimit: " + getDataPunesimit());
         System.out.println("------------------------------");

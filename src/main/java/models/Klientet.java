@@ -5,13 +5,11 @@ import java.sql.SQLException;
 import java.sql.SQLOutput;
 
 public class Klientet extends User {
-    private int idKlienti;
     private String nrPersonal;
 
     private Klientet(int id, String emri, String mbiemri, String email, String password, String nrTelefoni,
-                     String roli, int idKlienti, String nrPersonal) {
+                     String roli, String nrPersonal) {
         super(id, emri, mbiemri, email, password, nrTelefoni, roli);
-        this.idKlienti=idKlienti;
         this.nrPersonal=nrPersonal;
     }
 
@@ -21,14 +19,10 @@ public class Klientet extends User {
         String mbiemri = resultSet.getString("mbiemri");
         String email=resultSet.getString("email");
         String password=resultSet.getString("password");
-        String nrTelefoni = resultSet.getString("nrtelefoni");
+        String nrTelefoni = resultSet.getString("nrtelefonit");
         String roli=resultSet.getString("roli");
-        int idKlienti=resultSet.getInt("idklienti");
         String nrPersonal = resultSet.getString("nrpersonal");
-        return new Klientet(id, emri, mbiemri, email, password, nrTelefoni, roli, idKlienti, nrPersonal);
-    }
-    public int getIdKlienti() {
-        return this.idKlienti;
+        return new Klientet(id, emri, mbiemri, email, password, nrTelefoni, roli, nrPersonal);
     }
 
     public String getNrPersonal() {
