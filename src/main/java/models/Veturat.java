@@ -102,4 +102,5 @@ public class Veturat {
         System.out.println("Statusi: " + getStatusi());
         System.out.println("----------------------------------------");
     }
+
 }
