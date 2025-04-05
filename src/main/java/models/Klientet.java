@@ -9,7 +9,7 @@ public class Klientet {
     private String mbiemri;
     private String nrPersonal;
     //    private String klientUsername;
-//    private String klientPassword;
+    //    private String klientPassword;
     private String nrTelefoni;
 
     private Klientet(int id, String emri, String mbiemri, String nrPersonal, String nrTelefoni) {
