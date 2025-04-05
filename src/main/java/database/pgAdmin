@@ -49,6 +49,7 @@ CREATE TABLE Veturat (
 );
 
 -----   REZERVIMET    ----
+CREATE TYPE StatusiRezervimetENUM as ENUM ("REZERVIMI_AKTIV", "REZERVIMI_PERFUNDUAR","REZERVIMI_ANULUAR");
 
 CREATE TABLE Rezervimet (
     id SERIAL PRIMARY KEY,
@@ -58,7 +59,7 @@ CREATE TABLE Rezervimet (
     dataMbarimit DATE NOT NULL,
     statusiRezervimet Statusi_Rezervimet NOT NULL DEFAULT 'REZERVIMI_AKTIV',
     createdAt TIMESTAMP DEFAULT NOW(),
-    CHECK (data_fillimit < data_mbarimit)
+    CHECK (dataFillimit < dataMbarimit)
 );
 
 -----   Kontrata    ----
@@ -104,4 +105,16 @@ CREATE TABLE Vleresimet (
     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
     text TEXT,
     data TIMESTAMP NOT NULL
+);
+
+
+----- Penalizimet ----
+
+CREATE TABLE PENALIZIMET (
+    id SERIAL PRIMARY KEY,
+    idRezervimet INT NOT NULL REFERENCES REZERVIMET(id),
+    arsyeja VARCHAR(255) NOT NULL,
+    shuma DECIMAL(10, 2) NOT NULL,
+    data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    paguar BOOLEAN NOT NULL
 );

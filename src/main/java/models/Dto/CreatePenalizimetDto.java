@@ -10,11 +10,17 @@ public class CreatePenalizimetDto {
     private LocalDateTime data;
     private boolean paguar;
 
-    public CreatePenalizimetDto(int idRezervimet, String arsyeja, BigDecimal shuma, LocalDateTime data, boolean paguar) {
+    public CreatePenalizimetDto(int idRezervimet, String arsyeja, BigDecimal shuma, boolean paguar) {
+        if (arsyeja == null || arsyeja.trim().isEmpty()) {
+            throw new IllegalArgumentException("Arsyeja nuk mund te jete e zbrazet.");
+        }
+        if (shuma == null || shuma.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Shuma duhet te jete pozitive.");
+        }
         this.idRezervimet = idRezervimet;
         this.arsyeja = arsyeja;
         this.shuma = shuma;
-        this.data = data;
+        this.data = LocalDateTime.now();
         this.paguar = paguar;
     }
 
