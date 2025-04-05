@@ -3,12 +3,14 @@ package models.Dto;
 import java.util.Date;
 
 public class UpdateOfertatDto {
+    private int id;
     private int idVetura;
     private double zbritja;
     private Date dataFillimit;
     private Date dataMbarimit;
 
-    public UpdateOfertatDto(int idVetura, double zbritja, Date dataFillimit, Date dataMbarimit) {
+    public UpdateOfertatDto(int id, int idVetura, double zbritja, Date dataFillimit, Date dataMbarimit) {
+        this.id = id;
         this.idVetura = idVetura;
         this.zbritja = zbritja;
         this.dataFillimit = dataFillimit;
@@ -29,6 +31,10 @@ public class UpdateOfertatDto {
 
     public void setDataMbarimit(Date dataMbarimit) {
         this.dataMbarimit = dataMbarimit;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getIdVetura() {
