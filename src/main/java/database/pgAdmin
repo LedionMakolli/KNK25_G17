@@ -8,15 +8,30 @@
 
 -----   Klientet    ----
 
-CREATE TABLE Klientet (
-    id serial primary key,
-    emri varchar(255) not null,
-    mbiemri VARCHAR(255) not null,
-    nrPersonal varchar(20) unique not null,       mos i shkruni kto dyja ndb niher
-    username varchar(30) not null,                username edhe password duhet mi kqyr prap
-    Password varchar(30) not null,
-    nrTelefoni varchar(20) unique not null
-);
+-- CREATE TABLE klientet (
+--     id SERIAL PRIMARY KEY,
+--     emri VARCHAR(255),
+--     mbiemri VARCHAR(255),
+-- 	email VARCHAR(255) UNIQUE,
+-- 	password VARCHAR(255),
+--     nrtelefonit VARCHAR(20),
+--     roli VARCHAR(255),
+-- 	nrpersonal VARCHAR(20)
+-- );
+
+----- Stafi ----
+
+-- CREATE TABLE stafi (
+--     id SERIAL PRIMARY KEY,
+--     emri VARCHAR(255),
+--     mbiemri VARCHAR(255),
+--     email VARCHAR(255) UNIQUE,
+--     password VARCHAR(255),
+--     nrtelefonit VARCHAR(20),
+--     roli VARCHAR(255),
+--     pozita VARCHAR(255),
+--     datapunesimit DATE
+-- );
 
 -----   Veturat    ----
 
