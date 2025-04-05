@@ -5,13 +5,15 @@ public class CreateUserDto {
     private String mbiemri;
     private String email;
     private String password;
+    private String nrTelefonit;
     private String roli;
 
-    public CreateUserDto(String emri, String mbiemri, String email, String password, String roli) {
+    public CreateUserDto(String emri, String mbiemri, String email, String password, String nrTelefonit, String roli) {
         this.emri = emri;
         this.mbiemri = mbiemri;
         this.email = email;
         this.password = password;
+        this.nrTelefonit=nrTelefonit;
         this.roli = roli;
     }
 
@@ -29,6 +31,10 @@ public class CreateUserDto {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getNrTelefonit() {
+        return nrTelefonit;
     }
 
     public String getRoli() {
@@ -49,6 +55,10 @@ public class CreateUserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setNrTelefonit(String nrTelefonit) {
+        this.nrTelefonit=nrTelefonit;
     }
 
     public void setRoli(String roli) {

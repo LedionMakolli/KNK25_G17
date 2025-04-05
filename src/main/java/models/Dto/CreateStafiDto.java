@@ -1,4 +1,4 @@
 package models.Dto;
 
-public class CreateStafiDto {
+public class CreateStafiDto extends CreateUserDto {
 }

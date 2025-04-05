@@ -1,47 +1,76 @@
 package models.Dto;
 
-public class CreateKlientetDto {
-    private String emri;
-    private String mbiemri;
+public class CreateKlientetDto extends CreateUserDto {
+    private int idKlienti;
     private String nrPersonal;
-    private String nrTelefoni;
 
-    public CreateKlientetDto(String emri, String mbiemri, String nrPersonal, String nrTelefoni) {
-        this.emri = emri;
-        this.mbiemri = mbiemri;
-        this.nrPersonal = nrPersonal;
-        this.nrTelefoni = nrTelefoni;
-    }
-
-    public void setEmri(String emri) {
-        this.emri = emri;
-    }
-
-    public void setMbiemri(String mbiemri) {
-        this.mbiemri = mbiemri;
-    }
-
-    public void setNrPersonal(String nrPersonal) {
+    public CreateKlientetDto(int idKlienti, String emri, String mbiemri, String email, String password, String nrTelefonit, String roli, String nrPersonal) {
+        super(emri, mbiemri, email, password, nrTelefonit, roli);
+        this.idKlienti = idKlienti;
         this.nrPersonal = nrPersonal;
     }
 
-    public void setNrTelefoni(String nrTelefoni) {
-        this.nrTelefoni = nrTelefoni;
+    public int getIdKlienti() {
+        return idKlienti;
     }
 
-    public String getEmri() {
-        return emri;
-    }
-
-    public String getMbiemri() {
-        return mbiemri;
+    public void setIdKlienti(int idKlienti) {
+        this.idKlienti = idKlienti;
     }
 
     public String getNrPersonal() {
         return nrPersonal;
     }
 
-    public String getNrTelefoni() {
-        return nrTelefoni;
+    public void setNrPersonal(String nrPersonal) {
+        this.nrPersonal = nrPersonal;
+    }
+
+    public String getEmri() {
+        return super.getEmri();
+    }
+
+    public String getMbiemri() {
+        return super.getMbiemri();
+    }
+
+    public String getEmail() {
+        return super.getEmail();
+    }
+
+    public String getPassword() {
+        return super.getPassword();
+    }
+
+    public String getNrTelefonit() {
+        return super.getNrTelefonit();
+    }
+
+    public String getRoli() {
+        return super.getRoli();
+    }
+
+    public void setEmri(String emri) {
+        super.setEmri(emri);
+    }
+
+    public void setMbiemri(String mbiemri) {
+        super.setMbiemri(mbiemri);
+    }
+
+    public void setEmail(String email) {
+        super.setEmail(email);
+    }
+
+    public void setPassword(String password) {
+        super.setPassword(password);
+    }
+
+    public void setNrTelefonit(String nrTelefonit) {
+        super.setNrTelefonit(nrTelefonit);
+    }
+
+    public void setRoli(String roli) {
+        super.setRoli(roli);
     }
 }
