@@ -1,6 +1,6 @@
 package models;
 
-import models.enums.Karburanti;
+import models.enums.KarburantiEnum;
 import models.enums.StatusiVeturaEnum;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -14,13 +14,13 @@ public class Veturat {
     private int vitiProdhimit;
     private BigDecimal kilometrazha;
     private int numriUleseve;
-    private Karburanti karburanti;
+    private KarburantiEnum karburanti;
     private int cmimiDitor;
     private StatusiVeturaEnum statusi;
 
     private Veturat(int id, String targat, String modeli, String ngjyra,
-                   int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
-                    Karburanti karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
+                    int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
+                    KarburantiEnum karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
         this.id = id;
         this.targat = targat;
         this.modeli = modeli;
@@ -41,7 +41,7 @@ public class Veturat {
         BigDecimal kilometrazha=resultSet.getBigDecimal("kilometrazha");
         int numriUleseve=resultSet.getInt("numriuleseve");
         String karburantiStr = resultSet.getString("karburanti");
-        Karburanti karburanti = Karburanti.valueOf(karburantiStr.toUpperCase());
+        KarburantiEnum karburanti = KarburantiEnum.valueOf(karburantiStr.toUpperCase());
         int cmimiDitor=resultSet.getInt("cmimiditor");
         String statusiStr = resultSet.getString("statusi");
         StatusiVeturaEnum statusi = StatusiVeturaEnum.valueOf(statusiStr.toUpperCase());
@@ -76,7 +76,7 @@ public class Veturat {
         return numriUleseve;
     }
 
-    public Karburanti getKarburanti() {
+    public KarburantiEnum getKarburanti() {
         return karburanti;
     }
 

@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum Karburanti {
+public enum KarburantiEnum {
     BENZINE,
     NAFTE,
     ELEKTRIKE,

@@ -1,8 +1,7 @@
 package testim;
 import models.Dto.CreateKontrataDto;
-import models.Dto.UpdateKontrataDto;
 import models.Kontrata;
-import models.enums.Pagesa;
+import models.enums.PagesaEnum;
 import repository.KontrataRepository;
 
 import java.sql.Date;
@@ -20,7 +19,7 @@ public class test_KontrataRepository {
             Kontrata kontrata = kontrataRepository.getById(4);
             System.out.println("Kontrata ID: " + kontrata.getIdkontrata());
 
-            CreateKontrataDto createKontrataDto = new CreateKontrataDto(6,3,5000.0,Pagesa.KARTELE,date);
+            CreateKontrataDto createKontrataDto = new CreateKontrataDto(6,3,5000.0, PagesaEnum.KARTELE,date);
             Kontrata newKontrata = kontrataRepository.create(createKontrataDto);
             newKontrata.printoTeDhenatPerKontraten();
 
