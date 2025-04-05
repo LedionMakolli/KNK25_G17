@@ -5,58 +5,58 @@ import models.enums.StatusiRezervimetEnum;
 import java.sql.Date;
 
 public class CreateRezervimetDto {
-    private int id_klienti;
-    private int id_vetura;
-    private Date data_fillimit;
-    private Date data_mbarimit;
-    private StatusiRezervimetEnum statusi;
+    private int idKlienti;
+    private int idVetura;
+    private Date dataFillimit;
+    private Date dataMbarimit;
+    private StatusiRezervimetEnum statusiRezervimet;
 
-    public CreateRezervimetDto(int id_klienti, int id_vetura, Date data_fillimit, Date data_mbarimit, StatusiRezervimetEnum statusi){
-        this.id_klienti=id_klienti;
-        this.id_vetura=id_vetura;
-        this.data_fillimit=data_fillimit;
-        this.data_mbarimit=data_mbarimit;
-        this.statusi=statusi;
+    public CreateRezervimetDto(int idKlienti, int idVetura, Date dataFillimit, Date dataMbarimit, StatusiRezervimetEnum statusiRezervimet){
+        this.idKlienti=idKlienti;
+        this.idVetura=idVetura;
+        this.dataFillimit=dataFillimit;
+        this.dataMbarimit=dataMbarimit;
+        this.statusiRezervimet=statusiRezervimet;
     }
 
-    public int getId_klienti(){
-        return id_klienti;
+    public int getIdKlienti(){
+        return idKlienti;
     }
 
-    public void setId_klienti(int id_klienti){
-        this.id_klienti=id_klienti;
+    public void setIdKlienti(int idKlienti){
+        this.idKlienti=idKlienti;
     }
 
-    public int getId_vetura(){
-        return id_vetura;
+    public int getIdVetura(){
+        return idVetura;
     }
 
-    public void setId_vetura(int id_vetura){
-      this.id_vetura=id_vetura;
+    public void setIdVetura(int idVetura){
+      this.idVetura=idVetura;
     }
 
-    public Date getData_fillimit(){
-        return data_fillimit;
+    public Date getDataFillimit(){
+        return dataFillimit;
     }
 
-    public void setData_fillimit(Date data_fillimit){
-        this.data_fillimit=data_fillimit;
+    public void setDataFillimit(Date dataFillimit){
+        this.dataFillimit=dataFillimit;
     }
 
-    public Date getData_mbarimit(){
-        return data_mbarimit;
+    public Date getDataMbarimit(){
+        return dataMbarimit;
     }
 
-    public void setData_mbarimit(Date data_mbarimit){
-        this.data_mbarimit=data_mbarimit;
+    public void setDataMbarimit(Date dataMbarimit){
+        this.dataMbarimit=dataMbarimit;
     }
 
-    public StatusiRezervimetEnum getStatusi(){
-        return statusi;
+    public StatusiRezervimetEnum getStatusiRezervimet(){
+        return statusiRezervimet;
     }
 
-    public void setStatusi(StatusiRezervimetEnum statusi){
-        this.statusi=statusi;
+    public void setStatusiRezervimet(StatusiRezervimetEnum statusiRezervimet){
+        this.statusiRezervimet= this.statusiRezervimet;
     }
 
 }
