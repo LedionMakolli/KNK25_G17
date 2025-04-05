@@ -38,6 +38,51 @@ public class Mirembajtja {
         BigDecimal kosto = resultSet.getBigDecimal("kosto");
         StatusiMirembatjaEnum mirembajtja = StatusiMirembatjaEnum.valueOf(resultSet.getString("statusi"));
         Integer idStafi = resultSet.getInt("idStafi");
-        return new Mirembajtja(idMirembajtja,idVetura,pershkrimi,kosto,mirembajtja,idStafi); // edhe dy ke me i shtu
+        return new Mirembajtja(idMirembajtja,idVetura,pershkrimi,dataFillimit,dataMbarimit,kosto,mirembajtja,idStafi); // edhe dy ke me i shtu
+    }
+
+    public int getIdMirembajtja() {
+        return idMirembajtja;
+    }
+
+    public String getPershkrimi() {
+        return pershkrimi;
+    }
+
+    public int getIdVetura() {
+        return idVetura;
+    }
+
+    public Date getDataFillimit() {
+        return dataFillimit;
+    }
+
+    public Date getDataMbarimit() {
+        return dataMbarimit;
+    }
+
+    public BigDecimal getKosto() {
+        return kosto;
+    }
+
+    public StatusiMirembatjaEnum getStatusi() {
+        return statusi;
+    }
+
+    public Integer getIdStafi() {
+        return idStafi;
+    }
+
+    public void printoTeDhenatPerMirembajtjen(){
+        System.out.println("-----------------------------");
+        System.out.println("Detajet e Mirembajtjes");
+        System.out.println("ID: " + idMirembajtja);
+        System.out.println("Pershkrimi: " + pershkrimi);
+        System.out.println("Data fillimit: " + dataFillimit);
+        System.out.println("Data mbarimit: " + dataMbarimit);
+        System.out.println("Kosto: " + kosto);
+        System.out.println("Statusi: " + statusi);
+        System.out.println("IdStafi: " + idStafi);
+        System.out.println("-----------------------------");
     }
 }
