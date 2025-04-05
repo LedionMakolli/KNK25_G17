@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum Pagesa {
+public enum PagesaEnum {
     KARTELE,
     KESH
 }

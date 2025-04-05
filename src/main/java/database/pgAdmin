@@ -6,6 +6,7 @@
 -- CREATE TYPE Karburanti AS ENUM ('BENZINE', 'NAFTE', 'ELEKTRIKE', 'HIBRID');
 -- CREATE TYPE StatusiVeturaEnum AS ENUM ('NE_DISPOZICION', 'E_REZERVUAR', 'NE_SERVIS');
 
+
 -----   Klientet    ----
 
 -- CREATE TABLE klientet (
@@ -45,7 +46,7 @@ CREATE TABLE Veturat (
     numriUleseve INT CHECK (numriUleseve > 0),
     karburanti Karburanti NOT NULL,
     cmimiDitor DECIMAL(10,2) CHECK (cmimiDitor >= 0),
-    statusi Statusi DEFAULT 'NE_DISPOZICION'
+    statusi StatusiVeturaEnum DEFAULT 'NE_DISPOZICION'
 );
 
 -----   REZERVIMET    ----

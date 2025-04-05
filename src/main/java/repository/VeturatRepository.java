@@ -2,7 +2,7 @@ package repository;
 
 import models.*;
 import models.Dto.*;
-import models.enums.Karburanti;
+import models.enums.KarburantiEnum;
 import models.enums.StatusiVeturaEnum;
 import java.sql.*;
 import java.util.*;
@@ -96,7 +96,7 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
     }
     // 6. metoda filtro
     public ArrayList<Veturat> filter(String modeli, String ngjyra, int vitiProdhimit, int numriUleseve,
-                                     Karburanti karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
+                                     KarburantiEnum karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
         ArrayList<Veturat> veturat=new ArrayList<Veturat>();
         StringBuilder query=new StringBuilder("SELECT * FROM VETURAT WHERE 1=1");
         List<Object> parametrat=new ArrayList<>();
