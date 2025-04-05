@@ -22,7 +22,7 @@ public RezervimetRepository() throws SQLException{
 //1. Metoda getALL
 public ArrayList<Rezervimet> getAll() {
     ArrayList<Rezervimet> rezervimet = new ArrayList<>();
-    String query = "SELCET * FROM Rezervimet";
+    String query = "SELECT * FROM Rezervimet";
     try {
         Statement statement = this.connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -36,7 +36,7 @@ public ArrayList<Rezervimet> getAll() {
 }
 //2. Metoda getById
     public Rezervimet getById(int id_rezervimet){
-    String query ="SELECT * FROM Rezervimet where id_rezervimet=?";
+    String query ="SELECT * FROM Rezervimet where idRezervimet=?";
     try{
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, id_rezervimet);
