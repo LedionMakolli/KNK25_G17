@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum Veprimet {  // nashta duhet me ndryshu
+public enum VeprimetEnum {  // nashta duhet me ndryshu
     // Autentikim
     LOGIN_SUKSES,
     LOGIN_DESHTIM,

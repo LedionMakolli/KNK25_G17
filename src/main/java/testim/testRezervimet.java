@@ -2,7 +2,7 @@ package testim;
 
 import models.Dto.CreateRezervimetDto;
 import models.Rezervimet;
-import models.enums.StatusiRezervimet;
+import models.enums.StatusiRezervimetEnum;
 import repository.RezervimetRepository;
 
 import java.sql.Date;
@@ -18,7 +18,7 @@ public class testRezervimet {
             Rezervimet rezervimet = rezervimetRepository.getById(101);
             System.out.println("Rezervimet ID: " + rezervimet.getId_rezervimet());
 
-            CreateRezervimetDto crdto = new CreateRezervimetDto(55, 2, data_fillimit1, data_mbarimit1, StatusiRezervimet.REZERVIMI_AKTIV);
+            CreateRezervimetDto crdto = new CreateRezervimetDto(55, 2, data_fillimit1, data_mbarimit1, StatusiRezervimetEnum.REZERVIMI_AKTIV);
             Rezervimet newRezervimet = rezervimetRepository.create(crdto);
             newRezervimet.printoTeDhenatRezervimet();
 

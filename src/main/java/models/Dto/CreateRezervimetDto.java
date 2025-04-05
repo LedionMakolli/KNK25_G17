@@ -1,6 +1,6 @@
 package models.Dto;
 
-import models.enums.StatusiRezervimet;
+import models.enums.StatusiRezervimetEnum;
 
 import java.sql.Date;
 
@@ -9,9 +9,9 @@ public class CreateRezervimetDto {
     private int id_vetura;
     private Date data_fillimit;
     private Date data_mbarimit;
-    private StatusiRezervimet statusi;
+    private StatusiRezervimetEnum statusi;
 
-    public CreateRezervimetDto(int id_klienti, int id_vetura, Date data_fillimit, Date data_mbarimit, StatusiRezervimet statusi){
+    public CreateRezervimetDto(int id_klienti, int id_vetura, Date data_fillimit, Date data_mbarimit, StatusiRezervimetEnum statusi){
         this.id_klienti=id_klienti;
         this.id_vetura=id_vetura;
         this.data_fillimit=data_fillimit;
@@ -51,11 +51,11 @@ public class CreateRezervimetDto {
         this.data_mbarimit=data_mbarimit;
     }
 
-    public StatusiRezervimet getStatusi(){
+    public StatusiRezervimetEnum getStatusi(){
         return statusi;
     }
 
-    public void setStatusi(StatusiRezervimet statusi){
+    public void setStatusi(StatusiRezervimetEnum statusi){
         this.statusi=statusi;
     }
 
