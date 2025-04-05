@@ -11,7 +11,7 @@ public class User {
     private String password;
     private String roli; // "ADMIN", "CLIENT", "STAFF"
 
-    private User(int id, String emri, String mbiemri, String email, String password, String roli) {
+    protected User(int id, String emri, String mbiemri, String email, String password, String roli) {
         this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
@@ -29,29 +29,5 @@ public class User {
         String roli = rs.getString("roli");
 
         return new User(id, emri, mbiemri, email, password, roli);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getEmri() {
-        return emri;
-    }
-
-    public String getMbiemri() {
-        return mbiemri;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getRoli() {
-        return roli;
     }
 }
