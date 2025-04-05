@@ -32,7 +32,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
     }
 
     // metoda getById
-    Model getById (int id) {
+    public Model getById (int id) {
         String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);

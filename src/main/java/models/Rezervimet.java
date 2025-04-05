@@ -56,5 +56,6 @@ public StatusiRezervimetEnum getStatusi(){return statusiRezervimet;}
     System.out.println("Data_Fillimit: " + getDataFillimit());
     System.out.println("Data_Mbarimit: " + getDataMbarimit());
     System.out.println("Statusi: " + getStatusi());
+    System.out.println("-------------------------------");
     }
 }
