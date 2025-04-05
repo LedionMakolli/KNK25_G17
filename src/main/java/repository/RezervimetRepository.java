@@ -41,9 +41,8 @@ public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezer
         pstm.setObject(5, rezervimetDto.getStatusiRezervimet(), Types.OTHER);
         pstm.execute();
                 ResultSet rs = pstm.getGeneratedKeys();
-        if(rs. next()){
-            int id = rs.getInt(1)
-            ;
+        if(rs.next()){
+            int id = rs.getInt(1);
         return this.getById(id);
         }
     }catch(SQLException e){
