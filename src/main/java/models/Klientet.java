@@ -2,6 +2,7 @@ package models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 
 public class Klientet extends User {
     private int idKlienti;
@@ -18,10 +19,13 @@ public class Klientet extends User {
         int id = resultSet.getInt("id");
         String emri = resultSet.getString("emri");
         String mbiemri = resultSet.getString("mbiemri");
-        String nrPersonal = resultSet.getString("nrpersonal");
+        String email=resultSet.getString("email");
+        String password=resultSet.getString("password");
         String nrTelefoni = resultSet.getString("nrtelefoni");
-
-        return new Klientet(id, emri, mbiemri, nrPersonal, nrTelefoni);
+        String roli=resultSet.getString("roli");
+        int idKlienti=resultSet.getInt("idklienti");
+        String nrPersonal = resultSet.getString("nrpersonal");
+        return new Klientet(id, emri, mbiemri, email, password, nrTelefoni, roli, idKlienti, nrPersonal);
     }
     public int getIdKlienti() {
         return this.idKlienti;
@@ -30,15 +34,15 @@ public class Klientet extends User {
     public String getNrPersonal() {
         return nrPersonal;
     }
-
-
     public void printoTeDhenatPerKlientin() {
         System.out.println("Klienti u gjet:");
         System.out.println("ID: " + getId());
         System.out.println("Emri: " + getEmri());
         System.out.println("Mbiemri: " + getMbiemri());
-        System.out.println("Nr Personal: " + getNrPersonal());
-        System.out.println("Telefoni: " + getNrTelefoni());
+        System.out.println("Email: " + getEmail()); // passwordin
+        System.out.println("Telefoni: " + getNrTelefonit());
+        System.out.println("Roli: " + getRoli());
+        System.out.println("Numri Personal: " + getNrPersonal());
         System.out.println("------------------------------");
     }
 }

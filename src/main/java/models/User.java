@@ -28,9 +28,36 @@ public class User {
         String mbiemri = rs.getString("mbiemri");
         String email = rs.getString("email");
         String password = rs.getString("password");
-        String nrTelefonit=rs.getString("nrtelefonit")
+        String nrTelefonit=rs.getString("nrtelefonit");
         String roli = rs.getString("roli");
         return new User(id, emri, mbiemri, email, password, nrTelefonit, roli);
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public String getEmri() {
+        return emri;
+    }
+
+    public String getMbiemri() {
+        return mbiemri;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getNrTelefonit() {
+        return nrTelefonit;
+    }
+
+    public String getRoli() {
+        return roli;
+    }
 }
