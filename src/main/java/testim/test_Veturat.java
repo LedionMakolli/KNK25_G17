@@ -1,9 +1,6 @@
 package testim;
 
-import models.Dto.CreateKlientetDto;
-import models.Dto.CreateVeturatDto;
-import models.Dto.UpdateKlientetDto;
-import models.Dto.UpdateVeturatDto;
+import models.Dto.*;
 import models.Klientet;
 import models.Veturat;
 import models.enums.Karburanti;
@@ -12,6 +9,7 @@ import repository.KlientetRepository;
 import repository.VeturatRepository;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class test_Veturat {
@@ -40,5 +38,10 @@ public class test_Veturat {
                     klientet1.printoTeDhenatPerKlientin();
                 }
         );
+
+        CreateStafiDto createStafiDto=new CreateStafiDto("Muhamed", "Jakupi", "medi@",
+                "123123", "879122879", "Staf", 2, "Menaxher", LocalDate.of(2025,4,5));
+
+        createStafiDto.getEmail();
     }
 }
