@@ -11,7 +11,7 @@ public class User {
     private String password;
     private String roli; // "ADMIN", "CLIENT", "STAFF"
 
-    public User(int id, String emri, String mbiemri, String email, String password, String roli) {
+    private User(int id, String emri, String mbiemri, String email, String password, String roli) {
         this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
