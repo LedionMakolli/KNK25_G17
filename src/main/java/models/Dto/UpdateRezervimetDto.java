@@ -5,42 +5,42 @@ import models.enums.StatusiRezervimetEnum;
 import java.sql.Date;
 
 public class UpdateRezervimetDto {
-    private int id_rezervimet;
-    private int id_vetura;
-    private Date data_fillimit;
-    private Date data_mbarimit;
-    private StatusiRezervimetEnum statusi_rezervimet;
+    private int id;
+    private int idVetura;
+    private Date dataFillimit;
+    private Date dataMbarimit;
+    private StatusiRezervimetEnum statusiRezervimet;
 
-    public UpdateRezervimetDto(int id_vetura, Date data_fillimit, Date data_mbarimit, StatusiRezervimetEnum statusi_rezervimet){
-        this.id_vetura = id_vetura;
-        this.data_fillimit = data_fillimit;
-        this.data_mbarimit= data_mbarimit;
-        this.statusi_rezervimet  = statusi_rezervimet;
+    public UpdateRezervimetDto(int idVetura, Date dataFillimit, Date dataMbarimit, StatusiRezervimetEnum statusiRezervimet){
+        this.idVetura = idVetura;
+        this.dataFillimit = dataFillimit;
+        this.dataMbarimit= dataMbarimit;
+        this.statusiRezervimet  = statusiRezervimet;
     }
  public UpdateRezervimetDto(){}
 
 
-    public int getId_rezervimet() {
-        return id_rezervimet;
+    public int getIdRezervimet() {
+        return id;
     }
 
-    public int getId_vetura(){
-        return id_vetura;
+    public int getIdVetura(){
+        return idVetura;
     }
-    public Date getData_fillimit(){
-        return data_fillimit;
+    public Date getDataFillimit(){
+        return dataFillimit;
     }
-    public Date getData_mbarimit(){
-        return data_mbarimit;
+    public Date getDataMbarimit(){
+        return dataMbarimit;
     }
-    public void setData_fillimit(Date data_fillimit){
-        this.data_fillimit = data_fillimit;
+    public void setDataFillimit(Date dataFillimit){
+        this.dataFillimit = dataFillimit;
     }
-    public void setData_mbarimit(Date data_mbarimit){
-        this.data_mbarimit=data_mbarimit;
+    public void setDataMbarimit(Date data_mbarimit){
+        this.dataMbarimit=dataMbarimit;
     }
 
-    public StatusiRezervimetEnum getStatusi_rezervimet(){
-        return statusi_rezervimet;
+    public StatusiRezervimetEnum getStatusiRezervimet(){
+        return statusiRezervimet;
     }
 }
