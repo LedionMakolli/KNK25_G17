@@ -1,26 +1,20 @@
 package models.Dto;
 
-public class CreateUserDto {
-    private String emri;
-    private String mbiemri;
+public class UpdateUserDto {
+    private int id;
     private String email;
     private String password;
     private String roli;
 
-    public CreateUserDto(String emri, String mbiemri, String email, String password, String roli) {
-        this.emri = emri;
-        this.mbiemri = mbiemri;
+    public UpdateUserDto(int id, String email, String password, String roli) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.roli = roli;
     }
 
-    public String getEmri() {
-        return emri;
-    }
-
-    public String getMbiemri() {
-        return mbiemri;
+    public int getId() {
+        return id;
     }
 
     public String getEmail() {
@@ -35,12 +29,8 @@ public class CreateUserDto {
         return roli;
     }
 
-    public void setEmri(String emri) {
-        this.emri = emri;
-    }
-
-    public void setMbiemri(String mbiemri) {
-        this.mbiemri = mbiemri;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setEmail(String email) {
