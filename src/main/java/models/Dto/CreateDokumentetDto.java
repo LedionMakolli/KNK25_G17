@@ -36,4 +36,20 @@ public class CreateDokumentetDto {
     public Date getDataUpload() {
         return dataUpload;
     }
+
+    public void setIdKontrata(int idKontrata) {
+        this.idKontrata = idKontrata;
+    }
+
+    public void setLloji(String lloji) {
+        this.lloji = lloji;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setDataUpload(Date dataUpload) {
+        this.dataUpload = dataUpload;
+    }
 }
