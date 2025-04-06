@@ -12,6 +12,20 @@ public class UpdatePromoCodeDto {
         this.dataSkadimit=dataSkadimit;
         this.aktiv=aktiv;
     }
-    
-
+    public UpdatePromoCodeDto(){}
+public int getId(){
+        return id;
+}
+public LocalDate getDataSkadimit(){
+        return dataSkadimit;
+}
+public void setDataSkadimit(LocalDate dataSkadimit){
+        this.dataSkadimit=dataSkadimit;
+}
+public Boolean isAktiv(){
+        return aktiv;
+}
+public void setAktiv(Boolean aktiv){
+        this.aktiv=aktiv;
+}
 }
