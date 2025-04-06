@@ -6,15 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Kontrata {
-    private int id_kontrata;
-    private int id_rezervimet;
+    private int id;
+    private int idRezervimet;
     private double shuma;
     private PagesaEnum pagesa;
     private String data;
 
-    private Kontrata(int id_kontrata, int id_rezervimet, double shuma, PagesaEnum pagesa, String data) {
-        this.id_kontrata = id_kontrata;
-        this.id_rezervimet = id_rezervimet;
+    private Kontrata(int id, int idRezervimet, double shuma, PagesaEnum pagesa, String data) {
+        this.id = id;
+        this.idRezervimet = idRezervimet;
         this.shuma = shuma;
         this.pagesa = pagesa;
         this.data = data;
@@ -31,11 +31,11 @@ public class Kontrata {
     }
 
     public int getIdkontrata() {
-        return id_kontrata;
+        return id;
     }
 
     public int getIdrezervimet() {
-        return id_rezervimet;
+        return idRezervimet;
     }
 
     public double getShuma() {

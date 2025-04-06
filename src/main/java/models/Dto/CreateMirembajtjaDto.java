@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 public class CreateMirembajtjaDto {
-    private int idMirembajtja;
+    private int id;
     private int idVetura;
     private String pershkrimi;
     private Date dataFillimit;
@@ -15,8 +15,8 @@ public class CreateMirembajtjaDto {
     private StatusiMirembatjaEnum statusi;
     private Integer idStafi;
 
-    public CreateMirembajtjaDto(int idMirembajtja, int idVetura, Date dataFillimit, String pershkrimi, Date dataMbarimit, BigDecimal kosto, StatusiMirembatjaEnum statusi, Integer idStafi) {
-        this.idMirembajtja = idMirembajtja;
+    public CreateMirembajtjaDto(int id, int idVetura, Date dataFillimit, String pershkrimi, Date dataMbarimit, BigDecimal kosto, StatusiMirembatjaEnum statusi, Integer idStafi) {
+        this.id = id;
         this.idVetura = idVetura;
         this.dataFillimit = dataFillimit;
         this.pershkrimi = pershkrimi;
@@ -26,8 +26,8 @@ public class CreateMirembajtjaDto {
         this.idStafi = idStafi;
     }
 
-    public int getIdMirembajtja() {
-        return idMirembajtja;
+    public int getId() {
+        return id;
     }
 
     public int getIdVetura() {
