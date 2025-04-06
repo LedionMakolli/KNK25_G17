@@ -3,14 +3,14 @@ package models.Dto;
 import java.sql.Date;
 
 public class CreateDokumentetDto {
-    private int idDokument;
+    private int id;
     private int idKontrata;
     private String lloji;
     private String path;
     private Date dataUpload;
 
-    public CreateDokumentetDto(int idDokument, int idKontrata, String lloji, String path, Date dataUpload) {
-        this.idDokument = idDokument;
+    public CreateDokumentetDto(int id, int idKontrata, String lloji, String path, Date dataUpload) {
+        this.id = id;
         this.idKontrata = idKontrata;
         this.lloji = lloji;
         this.path = path;
@@ -18,7 +18,7 @@ public class CreateDokumentetDto {
     }
 
     public int getIdDokument() {
-        return idDokument;
+        return id;
     }
 
     public int getIdKontrata() {
@@ -35,5 +35,21 @@ public class CreateDokumentetDto {
 
     public Date getDataUpload() {
         return dataUpload;
+    }
+
+    public void setIdKontrata(int idKontrata) {
+        this.idKontrata = idKontrata;
+    }
+
+    public void setLloji(String lloji) {
+        this.lloji = lloji;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setDataUpload(Date dataUpload) {
+        this.dataUpload = dataUpload;
     }
 }

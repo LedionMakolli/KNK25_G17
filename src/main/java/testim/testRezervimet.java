@@ -16,7 +16,7 @@ public class testRezervimet {
             //testim i metodes create dhe getById
             RezervimetRepository rezervimetRepository=new RezervimetRepository();
             Rezervimet rezervimet = rezervimetRepository.getById(101);
-            System.out.println("Rezervimet ID: " + rezervimet.getId_rezervimet());
+            System.out.println("Rezervimet ID: " + rezervimet.getIdRezervimet());
 
             CreateRezervimetDto crdto = new CreateRezervimetDto(55, 2, data_fillimit1, data_mbarimit1, StatusiRezervimetEnum.REZERVIMI_AKTIV);
             Rezervimet newRezervimet = rezervimetRepository.create(crdto);

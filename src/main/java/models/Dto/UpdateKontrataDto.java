@@ -5,26 +5,25 @@ import models.enums.PagesaEnum;
 import java.sql.Date;
 
 public class UpdateKontrataDto {
-    private int id_kontrata;
-    private int id_rezervimet;
+    private int id;
+    private int idRezervimet;
     private double shuma;
     private PagesaEnum pagesa;
     private Date data;
 
     public UpdateKontrataDto(int id_kontrata, double shuma, PagesaEnum pagesa, Date data) {
-        this.id_kontrata = id_kontrata;
-        this.id_rezervimet = id_rezervimet;
+        this.id = id;
         this.shuma = shuma;
         this.pagesa = pagesa;
         this.data = data;
     }
 
     public int getId_kontrata() {
-        return id_kontrata;
+        return id;
     }
 
     public int getId_rezervimet() {
-        return id_rezervimet;
+        return idRezervimet;
     }
 
     public double getShuma() {
@@ -37,5 +36,21 @@ public class UpdateKontrataDto {
 
     public Date getData() {
         return data;
+    }
+
+    public void setIdRezervimet(int idRezervimet) {
+        this.idRezervimet = idRezervimet;
+    }
+
+    public void setShuma(double shuma) {
+        this.shuma = shuma;
+    }
+
+    public void setPagesa(PagesaEnum pagesa) {
+        this.pagesa = pagesa;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 }

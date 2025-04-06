@@ -6,10 +6,9 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class Mirembajtja {
-    private int idMirembajtja;
+    private int id;
     private int idVetura;
     private String pershkrimi;
     private Date dataFillimit;
@@ -18,8 +17,8 @@ public class Mirembajtja {
     private StatusiMirembatjaEnum statusi;
     private Integer idStafi;  // Integer per te lejuar NULL (nese fshihet punetori..)
 
-    private Mirembajtja(int idMirembajtja, int idVetura, String pershkrimi, Date dataFillimit, Date dataMbarimit, BigDecimal kosto, StatusiMirembatjaEnum statusi, Integer idStafi) {
-        this.idMirembajtja = idMirembajtja;
+    private Mirembajtja(int id, int idVetura, String pershkrimi, Date dataFillimit, Date dataMbarimit, BigDecimal kosto, StatusiMirembatjaEnum statusi, Integer idStafi) {
+        this.id = id;
         this.idVetura = idVetura;
         this.pershkrimi = pershkrimi;
         this.dataFillimit = dataFillimit;
@@ -41,8 +40,8 @@ public class Mirembajtja {
         return new Mirembajtja(idMirembajtja,idVetura,pershkrimi,dataFillimit,dataMbarimit,kosto,mirembajtja,idStafi); // edhe dy ke me i shtu
     }
 
-    public int getIdMirembajtja() {
-        return idMirembajtja;
+    public int getId() {
+        return id;
     }
 
     public String getPershkrimi() {
@@ -76,7 +75,7 @@ public class Mirembajtja {
     public void printoTeDhenatPerMirembajtjen(){
         System.out.println("-----------------------------");
         System.out.println("Detajet e Mirembajtjes");
-        System.out.println("ID: " + idMirembajtja);
+        System.out.println("ID: " + id);
         System.out.println("Pershkrimi: " + pershkrimi);
         System.out.println("Data fillimit: " + dataFillimit);
         System.out.println("Data mbarimit: " + dataMbarimit);
