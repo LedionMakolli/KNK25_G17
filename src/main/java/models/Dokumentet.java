@@ -19,7 +19,7 @@ public class Dokumentet {
         this.dataUpload = dataUpload;
     }
 
-    public Dokumentet getInstance(ResultSet resultSet) throws SQLException {
+    public static Dokumentet getInstance(ResultSet resultSet) throws SQLException {
         int idDokument = resultSet.getInt("idDokument");
         int idKontrata = resultSet.getInt("idKontrata");
         String lloji = resultSet.getString("lloji");
