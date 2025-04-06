@@ -57,4 +57,32 @@ public class UpdateMirembajtjaDto {
     public Integer getIdStafi() {
         return idStafi;
     }
+
+    public void setIdVetura(int idVetura) {
+        this.idVetura = idVetura;
+    }
+
+    public void setPershkrimi(String pershkrimi) {
+        this.pershkrimi = pershkrimi;
+    }
+
+    public void setDataFillimit(Date dataFillimit) {
+        this.dataFillimit = dataFillimit;
+    }
+
+    public void setDataMbarimit(Date dataMbarimit) {
+        this.dataMbarimit = dataMbarimit;
+    }
+
+    public void setStatusi(StatusiMirembatjaEnum statusi) {
+        this.statusi = statusi;
+    }
+
+    public void setIdStafi(Integer idStafi) {
+        this.idStafi = idStafi;
+    }
+
+    public void setKosto(BigDecimal kosto) {
+        this.kosto = kosto;
+    }
 }
