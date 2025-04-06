@@ -37,4 +37,20 @@ public class UpdateKontrataDto {
     public Date getData() {
         return data;
     }
+
+    public void setIdRezervimet(int idRezervimet) {
+        this.idRezervimet = idRezervimet;
+    }
+
+    public void setShuma(double shuma) {
+        this.shuma = shuma;
+    }
+
+    public void setPagesa(PagesaEnum pagesa) {
+        this.pagesa = pagesa;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
 }
