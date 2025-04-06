@@ -7,9 +7,9 @@ public class KerkesaSpeciale {
     private int id;
     private int idRezervimet;
     private String kerkese;
-    private boolean plotesuar;
+    private Boolean plotesuar;
 
-    private KerkesaSpeciale(int id, int idRezervimet, String kerkese, boolean plotesuar){
+    private KerkesaSpeciale(int id, int idRezervimet, String kerkese, Boolean plotesuar){
         this.id=id;
         this.idRezervimet=idRezervimet;
         this.kerkese=kerkese;
@@ -19,7 +19,7 @@ public class KerkesaSpeciale {
         int id = resultSet.getInt("id");
         int idRezervimet = resultSet.getInt("idRezervimet");
         String kerkese = resultSet.getString("kerkese");
-        boolean plotesuar = resultSet.getBoolean("plotesuar");
+        Boolean plotesuar = resultSet.getBoolean("plotesuar");
 
         return new KerkesaSpeciale(id, idRezervimet,kerkese, plotesuar );
     }
@@ -32,7 +32,7 @@ public class KerkesaSpeciale {
     public String getKerkese(){
         return kerkese;
     }
-    public boolean getPlotesuar(){
+    public Boolean getPlotesuar(){
         return plotesuar;
     }
     public void printoTeDhenatKerkesaSpeciale(){

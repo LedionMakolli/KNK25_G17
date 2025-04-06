@@ -3,7 +3,7 @@ package models.Dto;
 public class CreateKerkesatSpecialeDto {
     private int idRezervimet;
     private String kerkese;
-    private boolean plotesuar;
+    private Boolean plotesuar;
 
     public CreateKerkesatSpecialeDto(int idRezervimet, String kerkese, boolean plotesuar){
         this.idRezervimet=idRezervimet;

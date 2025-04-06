@@ -4,9 +4,9 @@ public class UpdateKerkesatSpecialeDto {
     private int id;
     private int idRezervimet;
     private String kerkese;
-    private boolean plotesuar;
+    private Boolean plotesuar;
 
-    public UpdateKerkesatSpecialeDto(int id, int idRezervimet, String kerkese, boolean plotesuar){
+    public UpdateKerkesatSpecialeDto(int id, int idRezervimet, String kerkese, Boolean plotesuar){
         this.id=id;
         this.idRezervimet=idRezervimet;
         this.kerkese=kerkese;
@@ -29,10 +29,10 @@ public String getKerkese(){
 public void setKerkese(String kerkese){
         this.kerkese=kerkese;
 }
-public boolean isPlotesuar(){
+public Boolean isPlotesuar(){
         return plotesuar;
 }
-public void setPlotesuar(boolean plotesuar){
+public void setPlotesuar(Boolean plotesuar){
         this.plotesuar=plotesuar;
 }
 

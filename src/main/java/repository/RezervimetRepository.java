@@ -51,7 +51,7 @@ public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezer
     return null;
  }
  //4. Metoda update
-    public Rezervimet update(UpdateRezervimetDto rezervimetDto, String modeli_vetures) {
+    public Rezervimet update(UpdateRezervimetDto rezervimetDto) {
         StringBuilder query = new StringBuilder("UPDATE REZERVIMET SET");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
