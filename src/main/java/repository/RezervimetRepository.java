@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezervimetDto, UpdateRezervimetDto> {
-    private Connection connection;
+
 
     public RezervimetRepository() throws SQLException {
-        super("Rezervimet");
+        super("rezervimet");
     }
 
     public Rezervimet fromResultSet(ResultSet rs) {
@@ -30,8 +30,7 @@ public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezer
         String query = """
             
                 INSERT INTO Rezervimet (idKlienti, idVetura, dataFillimit, dataMbarimit, statusiRezervimet)
-            VALUES (?,?,?,
-         ?,?)""";
+            VALUES (?,?,?,?,?)""";
     try{
         PreparedStatement pstm = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         pstm.setInt(1, rezervimetDto.getIdKlienti());
@@ -40,7 +39,7 @@ public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezer
         pstm.setDate(4, rezervimetDto.getDataMbarimit());
         pstm.setObject(5, rezervimetDto.getStatusiRezervimet(), Types.OTHER);
         pstm.execute();
-                ResultSet rs = pstm.getGeneratedKeys();
+        ResultSet rs = pstm.getGeneratedKeys();
         if(rs.next()){
             int id = rs.getInt(1);
         return this.getById(id);
@@ -56,60 +55,43 @@ public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezer
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
 
-
         if (rezervimetDto.getIdVetura() > 0) {
-            query.append("idVetura=?, ");
+            query.append("idVetura = ?, ");
             parametrat.add(rezervimetDto.getIdVetura());
             hasUpdates = true;
         }
 
         if (rezervimetDto.getDataFillimit() != null) {
-            query.append("dataFillimit=?, ");
+            query.append("dataFillimit = ?, ");
             parametrat.add(rezervimetDto.getDataFillimit());
             hasUpdates = true;
         }
 
         if (rezervimetDto.getDataMbarimit() != null) {
-            query.append("dataMbarimit=?, ");
+            query.append("dataMbarimit = ?, ");
             parametrat.add(rezervimetDto.getDataMbarimit());
             hasUpdates = true;
         }
 
         if (rezervimetDto.getStatusiRezervimet() != null) {
-            query.append("statusiRezervimet=?,");
-            parametrat.add(rezervimetDto.getStatusiRezervimet());
+            query.append("statusiRezervimet = ?,");
+            parametrat.add(rezervimetDto.getStatusiRezervimet().name());
             hasUpdates = true;
-
-            try {
-                PreparedStatement pstm = this.connection.prepareStatement(query.toString());
-                for (int i = 0; i < parametrat.size(); i++) {
-                    if (parametrat.get(i) instanceof String && i == parametrat.size() - 1) {
-                        pstm.setObject(i + 1, parametrat.get(i));
-                    } else {
-                        pstm.setObject(i + 1, parametrat.get(i));
-                    }
-                }
-                pstm.execute();
-                return getById(rezervimetDto.getIdRezervimet());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return null;
         }
         if (!hasUpdates) {
-            return getById(rezervimetDto.getIdRezervimet());
+            return getById(rezervimetDto.getId());
         }
         query.setLength(query.length() - 2);
-        query.append("WHERE idRezervimet=?");
-        parametrat.add(rezervimetDto.getIdRezervimet());
+        query.append("WHERE id = ?");
+        parametrat.add(rezervimetDto.getId());
 
         try {
             PreparedStatement pstm = connection.prepareStatement(query.toString());
             for (int i = 0; i < parametrat.size(); i++) {
-                pstm.setObject(i + 1, parametrat.get(i));
+                pstm.setObject(i + 1, parametrat.get(i), Types.OTHER);
             }
             pstm.executeUpdate();
-            return getById(rezervimetDto.getIdRezervimet());
+            return getById(rezervimetDto.getId());
         } catch (SQLException e) {
             throw new RuntimeException("Gabim gjate perditesimit", e);
         }

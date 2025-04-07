@@ -31,13 +31,13 @@ Date dataFillimit=resultSet.getDate("dataFillimit");
 Date dataMbarimit =resultSet.getDate("dataMbarimit");
 String statusiString=resultSet.getString("statusiRezervimet");
 
-StatusiRezervimetEnum statusiRezervimet= StatusiRezervimetEnum.valueOf(statusiString);
+StatusiRezervimetEnum statusiRezervimet= StatusiRezervimetEnum.valueOf(statusiString.toUpperCase());
 
 
 
 return new Rezervimet(id, idKlienti, idVetura, dataFillimit, dataMbarimit, statusiRezervimet);
 }
-public int getIdRezervimet(){return id;}
+public int getId(){return id;}
 
 public int getIdKlienti(){return idKlienti;}
 
@@ -50,7 +50,7 @@ public Date getDataMbarimit(){return dataMbarimit;}
 public StatusiRezervimetEnum getStatusi(){return statusiRezervimet;}
 
     public void printoTeDhenatRezervimet(){
-    System.out.println("ID_Rezervimet: " + getIdRezervimet());
+    System.out.println("ID_Rezervimet: " + getId());
     System.out.println("ID_Klienti: " + getIdKlienti());
     System.out.println("ID_Vetura: " + getIdVetura());
     System.out.println("Data_Fillimit: " + getDataFillimit());

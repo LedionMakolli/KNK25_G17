@@ -48,7 +48,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
     }
 
     // metoda delete
-    boolean delete(int id) {
+  public  boolean delete(int id) {
         String query = "DELETE FROM " + this.tableName + " WHERE id = ?";
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query);
