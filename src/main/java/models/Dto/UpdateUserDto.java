@@ -5,14 +5,12 @@ public class UpdateUserDto {
     private String email;
     private String password;
     private String nrTelefonit;
-    private String roli;
 
-    public UpdateUserDto(int id, String email, String password, String nrTelefonit, String roli) {
+    public UpdateUserDto(int id, String email, String password, String nrTelefonit) {
         this.id=id;
         this.email = email;
         this.password = password;
         this.nrTelefonit=nrTelefonit;
-        this.roli = roli;
     }
 
     public void setEmail(String email) {
@@ -25,10 +23,6 @@ public class UpdateUserDto {
 
     public void setNrTelefonit(String nrTelefonit) {
         this.nrTelefonit = nrTelefonit;
-    }
-
-    public void setRoli(String roli) {
-        this.roli = roli;
     }
     public int getId() {
         return id;
@@ -43,9 +37,5 @@ public class UpdateUserDto {
 
     public String getNrTelefonit() {
         return nrTelefonit;
-    }
-
-    public String getRoli() {
-        return roli;
     }
 }

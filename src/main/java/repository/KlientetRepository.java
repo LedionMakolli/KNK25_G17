@@ -27,8 +27,8 @@ public class KlientetRepository extends BaseRepository<Klientet, CreateKlientetD
 
     public Klientet create(CreateKlientetDto klientetDto) {
         String query = """
-                INSERT INTO KLIENTET (EMRI, MBIEMRI, NRPERSONAL, NRTELEFONIT, EMAIL, PASSWORD, ROLI)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO KLIENTET (EMRI, MBIEMRI, NRPERSONAL, NRTELEFONIT, EMAIL, PASSWORD)
+                VALUES (?, ?, ?, ?, ?, ?)
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -38,7 +38,6 @@ public class KlientetRepository extends BaseRepository<Klientet, CreateKlientetD
             pstm.setString(4, klientetDto.getNrTelefonit());
             pstm.setString(5, klientetDto.getEmail());
             pstm.setString(6, klientetDto.getPassword());
-            pstm.setString(7, klientetDto.getRoli());
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
             if (result.next()) {
@@ -71,12 +70,6 @@ public class KlientetRepository extends BaseRepository<Klientet, CreateKlientetD
             parametrat.add(klientetDto.getPassword());
             hasUpdates = true;
         }
-        if (klientetDto.getRoli() != null) {
-            query.append("ROLI = ?, ");
-            parametrat.add(klientetDto.getRoli());
-            hasUpdates = true;
-        }
-
         if (!hasUpdates) {
             return getById(klientetDto.getId());
         }

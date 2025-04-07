@@ -1,8 +1,10 @@
 package testim;
 
 import models.Dto.*;
+import models.Klientet;
 import models.Penalizimet;
 import models.Rezervimet;
+import repository.KlientetRepository;
 import repository.PenalizimetRepository;
 import repository.RezervimetRepository;
 import repository.StafiRepository;
@@ -21,9 +23,13 @@ public class testMuhamedi {
 //                    rezervimi.printoTeDhenatRezervimet();
 //                }
 //        );
-        PenalizimetRepository penalizimetRepository=new PenalizimetRepository();
-
-        Penalizimet penalizimet=penalizimetRepository.getById(1);
-        penalizimet.printoTeDhenatPerPenalizimin();
+        KlientetRepository klientetRepository=new KlientetRepository();
+//
+//        UpdateKlientetDto updateKlientetDto=
+//                new UpdateKlientetDto(2, "zana.kras1@gmail.com",
+//                        null, null);
+//        klientetRepository.update(updateKlientetDto);
+        Klientet klienti=klientetRepository.getById(2);
+        klienti.printoTeDhenatPerKlientin();
     }
 }

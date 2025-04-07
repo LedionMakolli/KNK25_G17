@@ -10,16 +10,14 @@ public class User {
     private String email;
     private String password;
     private String nrTelefonit;
-    private String roli; // "ADMIN", "CLIENT", "STAFF"
 
-    protected User(int id, String emri, String mbiemri, String email, String password, String nrTelefonit, String roli) {
+    protected User(int id, String emri, String mbiemri, String email, String password, String nrTelefonit) {
         this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
         this.email = email;
         this.password = password;
         this.nrTelefonit=nrTelefonit;
-        this.roli = roli;
     }
 
     public static User getInstance(ResultSet rs) throws SQLException {
@@ -29,8 +27,7 @@ public class User {
         String email = rs.getString("email");
         String password = rs.getString("password");
         String nrTelefonit=rs.getString("nrtelefonit");
-        String roli = rs.getString("roli");
-        return new User(id, emri, mbiemri, email, password, nrTelefonit, roli);
+        return new User(id, emri, mbiemri, email, password, nrTelefonit);
     }
 
     public int getId() {
@@ -55,9 +52,5 @@ public class User {
 
     public String getNrTelefonit() {
         return nrTelefonit;
-    }
-
-    public String getRoli() {
-        return roli;
     }
 }
