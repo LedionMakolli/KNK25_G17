@@ -29,7 +29,7 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
 
     public PromoCode create(CreatePromoCodeDto promoCodeDto){
         String query= """
-                INSERT INTO PROMOCODE (kodi, zbritja, dataSkadimit, aktiv) VALUES(?,?,?.?)""";
+                INSERT INTO PROMOCODE (kodi, zbritja, dataSkadimit, aktiv) VALUES(?,?,?,?)""";
 
         try{
             PreparedStatement pstm= connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -55,18 +55,18 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
         boolean hasUpdates = false;
 
         if (promoCodeDto.getDataSkadimit() != null) {
-            query.append("dataSkadimit=?");
+            query.append("dataSkadimit = ?,");
             parameters.add(promoCodeDto.getDataSkadimit());
             hasUpdates = true;
         }
         if (promoCodeDto.isAktiv() != null) {
-            query.append("aktiv=?");
+            query.append("aktiv = ?,");
             parameters.add(promoCodeDto.isAktiv());
             hasUpdates = true;
         }
 
         query.setLength(query.length() - 2);
-        query.append("where id = ?");
+        query.append("WHERE ID = ?");
         parameters.add(promoCodeDto.getId());
 
         try {
@@ -79,5 +79,6 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
         } catch (SQLException e) {
             throw new RuntimeException("Gabim gjate perditesimit", e);
         }
+
     }
 }
