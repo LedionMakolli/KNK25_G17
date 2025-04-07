@@ -28,7 +28,7 @@ public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, Updat
     // Metoda Create
     public Stafi create(CreateStafiDto stafiDto) {
         String query = """
-                INSERT INTO STAFI (EMRI, MBIEMRI, EMAIL, PASSWORD, NRTELEFONIT, ROLI, POZITA, DATAPUNESIMIT)
+                INSERT INTO STAFI (EMRI, MBIEMRI, EMAIL, PASSWORD, NRTELEFONIT, POZITA, DATAPUNESIMIT)
                 VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_DATE)
                 """;
         try {
@@ -38,8 +38,7 @@ public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, Updat
             pstm.setString(3, stafiDto.getEmail());
             pstm.setString(4, stafiDto.getPassword());
             pstm.setString(5, stafiDto.getNrTelefonit());
-            pstm.setString(6, stafiDto.getRoli());
-            pstm.setString(7, stafiDto.getPozita());
+            pstm.setString(6, stafiDto.getPozita());
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
             if (result.next()) {
@@ -69,11 +68,6 @@ public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, Updat
         if (stafiDto.getNrTelefonit() != null) {
             query.append("NRTELEFONIT = ?, ");
             parametrat.add(stafiDto.getNrTelefonit());
-            hasUpdates = true;
-        }
-        if (stafiDto.getRoli() != null) {
-            query.append("ROLI = ?, ");
-            parametrat.add(stafiDto.getRoli());
             hasUpdates = true;
         }
         if (stafiDto.getPozita() != null) {

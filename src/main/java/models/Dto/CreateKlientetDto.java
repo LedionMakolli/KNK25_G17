@@ -3,8 +3,8 @@ package models.Dto;
 public class CreateKlientetDto extends CreateUserDto {
     private String nrPersonal;
 
-    public CreateKlientetDto(String emri, String mbiemri, String email, String password, String nrTelefonit, String roli, String nrPersonal) {
-        super(emri, mbiemri, email, password, nrTelefonit, roli);
+    public CreateKlientetDto(String emri, String mbiemri, String email, String password, String nrTelefonit, String nrPersonal) {
+        super(emri, mbiemri, email, password, nrTelefonit);
         this.nrPersonal = nrPersonal;
     }
 

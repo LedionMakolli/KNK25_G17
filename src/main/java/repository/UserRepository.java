@@ -35,8 +35,8 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
     // metoda create
     public User create(CreateUserDto userDto) {
         String query = """
-                INSERT INTO USERS (EMRI, MBIEMRI, EMAIL, PASSWORD, ROLI)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO USERS (EMRI, MBIEMRI, EMAIL, PASSWORD)
+                VALUES (?, ?, ?, ?)
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -44,7 +44,6 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
             pstm.setString(2, userDto.getMbiemri());
             pstm.setString(3, userDto.getEmail());
             pstm.setString(4, userDto.getPassword());
-            pstm.setString(5, userDto.getRoli());
             pstm.execute();
             ResultSet rs = pstm.getGeneratedKeys();
             if(rs.next()){
@@ -61,15 +60,14 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
     public User update(UpdateUserDto userDto) {
         String query = """
             UPDATE USERS
-            SET EMAIL = ?, PASSWORD = ?, ROLI = ?
+            SET EMAIL = ?, PASSWORD = ?
             WHERE ID = ?
             """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setString(1, userDto.getEmail());
             pstm.setString(2, userDto.getPassword());
-            pstm.setString(3, userDto.getRoli());
-            pstm.setInt(4, userDto.getId());
+            pstm.setInt(3, userDto.getId());
             pstm.executeUpdate();
             return this.getById(userDto.getId());
         } catch (SQLException e) {

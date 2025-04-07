@@ -7,9 +7,8 @@ import java.sql.SQLOutput;
 public class Klientet extends User {
     private String nrPersonal;
 
-    private Klientet(int id, String emri, String mbiemri, String email, String password, String nrTelefoni,
-                     String roli, String nrPersonal) {
-        super(id, emri, mbiemri, email, password, nrTelefoni, roli);
+    private Klientet(int id, String emri, String mbiemri, String email, String password, String nrTelefoni, String nrPersonal) {
+        super(id, emri, mbiemri, email, password, nrTelefoni);
         this.nrPersonal=nrPersonal;
     }
 
@@ -20,9 +19,8 @@ public class Klientet extends User {
         String email=resultSet.getString("email");
         String password=resultSet.getString("password");
         String nrTelefoni = resultSet.getString("nrtelefonit");
-        String roli=resultSet.getString("roli");
         String nrPersonal = resultSet.getString("nrpersonal");
-        return new Klientet(id, emri, mbiemri, email, password, nrTelefoni, roli, nrPersonal);
+        return new Klientet(id, emri, mbiemri, email, password, nrTelefoni, nrPersonal);
     }
 
     public String getNrPersonal() {
@@ -35,7 +33,6 @@ public class Klientet extends User {
         System.out.println("Mbiemri: " + getMbiemri());
         System.out.println("Email: " + getEmail()); // passwordin
         System.out.println("Telefoni: " + getNrTelefonit());
-        System.out.println("Roli: " + getRoli());
         System.out.println("Numri Personal: " + getNrPersonal());
         System.out.println("------------------------------");
     }

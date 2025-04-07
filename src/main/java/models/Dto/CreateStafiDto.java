@@ -7,8 +7,8 @@ public class CreateStafiDto extends CreateUserDto {
     private LocalDate dataPunesimit;
 
     public CreateStafiDto(String emri, String mbiemri, String email, String password,
-                          String nrTelefonit, String roli, String pozita, LocalDate dataPunesimit) {
-        super(emri, mbiemri, email, password, nrTelefonit, roli);
+                          String nrTelefonit, String pozita, LocalDate dataPunesimit) {
+        super(emri, mbiemri, email, password, nrTelefonit);
         this.pozita = pozita;
         this.dataPunesimit = dataPunesimit;
     }
