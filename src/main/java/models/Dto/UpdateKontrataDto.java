@@ -11,18 +11,18 @@ public class UpdateKontrataDto {
     private PagesaEnum pagesa;
     private Date data;
 
-    public UpdateKontrataDto(int id_kontrata, double shuma, PagesaEnum pagesa, Date data) {
+    public UpdateKontrataDto(int id, double shuma, PagesaEnum pagesa, Date data) {
         this.id = id;
         this.shuma = shuma;
         this.pagesa = pagesa;
         this.data = data;
     }
 
-    public int getId_kontrata() {
+    public int getId() {
         return id;
     }
 
-    public int getId_rezervimet() {
+    public int getIdRezervimet() {
         return idRezervimet;
     }
 

@@ -11,19 +11,19 @@ public class CreateKontrataDto {
     private PagesaEnum pagesa;
     private Date data;
 
-    public CreateKontrataDto(int id, int id_rezervimet, double shuma, PagesaEnum pagesa, Date data) {
+    public CreateKontrataDto(int id, int idRezervimet, double shuma, PagesaEnum pagesa, Date data) {
         this.id = id;
-        this.idRezervimet = id_rezervimet;
+        this.idRezervimet = idRezervimet;
         this.shuma = shuma;
         this.pagesa = pagesa;
         this.data = data;
     }
 
-    public int getId_kontrata() {
+    public int getId() {
         return id;
     }
 
-    public int getId_rezervimet() {
+    public int getIdRezervimet() {
         return idRezervimet;
     }
 
