@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 
-public class test_KontrataRepository {
+public class testLedi {
     public static void main(String[] args) {
         try {
             Date date = new Date(System.currentTimeMillis());
