@@ -8,9 +8,9 @@ import models.Dto.CreateUserDto;
 import java.sql.*;
 
 public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUserDto> {
-//    public UserRepository() {
-//        super("users");
-//    }
+    public UserRepository() throws SQLException {
+        super("users");
+    }
 
 //    public User fromResultSet(ResultSet rs) throws SQLException {
 //        return User.getInstance(rs);
@@ -25,12 +25,6 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
         }
     }
 
-    private Connection connection;
-
-    public UserRepository() {
-        super("users");
-        this.connection = DBConnection.getConnection();
-    }
 
     // metoda create
     public User create(CreateUserDto userDto) {

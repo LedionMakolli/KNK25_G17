@@ -9,7 +9,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
     protected Connection connection;
     private String tableName;
 
-    public BaseRepository(String tableName) {
+    public BaseRepository(String tableName) throws SQLException {
         this.connection = DBConnection.getConnection();
         this.tableName = tableName;
     }
