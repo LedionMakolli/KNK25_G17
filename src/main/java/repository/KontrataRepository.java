@@ -8,11 +8,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataDto, UpdateDokumentetDto> {
-    private Connection connection;
+public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataDto, UpdateKontrataDto> {
 
     public KontrataRepository() throws SQLException{
-        super("Kontrata");
+        super("kontrata");
     }
 
     @Override
@@ -28,11 +27,11 @@ public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataD
     // metoda create
 
     public Kontrata create(CreateKontrataDto KontrataDto){
-        String query = "INSERT INTO Kontrata (id_rezervimet, shuma, pagesa, data) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO Kontrata (idRezervimet,shuma, pagesa, data) VALUES (?, ?, ?,?)";
 
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setInt(1,KontrataDto.getId_rezervimet());
+            pstm.setInt(1,KontrataDto.getIdRezervimet());
             pstm.setDouble(2,KontrataDto.getShuma());
             pstm.setObject(3,KontrataDto.getPagesa(), Types.OTHER);
             pstm.setDate(4,KontrataDto.getData());
@@ -72,11 +71,11 @@ public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataD
         }
 
         if (!hasUpdate){
-            return getById(KontrataDto.getId_kontrata());
+            return getById(KontrataDto.getId());
         }
         query.setLength(query.length()-2);
-        query.append(" WHERE id_kontrata = ?");
-        parametrat.add(KontrataDto.getId_kontrata());
+        query.append(" WHERE id = ?");
+        parametrat.add(KontrataDto.getId());
 
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query.toString());
@@ -88,7 +87,7 @@ public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataD
                 }
             }
             pstm.execute();
-            return getById(KontrataDto.getId_kontrata());
+            return getById(KontrataDto.getId());
         }catch (SQLException e){
             e.printStackTrace();
         }
