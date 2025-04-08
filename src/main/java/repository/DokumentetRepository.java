@@ -42,7 +42,7 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
                 int id = resultSet.getInt(1);
                 return this.getById(id);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
