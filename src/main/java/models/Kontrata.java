@@ -21,16 +21,16 @@ public class Kontrata {
     }
 
     public static Kontrata getInstance(ResultSet resultSet) throws SQLException {
-        int id_kontrata = resultSet.getInt("id_kontrata");
-        int id_rezervimet = resultSet.getInt("id_rezervimet");
+        int id = resultSet.getInt("id");
+        int idRezervimet = resultSet.getInt("idRezervimet");
         double shuma = resultSet.getDouble("shuma");
         String pagesaStr = resultSet.getString("pagesa");
         PagesaEnum pagesa = PagesaEnum.valueOf(pagesaStr.toUpperCase());
         String data = resultSet.getString("data");
-        return new Kontrata(id_kontrata, id_rezervimet, shuma, pagesa, data);
+        return new Kontrata(id, idRezervimet, shuma, pagesa, data);
     }
 
-    public int getIdkontrata() {
+    public int getId() {
         return id;
     }
 
@@ -51,7 +51,7 @@ public class Kontrata {
     public void printoTeDhenatPerKontraten(){
         System.out.println("----------------------------------------");
         System.out.println("Detajet e Kontrates");
-        System.out.println("ID: " + getIdkontrata());
+        System.out.println("ID: " + getId());
         System.out.println("ID rezervimi: " + getIdrezervimet());
         System.out.println("Shuma: " + getShuma() + "€");
         System.out.println("Pagesa: " + getPagesa());
