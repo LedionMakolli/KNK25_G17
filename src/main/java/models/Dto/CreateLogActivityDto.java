@@ -13,7 +13,7 @@ public class CreateLogActivityDto {
     private LocalDateTime data;
     private String ipAddress;
 
-    // Constructor
+
     public CreateLogActivityDto(int id, int idUser, VeprimetEnum veprimi, LocalDateTime data, String ipAddress) {
         this.id = id;
         this.idUser = idUser;
@@ -22,7 +22,7 @@ public class CreateLogActivityDto {
         this.ipAddress = ipAddress;
     }
 
-    // Getters
+
     public int getId() {
         return id;
     }
@@ -43,7 +43,7 @@ public class CreateLogActivityDto {
         return ipAddress;
     }
 
-    // Setters
+
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }

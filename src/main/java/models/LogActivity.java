@@ -42,7 +42,7 @@ public class LogActivity {
         return new LogActivity(id, idUser, veprimi, data, ipAddress);
     }
 
-    // Getters
+
     public int getId() {
         return id;
     }
