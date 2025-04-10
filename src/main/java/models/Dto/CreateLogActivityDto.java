@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 
 public class CreateLogActivityDto {
     private int id;
-    private int idUser;
+    private Integer idUser;
     private VeprimetEnum veprimi;
     private LocalDateTime data;
     private String ipAddress;
 
 
-    public CreateLogActivityDto(int id, int idUser, VeprimetEnum veprimi, LocalDateTime data, String ipAddress) {
+    public CreateLogActivityDto(int id, Integer idUser, VeprimetEnum veprimi, LocalDateTime data, String ipAddress) {
         this.id = id;
         this.idUser = idUser;
         this.veprimi = veprimi;
@@ -27,7 +27,7 @@ public class CreateLogActivityDto {
         return id;
     }
 
-    public int getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
@@ -44,7 +44,7 @@ public class CreateLogActivityDto {
     }
 
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
