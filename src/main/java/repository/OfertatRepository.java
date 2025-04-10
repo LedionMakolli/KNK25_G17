@@ -92,6 +92,7 @@ public class OfertatRepository extends BaseRepository<Ofertat, CreateOfertatDto,
             return getById(ofertatDto.getId());
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
 //            throw new RuntimeException("Gabim gjate perditesimit te ofertes!", e);
         }
 

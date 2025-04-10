@@ -37,11 +37,11 @@ public class UpdateOfertatDto {
         return id;
     }
 
-    public int getIdVetura() {
+    public Integer getIdVetura() {
         return idVetura;
     }
 
-    public double getZbritja() {
+    public Double getZbritja() {
         return zbritja;
     }
 
