@@ -43,15 +43,15 @@ public class UpdateVleresimetDto {
         return id;
     }
 
-    public int getIdKlienti() {
+    public Integer getIdKlienti() {
         return idKlienti;
     }
 
-    public int getIdVetura() {
+    public Integer getIdVetura() {
         return idVetura;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
