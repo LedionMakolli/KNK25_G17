@@ -6,7 +6,7 @@
 -- CREATE TYPE Karburanti AS ENUM ('BENZINE', 'NAFTE', 'ELEKTRIKE', 'HIBRID');
 -- CREATE TYPE StatusiVeturaEnum AS ENUM ('NE_DISPOZICION', 'E_REZERVUAR', 'NE_SERVIS');
 -- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
-
+-- CREATE TYPE StatusiMirembatjaEnum AS ENUM ('PLANIFIKUAR', 'NE_PROCES', 'PERFUNDUAR', 'ANULUAR');
 
 -----   Klientet    ----
 
@@ -127,3 +127,16 @@ CREATE TABLE PROMOCODE (
     dataSkadimit DATE,
     aktiv BOOLEAN
 );
+
+--- Mirembajtja---
+CREATE TABLE Mirembajtja (
+    id SERIAL PRIMARY KEY,
+    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    pershkrimi TEXT,
+    dataFillimit DATE,
+    dataMbarimit DATE,
+    kosto DECIMAL(10,2),
+    statusi StatusiMirembatjaEnum,
+    idStafi INT REFERENCES stafi(id) ON DELETE SET NULL
+);
+
