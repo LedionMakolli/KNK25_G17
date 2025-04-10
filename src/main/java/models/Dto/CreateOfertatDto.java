@@ -39,11 +39,11 @@ public class CreateOfertatDto {
         return zbritja;
     }
 
-    public Date getDataFillimit() {
+    public java.sql.Date getDataFillimit() {
         return dataFillimit;
     }
 
-    public Date getDataMbarimit() {
+    public java.sql.Date getDataMbarimit() {
         return dataMbarimit;
     }
 }
