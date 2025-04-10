@@ -9,6 +9,7 @@ import models.Kontrata;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,14 +29,14 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
     }
 
     // metoda create
-    public Dokumentet create(CreateDokumentetDto dokumentetDtodto){
-        String query = "INSERT INTO KONTRATA (idKontrata,lloji,path,dateUpLoad) VALUES (?,?,?,?)";
+    public Dokumentet create(CreateDokumentetDto dokumentetDto){
+        String query = "INSERT INTO DOKUMENTET (idKontrata,lloji,path,dataUpLoad) VALUES (?,?,?,?)";
         try{
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, dokumentetDtodto.getIdKontrata());
-            preparedStatement.setString(2, dokumentetDtodto.getLloji());
-            preparedStatement.setString(3, dokumentetDtodto.getPath());
-            preparedStatement.setDate(4,dokumentetDtodto.getDataUpload());
+            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS); // per AUTO_INCREMENT
+            preparedStatement.setInt(1, dokumentetDto.getIdKontrata());
+            preparedStatement.setString(2, dokumentetDto.getLloji());
+            preparedStatement.setString(3, dokumentetDto.getPath());
+            preparedStatement.setDate(4,dokumentetDto.getDataUpload());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()){
