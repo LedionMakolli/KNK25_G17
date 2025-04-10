@@ -48,4 +48,14 @@ public class Dokumentet {
     public Date getDataUpload() {
         return dataUpload;
     }
+
+    public void printoTeDhenatPerDokumentin(){
+        System.out.println("--------------------");
+        System.out.println("ID: " + getId());
+        System.out.println("IDKontrata: " + getIdKontrata());
+        System.out.println("Lloji: " + getLloji());
+        System.out.println("Path: " + getPath());
+        System.out.println("DataUpload: " + getDataUpload());
+        System.out.println("--------------------");
+    }
 }
