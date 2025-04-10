@@ -4,9 +4,9 @@ import java.sql.Timestamp;
 
 public class UpdateVleresimetDto {
     private int id;
-    private int idKlienti;
-    private int idVetura;
-    private int rating;
+    private Integer idKlienti;
+    private Integer idVetura;
+    private Integer rating;
     private String text;
     private Timestamp data;
 
@@ -43,15 +43,15 @@ public class UpdateVleresimetDto {
         return id;
     }
 
-    public int getIdKlienti() {
+    public Integer getIdKlienti() {
         return idKlienti;
     }
 
-    public int getIdVetura() {
+    public Integer getIdVetura() {
         return idVetura;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
