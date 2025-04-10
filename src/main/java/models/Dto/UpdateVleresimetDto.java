@@ -4,9 +4,9 @@ import java.sql.Timestamp;
 
 public class UpdateVleresimetDto {
     private int id;
-    private int idKlienti;
-    private int idVetura;
-    private int rating;
+    private Integer idKlienti;
+    private Integer idVetura;
+    private Integer rating;
     private String text;
     private Timestamp data;
 
