@@ -7,6 +7,7 @@
 -- CREATE TYPE StatusiVeturaEnum AS ENUM ('NE_DISPOZICION', 'E_REZERVUAR', 'NE_SERVIS');
 -- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
 -- CREATE TYPE StatusiMirembatjaEnum AS ENUM ('PLANIFIKUAR', 'NE_PROCES', 'PERFUNDUAR', 'ANULUAR');
+-- CREATE TYPE PagesaEnum AS ENUM ('KARTELE', 'KESH');
 
 -----   Klientet    ----
 
@@ -64,15 +65,13 @@ CREATE TABLE Rezervimet (
 
 -----   Kontrata    ----
 
-CREATE TYPE Pagesa AS ENUM ('KESH', 'KARTELE');
-
-CREATE TABLE Kontrata (
-    id SERIAL PRIMARY KEY,
-    idRezervimet INT NOT NULL,
-    shuma REAL NOT NULL,
-    pagesa Pagesa NOT NULL,
-    data TIMESTAMP NOT NULL
-);
+-- CREATE TABLE Kontrata (
+--     id SERIAL PRIMARY KEY,
+--     idRezervimet INT REFERENCES Rezervimet(id) ON DELETE CASCADE,
+--     shuma REAL NOT NULL,
+--     pagesa PagesaEnum NOT NULL,
+--     data TIMESTAMP NOT NULL
+-- );
 
 -----   Sigurimi    ----
 
@@ -128,7 +127,7 @@ CREATE TABLE PROMOCODE (
     aktiv BOOLEAN
 );
 
---- Mirembajtja---
+--- Mirembajtja ---
 CREATE TABLE Mirembajtja (
     id SERIAL PRIMARY KEY,
     idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
@@ -138,5 +137,14 @@ CREATE TABLE Mirembajtja (
     kosto DECIMAL(10,2),
     statusi StatusiMirembatjaEnum,
     idStafi INT REFERENCES stafi(id) ON DELETE SET NULL
+);
+
+--- Dokumentet ---
+CREATE TABLE Dokumentet (
+        id SERIAL PRIMARY KEY,
+        kontrataId INT REFERENCES Kontrata(id_kontrata) ON DELETE CASCADE,
+        lloji VARCHAR(10) NOT NULL,  -- PDF, IMG, etj.
+        path TEXT NOT NULL,          -- Rruga e dokumentit në sistem
+        dataUpload DATE NOT NULL
 );
 
