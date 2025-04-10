@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class UpdateOfertatDto {
     private int id;
-    private int idVetura;
-    private double zbritja;
+    private Integer idVetura;
+    private Double zbritja;
     private Date dataFillimit;
     private Date dataMbarimit;
 
