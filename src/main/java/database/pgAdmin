@@ -4,7 +4,9 @@
 // -----   ENUMS    ----
 
 -- CREATE TYPE Fuel AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
--- CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE');
+-- CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE'); keto tri jane per Cars
+--CREATE TYPE TransmissionType AS ENUM ('MANUAL', 'AUTOMATIC');
+
 -- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
 -- CREATE TYPE StatusiMirembatjaEnum AS ENUM ('PLANIFIKUAR', 'NE_PROCES', 'PERFUNDUAR', 'ANULUAR');
 -- CREATE TYPE PagesaEnum AS ENUM ('KARTELE', 'KESH');
@@ -40,15 +42,16 @@
 
 CREATE TABLE Cars (
     id SERIAL PRIMARY KEY,
-    targat VARCHAR(15) NOT NULL UNIQUE,
-    modeli VARCHAR(50) NOT NULL,
-    ngjyra VARCHAR(20),
-    vitiProdhimit DECIMAL(5) CHECK (vitiProdhimit >= 1900),
-    kilometrazha DECIMAL(10,2) CHECK (kilometrazha >= 0),
-    numriUleseve INT CHECK (numriUleseve > 0),
-    karburanti Karburanti NOT NULL,
-    cmimiDitor DECIMAL(10,2) CHECK (cmimiDitor >= 0),
-    statusi StatusiVeturaEnum DEFAULT 'NE_DISPOZICION'
+    licensePlate VARCHAR(15) NOT NULL UNIQUE,
+    model VARCHAR(50) NOT NULL,
+    color VARCHAR(20),
+    yearOfManufacture INT CHECK (yearOfManufacture >= 1900),
+    mileage DECIMAL(10, 2) CHECK (mileage >= 0),
+    seatCount INT CHECK (seatCount > 0),
+    fuelType FuelDto NOT NULL,
+    dailyPrice DECIMAL(10, 2) CHECK (dailyPrice >= 0),
+    status CarStatusEnum DEFAULT 'AVAILABLE',
+    transmissionType TransmissionType NOT NULL
 );
 
 // -----   REZERVIMET    ----

@@ -32,14 +32,6 @@ public class CreateCarDto {
         this.transmissionType = transmissionType;
     }
 
-    public void setTransmissionType(TransmissionType transmissionType) {
-        this.transmissionType = transmissionType;
-    }
-
-    public TransmissionType getTransmissionType() {
-        return transmissionType;
-    }
-
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
     }
@@ -76,6 +68,10 @@ public class CreateCarDto {
         this.status = status;
     }
 
+    public void setTransmissionType(TransmissionType transmissionType) {
+        this.transmissionType = transmissionType;
+    }
+
     public String getLicensePlate() {
         return licensePlate;
     }
@@ -110,5 +106,9 @@ public class CreateCarDto {
 
     public CarStatusEnum getStatus() {
         return status;
+    }
+
+    public TransmissionType getTransmissionType() {
+        return transmissionType;
     }
 }
