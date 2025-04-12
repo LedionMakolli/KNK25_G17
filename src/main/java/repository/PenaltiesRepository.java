@@ -18,18 +18,18 @@ public class PenaltiesRepository extends BaseRepository<Penalties, CreatePenalty
             return null;
         }
     }
-    public Penalties create(CreatePenaltyDto penalizimetDto) {
+    public Penalties create(CreatePenaltyDto penaltyDto) {
         String query = """
                 INSERT INTO PENALIZIMET (RESERVATIONID, REASONOFPENALTY, MONEYAMOUNT, DATE, PAID)
                 VALUES (?, ?, ?, ?, ?)
                 """;
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, penalizimetDto.getReservationId());
-            preparedStatement.setString(2, penalizimetDto.getReasonOfPenalty());
-            preparedStatement.setBigDecimal(3, penalizimetDto.getMoneyAmount());
-            preparedStatement.setTimestamp(4, Timestamp.valueOf(penalizimetDto.getDate()));
-            preparedStatement.setBoolean(5, penalizimetDto.isPaid());
+            preparedStatement.setInt(1, penaltyDto.getReservationId());
+            preparedStatement.setString(2, penaltyDto.getReasonOfPenalty());
+            preparedStatement.setBigDecimal(3, penaltyDto.getMoneyAmount());
+            preparedStatement.setTimestamp(4, Timestamp.valueOf(penaltyDto.getDate()));
+            preparedStatement.setBoolean(5, penaltyDto.isPaid());
             preparedStatement.execute();
             ResultSet result = preparedStatement.getGeneratedKeys();
             if (result.next()) {
@@ -41,17 +41,17 @@ public class PenaltiesRepository extends BaseRepository<Penalties, CreatePenalty
         }
         return null;
     }
-    public Penalties updatePaguar(UpdatePenaltyDto penalizimetDto) {
+    public Penalties updatePaguar(UpdatePenaltyDto penaltyDto) {
         String query = "UPDATE PENALTIES SET PAID = ? WHERE ID = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setBoolean(1, penalizimetDto.isPaid());
-            preparedStatement.setInt(2, penalizimetDto.getId());
+            preparedStatement.setBoolean(1, penaltyDto.isPaid());
+            preparedStatement.setInt(2, penaltyDto.getId());
             int rowsEffected = preparedStatement.executeUpdate();
 
             if(rowsEffected==1) {
-                return this.getById(penalizimetDto.getId());
+                return this.getById(penaltyDto.getId());
             }
         } catch (SQLException e) {
             e.printStackTrace();
