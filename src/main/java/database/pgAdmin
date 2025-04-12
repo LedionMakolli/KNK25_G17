@@ -1,17 +1,17 @@
 
-#################### Tabelat per bazen e te dhenave ###########################
+// #################### Tabelat per bazen e te dhenave ###########################
 
------   ENUMS    ----
+// -----   ENUMS    ----
 
--- CREATE TYPE Karburanti AS ENUM ('BENZINE', 'NAFTE', 'ELEKTRIKE', 'HIBRID');
--- CREATE TYPE StatusiVeturaEnum AS ENUM ('NE_DISPOZICION', 'E_REZERVUAR', 'NE_SERVIS');
+-- CREATE TYPE Fuel AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
+-- CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE');
 -- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
 -- CREATE TYPE StatusiMirembatjaEnum AS ENUM ('PLANIFIKUAR', 'NE_PROCES', 'PERFUNDUAR', 'ANULUAR');
 -- CREATE TYPE PagesaEnum AS ENUM ('KARTELE', 'KESH');
 
------   Klientet    ----
+// -----   Clients    ----
 
--- CREATE TABLE klientet (
+-- CREATE TABLE Clients (
 --     id SERIAL PRIMARY KEY,
 --     emri VARCHAR(255),
 --     mbiemri VARCHAR(255),
@@ -22,9 +22,9 @@
 -- 	   nrpersonal VARCHAR(20)
 -- );
 
------ Stafi ----
+// ----- Stafi ----
 
--- CREATE TABLE stafi (
+-- CREATE TABLE Staff (
 --     id SERIAL PRIMARY KEY,
 --     emri VARCHAR(255),
 --     mbiemri VARCHAR(255),
@@ -36,9 +36,9 @@
 --     datapunesimit DATE
 -- );
 
------   Veturat    ----
+// -----   Veturat    ----
 
-CREATE TABLE Veturat (
+CREATE TABLE Cars (
     id SERIAL PRIMARY KEY,
     targat VARCHAR(15) NOT NULL UNIQUE,
     modeli VARCHAR(50) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE Veturat (
     statusi StatusiVeturaEnum DEFAULT 'NE_DISPOZICION'
 );
 
------   REZERVIMET    ----
+// -----   REZERVIMET    ----
 CREATE TABLE Rezervimet (
     id SERIAL PRIMARY KEY,
     idKlienti INT REFERENCES Klientet(id) ON DELETE CASCADE,
@@ -63,7 +63,7 @@ CREATE TABLE Rezervimet (
     CHECK (dataFillimit < dataMbarimit)
 );
 
------   Kontrata    ----
+// -----   Kontrata    ----
 
 -- CREATE TABLE Kontrata (
 --     id SERIAL PRIMARY KEY,
@@ -73,7 +73,7 @@ CREATE TABLE Rezervimet (
 --     data TIMESTAMP NOT NULL
 -- );
 
------   Sigurimi    ----
+// -----   Sigurimi    ----
 
 CREATE TABLE Sigurimi (
     id SERIAL PRIMARY KEY,
@@ -84,7 +84,7 @@ CREATE TABLE Sigurimi (
     kosto DECIMAL(10,2) NOT NULL
 );
 
------   Ofertat    ----
+// -----   Ofertat    ----
 
 CREATE TABLE Ofertat (
     id SERIAL PRIMARY KEY,
@@ -95,7 +95,7 @@ CREATE TABLE Ofertat (
     CHECK (dataMbarimit >= dataFillimit)
 );
 
------   Vleresimet    ----
+// -----   Vleresimet    ----
 
 CREATE TABLE Vleresimet (
     id SERIAL PRIMARY KEY,
@@ -107,7 +107,7 @@ CREATE TABLE Vleresimet (
 );
 
 
------ Penalizimet ----
+// ----- Penalizimet ----
 
 CREATE TABLE PENALIZIMET (
     id SERIAL PRIMARY KEY,
@@ -118,7 +118,7 @@ CREATE TABLE PENALIZIMET (
     paguar BOOLEAN NOT NULL
 );
 
------PromoCode ----
+// -----PromoCode ----
 CREATE TABLE PROMOCODE (
     id SERIAL PRIMARY KEY,
     kodi VARCHAR(255) NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE PROMOCODE (
     aktiv BOOLEAN
 );
 
---- Mirembajtja ---
+// --- Mirembajtja ---
 CREATE TABLE Mirembajtja (
     id SERIAL PRIMARY KEY,
     idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
@@ -139,7 +139,7 @@ CREATE TABLE Mirembajtja (
     idStafi INT REFERENCES stafi(id) ON DELETE SET NULL
 );
 
---- Dokumentet ---
+// --- Dokumentet ---
 CREATE TABLE Dokumentet (
         id SERIAL PRIMARY KEY,
         kontrataId INT REFERENCES Kontrata(id_kontrata) ON DELETE CASCADE,

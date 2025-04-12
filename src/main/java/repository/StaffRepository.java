@@ -8,9 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StafiRepository extends BaseRepository<Staff, CreateStafiDto, UpdateStafiDto> {
+public class StaffRepository extends BaseRepository<Staff, CreateStafiDto, UpdateStafiDto> {
 
-    public StafiRepository() throws SQLException {
+    public StaffRepository() throws SQLException {
         super("stafi");
     }
 

@@ -1,7 +1,7 @@
 package testim;
 
 import models.Clients;
-import repository.KlientetRepository;
+import repository.ClientRepository;
 import repository.RezervimetRepository;
 
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ public class testMuhamedi {
 //                    rezervimi.printoTeDhenatRezervimet();
 //                }
 //        );
-        KlientetRepository klientetRepository=new KlientetRepository();
+        ClientRepository klientetRepository=new ClientRepository();
 //
 //        UpdateClientDto updateKlientetDto=
 //                new UpdateClientDto(2, "zana.kras1@gmail.com",

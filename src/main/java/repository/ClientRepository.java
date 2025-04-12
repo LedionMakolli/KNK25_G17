@@ -8,9 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KlientetRepository extends BaseRepository<Clients, CreateClientDto, UpdateClientDto> {
+public class ClientRepository extends BaseRepository<Clients, CreateClientDto, UpdateClientDto> {
 
-    public KlientetRepository() throws SQLException {
+    public ClientRepository() throws SQLException {
         super("klientet");
     }
 

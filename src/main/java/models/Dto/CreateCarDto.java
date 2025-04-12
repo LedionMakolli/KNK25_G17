@@ -2,102 +2,113 @@ package models.Dto;
 
 import models.enums.FuelDto;
 import models.enums.CarStatusEnum;
+import models.enums.TransmissionType;
 import java.math.BigDecimal;
 
 public class CreateCarDto {
-    private String targat;
-    private String modeli;
-    private String ngjyra;
-    private int vitiProdhimit;
-    private BigDecimal kilometrazha;
-    private int numriUleseve;
-    private FuelDto karburanti;
-    private int cmimiDitor;
-    private CarStatusEnum statusi;
+    private String licensePlate;
+    private String model;
+    private String color;
+    private int yearOfManufacture;
+    private BigDecimal mileage;
+    private int numberOfSeats;
+    private FuelDto fuelType;
+    private int dailyPrice;
+    private CarStatusEnum status;
+    private TransmissionType transmissionType;
 
-    public CreateCarDto(String targat, String modeli, String ngjyra,
-                        int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
-                        FuelDto karburanti, int cmimiDitor, CarStatusEnum statusi) {
-        this.targat = targat;
-        this.modeli = modeli;
-        this.ngjyra = ngjyra;
-        this.vitiProdhimit = vitiProdhimit;
-        this.kilometrazha = kilometrazha;
-        this.numriUleseve = numriUleseve;
-        this.karburanti = karburanti;
-        this.cmimiDitor = cmimiDitor;
-        this.statusi = statusi;
+    public CreateCarDto(String licensePlate, String model, String color,
+                        int yearOfManufacture, BigDecimal mileage, int numberOfSeats,
+                        FuelDto fuelType, int dailyPrice, CarStatusEnum status, TransmissionType transmissionType) {
+        this.licensePlate = licensePlate;
+        this.model = model;
+        this.color = color;
+        this.yearOfManufacture = yearOfManufacture;
+        this.mileage = mileage;
+        this.numberOfSeats = numberOfSeats;
+        this.fuelType = fuelType;
+        this.dailyPrice = dailyPrice;
+        this.status = status;
+        this.transmissionType = transmissionType;
     }
 
-    public void setTargat(String targat) {
-        this.targat = targat;
+    public void setTransmissionType(TransmissionType transmissionType) {
+        this.transmissionType = transmissionType;
     }
 
-    public void setModeli(String modeli) {
-        this.modeli = modeli;
+    public TransmissionType getTransmissionType() {
+        return transmissionType;
     }
 
-    public void setNgjyra(String ngjyra) {
-        this.ngjyra = ngjyra;
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 
-    public void setVitiProdhimit(int vitiProdhimit) {
-        this.vitiProdhimit = vitiProdhimit;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public void setKilometrazha(BigDecimal kilometrazha) {
-        this.kilometrazha = kilometrazha;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public void setNumriUleseve(int numriUleseve) {
-        this.numriUleseve = numriUleseve;
+    public void setYearOfManufacture(int yearOfManufacture) {
+        this.yearOfManufacture = yearOfManufacture;
     }
 
-    public void setKarburanti(FuelDto karburanti) {
-        this.karburanti = karburanti;
+    public void setMileage(BigDecimal mileage) {
+        this.mileage = mileage;
     }
 
-    public void setCmimiDitor(int cmimiDitor) {
-        this.cmimiDitor = cmimiDitor;
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
     }
 
-    public void setStatusi(CarStatusEnum statusi) {
-        this.statusi = statusi;
+    public void setFuelType(FuelDto fuelType) {
+        this.fuelType = fuelType;
     }
 
-    public String getTargat() {
-        return targat;
+    public void setDailyPrice(int dailyPrice) {
+        this.dailyPrice = dailyPrice;
     }
 
-    public String getModeli() {
-        return modeli;
+    public void setStatus(CarStatusEnum status) {
+        this.status = status;
     }
 
-    public String getNgjyra() {
-        return ngjyra;
+    public String getLicensePlate() {
+        return licensePlate;
     }
 
-    public int getVitiProdhimit() {
-        return vitiProdhimit;
+    public String getModel() {
+        return model;
     }
 
-    public BigDecimal getKilometrazha() {
-        return kilometrazha;
+    public String getColor() {
+        return color;
     }
 
-    public int getNumriUleseve() {
-        return numriUleseve;
+    public int getYearOfManufacture() {
+        return yearOfManufacture;
     }
 
-    public FuelDto getKarburanti() {
-        return karburanti;
+    public BigDecimal getMileage() {
+        return mileage;
     }
 
-    public int getCmimiDitor() {
-        return cmimiDitor;
+    public int getNumberOfSeats() {
+        return numberOfSeats;
     }
 
-    public CarStatusEnum getStatusi() {
-        return statusi;
+    public FuelDto getFuelType() {
+        return fuelType;
+    }
+
+    public int getDailyPrice() {
+        return dailyPrice;
+    }
+
+    public CarStatusEnum getStatus() {
+        return status;
     }
 }
