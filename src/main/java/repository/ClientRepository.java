@@ -25,7 +25,7 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
 
     public Clients create(CreateClientDto klientetDto) {
         String query = """
-                INSERT INTO KLIENTET (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER)
+                INSERT INTO CLIENTS (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """;
         try {
@@ -33,7 +33,7 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
             pstm.setString(1, klientetDto.getFirstName());
             pstm.setString(2, klientetDto.getLastName());
             pstm.setInt(3, klientetDto.getAge());
-            pstm.setString(5, klientetDto.getPersonalNumber());
+            pstm.setString(4, klientetDto.getPersonalNumber());
             pstm.setString(5, klientetDto.getEmail());
             pstm.setString(6, klientetDto.getUsername());
             pstm.setString(7, klientetDto.getPassword());

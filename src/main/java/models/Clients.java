@@ -22,7 +22,7 @@ public class Clients extends User {
         String telephonenumber = resultSet.getString("telephonenumber");
         return new Clients(id, firstName, lastName, age, personalNumber, username, email, password, telephonenumber);
     }
-    public void printoTeDhenatPerKlientin() {
+    public void printClientData() {
         System.out.println("Client is Found:");
         System.out.println("ID: " + getId());
         System.out.println("First Name: "+ getFirstName());
