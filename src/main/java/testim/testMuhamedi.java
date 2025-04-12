@@ -1,12 +1,9 @@
 package testim;
 
-import models.Dto.CreateCarDto;
-import models.Dto.UpdateCarDto;
-import models.enums.CarStatusEnum;
-import models.enums.FuelEnum;
-import models.enums.TransmissionTypeEnum;
+import models.Dto.CreateStafDto;
 import repository.CarRepository;
-import java.math.BigDecimal;
+import repository.StaffRepository;
+
 import java.sql.SQLException;
 
 public class testMuhamedi {
@@ -18,6 +15,17 @@ public class testMuhamedi {
 //
 //        carRepository.create(createCarDto);
 
-        UpdateCarDto updateCarDto=new UpdateCarDto(1, "Red", null, 135, null);
+//        UpdateCarDto updateCarDto=new UpdateCarDto(1, "Red", null, 135, null);
+//
+//        carRepository.update(updateCarDto);
+//        ArrayList<Cars> cars=carRepository.filter(null, "Red", 0, 0,null, 0, null);
+//        cars.forEach(
+//                car1-> {
+//                    car1.printCarDetails();
+//                }
+//        );
+
+        StaffRepository staffRepository=new StaffRepository();
+        CreateStafDto createStafDto=new CreateStafDto("Muhamed", "Jakupi", "")
     }
 }

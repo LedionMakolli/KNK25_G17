@@ -3,31 +3,23 @@ package models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class User {
+abstract class User {
     private int id;
     private String emri;
     private String mbiemri;
+    private int age;
     private String email;
     private String password;
     private String nrTelefonit;
 
-    protected User(int id, String emri, String mbiemri, String email, String password, String nrTelefonit) {
+    protected User(int id, String emri, String mbiemri, int age, String email, String password, String nrTelefonit) {
         this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
+        this.age=age;
         this.email = email;
         this.password = password;
         this.nrTelefonit=nrTelefonit;
-    }
-
-    public static User getInstance(ResultSet rs) throws SQLException {
-        int id = rs.getInt("id");
-        String emri = rs.getString("emri");
-        String mbiemri = rs.getString("mbiemri");
-        String email = rs.getString("email");
-        String password = rs.getString("password");
-        String nrTelefonit=rs.getString("nrtelefonit");
-        return new User(id, emri, mbiemri, email, password, nrTelefonit);
     }
 
     public int getId() {
@@ -40,6 +32,10 @@ public class User {
 
     public String getMbiemri() {
         return mbiemri;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public String getEmail() {

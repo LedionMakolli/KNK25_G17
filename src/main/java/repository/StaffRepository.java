@@ -1,14 +1,14 @@
 package repository;
 
 import models.Staff;
-import models.Dto.CreateStafiDto;
-import models.Dto.UpdateStafiDto;
+import models.Dto.CreateStafDto;
+import models.Dto.UpdateStafDto;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StaffRepository extends BaseRepository<Staff, CreateStafiDto, UpdateStafiDto> {
+public class StaffRepository extends BaseRepository<Staff, CreateStafDto, UpdateStafDto> {
 
     public StaffRepository() throws SQLException {
         super("stafi");
@@ -25,7 +25,7 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafiDto, Updat
     }
 
     // Metoda Create
-    public Staff create(CreateStafiDto stafiDto) {
+    public Staff create(CreateStafDto stafiDto) {
         String query = """
                 INSERT INTO STAFI (EMRI, MBIEMRI, EMAIL, PASSWORD, NRTELEFONIT, POZITA, DATAPUNESIMIT)
                 VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_DATE)
@@ -49,7 +49,7 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafiDto, Updat
         }
         return null;
     }
-    public Staff update(UpdateStafiDto stafiDto) {
+    public Staff update(UpdateStafDto stafiDto) {
         StringBuilder query = new StringBuilder("UPDATE STAFI SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;

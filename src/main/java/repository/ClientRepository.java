@@ -3,7 +3,6 @@ package repository;
 import models.Dto.UpdateClientDto;
 import models.Clients;
 import models.Dto.CreateClientDto;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 public class ClientRepository extends BaseRepository<Clients, CreateClientDto, UpdateClientDto> {
 
     public ClientRepository() throws SQLException {
-        super("klientet");
+        super("clients");
     }
 
     @Override

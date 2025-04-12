@@ -2,12 +2,12 @@ package models.Dto;
 
 import java.time.LocalDate;
 
-public class CreateStafiDto extends CreateUserDto {
+public class CreateStafDto extends CreateUserDto {
     private String pozita;
     private LocalDate dataPunesimit;
 
-    public CreateStafiDto(String emri, String mbiemri, String email, String password,
-                          String nrTelefonit, String pozita, LocalDate dataPunesimit) {
+    public CreateStafDto(String emri, String mbiemri, String email, String password,
+                         String nrTelefonit, String pozita, LocalDate dataPunesimit) {
         super(emri, mbiemri, email, password, nrTelefonit);
         this.pozita = pozita;
         this.dataPunesimit = dataPunesimit;

@@ -1,9 +1,9 @@
 package models.Dto;
 
-public class UpdateStafiDto extends UpdateUserDto {
+public class UpdateStafDto extends UpdateUserDto {
     private String pozita;
 
-    public UpdateStafiDto(int id, String email, String password, String nrTelefonit, String pozita) {
+    public UpdateStafDto(int id, String email, String password, String nrTelefonit, String pozita) {
         super(id, email, password, nrTelefonit);
         this.pozita=pozita;
     }
