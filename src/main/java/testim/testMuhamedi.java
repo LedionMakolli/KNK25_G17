@@ -1,28 +1,23 @@
 package testim;
 
-import models.Clients;
-import repository.ClientRepository;
-import repository.RezervimetRepository;
-
+import models.Dto.CreateCarDto;
+import models.Dto.UpdateCarDto;
+import models.enums.CarStatusEnum;
+import models.enums.FuelEnum;
+import models.enums.TransmissionTypeEnum;
+import repository.CarRepository;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
 public class testMuhamedi {
     public static void main(String[] args) throws SQLException {
-        RezervimetRepository rezervimetRepository=new RezervimetRepository();
+        CarRepository carRepository=new CarRepository();
 
-//        ArrayList<Rezervimet> rezervimet=rezervimetRepository.getAll();
-//        rezervimet.forEach(
-//                rezervimi -> {
-//                    rezervimi.printoTeDhenatRezervimet();
-//                }
-//        );
-        ClientRepository klientetRepository=new ClientRepository();
+//        CreateCarDto createCarDto=new CreateCarDto("01-977-PE", "Range Rover", "Black", 2015,
+//                new BigDecimal(120000), 5, FuelEnum.DIESEL,120, CarStatusEnum.AVAILABLE, TransmissionTypeEnum.AUTOMATIC);
 //
-//        UpdateClientDto updateKlientetDto=
-//                new UpdateClientDto(2, "zana.kras1@gmail.com",
-//                        null, null);
-//        klientetRepository.update(updateKlientetDto);
-        Clients klienti=klientetRepository.getById(2);
-        klienti.printoTeDhenatPerKlientin();
+//        carRepository.create(createCarDto);
+
+        UpdateCarDto updateCarDto=new UpdateCarDto(1, "Red", null, 135, null);
     }
 }

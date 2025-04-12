@@ -3,9 +3,9 @@
 
 // -----   ENUMS    ----
 
--- CREATE TYPE Fuel AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
+-- CREATE TYPE FuelEnum AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
 -- CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE'); keto tri jane per Cars
---CREATE TYPE TransmissionType AS ENUM ('MANUAL', 'AUTOMATIC');
+--CREATE TYPE TransmissionTypeEnum AS ENUM ('MANUAL', 'AUTOMATIC');
 
 -- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
 -- CREATE TYPE StatusiMirembatjaEnum AS ENUM ('PLANIFIKUAR', 'NE_PROCES', 'PERFUNDUAR', 'ANULUAR');
@@ -48,7 +48,7 @@ CREATE TABLE Cars (
     yearOfManufacture INT CHECK (yearOfManufacture >= 1900),
     mileage DECIMAL(10, 2) CHECK (mileage >= 0),
     seatCount INT CHECK (seatCount > 0),
-    fuelType FuelDto NOT NULL,
+    fuelType FuelDtoEnum NOT NULL,
     dailyPrice DECIMAL(10, 2) CHECK (dailyPrice >= 0),
     status CarStatusEnum DEFAULT 'AVAILABLE',
     transmissionType TransmissionType NOT NULL

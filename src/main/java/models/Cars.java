@@ -1,6 +1,6 @@
 package models;
 
-import models.enums.FuelDto;
+import models.enums.FuelEnum;
 import models.enums.CarStatusEnum;
 import models.enums.TransmissionTypeEnum;
 
@@ -16,14 +16,14 @@ public class Cars {
     private int yearOfManufacture;
     private BigDecimal mileage;
     private int seatCount;
-    private FuelDto fuelType;
+    private FuelEnum fuelType;
     private int dailyPrice;
     private CarStatusEnum status;
     private TransmissionTypeEnum transmissionType;
 
     private Cars(int id, String licensePlate, String model, String color,
                  int yearOfManufacture, BigDecimal mileage, int seatCount,
-                 FuelDto fuelType, int dailyPrice, CarStatusEnum status, TransmissionTypeEnum transmissionType) {
+                 FuelEnum fuelType, int dailyPrice, CarStatusEnum status, TransmissionTypeEnum transmissionType) {
         this.id = id;
         this.licensePlate = licensePlate;
         this.model = model;
@@ -46,7 +46,7 @@ public class Cars {
         BigDecimal mileage = resultSet.getBigDecimal("mileage");
         int seatCount = resultSet.getInt("seatcount");
         String fuelTypeStr = resultSet.getString("fueltype");
-        FuelDto fuelType = FuelDto.valueOf(fuelTypeStr.toUpperCase());
+        FuelEnum fuelType = FuelEnum.valueOf(fuelTypeStr.toUpperCase());
         int dailyPrice = resultSet.getInt("dailyprice");
         String statusStr = resultSet.getString("status");
         CarStatusEnum status = CarStatusEnum.valueOf(statusStr.toUpperCase());
@@ -84,7 +84,7 @@ public class Cars {
         return seatCount;
     }
 
-    public FuelDto getFuelType() {
+    public FuelEnum getFuelType() {
         return fuelType;
     }
 

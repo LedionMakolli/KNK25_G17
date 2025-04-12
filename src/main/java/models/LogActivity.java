@@ -23,7 +23,7 @@ public class LogActivity {
     }
 
 
-    public static LogActivity getLogActivityById(ResultSet resultSet) throws SQLException {
+    public static LogActivity getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
 
         Integer idUser = resultSet.getObject("idUser", Integer.class);

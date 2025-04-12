@@ -2,7 +2,7 @@ package repository;
 
 import models.*;
 import models.Dto.*;
-import models.enums.FuelDto;
+import models.enums.FuelEnum;
 import models.enums.CarStatusEnum;
 import java.sql.*;
 import java.util.*;
@@ -26,9 +26,9 @@ public class CarRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarD
     // 3. create method
     public Cars create(CreateCarDto carDto) {
         String query = """
-                INSERT INTO CARS (LICENSE_PLATE, MODEL, COLOR, YEAR_OF_MANUFACTURE,
-                MILEAGE, SEAT_COUNT, FUEL_TYPE, DAILY_RENTAL_PRICE, STATUS)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO CARS (LICENSEPLATE, MODEL, COLOR, YEAROFMANUFACTURE,
+                MILEAGE, SEATCOUNT, FUELTYPE, DAILYPRICE, STATUS, TRANSMISSIONTYPE)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -37,10 +37,11 @@ public class CarRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarD
             preparedStatement.setString(3, carDto.getColor());
             preparedStatement.setInt(4, carDto.getYearOfManufacture());
             preparedStatement.setBigDecimal(5, carDto.getMileage());
-            preparedStatement.setInt(6, carDto.getSeatCount());
+            preparedStatement.setInt(6, carDto.getNumberOfSeats());
             preparedStatement.setObject(7, carDto.getFuelType(), Types.OTHER);
-            preparedStatement.setInt(8, carDto.getDailyRentalPrice());
+            preparedStatement.setInt(8, carDto.getDailyPrice());
             preparedStatement.setObject(9, carDto.getStatus().name(), Types.OTHER);
+            preparedStatement.setObject(10, carDto.getTransmissionType().name(), Types.OTHER);
             preparedStatement.execute();
             ResultSet result = preparedStatement.getGeneratedKeys();
             if (result.next()) {
@@ -69,9 +70,9 @@ public class CarRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarD
             parameters.add(carDto.getMileage());
             hasUpdates = true;
         }
-        if (carDto.getDailyRentalPrice() > 0) {
-            query.append("daily_rental_price = ?, ");
-            parameters.add(carDto.getDailyRentalPrice());
+        if (carDto.getDailyPrice() > 0) {
+            query.append("dailyprice = ?, ");
+            parameters.add(carDto.getDailyPrice());
             hasUpdates = true;
         }
         if (carDto.getStatus() != null) {
@@ -100,7 +101,7 @@ public class CarRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarD
 
     // 6. filter method
     public ArrayList<Cars> filter(String model, String color, int yearOfManufacture, int seatCount,
-                                  FuelDto fuelType, int dailyRentalPrice, CarStatusEnum status) {
+                                  FuelEnum fuelType, int dailyRentalPrice, CarStatusEnum status) {
         ArrayList<Cars> cars = new ArrayList<Cars>();
         StringBuilder query = new StringBuilder("SELECT * FROM CARS WHERE 1=1");
         List<Object> parameters = new ArrayList<>();

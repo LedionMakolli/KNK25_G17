@@ -1,6 +1,6 @@
 package models.Dto;
 
-import models.enums.FuelDto;
+import models.enums.FuelEnum;
 import models.enums.CarStatusEnum;
 import models.enums.TransmissionTypeEnum;
 import java.math.BigDecimal;
@@ -12,14 +12,14 @@ public class CreateCarDto {
     private int yearOfManufacture;
     private BigDecimal mileage;
     private int numberOfSeats;
-    private FuelDto fuelType;
+    private FuelEnum fuelType;
     private int dailyPrice;
     private CarStatusEnum status;
     private TransmissionTypeEnum transmissionType;
 
     public CreateCarDto(String licensePlate, String model, String color,
                         int yearOfManufacture, BigDecimal mileage, int numberOfSeats,
-                        FuelDto fuelType, int dailyPrice, CarStatusEnum status, TransmissionTypeEnum transmissionType) {
+                        FuelEnum fuelType, int dailyPrice, CarStatusEnum status, TransmissionTypeEnum transmissionType) {
         this.licensePlate = licensePlate;
         this.model = model;
         this.color = color;
@@ -56,7 +56,7 @@ public class CreateCarDto {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public void setFuelType(FuelDto fuelType) {
+    public void setFuelType(FuelEnum fuelType) {
         this.fuelType = fuelType;
     }
 
@@ -96,7 +96,7 @@ public class CreateCarDto {
         return numberOfSeats;
     }
 
-    public FuelDto getFuelType() {
+    public FuelEnum getFuelType() {
         return fuelType;
     }
 
