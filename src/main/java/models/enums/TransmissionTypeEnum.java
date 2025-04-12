@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum TransmissionType {
+public enum TransmissionTypeEnum {
     MANUAL,
     AUTOMATIC
 }

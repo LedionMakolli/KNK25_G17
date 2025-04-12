@@ -2,7 +2,7 @@ package models;
 
 import models.enums.FuelDto;
 import models.enums.CarStatusEnum;
-import models.enums.TransmissionType;
+import models.enums.TransmissionTypeEnum;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -19,11 +19,11 @@ public class Cars {
     private FuelDto fuelType;
     private int dailyPrice;
     private CarStatusEnum status;
-    private TransmissionType transmissionType;
+    private TransmissionTypeEnum transmissionType;
 
     private Cars(int id, String licensePlate, String model, String color,
                  int yearOfManufacture, BigDecimal mileage, int seatCount,
-                 FuelDto fuelType, int dailyPrice, CarStatusEnum status) {
+                 FuelDto fuelType, int dailyPrice, CarStatusEnum status, TransmissionTypeEnum transmissionType) {
         this.id = id;
         this.licensePlate = licensePlate;
         this.model = model;
@@ -34,23 +34,26 @@ public class Cars {
         this.fuelType = fuelType;
         this.dailyPrice = dailyPrice;
         this.status = status;
+        this.transmissionType=transmissionType;
     }
 
     public static Cars getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        String licensePlate = resultSet.getString("license_plate");
+        String licensePlate = resultSet.getString("licenseplate");
         String model = resultSet.getString("model");
         String color = resultSet.getString("color");
-        int yearOfManufacture = resultSet.getInt("year_of_manufacture");
+        int yearOfManufacture = resultSet.getInt("yearofmanufacture");
         BigDecimal mileage = resultSet.getBigDecimal("mileage");
-        int seatCount = resultSet.getInt("seat_count");
-        String fuelTypeStr = resultSet.getString("fuel_type");
+        int seatCount = resultSet.getInt("seatcount");
+        String fuelTypeStr = resultSet.getString("fueltype");
         FuelDto fuelType = FuelDto.valueOf(fuelTypeStr.toUpperCase());
-        int dailyPrice = resultSet.getInt("daily_price");
+        int dailyPrice = resultSet.getInt("dailyprice");
         String statusStr = resultSet.getString("status");
         CarStatusEnum status = CarStatusEnum.valueOf(statusStr.toUpperCase());
+        String transmissionType1=resultSet.getString("transmissiontype");
+        TransmissionTypeEnum transmissionType= TransmissionTypeEnum.valueOf(transmissionType1.toUpperCase());
 
-        return new Cars(id, licensePlate, model, color, yearOfManufacture, mileage, seatCount, fuelType, dailyPrice, status);
+        return new Cars(id, licensePlate, model, color, yearOfManufacture, mileage, seatCount, fuelType, dailyPrice, status, transmissionType);
     }
 
     public int getId() {
@@ -92,6 +95,9 @@ public class Cars {
     public CarStatusEnum getStatus() {
         return status;
     }
+    public TransmissionTypeEnum getTransmissionType() {
+        return transmissionType;
+    }
 
     public void printCarDetails() {
         System.out.println("----------------------------------------");
@@ -106,6 +112,7 @@ public class Cars {
         System.out.println("Fuel Type: " + getFuelType());
         System.out.println("Daily Price: " + getDailyPrice() + " €");
         System.out.println("Status: " + getStatus());
+        System.out.println("Transmission type: " + getTransmissionType());
         System.out.println("----------------------------------------");
     }
 }

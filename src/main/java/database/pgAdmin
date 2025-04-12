@@ -38,7 +38,7 @@
 --     datapunesimit DATE
 -- );
 
-// -----   Veturat    ----
+// -----   Cars    ----
 
 CREATE TABLE Cars (
     id SERIAL PRIMARY KEY,
