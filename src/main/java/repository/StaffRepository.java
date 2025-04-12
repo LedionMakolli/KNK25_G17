@@ -3,7 +3,6 @@ package repository;
 import models.Staff;
 import models.Dto.CreateStafDto;
 import models.Dto.UpdateStafDto;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 public class StaffRepository extends BaseRepository<Staff, CreateStafDto, UpdateStafDto> {
 
     public StaffRepository() throws SQLException {
-        super("stafi");
+        super("staff");
     }
 
     @Override
@@ -27,17 +26,21 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
     // Metoda Create
     public Staff create(CreateStafDto stafiDto) {
         String query = """
-                INSERT INTO STAFI (EMRI, MBIEMRI, EMAIL, PASSWORD, NRTELEFONIT, POZITA, DATAPUNESIMIT)
-                VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_DATE)
+                INSERT INTO STAFI (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER, POSITION, EMPLOYEMENTDATE, SALARY)
+                VALUES (?,?,?,?,?,?,?,?,?,CURRENT_DATE,?);
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, stafiDto.getFirstName());
             pstm.setString(2, stafiDto.getLastName());
-            pstm.setString(3, stafiDto.getEmail());
-            pstm.setString(4, stafiDto.getPassword());
-            pstm.setString(5, stafiDto.getTelephoneNumber());
-            pstm.setString(6, stafiDto.getPosition());
+            pstm.setInt(3, stafiDto.getAge());
+            pstm.setString(4, stafiDto.getPersonalNumber());
+            pstm.setString(5, stafiDto.getEmail());
+            pstm.setString(6, stafiDto.getUsername());
+            pstm.setString(7, stafiDto.getPassword());
+            pstm.setString(8, stafiDto.getTelephoneNumber());
+            pstm.setObject(9, stafiDto.getPosition(), Types.OTHER);
+            pstm.setDouble(10, stafiDto.getSalary());
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
             if (result.next()) {
@@ -54,6 +57,11 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
 
+        if (stafiDto.getAge() > 0) {
+            query.append("AGE = ?, ");
+            parametrat.add(stafiDto.getAge());
+            hasUpdates = true;
+        }
         if (stafiDto.getEmail() != null) {
             query.append("EMAIL = ?, ");
             parametrat.add(stafiDto.getEmail());
@@ -65,13 +73,18 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             hasUpdates = true;
         }
         if (stafiDto.getTelephoneNumber() != null) {
-            query.append("NRTELEFONIT = ?, ");
+            query.append("TELEPHONENUMBER = ?, ");
             parametrat.add(stafiDto.getTelephoneNumber());
             hasUpdates = true;
         }
         if (stafiDto.getPosition() != null) {
-            query.append("POZITA = ?, ");
+            query.append("POSITION = ?, ");
             parametrat.add(stafiDto.getPosition());
+            hasUpdates = true;
+        }
+        if (stafiDto.getSalary() > 0) {
+            query.append("SALARY = ?, ");
+            parametrat.add(stafiDto.getSalary());
             hasUpdates = true;
         }
 

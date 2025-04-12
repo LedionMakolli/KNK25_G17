@@ -55,9 +55,9 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
 
-        if (klientetDto.getTelephoneNumber() != null) {
-            query.append("TELEPHONENUMBER = ?, ");
-            parametrat.add(klientetDto.getTelephoneNumber());
+        if (klientetDto.getAge() > 0) {
+            query.append("AGE = ?, ");
+            parametrat.add(klientetDto.getAge());
             hasUpdates = true;
         }
         if (klientetDto.getEmail() != null) {
@@ -68,6 +68,11 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
         if (klientetDto.getPassword() != null) {
             query.append("PASSWORD = ?, ");
             parametrat.add(klientetDto.getPassword());
+            hasUpdates = true;
+        }
+        if (klientetDto.getTelephoneNumber() != null) {
+            query.append("TELEPHONENUMBER = ?, ");
+            parametrat.add(klientetDto.getTelephoneNumber());
             hasUpdates = true;
         }
         if (!hasUpdates) {

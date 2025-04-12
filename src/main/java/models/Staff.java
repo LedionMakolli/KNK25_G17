@@ -9,12 +9,14 @@ import java.time.LocalDate;
 public class Staff extends User {
     private StaffPositionEnum position;
     private LocalDate employmentDate;
+    private double salary;
 
     private Staff(int id, String firstName, String lastName, int age, String personalNumber, String email, String username,
-                  String password, String telephoneNumber, StaffPositionEnum position, LocalDate employmentDate) {
+                  String password, String telephoneNumber, StaffPositionEnum position, LocalDate employmentDate, double salary) {
         super(id, firstName, lastName, age, personalNumber, email, username, password, telephoneNumber);
         this.position = position;
         this.employmentDate = employmentDate;
+        this.salary=salary;
     }
 
     public static Staff getInstance(ResultSet resultSet) throws SQLException {
@@ -30,7 +32,8 @@ public class Staff extends User {
         String positionString = resultSet.getString("position");
         StaffPositionEnum position = StaffPositionEnum.valueOf(positionString);
         LocalDate employmentDate = resultSet.getDate("employmentDate").toLocalDate();
-        return new Staff(id, firstName, lastName, age, personalNumber, email, username, password, telephoneNumber, position, employmentDate);
+        double salary=resultSet.getDouble("salary");
+        return new Staff(id, firstName, lastName, age, personalNumber, email, username, password, telephoneNumber, position, employmentDate,salary);
     }
 
     public StaffPositionEnum getPosition() {
@@ -39,6 +42,10 @@ public class Staff extends User {
 
     public LocalDate getEmploymentDate() {
         return employmentDate;
+    }
+
+    public double getSalary() {
+        return salary;
     }
 
     public void printStaffDetails() {
@@ -51,6 +58,7 @@ public class Staff extends User {
         System.out.println("Phone Number: " + getTelephoneNumber());
         System.out.println("Position: " + getPosition());
         System.out.println("Employment Date: " + getEmploymentDate());
+        System.out.println("Salary: " + getSalary());
         System.out.println("------------------------------");
     }
 }

@@ -6,6 +6,8 @@
 -- CREATE TYPE FuelEnum AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
 -- CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE'); keto tri jane per Cars
 -- CREATE TYPE TransmissionTypeEnum AS ENUM ('MANUAL', 'AUTOMATIC');
+-- CREATE TYPE StaffPositionEnum AS ENUM('ADMIN', 'MANAGER', 'STAF', 'MECHANIC');
+--Enum per User (Client & Staff)
 
 -- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
 -- CREATE TYPE StatusiMirembatjaEnum AS ENUM ('PLANIFIKUAR', 'NE_PROCES', 'PERFUNDUAR', 'ANULUAR');
@@ -37,8 +39,9 @@
 --     username varchar(30) UNIQUE,
 --     password VARCHAR(255),
 --     telephoneNumber VARCHAR(20),
---     position VARCHAR(255),
---     employmentDate DATE
+--     position StaffPositionEnum DEFAULT 'STAFF',
+--     employmentDate DATE,
+--     Salary real
 -- );
 
 // -----   Cars    ----
