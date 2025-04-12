@@ -5,9 +5,9 @@ import models.Dto.UpdatePenaltyDto;
 import models.Penalties;
 import java.sql.*;
 
-public class PenalizimetRepository extends BaseRepository<Penalties, CreatePenaltyDto, UpdatePenaltyDto> {
-    public PenalizimetRepository() throws SQLException {
-        super("penalizimet");
+public class PenaltiesRepository extends BaseRepository<Penalties, CreatePenaltyDto, UpdatePenaltyDto> {
+    public PenaltiesRepository() throws SQLException {
+        super("penalties");
     }
     @Override
     public Penalties fromResultSet(ResultSet rs) {
@@ -20,16 +20,16 @@ public class PenalizimetRepository extends BaseRepository<Penalties, CreatePenal
     }
     public Penalties create(CreatePenaltyDto penalizimetDto) {
         String query = """
-                INSERT INTO PENALIZIMET (IDREZERVIMET, ARSYEJA, SHUMA, DATA, PAGUAR)
+                INSERT INTO PENALIZIMET (RESERVATIONID, REASONOFPENALTY, MONEYAMOUNT, DATE, PAID)
                 VALUES (?, ?, ?, ?, ?)
                 """;
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, penalizimetDto.getIdRezervimet());
-            preparedStatement.setString(2, penalizimetDto.getArsyeja());
-            preparedStatement.setBigDecimal(3, penalizimetDto.getShuma());
-            preparedStatement.setTimestamp(4, Timestamp.valueOf(penalizimetDto.getData()));
-            preparedStatement.setBoolean(5, penalizimetDto.isPaguar());
+            preparedStatement.setInt(1, penalizimetDto.getReservationId());
+            preparedStatement.setString(2, penalizimetDto.getReasonOfPenalty());
+            preparedStatement.setBigDecimal(3, penalizimetDto.getMoneyAmount());
+            preparedStatement.setTimestamp(4, Timestamp.valueOf(penalizimetDto.getDate()));
+            preparedStatement.setBoolean(5, penalizimetDto.isPaid());
             preparedStatement.execute();
             ResultSet result = preparedStatement.getGeneratedKeys();
             if (result.next()) {
@@ -42,11 +42,11 @@ public class PenalizimetRepository extends BaseRepository<Penalties, CreatePenal
         return null;
     }
     public Penalties updatePaguar(UpdatePenaltyDto penalizimetDto) {
-        String query = "UPDATE PENALIZIMET SET PAGUAR = ? WHERE ID = ?";
+        String query = "UPDATE PENALTIES SET PAID = ? WHERE ID = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setBoolean(1, penalizimetDto.isPaguar());
+            preparedStatement.setBoolean(1, penalizimetDto.isPaid());
             preparedStatement.setInt(2, penalizimetDto.getId());
             int rowsEffected = preparedStatement.executeUpdate();
 
@@ -55,7 +55,7 @@ public class PenalizimetRepository extends BaseRepository<Penalties, CreatePenal
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Gabim gjate perditesimit te penalizimit!", e);
+            throw new RuntimeException("Error while updating penalty!", e);
         }
         return null;
     }
