@@ -4,37 +4,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Clients extends User {
-    private String nrPersonal;
 
-    private Clients(int id, String emri, String mbiemri, int age, String email, String password, String nrTelefoni, String nrPersonal) {
-        super(id, emri, mbiemri, age, email, password, nrTelefoni);
-        this.nrPersonal=nrPersonal;
+    private Clients(int id, String firstName, String lastName, int age, String personalNumber,
+                    String email, String username, String password, String telephoneNumber) {
+        super(id, firstName, lastName, age, personalNumber, email, username, password, telephoneNumber);
     }
 
     public static Clients getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        String emri = resultSet.getString("emri");
-        String mbiemri = resultSet.getString("mbiemri");
+        String firstName = resultSet.getString("firstname");
+        String lastName = resultSet.getString("lastname");
         int age=resultSet.getInt("age");
+        String personalNumber=resultSet.getString("personalnumber");
         String email=resultSet.getString("email");
+        String username=resultSet.getString("username");
         String password=resultSet.getString("password");
-        String nrTelefoni = resultSet.getString("nrtelefonit");
-        String nrPersonal = resultSet.getString("nrpersonal");
-        return new Clients(id, emri, mbiemri, age, email, password, nrTelefoni, nrPersonal);
-    }
-
-    public String getNrPersonal() {
-        return nrPersonal;
+        String telephonenumber = resultSet.getString("telephonenumber");
+        return new Clients(id, firstName, lastName, age, personalNumber, username, email, password, telephonenumber);
     }
     public void printoTeDhenatPerKlientin() {
-        System.out.println("Klienti u gjet:");
+        System.out.println("Client is Found:");
         System.out.println("ID: " + getId());
-        System.out.println("Emri: " + getEmri());
-        System.out.println("Mbiemri: " + getMbiemri());
+        System.out.println("First Name: "+ getFirstName());
+        System.out.println("Last Name: " + getLastName());
         System.out.println("Age: " + getAge());
-        System.out.println("Email: " + getEmail()); // passwordin
-        System.out.println("Telefoni: " + getNrTelefonit());
-        System.out.println("Numri Personal: " + getNrPersonal());
+        System.out.println("Personal Number: " + getPersonalNumber());
+        System.out.println("Email: " + getEmail());
+        System.out.println("Username: " + getUsername());
+        // password ?
+        System.out.println("Telephone Number: " + getTelephoneNumber());
         System.out.println("------------------------------");
     }
 }

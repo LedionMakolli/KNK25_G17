@@ -3,30 +3,30 @@ package models.Dto;
 import java.time.LocalDate;
 
 public class CreateStafDto extends CreateUserDto {
-    private String pozita;
-    private LocalDate dataPunesimit;
+    private String position;
+    private LocalDate employmentDate;
 
-    public CreateStafDto(String emri, String mbiemri, String email, String password,
-                         String nrTelefonit, String pozita, LocalDate dataPunesimit) {
-        super(emri, mbiemri, email, password, nrTelefonit);
-        this.pozita = pozita;
-        this.dataPunesimit = dataPunesimit;
+    public CreateStafDto(String firstName, String lastName, int age, String personalNumber, String email,
+                         String username, String password, String telephoneNumber, String position, LocalDate employmentDate) {
+        super(firstName, lastName, age, personalNumber, email, username, password, telephoneNumber);
+        this.position = position;
+        this.employmentDate = employmentDate;
     }
 
-    public String getPozita() {
-        return pozita;
+    public String getPosition() {
+        return position;
     }
 
-    public void setPozita(String pozita) {
-        this.pozita = pozita;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public LocalDate getDataPunesimit() {
-        return dataPunesimit;
+    public LocalDate getEmploymentDate() {
+        return employmentDate;
     }
 
-    public void setDataPunesimit(LocalDate dataPunesimit) {
-        this.dataPunesimit = dataPunesimit;
+    public void setEmploymentDate(LocalDate employmentDate) {
+        this.employmentDate = employmentDate;
     }
 }
 

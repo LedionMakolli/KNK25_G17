@@ -26,6 +26,6 @@ public class testMuhamedi {
 //        );
 
         StaffRepository staffRepository=new StaffRepository();
-        CreateStafDto createStafDto=new CreateStafDto("Muhamed", "Jakupi", "")
+//        CreateStafDto createStafDto=new CreateStafDto("Muhamed", "Jakupi", "")
     }
 }

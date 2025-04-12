@@ -25,17 +25,19 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
 
     public Clients create(CreateClientDto klientetDto) {
         String query = """
-                INSERT INTO KLIENTET (EMRI, MBIEMRI, NRPERSONAL, NRTELEFONIT, EMAIL, PASSWORD)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO KLIENTET (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setString(1, klientetDto.getEmri());
-            pstm.setString(2, klientetDto.getMbiemri());
-            pstm.setString(3, klientetDto.getNrPersonal());
-            pstm.setString(4, klientetDto.getNrTelefonit());
+            pstm.setString(1, klientetDto.getFirstName());
+            pstm.setString(2, klientetDto.getLastName());
+            pstm.setInt(3, klientetDto.getAge());
+            pstm.setString(5, klientetDto.getPersonalNumber());
             pstm.setString(5, klientetDto.getEmail());
-            pstm.setString(6, klientetDto.getPassword());
+            pstm.setString(6, klientetDto.getUsername());
+            pstm.setString(7, klientetDto.getPassword());
+            pstm.setString(8, klientetDto.getTelephoneNumber());
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
             if (result.next()) {
@@ -49,13 +51,13 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
     }
 
     public Clients update(UpdateClientDto klientetDto) {
-        StringBuilder query = new StringBuilder("UPDATE KLIENTET SET ");
+        StringBuilder query = new StringBuilder("UPDATE CLIENTS SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
 
-        if (klientetDto.getNrTelefonit() != null) {
-            query.append("NRTELEFONIT = ?, ");
-            parametrat.add(klientetDto.getNrTelefonit());
+        if (klientetDto.getTelephoneNumber() != null) {
+            query.append("TELEPHONENUMBER = ?, ");
+            parametrat.add(klientetDto.getTelephoneNumber());
             hasUpdates = true;
         }
         if (klientetDto.getEmail() != null) {
@@ -84,7 +86,7 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
             return getById(klientetDto.getId());
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Gabim gjate perditesimit te klientit!", e);
+            throw new RuntimeException("Error during client update!", e);
         }
     }
 

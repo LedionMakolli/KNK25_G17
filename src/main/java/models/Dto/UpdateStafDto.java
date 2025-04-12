@@ -1,18 +1,18 @@
 package models.Dto;
 
 public class UpdateStafDto extends UpdateUserDto {
-    private String pozita;
+    private String position;
 
-    public UpdateStafDto(int id, String email, String password, String nrTelefonit, String pozita) {
-        super(id, email, password, nrTelefonit);
-        this.pozita=pozita;
+    public UpdateStafDto(int id, int age, String email, String password, String telephoneNumber, String position) {
+        super(id, age, email, password, telephoneNumber);
+        this.position=position;
     }
 
-    public void setPozita(String pozita) {
-        this.pozita = pozita;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public String getPozita() {
-        return pozita;
+    public String getPosition() {
+        return position;
     }
 }

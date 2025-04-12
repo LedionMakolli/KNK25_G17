@@ -1,48 +1,56 @@
 package models;
 
+import models.enums.StaffPositionEnum;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Staff extends User {
-    private String pozita;  // "Menaxher", "Staf", "Mekanik"
-    private LocalDate dataPunesimit;
+    private StaffPositionEnum position;
+    private LocalDate employmentDate;
 
-    private Staff(int id, String emri, String mbiemri, int age, String email, String password, String nrTelefonit, String pozita, LocalDate dataPunesimit) {
-        super(id, emri, mbiemri, age, email, password, nrTelefonit);
-        this.pozita = pozita;
-        this.dataPunesimit = dataPunesimit;
+    private Staff(int id, String firstName, String lastName, int age, String personalNumber, String email, String username,
+                  String password, String telephoneNumber, StaffPositionEnum position, LocalDate employmentDate) {
+        super(id, firstName, lastName, age, personalNumber, email, username, password, telephoneNumber);
+        this.position = position;
+        this.employmentDate = employmentDate;
     }
+
     public static Staff getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        String emri = resultSet.getString("emri");
-        String mbiemri = resultSet.getString("mbiemri");
-        int age=resultSet.getInt("age");
-        String email=resultSet.getString("email");
-        String password=resultSet.getString("password");
-        String nrTelefonit = resultSet.getString("nrtelefonit");
-        String pozita = resultSet.getString("pozita");
-        LocalDate datapunesimit=resultSet.getDate("datapunesimit").toLocalDate();
-        return new Staff(id, emri, mbiemri, age, email, password, nrTelefonit, pozita, datapunesimit);
+        String firstName = resultSet.getString("firstname");
+        String lastName = resultSet.getString("lastname");
+        int age = resultSet.getInt("age");
+        String personalNumber=resultSet.getString("personalnumber");
+        String email = resultSet.getString("email");
+        String username = resultSet.getString("username");
+        String password = resultSet.getString("password");
+        String telephoneNumber = resultSet.getString("telephonenumber");
+        String positionString = resultSet.getString("position");
+        StaffPositionEnum position = StaffPositionEnum.valueOf(positionString);
+        LocalDate employmentDate = resultSet.getDate("employmentDate").toLocalDate();
+        return new Staff(id, firstName, lastName, age, personalNumber, email, username, password, telephoneNumber, position, employmentDate);
     }
 
-    public String getPozita() {
-        return pozita;
+    public StaffPositionEnum getPosition() {
+        return position;
     }
 
-    public LocalDate getDataPunesimit() {
-        return dataPunesimit;
+    public LocalDate getEmploymentDate() {
+        return employmentDate;
     }
-    public void printoTeDhenatPerStafin() {
-        System.out.println("Punetori i stafit u gjet:");
+
+    public void printStaffDetails() {
+        System.out.println("Staff member found:");
         System.out.println("ID: " + getId());
-        System.out.println("Emri: " + getEmri());
-        System.out.println("Mbiemri: " + getMbiemri());
+        System.out.println("First Name: " + getFirstName());
+        System.out.println("Last Name: " + getLastName());
         System.out.println("Age: " + getAge());
-        System.out.println("Email: " + getEmail()); // passwordi
-        System.out.println("Telefoni: " + getNrTelefonit());
-        System.out.println("Pozita: " + getPozita());
-        System.out.println("Data e punesimit: " + getDataPunesimit());
+        System.out.println("Email: " + getEmail());
+        System.out.println("Phone Number: " + getTelephoneNumber());
+        System.out.println("Position: " + getPosition());
+        System.out.println("Employment Date: " + getEmploymentDate());
         System.out.println("------------------------------");
     }
 }

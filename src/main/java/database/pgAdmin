@@ -5,7 +5,7 @@
 
 -- CREATE TYPE FuelEnum AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
 -- CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE'); keto tri jane per Cars
---CREATE TYPE TransmissionTypeEnum AS ENUM ('MANUAL', 'AUTOMATIC');
+-- CREATE TYPE TransmissionTypeEnum AS ENUM ('MANUAL', 'AUTOMATIC');
 
 -- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
 -- CREATE TYPE StatusiMirembatjaEnum AS ENUM ('PLANIFIKUAR', 'NE_PROCES', 'PERFUNDUAR', 'ANULUAR');
@@ -15,29 +15,30 @@
 
 -- CREATE TABLE Clients (
 --     id SERIAL PRIMARY KEY,
---     emri VARCHAR(255),
---     mbiemri VARCHAR(255),
+--     firstname VARCHAR(255),
+--     lastname VARCHAR(255),
 --     age integer,
+-- 	   personalnumber VARCHAR(20),
 -- 	   email VARCHAR(255) UNIQUE,
+--     username varchar(30) UNIQUE,
 -- 	   password VARCHAR(255),
---     nrtelefonit VARCHAR(20),
---     roli VARCHAR(255),
--- 	   nrpersonal VARCHAR(20)
+--     telephonenumber VARCHAR(20),
 -- );
 
 // ----- Stafi ----
 
 -- CREATE TABLE Staff (
 --     id SERIAL PRIMARY KEY,
---     emri VARCHAR(255),
---     mbiemri VARCHAR(255),
+--     firstName VARCHAR(255),
+--     lastName VARCHAR(255),
 --     age integer,
+-- 	   personalnumber VARCHAR(20)
 --     email VARCHAR(255) UNIQUE,
+--     username varchar(30) UNIQUE,
 --     password VARCHAR(255),
---     nrtelefonit VARCHAR(20),
---     roli VARCHAR(255),
---     pozita VARCHAR(255),
---     datapunesimit DATE
+--     telephoneNumber VARCHAR(20),
+--     position VARCHAR(255),
+--     employmentDate DATE
 -- );
 
 // -----   Cars    ----

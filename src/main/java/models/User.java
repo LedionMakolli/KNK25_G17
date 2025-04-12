@@ -5,48 +5,61 @@ import java.sql.SQLException;
 
 abstract class User {
     private int id;
-    private String emri;
-    private String mbiemri;
+    private String firstName;
+    private String lastName;
     private int age;
+    private String personalNumber;
     private String email;
+    private String username;
     private String password;
-    private String nrTelefonit;
+    private String telephoneNumber;
 
-    protected User(int id, String emri, String mbiemri, int age, String email, String password, String nrTelefonit) {
+    protected User(int id, String firstName, String lastName, int age, String personalNumber, String email,
+                   String username, String password, String telephoneNumber) {
         this.id = id;
-        this.emri = emri;
-        this.mbiemri = mbiemri;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age=age;
+        this.personalNumber=personalNumber;
         this.email = email;
+        this.username=username;
         this.password = password;
-        this.nrTelefonit=nrTelefonit;
+        this.telephoneNumber=telephoneNumber;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getEmri() {
-        return emri;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getMbiemri() {
-        return mbiemri;
+    public String getLastName() {
+        return lastName;
     }
 
     public int getAge() {
         return age;
     }
 
+    public String getPersonalNumber() {
+        return personalNumber;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getNrTelefonit() {
-        return nrTelefonit;
+    public String getTelephoneNumber() {
+        return telephoneNumber;
     }
 }

@@ -32,12 +32,12 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setString(1, stafiDto.getEmri());
-            pstm.setString(2, stafiDto.getMbiemri());
+            pstm.setString(1, stafiDto.getFirstName());
+            pstm.setString(2, stafiDto.getLastName());
             pstm.setString(3, stafiDto.getEmail());
             pstm.setString(4, stafiDto.getPassword());
-            pstm.setString(5, stafiDto.getNrTelefonit());
-            pstm.setString(6, stafiDto.getPozita());
+            pstm.setString(5, stafiDto.getTelephoneNumber());
+            pstm.setString(6, stafiDto.getPosition());
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
             if (result.next()) {
@@ -50,7 +50,7 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
         return null;
     }
     public Staff update(UpdateStafDto stafiDto) {
-        StringBuilder query = new StringBuilder("UPDATE STAFI SET ");
+        StringBuilder query = new StringBuilder("UPDATE STAFF SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
 
@@ -64,14 +64,14 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             parametrat.add(stafiDto.getPassword());
             hasUpdates = true;
         }
-        if (stafiDto.getNrTelefonit() != null) {
+        if (stafiDto.getTelephoneNumber() != null) {
             query.append("NRTELEFONIT = ?, ");
-            parametrat.add(stafiDto.getNrTelefonit());
+            parametrat.add(stafiDto.getTelephoneNumber());
             hasUpdates = true;
         }
-        if (stafiDto.getPozita() != null) {
+        if (stafiDto.getPosition() != null) {
             query.append("POZITA = ?, ");
-            parametrat.add(stafiDto.getPozita());
+            parametrat.add(stafiDto.getPosition());
             hasUpdates = true;
         }
 
@@ -92,7 +92,7 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             return getById(stafiDto.getId());
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Gabim gjate perditesimit te stafit!", e);
+            throw new RuntimeException("Error during staf update!", e);
         }
     }
 
