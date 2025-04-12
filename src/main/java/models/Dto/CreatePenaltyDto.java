@@ -3,14 +3,14 @@ package models.Dto;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class CreatePenalizimetDto {
+public class CreatePenaltyDto {
     private int idRezervimet;
     private String arsyeja;
     private BigDecimal shuma;
     private LocalDateTime data;
     private boolean paguar;
 
-    public CreatePenalizimetDto(int idRezervimet, String arsyeja, BigDecimal shuma, boolean paguar) {
+    public CreatePenaltyDto(int idRezervimet, String arsyeja, BigDecimal shuma, boolean paguar) {
         if (arsyeja == null || arsyeja.trim().isEmpty()) {
             throw new IllegalArgumentException("Arsyeja nuk mund te jete e zbrazet.");
         }

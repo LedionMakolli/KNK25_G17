@@ -2,27 +2,27 @@ package repository;
 
 import models.*;
 import models.Dto.*;
-import models.enums.KarburantiEnum;
-import models.enums.StatusiVeturaEnum;
+import models.enums.FuelDto;
+import models.enums.CarStatusEnum;
 import java.sql.*;
 import java.util.*;
 
-public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto, UpdateVeturatDto> {
+public class VeturatRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarDto> {
 
     public VeturatRepository() throws SQLException {
         super("veturat");
     }
     @Override
-    public Veturat fromResultSet(ResultSet rs) {
+    public Cars fromResultSet(ResultSet rs) {
         try {
-            return Veturat.getInstance(rs);
+            return Cars.getInstance(rs);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
     // 3. metoda create
-    public Veturat create(CreateVeturatDto veturatDto) {
+    public Cars create(CreateCarDto veturatDto) {
         String query= """
                 INSERT INTO VETURAT (TARGAT, MODELI, NGJYRA, VITIPRODHIMIT,
                 KILOMETRAZHA, NUMRIULESEVE, KARBURANTI, CMIMIDITOR, STATUSI)
@@ -51,7 +51,7 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
         return null;
     }
     // 4. metoda update
-    public Veturat update(UpdateVeturatDto VeturatDto) {
+    public Cars update(UpdateCarDto VeturatDto) {
         StringBuilder query = new StringBuilder("UPDATE VETURAT SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates=false;
@@ -95,9 +95,9 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
         }
     }
     // 6. metoda filtro
-    public ArrayList<Veturat> filter(String modeli, String ngjyra, int vitiProdhimit, int numriUleseve,
-                                     KarburantiEnum karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
-        ArrayList<Veturat> veturat=new ArrayList<Veturat>();
+    public ArrayList<Cars> filter(String modeli, String ngjyra, int vitiProdhimit, int numriUleseve,
+                                  FuelDto karburanti, int cmimiDitor, CarStatusEnum statusi) {
+        ArrayList<Cars> veturat=new ArrayList<Cars>();
         StringBuilder query=new StringBuilder("SELECT * FROM VETURAT WHERE 1=1");
         List<Object> parametrat=new ArrayList<>();
 
@@ -143,7 +143,7 @@ public class VeturatRepository extends BaseRepository<Veturat, CreateVeturatDto,
             }
             ResultSet resultSet=preparedStatement.executeQuery();
             if(resultSet.next()) {
-                veturat.add(Veturat.getInstance(resultSet));
+                veturat.add(Cars.getInstance(resultSet));
             } else {
                 System.out.println("Nuk u gjeten te dhenat ne baze te filtrimit tuaj.");
             }

@@ -1,31 +1,30 @@
 package repository;
 
-import database.DBConnection;
-import models.Klientet;
-import models.Dto.CreateKlientetDto;
-import models.Dto.UpdateKlientetDto;
+import models.Dto.UpdateClientDto;
+import models.Clients;
+import models.Dto.CreateClientDto;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KlientetRepository extends BaseRepository<Klientet, CreateKlientetDto, UpdateKlientetDto> {
+public class KlientetRepository extends BaseRepository<Clients, CreateClientDto, UpdateClientDto> {
 
     public KlientetRepository() throws SQLException {
         super("klientet");
     }
 
     @Override
-    public Klientet fromResultSet(ResultSet rs) {
+    public Clients fromResultSet(ResultSet rs) {
         try {
-            return Klientet.getInstance(rs);
+            return Clients.getInstance(rs);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Klientet create(CreateKlientetDto klientetDto) {
+    public Clients create(CreateClientDto klientetDto) {
         String query = """
                 INSERT INTO KLIENTET (EMRI, MBIEMRI, NRPERSONAL, NRTELEFONIT, EMAIL, PASSWORD)
                 VALUES (?, ?, ?, ?, ?, ?)
@@ -50,7 +49,7 @@ public class KlientetRepository extends BaseRepository<Klientet, CreateKlientetD
         return null;
     }
 
-    public Klientet update(UpdateKlientetDto klientetDto) {
+    public Clients update(UpdateClientDto klientetDto) {
         StringBuilder query = new StringBuilder("UPDATE KLIENTET SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;

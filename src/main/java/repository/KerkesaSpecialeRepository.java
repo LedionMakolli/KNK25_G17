@@ -1,7 +1,6 @@
 package repository;
 
 import models.Dto.CreateKerkesatSpecialeDto;
-import models.Dto.CreatePenalizimetDto;
 import models.Dto.UpdateKerkesatSpecialeDto;
 import models.KerkesaSpeciale;
 

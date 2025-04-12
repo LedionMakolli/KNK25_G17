@@ -1,12 +1,12 @@
 package models;
 
-import models.enums.KarburantiEnum;
-import models.enums.StatusiVeturaEnum;
+import models.enums.FuelDto;
+import models.enums.CarStatusEnum;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Veturat {
+public class Cars {
     private int id;
     private String targat;
     private String modeli;
@@ -14,13 +14,13 @@ public class Veturat {
     private int vitiProdhimit;
     private BigDecimal kilometrazha;
     private int numriUleseve;
-    private KarburantiEnum karburanti;
+    private FuelDto karburanti;
     private int cmimiDitor;
-    private StatusiVeturaEnum statusi;
+    private CarStatusEnum statusi;
 
-    private Veturat(int id, String targat, String modeli, String ngjyra,
-                    int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
-                    KarburantiEnum karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
+    private Cars(int id, String targat, String modeli, String ngjyra,
+                 int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
+                 FuelDto karburanti, int cmimiDitor, CarStatusEnum statusi) {
         this.id = id;
         this.targat = targat;
         this.modeli = modeli;
@@ -32,7 +32,7 @@ public class Veturat {
         this.cmimiDitor = cmimiDitor;
         this.statusi = statusi;
     }
-    public static Veturat getInstance(ResultSet resultSet) throws SQLException {
+    public static Cars getInstance(ResultSet resultSet) throws SQLException {
         int id=resultSet.getInt("id");
         String targat=resultSet.getString("targat");
         String modeli=resultSet.getString("modeli");
@@ -41,11 +41,11 @@ public class Veturat {
         BigDecimal kilometrazha=resultSet.getBigDecimal("kilometrazha");
         int numriUleseve=resultSet.getInt("numriuleseve");
         String karburantiStr = resultSet.getString("karburanti");
-        KarburantiEnum karburanti = KarburantiEnum.valueOf(karburantiStr.toUpperCase());
+        FuelDto karburanti = FuelDto.valueOf(karburantiStr.toUpperCase());
         int cmimiDitor=resultSet.getInt("cmimiditor");
         String statusiStr = resultSet.getString("statusi");
-        StatusiVeturaEnum statusi = StatusiVeturaEnum.valueOf(statusiStr.toUpperCase());
-        return new Veturat(id,targat,modeli,ngjyra,vitiProdhimit,kilometrazha,numriUleseve,karburanti, cmimiDitor, statusi);
+        CarStatusEnum statusi = CarStatusEnum.valueOf(statusiStr.toUpperCase());
+        return new Cars(id,targat,modeli,ngjyra,vitiProdhimit,kilometrazha,numriUleseve,karburanti, cmimiDitor, statusi);
     }
 
     public int getId() {
@@ -76,7 +76,7 @@ public class Veturat {
         return numriUleseve;
     }
 
-    public KarburantiEnum getKarburanti() {
+    public FuelDto getKarburanti() {
         return karburanti;
     }
 
@@ -84,7 +84,7 @@ public class Veturat {
         return cmimiDitor;
     }
 
-    public StatusiVeturaEnum getStatusi() {
+    public CarStatusEnum getStatusi() {
         return statusi;
     }
     public void printoTeDhenatPerVeturen() {

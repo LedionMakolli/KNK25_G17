@@ -1,24 +1,24 @@
 package repository;
 
-import models.Dto.CreatePenalizimetDto;
-import models.Dto.UpdatePenalizimetDto;
-import models.Penalizimet;
+import models.Dto.CreatePenaltyDto;
+import models.Dto.UpdatePenaltyDto;
+import models.Penalties;
 import java.sql.*;
 
-public class PenalizimetRepository extends BaseRepository<Penalizimet, CreatePenalizimetDto, UpdatePenalizimetDto> {
+public class PenalizimetRepository extends BaseRepository<Penalties, CreatePenaltyDto, UpdatePenaltyDto> {
     public PenalizimetRepository() throws SQLException {
         super("penalizimet");
     }
     @Override
-    public Penalizimet fromResultSet(ResultSet rs) {
+    public Penalties fromResultSet(ResultSet rs) {
         try {
-            return Penalizimet.getInstance(rs);
+            return Penalties.getInstance(rs);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
-    public Penalizimet create(CreatePenalizimetDto penalizimetDto) {
+    public Penalties create(CreatePenaltyDto penalizimetDto) {
         String query = """
                 INSERT INTO PENALIZIMET (IDREZERVIMET, ARSYEJA, SHUMA, DATA, PAGUAR)
                 VALUES (?, ?, ?, ?, ?)
@@ -41,7 +41,7 @@ public class PenalizimetRepository extends BaseRepository<Penalizimet, CreatePen
         }
         return null;
     }
-    public Penalizimet updatePaguar(UpdatePenalizimetDto penalizimetDto) {
+    public Penalties updatePaguar(UpdatePenaltyDto penalizimetDto) {
         String query = "UPDATE PENALIZIMET SET PAGUAR = ? WHERE ID = ?";
 
         try {

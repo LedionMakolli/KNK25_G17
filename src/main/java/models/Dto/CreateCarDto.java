@@ -1,23 +1,23 @@
 package models.Dto;
 
-import models.enums.KarburantiEnum;
-import models.enums.StatusiVeturaEnum;
+import models.enums.FuelDto;
+import models.enums.CarStatusEnum;
 import java.math.BigDecimal;
 
-public class CreateVeturatDto {
+public class CreateCarDto {
     private String targat;
     private String modeli;
     private String ngjyra;
     private int vitiProdhimit;
     private BigDecimal kilometrazha;
     private int numriUleseve;
-    private KarburantiEnum karburanti;
+    private FuelDto karburanti;
     private int cmimiDitor;
-    private StatusiVeturaEnum statusi;
+    private CarStatusEnum statusi;
 
-    public CreateVeturatDto(String targat, String modeli, String ngjyra,
-                            int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
-                            KarburantiEnum karburanti, int cmimiDitor, StatusiVeturaEnum statusi) {
+    public CreateCarDto(String targat, String modeli, String ngjyra,
+                        int vitiProdhimit, BigDecimal kilometrazha, int numriUleseve,
+                        FuelDto karburanti, int cmimiDitor, CarStatusEnum statusi) {
         this.targat = targat;
         this.modeli = modeli;
         this.ngjyra = ngjyra;
@@ -53,7 +53,7 @@ public class CreateVeturatDto {
         this.numriUleseve = numriUleseve;
     }
 
-    public void setKarburanti(KarburantiEnum karburanti) {
+    public void setKarburanti(FuelDto karburanti) {
         this.karburanti = karburanti;
     }
 
@@ -61,7 +61,7 @@ public class CreateVeturatDto {
         this.cmimiDitor = cmimiDitor;
     }
 
-    public void setStatusi(StatusiVeturaEnum statusi) {
+    public void setStatusi(CarStatusEnum statusi) {
         this.statusi = statusi;
     }
 
@@ -89,7 +89,7 @@ public class CreateVeturatDto {
         return numriUleseve;
     }
 
-    public KarburantiEnum getKarburanti() {
+    public FuelDto getKarburanti() {
         return karburanti;
     }
 
@@ -97,7 +97,7 @@ public class CreateVeturatDto {
         return cmimiDitor;
     }
 
-    public StatusiVeturaEnum getStatusi() {
+    public CarStatusEnum getStatusi() {
         return statusi;
     }
 }

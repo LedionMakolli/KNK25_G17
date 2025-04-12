@@ -2,17 +2,16 @@ package models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 
-public class Klientet extends User {
+public class Clients extends User {
     private String nrPersonal;
 
-    private Klientet(int id, String emri, String mbiemri, String email, String password, String nrTelefoni, String nrPersonal) {
+    private Clients(int id, String emri, String mbiemri, String email, String password, String nrTelefoni, String nrPersonal) {
         super(id, emri, mbiemri, email, password, nrTelefoni);
         this.nrPersonal=nrPersonal;
     }
 
-    public static Klientet getInstance(ResultSet resultSet) throws SQLException {
+    public static Clients getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String emri = resultSet.getString("emri");
         String mbiemri = resultSet.getString("mbiemri");
@@ -20,7 +19,7 @@ public class Klientet extends User {
         String password=resultSet.getString("password");
         String nrTelefoni = resultSet.getString("nrtelefonit");
         String nrPersonal = resultSet.getString("nrpersonal");
-        return new Klientet(id, emri, mbiemri, email, password, nrTelefoni, nrPersonal);
+        return new Clients(id, emri, mbiemri, email, password, nrTelefoni, nrPersonal);
     }
 
     public String getNrPersonal() {

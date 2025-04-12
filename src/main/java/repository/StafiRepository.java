@@ -1,7 +1,6 @@
 package repository;
 
-import database.DBConnection;
-import models.Stafi;
+import models.Staff;
 import models.Dto.CreateStafiDto;
 import models.Dto.UpdateStafiDto;
 
@@ -9,16 +8,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, UpdateStafiDto> {
+public class StafiRepository extends BaseRepository<Staff, CreateStafiDto, UpdateStafiDto> {
 
     public StafiRepository() throws SQLException {
         super("stafi");
     }
 
     @Override
-    public Stafi fromResultSet(ResultSet rs) {
+    public Staff fromResultSet(ResultSet rs) {
         try {
-            return Stafi.getInstance(rs);
+            return Staff.getInstance(rs);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -26,7 +25,7 @@ public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, Updat
     }
 
     // Metoda Create
-    public Stafi create(CreateStafiDto stafiDto) {
+    public Staff create(CreateStafiDto stafiDto) {
         String query = """
                 INSERT INTO STAFI (EMRI, MBIEMRI, EMAIL, PASSWORD, NRTELEFONIT, POZITA, DATAPUNESIMIT)
                 VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_DATE)
@@ -50,7 +49,7 @@ public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, Updat
         }
         return null;
     }
-    public Stafi update(UpdateStafiDto stafiDto) {
+    public Staff update(UpdateStafiDto stafiDto) {
         StringBuilder query = new StringBuilder("UPDATE STAFI SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;

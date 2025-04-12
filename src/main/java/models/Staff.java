@@ -4,16 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class Stafi extends User {
+public class Staff extends User {
     private String pozita;  // "Menaxher", "Staf", "Mekanik"
     private LocalDate dataPunesimit;
 
-    private Stafi(int id, String emri, String mbiemri, String email, String password, String nrTelefonit, String pozita, LocalDate dataPunesimit) {
+    private Staff(int id, String emri, String mbiemri, String email, String password, String nrTelefonit, String pozita, LocalDate dataPunesimit) {
         super(id, emri, mbiemri, email, password, nrTelefonit);
         this.pozita = pozita;
         this.dataPunesimit = dataPunesimit;
     }
-    public static Stafi getInstance(ResultSet resultSet) throws SQLException {
+    public static Staff getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String emri = resultSet.getString("emri");
         String mbiemri = resultSet.getString("mbiemri");
@@ -22,7 +22,7 @@ public class Stafi extends User {
         String nrTelefonit = resultSet.getString("nrtelefonit");
         String pozita = resultSet.getString("pozita");
         LocalDate datapunesimit=resultSet.getDate("datapunesimit").toLocalDate();
-        return new Stafi(id,emri,mbiemri,email,password,nrTelefonit,pozita,datapunesimit);
+        return new Staff(id,emri,mbiemri,email,password,nrTelefonit,pozita,datapunesimit);
     }
 
     public String getPozita() {

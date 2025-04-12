@@ -1,10 +1,10 @@
 package models.Dto;
 
-public class UpdatePenalizimetDto {
+public class UpdatePenaltyDto {
     private int id;
     private boolean paguar;
 
-    public UpdatePenalizimetDto(int id, boolean paguar) {
+    public UpdatePenaltyDto(int id, boolean paguar) {
         this.id=id;
         this.paguar=paguar;
     }

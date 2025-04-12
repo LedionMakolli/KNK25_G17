@@ -1,13 +1,8 @@
 package repository;
 
 import models.Dto.CreatePagesatDto;
-import models.Dto.CreateVeturatDto;
 import models.Dto.UpdatePagesatDto;
-import models.Dto.UpdateVeturatDto;
 import models.Pagesat;
-import models.Veturat;
-import models.enums.KarburantiEnum;
-import models.enums.StatusiVeturaEnum;
 
 import java.sql.*;
 import java.util.ArrayList;

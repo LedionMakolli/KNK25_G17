@@ -1,9 +1,9 @@
 package models.Dto;
 
-public class CreateKlientetDto extends CreateUserDto {
+public class CreateClientDto extends CreateUserDto {
     private String nrPersonal;
 
-    public CreateKlientetDto(String emri, String mbiemri, String email, String password, String nrTelefonit, String nrPersonal) {
+    public CreateClientDto(String emri, String mbiemri, String email, String password, String nrTelefonit, String nrPersonal) {
         super(emri, mbiemri, email, password, nrTelefonit);
         this.nrPersonal = nrPersonal;
     }

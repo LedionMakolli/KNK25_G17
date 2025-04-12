@@ -1,11 +1,7 @@
 package models;
 
-import models.enums.KarburantiEnum;
-import models.enums.StatusiMirembatjaEnum;
 import models.enums.VeprimetEnum;
 
-import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
