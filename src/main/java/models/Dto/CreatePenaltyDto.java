@@ -4,63 +4,57 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class CreatePenaltyDto {
-    private int idRezervimet;
-    private String arsyeja;
-    private BigDecimal shuma;
-    private LocalDateTime data;
-    private boolean paguar;
+    private int reservationId;
+    private String reasonOfPenalty;
+    private BigDecimal moneyAmount;
+    private LocalDateTime date;
+    private boolean paid;
 
-    public CreatePenaltyDto(int idRezervimet, String arsyeja, BigDecimal shuma, boolean paguar) {
-        if (arsyeja == null || arsyeja.trim().isEmpty()) {
-            throw new IllegalArgumentException("Arsyeja nuk mund te jete e zbrazet.");
-        }
-        if (shuma == null || shuma.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Shuma duhet te jete pozitive.");
-        }
-        this.idRezervimet = idRezervimet;
-        this.arsyeja = arsyeja;
-        this.shuma = shuma;
-        this.data = LocalDateTime.now();
-        this.paguar = paguar;
+    public CreatePenaltyDto(int reservationId, String reasonOfPenalty, BigDecimal moneyAmount, boolean paid) {
+        this.reservationId = reservationId;
+        this.reasonOfPenalty = reasonOfPenalty;
+        this.moneyAmount = moneyAmount;
+        this.date = LocalDateTime.now();
+        this.paid = paid;
     }
 
-    public void setIdRezervimet(int idRezervimet) {
-        this.idRezervimet = idRezervimet;
+    public void setReservationId(int reservationId) {
+        this.reservationId = reservationId;
     }
 
-    public void setArsyeja(String arsyeja) {
-        this.arsyeja = arsyeja;
+    public void setReasonOfPenalty(String reasonOfPenalty) {
+        this.reasonOfPenalty = reasonOfPenalty;
     }
 
-    public void setShuma(BigDecimal shuma) {
-        this.shuma = shuma;
+    public void setMoneyAmount(BigDecimal moneyAmount) {
+        this.moneyAmount = moneyAmount;
     }
 
-    public void setData(LocalDateTime data) {
-        this.data = data;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
-    public void setPaguar(boolean paguar) {
-        this.paguar = paguar;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
-    public int getIdRezervimet() {
-        return idRezervimet;
+    public int getReservationId() {
+        return reservationId;
     }
 
-    public String getArsyeja() {
-        return arsyeja;
+    public String getReasonOfPenalty() {
+        return reasonOfPenalty;
     }
 
-    public BigDecimal getShuma() {
-        return shuma;
+    public BigDecimal getMoneyAmount() {
+        return moneyAmount;
     }
 
-    public LocalDateTime getData() {
-        return data;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public boolean isPaguar() {
-        return paguar;
+    public boolean isPaid() {
+        return paid;
     }
 }
