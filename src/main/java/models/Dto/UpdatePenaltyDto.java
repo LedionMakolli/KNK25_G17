@@ -2,17 +2,17 @@ package models.Dto;
 
 public class UpdatePenaltyDto {
     private int id;
-    private boolean paguar;
+    private boolean paid;
 
-    public UpdatePenaltyDto(int id, boolean paguar) {
+    public UpdatePenaltyDto(int id, boolean paid) {
         this.id=id;
-        this.paguar=paguar;
+        this.paid=paid;
     }
-    public void setPaguar(boolean paguar) {
-        this.paguar = paguar;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
-    public boolean isPaguar() {
-        return paguar;
+    public boolean isPaid() {
+        return paid;
     }
     public int getId() {
         return id;
