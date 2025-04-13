@@ -35,7 +35,7 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
             PreparedStatement pstm= connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, promoCodeDto.getKodi());
             pstm.setDouble(2, promoCodeDto.getZbritja());
-            pstm.setDate(3, java.sql.Date.valueOf(promoCodeDto.getDataSkadimit()));
+            pstm.setDate(3, promoCodeDto.getDataSkadimit());
             pstm.setBoolean(4, promoCodeDto.isAktiv());
             pstm.execute();
             ResultSet rs = pstm.getGeneratedKeys();
@@ -50,33 +50,31 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
 
 
     public PromoCode update(UpdatePromoCodeDto promoCodeDto) {
-        StringBuilder query = new StringBuilder("UPDATE PROMOCODE SET ");
+        StringBuilder query = new StringBuilder("UPDATE PromoCode SET ");
         List<Object> parameters = new ArrayList<>();
         boolean hasUpdates = false;
 
         if (promoCodeDto.getDataSkadimit() != null) {
-            query.append("dataSkadimit = ?,");
+            query.append("dataSkadimit = ?, ");
             parameters.add(promoCodeDto.getDataSkadimit());
             hasUpdates = true;
         }
         if (promoCodeDto.isAktiv() != null) {
-            query.append("aktiv = ?,");
+            query.append("aktiv = ?, ");
             parameters.add(promoCodeDto.isAktiv());
             hasUpdates = true;
         }
-
+        if(!hasUpdates){
+            return getById(promoCodeDto.getId());
+        }
         query.setLength(query.length() - 2);
-        query.append("WHERE ID = ?");
+        query.append(" WHERE id = ?");
         parameters.add(promoCodeDto.getId());
 
         try {
-            PreparedStatement pstm = connection.prepareStatement(query.toString());
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
             for (int i = 0; i < parameters.size(); i++) {
-                if (parameters.get(i) instanceof String && i == parameters.size() - 1) {
                     pstm.setObject(i + 1, parameters.get(i));
-                }else{
-                    pstm.setObject(i+1,parameters.get(i));
-                }
             }
             pstm.executeUpdate();
             return getById(promoCodeDto.getId());

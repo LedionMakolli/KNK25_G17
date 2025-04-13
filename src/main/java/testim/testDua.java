@@ -46,20 +46,21 @@ public class testDua {
 
 
            PromoCodeRepository promoCodeRepository = new PromoCodeRepository();
-           PromoCode promo= promoCodeRepository.getById(1);
+//           PromoCode promo= promoCodeRepository.getById(1);
 
-           LocalDate dataSkadimit = LocalDate.of(2025, 4, 12);
-           LocalDate dataSkadimit2 = LocalDate.of(2025, 5, 12);
+           Date dataSkadimit = Date.valueOf("2025-04-12");
+           Date dataSkadimit2 = Date.valueOf("2024-05-12");
 
            CreatePromoCodeDto dto = new CreatePromoCodeDto("6TC7BOSEU5",10, dataSkadimit, false );
            PromoCode newPromoCode = promoCodeRepository.create(dto);
            newPromoCode.printPromoCode();
 
-           // Përditësimi vetëm i "zbritjes"
-           UpdatePromoCodeDto updateDto = new UpdatePromoCodeDto(11, null, 15.0, null, null);
+          System.out.println("-----------------------------------------");
+           UpdatePromoCodeDto updateDto = new UpdatePromoCodeDto(newPromoCode.getId(), null, 10, dataSkadimit2, true);
            PromoCode updatedPromoCode = promoCodeRepository.update(updateDto);
 
            if (updatedPromoCode != null) {
+               System.out.println("Update");
                updatedPromoCode.printPromoCode();  // Printo informacionin e përditësuar
            } else {
                System.out.println("Përditësimi dështoi.");

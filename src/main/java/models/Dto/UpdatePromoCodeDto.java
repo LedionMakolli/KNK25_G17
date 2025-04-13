@@ -1,15 +1,16 @@
 package models.Dto;
 
-import java.time.LocalDate;
+
+import java.sql.Date;
 
 public class UpdatePromoCodeDto {
     private int id;
     private String kodi;
     private double zbritja;
-    private LocalDate dataSkadimit;
+    private Date dataSkadimit;
     private Boolean aktiv;
 
-    public UpdatePromoCodeDto(int id, String kodi, double zbritja,LocalDate dataSkadimit, Boolean aktiv){
+    public UpdatePromoCodeDto(int id, String kodi, double zbritja,Date dataSkadimit, Boolean aktiv){
         this.id=id;
         this.kodi=kodi;
         this.zbritja=zbritja;
@@ -20,10 +21,10 @@ public class UpdatePromoCodeDto {
 public int getId(){
         return id;
 }
-public LocalDate getDataSkadimit(){
+public Date getDataSkadimit(){
         return dataSkadimit;
 }
-public void setDataSkadimit(LocalDate dataSkadimit){
+public void setDataSkadimit(Date dataSkadimit){
         this.dataSkadimit=dataSkadimit;
 }
 public Boolean isAktiv(){

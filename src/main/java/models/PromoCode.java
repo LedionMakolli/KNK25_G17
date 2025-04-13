@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -8,10 +9,10 @@ public class PromoCode {
     private int id;
     private String kodi;
     private double zbritja;
-    private LocalDate dataSkadimit;
+    private Date dataSkadimit;
     private Boolean aktiv;
 
-    private PromoCode(int id,String kodi, double zbritja, LocalDate dataSkadimit, Boolean aktiv){
+    private PromoCode(int id,String kodi, double zbritja, Date dataSkadimit, Boolean aktiv){
         this.id=id;
         this.kodi=kodi;
         this.zbritja=zbritja;
@@ -22,7 +23,7 @@ public class PromoCode {
         int id=resultSet.getInt("id");
         String kodi=resultSet.getString("kodi");
         double zbritja = resultSet.getDouble("zbritja");
-        LocalDate dataSkadimit= resultSet.getDate("dataSkadimit").toLocalDate();
+        Date dataSkadimit= resultSet.getDate("dataSkadimit");
         Boolean aktiv = resultSet.getBoolean("aktiv");
 
         return new PromoCode(id, kodi, zbritja, dataSkadimit, aktiv);
@@ -36,7 +37,7 @@ public class PromoCode {
     public double getZbritja(){
         return zbritja;
     }
-    public LocalDate getDataSkadimit(){
+    public Date getDataSkadimit(){
         return dataSkadimit;
     }
     public Boolean getAktiv(){
