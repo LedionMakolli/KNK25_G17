@@ -93,26 +93,26 @@ CREATE TABLE Sigurimi (
     kosto DECIMAL(10,2) NOT NULL
 );
 
-// -----   Ofertat    ----
+// -----   Offers    ----
 
-CREATE TABLE Ofertat (
+CREATE TABLE offers (
     id SERIAL PRIMARY KEY,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
-    zbritja DECIMAL(10,2) NOT NULL,
-    dataFillimit DATE NOT NULL,
-    dataMbarimit DATE NOT NULL
+    carId INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    discount DECIMAL(10,2) NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL
     CHECK (dataMbarimit >= dataFillimit)
 );
 
-// -----   Vleresimet    ----
+// -----   Reviews    ----
 
-CREATE TABLE Vleresimet (
+CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    idKlienti INT REFERENCES Klientet(id) ON DELETE CASCADE,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    clientId INT REFERENCES Klientet(id) ON DELETE CASCADE,
+    carId INT REFERENCES Veturat(id) ON DELETE CASCADE,
     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
     text TEXT,
-    data TIMESTAMP NOT NULL
+    date TIMESTAMP NOT NULL
 );
 
 

@@ -35,8 +35,8 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, offersDto.getCarId());
             pstm.setDouble(2, offersDto.getDiscount());
-//            pstm.setDate(3, offersDto.getStartDate());
-//            pstm.setDate(4, offersDto.getEndDate());  // ki error e bana koment deri te ndreqsh
+            pstm.setDate(3, offersDto.getStartDate());
+            pstm.setDate(4, offersDto.getEndDate());
             pstm.execute();
             ResultSet rs = pstm.getGeneratedKeys();
             if (rs.next()) {
@@ -55,7 +55,7 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
         boolean hasUpdates = false;
 
         if (offersDto.getCarId() != null) {
-            query.append("carid = ?, ");
+            query.append("carId = ?, ");
             params.add(offersDto.getCarId());
             hasUpdates = true;
         }
@@ -65,12 +65,12 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
             hasUpdates = true;
         }
         if (offersDto.getStartDate() != null) {
-            query.append("startdate = ?, ");
+            query.append("startDate = ?, ");
             params.add(offersDto.getStartDate());
             hasUpdates = true;
         }
         if (offersDto.getEndDate() != null) {
-            query.append("enddate = ?");
+            query.append("endDate = ?");
             params.add(offersDto.getEndDate());
             hasUpdates = true;
         }

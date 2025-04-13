@@ -21,10 +21,10 @@ public class Offers {
 
     public static Offers getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        int carId = resultSet.getInt("idCar");
+        int carId = resultSet.getInt("carId");
         double discount = resultSet.getDouble("discount");
-        Date startDate = resultSet.getDate("startdate");
-        Date endDate = resultSet.getDate("enddate");
+        Date startDate = resultSet.getDate("startDate");
+        Date endDate = resultSet.getDate("endDate");
 
         return new Offers(id, carId, discount, startDate, endDate);
     }

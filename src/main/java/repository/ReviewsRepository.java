@@ -57,12 +57,12 @@ public class ReviewsRepository extends BaseRepository<Reviews, CreateReviewsDto,
         boolean hasUpdates = false;
 
         if (reviewDto.getClientId() != null) {
-            query.append("clientid = ?, ");
+            query.append("clientId = ?, ");
             params.add(reviewDto.getClientId());
             hasUpdates = true;
         }
         if (reviewDto.getCarId() != null) {
-            query.append("carid = ?, ");
+            query.append("carId = ?, ");
             params.add(reviewDto.getCarId());
             hasUpdates = true;
         }
