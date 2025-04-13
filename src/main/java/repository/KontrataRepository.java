@@ -60,7 +60,7 @@ public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataD
             hasUpdate = true;
         }
         if (KontrataDto.getPagesa() != null){
-            query.append("pagesa = CAST(? AS Pagesa), ");
+            query.append("pagesa = CAST(? AS PagesaEnum), ");
             parametrat.add(KontrataDto.getPagesa().name());
             hasUpdate = true;
         }

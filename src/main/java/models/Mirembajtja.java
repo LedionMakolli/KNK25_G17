@@ -28,8 +28,8 @@ public class Mirembajtja {
         this.idStafi = idStafi;
     }
 
-    public static Mirembajtja getMirembajtjaById(ResultSet resultSet) throws SQLException {
-        int idMirembajtja = resultSet.getInt("idMirembajtja");
+    public static Mirembajtja getInstance(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
         int idVetura = resultSet.getInt("idVetura");
         String pershkrimi = resultSet.getString("pershkrimi");
         Date dataFillimit = resultSet.getDate("dataFillimit");
@@ -37,7 +37,7 @@ public class Mirembajtja {
         BigDecimal kosto = resultSet.getBigDecimal("kosto");
         StatusiMirembatjaEnum mirembajtja = StatusiMirembatjaEnum.valueOf(resultSet.getString("statusi"));
         Integer idStafi = resultSet.getInt("idStafi");
-        return new Mirembajtja(idMirembajtja,idVetura,pershkrimi,dataFillimit,dataMbarimit,kosto,mirembajtja,idStafi); // edhe dy ke me i shtu
+        return new Mirembajtja(id,idVetura,pershkrimi,dataFillimit,dataMbarimit,kosto,mirembajtja,idStafi); // edhe dy ke me i shtu
     }
 
     public int getId() {

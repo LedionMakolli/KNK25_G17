@@ -1,18 +1,23 @@
 package models.Dto;
 
-public class UpdateUserDto {
+abstract class UpdateUserDto {
     private int id;
+    private int age;
     private String email;
     private String password;
-    private String nrTelefonit;
+    private String telephoneNumber;
 
-    public UpdateUserDto(int id, String email, String password, String nrTelefonit) {
+    public UpdateUserDto(int id, int age, String email, String password, String telephoneNumber) {
         this.id=id;
+        this.age=age;
         this.email = email;
         this.password = password;
-        this.nrTelefonit=nrTelefonit;
+        this.telephoneNumber=telephoneNumber;
     }
 
+    public void setAge(int age) {
+        this.age=age;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
@@ -21,12 +26,18 @@ public class UpdateUserDto {
         this.password = password;
     }
 
-    public void setNrTelefonit(String nrTelefonit) {
-        this.nrTelefonit = nrTelefonit;
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
     }
+
     public int getId() {
         return id;
     }
+
+    public int getAge() {
+        return age;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -35,7 +46,7 @@ public class UpdateUserDto {
         return password;
     }
 
-    public String getNrTelefonit() {
-        return nrTelefonit;
+    public String getTelephoneNumber() {
+        return telephoneNumber;
     }
 }

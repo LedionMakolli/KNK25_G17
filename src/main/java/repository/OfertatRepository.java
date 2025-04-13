@@ -3,7 +3,6 @@ package repository;
 import models.Dto.CreateOfertatDto;
 import models.Dto.UpdateOfertatDto;
 import models.Ofertat;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,8 +34,8 @@ public class OfertatRepository extends BaseRepository<Ofertat, CreateOfertatDto,
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, ofertatDto.getIdVetura());
             pstm.setDouble(2, ofertatDto.getZbritja());
-            pstm.setDate(3, ofertatDto.getDataFillimit());
-            pstm.setDate(4, ofertatDto.getDataMbarimit());
+//            pstm.setDate(3, ofertatDto.getDataFillimit());
+//            pstm.setDate(4, ofertatDto.getDataMbarimit());  ki error e bana koment deri te ndreqsh
             pstm.execute();
             ResultSet rs = pstm.getGeneratedKeys();
             if(rs.next()) {

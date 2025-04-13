@@ -16,14 +16,13 @@ public class UpdateMirembajtjaDto {
     private Integer idStafi;
 
 
-    public UpdateMirembajtjaDto(int id, String pershkrimi, Date dataFillimit, Date dataMbarimit, BigDecimal kosto, StatusiMirembatjaEnum statusi, Integer idStafi) {
+    public UpdateMirembajtjaDto(int id, String pershkrimi, Date dataFillimit, Date dataMbarimit, BigDecimal kosto, StatusiMirembatjaEnum statusi) {
         this.id = id;
         this.pershkrimi = pershkrimi;
         this.dataFillimit = dataFillimit;
         this.dataMbarimit = dataMbarimit;
         this.kosto = kosto;
         this.statusi = statusi;
-        this.idStafi = idStafi;
     }
 
     public int getId() {
