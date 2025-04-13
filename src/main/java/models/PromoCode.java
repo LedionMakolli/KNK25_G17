@@ -1,53 +1,61 @@
 package models;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class PromoCode {
     private int id;
-    private String kodi;
-    private double zbritja;
-    private LocalDate dataSkadimit;
-    private Boolean aktiv;
+    private String code;
+    private double discount;
+    private Date expiryDate;
+    private Boolean active;
 
-    private PromoCode(int id,String kodi, double zbritja, LocalDate dataSkadimit, Boolean aktiv){
+    private PromoCode(int id,String code, double discount, Date expiryDate, Boolean active){
         this.id=id;
-        this.kodi=kodi;
-        this.zbritja=zbritja;
-        this.dataSkadimit=dataSkadimit;
-        this.aktiv=aktiv;
+        this.code=code;
+        this.discount=discount;
+        this.expiryDate=expiryDate;
+        this.active=active;
     }
     public static PromoCode getInstance(ResultSet resultSet) throws SQLException{
         int id=resultSet.getInt("id");
-        String kodi=resultSet.getString("kodi");
-        double zbritja = resultSet.getDouble("zbritja");
-        LocalDate dataSkadimit= resultSet.getDate("dataSkadimit").toLocalDate();
-        Boolean aktiv = resultSet.getBoolean("aktiv");
+        String code=resultSet.getString("code");
+        double discount = resultSet.getDouble("discount");
+        Date expiryDate= resultSet.getDate("expiryDate");
+        Boolean active = resultSet.getBoolean("active");
 
-        return new PromoCode(id, kodi, zbritja, dataSkadimit, aktiv);
+        return new PromoCode(id, code, discount, expiryDate, active);
     }
-    public int getId(){
+    public int getId() {
         return id;
     }
-    public String getKodi(){
-        return kodi;
+
+    public String getCode() {
+        return code;
     }
-    public double getZbritja(){
-        return zbritja;
+
+    public double getDiscount() {
+        return discount;
     }
-    public LocalDate getDataSkadimit(){
-        return dataSkadimit;
+
+    public Date getExpiryDate() {
+        return expiryDate;
     }
-    public Boolean getAktiv(){
-        return aktiv;
+
+    public Boolean getActive() {
+        return active;
     }
+
     public void printPromoCode(){
         System.out.println("Te dhenat per PromoCode");
         System.out.println("ID: " + getId());
-        System.out.println("Kodi: " + getKodi());
-        System.out.println("Zbritja:" + getZbritja());
-        System.out.println("Data e skadimit: " + getDataSkadimit());
-        System.out.println("Aktiv: " + getAktiv());
+        System.out.println("Kodi: " + getCode());
+        System.out.println("Zbritja:" + getDiscount());
+        System.out.println("Data e skadimit: " + getExpiryDate());
+        System.out.println("Aktiv: " + getActive());
     }
 }
+
+

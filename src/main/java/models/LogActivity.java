@@ -1,11 +1,7 @@
 package models;
 
-import models.enums.KarburantiEnum;
-import models.enums.StatusiMirembatjaEnum;
 import models.enums.VeprimetEnum;
 
-import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -27,7 +23,7 @@ public class LogActivity {
     }
 
 
-    public static LogActivity getLogActivityById(ResultSet resultSet) throws SQLException {
+    public static LogActivity getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
 
         Integer idUser = resultSet.getObject("idUser", Integer.class);
