@@ -63,13 +63,13 @@ CREATE TABLE Cars (
 // -----   REZERVIMET    ----
 CREATE TABLE Rezervimet (
     id SERIAL PRIMARY KEY,
-    idKlienti INT REFERENCES Klientet(id) ON DELETE CASCADE,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
-    dataFillimit DATE NOT NULL,
-    dataMbarimit DATE NOT NULL,
-    statusiRezervimet Statusi_Rezervimet NOT NULL DEFAULT 'REZERVIMI_AKTIV',
+    idClient INT REFERENCES Clients(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Cars(id) ON DELETE CASCADE,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    reservationStatus ReservationStatusEnum NOT NULL DEFAULT 'ACTIVE_STATUS',
     createdAt TIMESTAMP DEFAULT NOW(),
-    CHECK (dataFillimit < dataMbarimit)
+    CHECK (startDate < endDate)
 );
 
 // -----   Kontrata    ----

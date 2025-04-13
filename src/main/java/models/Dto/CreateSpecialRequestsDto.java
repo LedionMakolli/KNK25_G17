@@ -1,11 +1,11 @@
 package models.Dto;
 
-public class CreateKerkesatSpecialeDto {
+public class CreateSpecialRequestsDto {
     private int idRezervimet;
     private String kerkese;
     private Boolean plotesuar;
 
-    public CreateKerkesatSpecialeDto(int idRezervimet, String kerkese, boolean plotesuar){
+    public CreateSpecialRequestsDto(int idRezervimet, String kerkese, boolean plotesuar){
         this.idRezervimet=idRezervimet;
         this.kerkese=kerkese;
         this.plotesuar=plotesuar;

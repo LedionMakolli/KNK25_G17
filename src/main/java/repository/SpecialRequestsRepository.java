@@ -1,8 +1,8 @@
 package repository;
 
-import models.Dto.CreateKerkesatSpecialeDto;
-import models.Dto.UpdateKerkesatSpecialeDto;
-import models.KerkesaSpeciale;
+import models.Dto.CreateSpecialRequestsDto;
+import models.Dto.UpdateSpecialRequestsDto;
+import models.SpecialRequests;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,21 +11,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KerkesaSpecialeRepository extends BaseRepository<KerkesaSpeciale, CreateKerkesatSpecialeDto, UpdateKerkesatSpecialeDto> {
-    public KerkesaSpecialeRepository() throws SQLException{
+public class SpecialRequestsRepository extends BaseRepository<SpecialRequests, CreateSpecialRequestsDto, UpdateSpecialRequestsDto> {
+    public SpecialRequestsRepository() throws SQLException{
         super("kerkesaspeciale");
     }
 
-    public KerkesaSpeciale fromResultSet(ResultSet rs){
+    public SpecialRequests fromResultSet(ResultSet rs){
         try{
-            return KerkesaSpeciale.getInstance(rs);
+            return SpecialRequests.getInstance(rs);
         }catch(SQLException e){
             e.printStackTrace();
             return null;
         }
     }
 
-    public KerkesaSpeciale create(CreateKerkesatSpecialeDto kerkesatSpecialeDto){
+    public SpecialRequests create(CreateSpecialRequestsDto kerkesatSpecialeDto){
         String query= """
                 INSERT INTO KERKESASPECIALE (idRezervimet, kerkese, plotesuar) VALUES (?,?,?)""";
 
@@ -47,7 +47,7 @@ public class KerkesaSpecialeRepository extends BaseRepository<KerkesaSpeciale, C
     }
 
 
-    public KerkesaSpeciale update(UpdateKerkesatSpecialeDto kerkesatSpecialeDto) {
+    public SpecialRequests update(UpdateSpecialRequestsDto kerkesatSpecialeDto) {
         StringBuilder query = new StringBuilder("UPDATE KerkesaSpeciale SET ");
         List<Object> parameters = new ArrayList<>();
         boolean hasUpdates = false;

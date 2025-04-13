@@ -1,7 +1,6 @@
 package repository;
 
 import models.Dto.*;
-import models.KerkesaSpeciale;
 import models.PromoCode;
 
 import java.sql.PreparedStatement;
@@ -10,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCodeDto, UpdatePromoCodeDto>{
     public PromoCodeRepository() throws SQLException{

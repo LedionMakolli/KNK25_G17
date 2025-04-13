@@ -1,18 +1,5 @@
 package testim;
 
-import models.Dto.*;
-import models.KerkesaSpeciale;
-import models.PromoCode;
-import models.Rezervimet;
-import models.enums.StatusiRezervimetEnum;
-import repository.KerkesaSpecialeRepository;
-import repository.PromoCodeRepository;
-import repository.RezervimetRepository;
-
-import java.sql.Date;
-import java.sql.SQLException;
-import java.time.LocalDate;
-
 public class testDua {
     public static void main(String[] args) {
 

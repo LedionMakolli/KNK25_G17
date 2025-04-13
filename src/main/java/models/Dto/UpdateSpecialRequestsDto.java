@@ -1,18 +1,18 @@
 package models.Dto;
 
-public class UpdateKerkesatSpecialeDto {
+public class UpdateSpecialRequestsDto {
     private int id;
     private int idRezervimet;
     private String kerkese;
     private Boolean plotesuar;
 
-    public UpdateKerkesatSpecialeDto(int id, int idRezervimet, String kerkese, Boolean plotesuar){
+    public UpdateSpecialRequestsDto(int id, int idRezervimet, String kerkese, Boolean plotesuar){
         this.id=id;
         this.idRezervimet=idRezervimet;
         this.kerkese=kerkese;
         this.plotesuar=plotesuar;
     }
-  public UpdateKerkesatSpecialeDto(){}
+  public UpdateSpecialRequestsDto(){}
 
     public int getId(){
         return id;
