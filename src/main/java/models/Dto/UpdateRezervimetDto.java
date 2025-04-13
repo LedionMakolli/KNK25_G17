@@ -11,7 +11,8 @@ public class UpdateRezervimetDto {
     private Date dataMbarimit;
     private StatusiRezervimetEnum statusiRezervimet;
 
-    public UpdateRezervimetDto( int idVetura, Date dataFillimit, Date dataMbarimit, StatusiRezervimetEnum statusiRezervimet){
+    public UpdateRezervimetDto(int id,  int idVetura, Date dataFillimit, Date dataMbarimit, StatusiRezervimetEnum statusiRezervimet){
+        this.id=id;
         this.idVetura = idVetura;
         this.dataFillimit = dataFillimit;
         this.dataMbarimit= dataMbarimit;

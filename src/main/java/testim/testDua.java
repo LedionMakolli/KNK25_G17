@@ -16,27 +16,37 @@ import java.time.LocalDate;
 
 public class testDua {
     public static void main(String[] args) {
-        Date data_fillimit1 = Date.valueOf("2025-04-01");
-        Date data_mbarimit1 = Date.valueOf("2025-04-07");
-        Date data_fillimit2 = Date.valueOf("2025-05-05");
-        Date data_mbarimit2 = Date.valueOf("2025-05-10");
-//
+
+
+
         try {
             RezervimetRepository rezervimetRepository = new RezervimetRepository();
-            Rezervimet rezervimet = rezervimetRepository.getById(101);
-            System.out.println("Rezervimet id: " + rezervimet.getId());
+            Date data_fillimit1 = Date.valueOf("2025-04-01");
+            Date data_mbarimit1 = Date.valueOf("2025-04-07");
+//            Rezervimet rezervimet = rezervimetRepository.getById(101);
+//            System.out.println("Rezervimet id: " + rezervimet.getId());
+
+
 
             CreateRezervimetDto dto = new CreateRezervimetDto(55, 4, data_fillimit1, data_mbarimit1, StatusiRezervimetEnum.REZERVIMI_AKTIV);
             Rezervimet newRezervimet = rezervimetRepository.create(dto);
             newRezervimet.printoTeDhenatRezervimet();
 
-            UpdateRezervimetDto updateRezervimetDto = new UpdateRezervimetDto(3, data_fillimit2, data_mbarimit2, StatusiRezervimetEnum.REZERVIMI_ANULUAR);
-            newRezervimet = rezervimetRepository.update(updateRezervimetDto);
-            newRezervimet.printoTeDhenatRezervimet();
+            Date data_fillimit2 = Date.valueOf("2025-05-05");
+            Date data_mbarimit2 = Date.valueOf("2025-05-10");
 
-            if (rezervimetRepository.delete(newRezervimet.getId())) {
-                System.out.println("rezervimet eshte fshire");
-           }
+            UpdateRezervimetDto updateRezervimetDto = new UpdateRezervimetDto(newRezervimet.getId(),3,  data_fillimit2, data_mbarimit2, StatusiRezervimetEnum.REZERVIMI_ANULUAR);
+         Rezervimet updatedRezervimi = rezervimetRepository.update(updateRezervimetDto);
+            if (updatedRezervimi != null) {
+                System.out.println("🔁 Rezervimi u përditësua:");
+                updatedRezervimi.printoTeDhenatRezervimet();
+            } else {
+                System.out.println("❌ Dështoi përditësimi.");
+            }
+
+//            if (rezervimetRepository.delete(newRezervimet.getId())) {
+//                System.out.println("rezervimet eshte fshire");
+//           }
 
 //           PromoCodeRepository promoCodeRepository = new PromoCodeRepository();
 //           PromoCode promo= promoCodeRepository.getById(1);
