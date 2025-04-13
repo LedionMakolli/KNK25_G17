@@ -4,38 +4,46 @@ package models.Dto;
 import java.sql.Date;
 
 public class CreatePromoCodeDto {
-    private String kodi;
-    private double zbritja;
-    private Date dataSkadimit;
-    private Boolean aktiv;
-    public CreatePromoCodeDto(String kodi, double zbritja, Date dataSkadimit, Boolean aktiv){
-        this.kodi=kodi;
-        this.zbritja=zbritja;
-        this.dataSkadimit=dataSkadimit;
-        this.aktiv=aktiv;
+    private String code;
+    private double discount;
+    private Date expiryDate;
+    private Boolean active;
+    public CreatePromoCodeDto(String code, double discount, Date expiryDate, Boolean active){
+        this.code=code;
+        this.discount=discount;
+        this.expiryDate=expiryDate;
+        this.active=active;
     }
-    public String getKodi(){
-        return kodi;
+
+    public String getCode() {
+        return code;
     }
-    public void setKodi(String kodi){
-        this.kodi=kodi;
+
+    public void setCode(String code) {
+        this.code = code;
     }
-    public double getZbritja(){
-        return zbritja;
+
+    public double getDiscount() {
+        return discount;
     }
-    public void setZbritja(double zbritja){
-        this.zbritja=zbritja;
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
-    public Date getDataSkadimit(){
-        return dataSkadimit;
+
+    public Date getExpiryDate() {
+        return expiryDate;
     }
-    public void setDataSkadimit(Date dataSkadimit){
-        this.dataSkadimit= dataSkadimit;
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
     }
-    public Boolean isAktiv(){
-        return aktiv;
+
+    public Boolean isActive() {
+        return active;
     }
-    public void setAktiv(Boolean aktiv){
-        this.aktiv=aktiv;
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

@@ -27,14 +27,14 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
 
     public PromoCode create(CreatePromoCodeDto promoCodeDto){
         String query= """
-                INSERT INTO PROMOCODE (kodi, zbritja, dataSkadimit, aktiv) VALUES(?,?,?,?)""";
+                INSERT INTO PROMOCODE (code, discount, expiryDate, active) VALUES(?,?,?,?)""";
 
         try{
             PreparedStatement pstm= connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setString(1, promoCodeDto.getKodi());
-            pstm.setDouble(2, promoCodeDto.getZbritja());
-            pstm.setDate(3, promoCodeDto.getDataSkadimit());
-            pstm.setBoolean(4, promoCodeDto.isAktiv());
+            pstm.setString(1, promoCodeDto.getCode());
+            pstm.setDouble(2, promoCodeDto.getDiscount());
+            pstm.setDate(3, promoCodeDto.getExpiryDate());
+            pstm.setBoolean(4, promoCodeDto.isActive());
             pstm.execute();
             ResultSet rs = pstm.getGeneratedKeys();
             if(rs.next()){
@@ -52,14 +52,14 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
         List<Object> parameters = new ArrayList<>();
         boolean hasUpdates = false;
 
-        if (promoCodeDto.getDataSkadimit() != null) {
+        if (promoCodeDto.getExpiryDate() != null) {
             query.append("dataSkadimit = ?, ");
-            parameters.add(promoCodeDto.getDataSkadimit());
+            parameters.add(promoCodeDto.getExpiryDate());
             hasUpdates = true;
         }
-        if (promoCodeDto.isAktiv() != null) {
+        if (promoCodeDto.isActive() != null) {
             query.append("aktiv = ?, ");
-            parameters.add(promoCodeDto.isAktiv());
+            parameters.add(promoCodeDto.isActive());
             hasUpdates = true;
         }
         if(!hasUpdates){
