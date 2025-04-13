@@ -51,7 +51,7 @@ public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezer
  }
  //4. Metoda update
     public Rezervimet update(UpdateRezervimetDto rezervimetDto) {
-        StringBuilder query = new StringBuilder("UPDATE REZERVIMET SET");
+        StringBuilder query = new StringBuilder("UPDATE Rezervimet SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
 
@@ -74,7 +74,7 @@ public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezer
         }
 
         if (rezervimetDto.getStatusiRezervimet() != null) {
-            query.append("statusiRezervimet = ?,");
+            query.append("statusiRezervimet = CAST(? AS StatusiRezervimetEnum), ");
             parametrat.add(rezervimetDto.getStatusiRezervimet().name());
             hasUpdates = true;
         }
@@ -86,17 +86,21 @@ public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezer
         parametrat.add(rezervimetDto.getId());
 
         try {
-            PreparedStatement pstm = connection.prepareStatement(query.toString());
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
             for (int i = 0; i < parametrat.size(); i++) {
-                pstm.setObject(i + 1, parametrat.get(i), Types.OTHER);
+                if (parametrat.get(i) instanceof String && i == parametrat.size() - 1) {
+                    pstm.setObject(i + 1, parametrat.get(i), Types.OTHER);
+                } else {
+                    pstm.setObject(i + 1, parametrat.get(i));
+                }
             }
             pstm.executeUpdate();
             return getById(rezervimetDto.getId());
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjate perditesimit", e);
+         e.printStackTrace();
         }
-
-    }}
+return null;
+    } }
 
 
 
