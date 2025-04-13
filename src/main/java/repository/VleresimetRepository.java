@@ -95,11 +95,5 @@ public class VleresimetRepository extends BaseRepository<Vleresimet, CreateVlere
             return null;
         }
 
-
-
-
-
-
-
     }
 }
