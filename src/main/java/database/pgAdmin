@@ -157,3 +157,11 @@ CREATE TABLE Dokumentet (
         dataUpload DATE NOT NULL
 );
 
+//----KerkesaSpeciale----
+ CREATE TABLE KerkesaSpeciale (
+     id SERIAL PRIMARY KEY,
+     idRezervimet INT NOT NULL REFERENCES Rezervimet(id) ON DELETE CASCADE,
+     kerkese TEXT NOT NULL,
+     plotesuar BOOLEAN DEFAULT FALSE
+ );
+

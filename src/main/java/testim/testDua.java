@@ -17,8 +17,8 @@ public class testDua {
     public static void main(String[] args) {
 
 
-
-        try {
+//
+//        try {
 //            RezervimetRepository rezervimetRepository = new RezervimetRepository();
 //            Date data_fillimit1 = Date.valueOf("2025-04-01");
 //            Date data_mbarimit1 = Date.valueOf("2025-04-07");
@@ -65,27 +65,27 @@ public class testDua {
 //               System.out.println("Përditësimi dështoi.");
 //           }
 
-            KerkesaSpecialeRepository kerkesaSpecialeRep=new KerkesaSpecialeRepository();
+//            KerkesaSpecialeRepository kerkesaSpecialeRep=new KerkesaSpecialeRepository();
 //            KerkesaSpeciale ks = kerkesaSpecialeRep.getById(2);
 //            System.out.println("KerkesaSpeciale id: " + ks.getId());
 
-            CreateKerkesatSpecialeDto createKerkesatSpecialeDto = new CreateKerkesatSpecialeDto(100, "Nje kerkse", false);
-            KerkesaSpeciale newks = kerkesaSpecialeRep.create(createKerkesatSpecialeDto);
-            newks.printoTeDhenatKerkesaSpeciale();
-
-            UpdateKerkesatSpecialeDto updateDto = new UpdateKerkesatSpecialeDto(newks.getId(), 101, "Ndrro kerkesen", true);
-            KerkesaSpeciale updatedks = kerkesaSpecialeRep.update(updateDto);
-            System.out.println("--------------------------------------------------------");
-            if(updatedks != null){
-                System.out.println("Update");
-                updatedks.printoTeDhenatKerkesaSpeciale();
-            }else {
-                System.out.println("No update");
-            }
-
-            }catch(SQLException e){
-                e.printStackTrace();
-            }
+//            CreateKerkesatSpecialeDto createKerkesatSpecialeDto = new CreateKerkesatSpecialeDto(100, "Nje kerkse", false);
+//            KerkesaSpeciale newks = kerkesaSpecialeRep.create(createKerkesatSpecialeDto);
+//            newks.printoTeDhenatKerkesaSpeciale();
+//
+//            UpdateKerkesatSpecialeDto updateDto = new UpdateKerkesatSpecialeDto(newks.getId(), 101, "Ndrro kerkesen", true);
+//            KerkesaSpeciale updatedks = kerkesaSpecialeRep.update(updateDto);
+//            System.out.println("--------------------------------------------------------");
+//            if(updatedks != null){
+//                System.out.println("Update");
+//                updatedks.printoTeDhenatKerkesaSpeciale();
+//            }else {
+//                System.out.println("No update");
+//            }
+////
+//            }catch(SQLException e){
+//                e.printStackTrace();
+//            }
         }
     }
 
