@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, UpdateOffersDto> {
-    public OfferRepository() throws SQLException {
+    public OffersRepository() throws SQLException {
         super("offers");
     }
 
@@ -28,7 +28,7 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
 
     public Offers create(CreateOffersDto offersDto) {
         String query = """
-                INSERT INTO OFFERS (CARID, DISCOUNT, STARTDATE, ENDDATE)
+                INSERT INTO offers (carid, discount, startdate, enddate)
                 VALUES (?, ?, ?, ?)
                 """;
         try {
@@ -50,27 +50,27 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
     }
 
     public Offers update(UpdateOffersDto offersDto) {
-        StringBuilder query = new StringBuilder("UPDATE OFFERS SET ");
+        StringBuilder query = new StringBuilder("UPDATE offers SET ");
         List<Object> params = new ArrayList<>();
         boolean hasUpdates = false;
 
         if (offersDto.getCarId() != null) {
-            query.append("CARID = ?, ");
+            query.append("carid = ?, ");
             params.add(offersDto.getCarId());
             hasUpdates = true;
         }
         if (offersDto.getDiscount() != null) {
-            query.append("DISCOUNT = ?, ");
+            query.append("discount = ?, ");
             params.add(offersDto.getDiscount());
             hasUpdates = true;
         }
         if (offersDto.getStartDate() != null) {
-            query.append("STARTDATE = ?, ");
+            query.append("startdate = ?, ");
             params.add(offersDto.getStartDate());
             hasUpdates = true;
         }
         if (offersDto.getEndDate() != null) {
-            query.append("ENDDATE = ?");
+            query.append("enddate = ?");
             params.add(offersDto.getEndDate());
             hasUpdates = true;
         }
@@ -80,7 +80,7 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
         }
 
         query.setLength(query.length() - 2);
-        query.append(" WHERE ID = ?");
+        query.append(" WHERE id = ?");
         params.add(offersDto.getId());
 
         try {
