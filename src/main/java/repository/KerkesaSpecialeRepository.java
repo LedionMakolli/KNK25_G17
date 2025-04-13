@@ -15,7 +15,7 @@ public class KerkesaSpecialeRepository extends BaseRepository<KerkesaSpeciale, C
     public KerkesaSpecialeRepository() throws SQLException{
         super("kerkesaspeciale");
     }
-    @Override
+
     public KerkesaSpeciale fromResultSet(ResultSet rs){
         try{
             return KerkesaSpeciale.getInstance(rs);
@@ -48,22 +48,22 @@ public class KerkesaSpecialeRepository extends BaseRepository<KerkesaSpeciale, C
 
 
     public KerkesaSpeciale update(UpdateKerkesatSpecialeDto kerkesatSpecialeDto) {
-        StringBuilder query = new StringBuilder("UPDATE KERKESASPECIALE SET");
+        StringBuilder query = new StringBuilder("UPDATE KerkesaSpeciale SET ");
         List<Object> parameters = new ArrayList<>();
         boolean hasUpdates = false;
 
         if (kerkesatSpecialeDto.getIdRezervimet() > 0) {
-            query.append("idRezervimet=?");
+            query.append("idRezervimet=?, ");
             parameters.add(kerkesatSpecialeDto.getIdRezervimet());
             hasUpdates = true;
         }
         if (kerkesatSpecialeDto.getKerkese() != null) {
-            query.append("kerkese=?");
+            query.append("kerkese=?, ");
             parameters.add(kerkesatSpecialeDto.getKerkese());
             hasUpdates = true;
         }
         if (kerkesatSpecialeDto.isPlotesuar() != null) {
-            query.append("plotesuar=?");
+            query.append("plotesuar=?, ");
             parameters.add(kerkesatSpecialeDto.isPlotesuar());
             hasUpdates = true;
         }
@@ -72,7 +72,7 @@ public class KerkesaSpecialeRepository extends BaseRepository<KerkesaSpeciale, C
 
         }
         query.setLength(query.length() - 2);
-        query.append("where id = ?");
+        query.append(" where id = ?");
         parameters.add(kerkesatSpecialeDto.getId());
 
         try {
@@ -83,8 +83,9 @@ public class KerkesaSpecialeRepository extends BaseRepository<KerkesaSpeciale, C
             pstm.executeUpdate();
             return getById(kerkesatSpecialeDto.getId());
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjate perditesimit", e);
+            e.printStackTrace();
         }
+        return null;
     }
 
 }

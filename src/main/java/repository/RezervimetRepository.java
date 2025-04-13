@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RezervimetRepository extends BaseRepository<Rezervimet, CreateRezervimetDto, UpdateRezervimetDto> {
-
-
     public RezervimetRepository() throws SQLException {
         super("rezervimet");
     }
