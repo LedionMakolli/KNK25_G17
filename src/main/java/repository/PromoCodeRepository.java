@@ -50,7 +50,7 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
 
 
     public PromoCode update(UpdatePromoCodeDto promoCodeDto) {
-        StringBuilder query = new StringBuilder("UPDATE PROMOCODE SET");
+        StringBuilder query = new StringBuilder("UPDATE PROMOCODE SET ");
         List<Object> parameters = new ArrayList<>();
         boolean hasUpdates = false;
 
@@ -72,13 +72,17 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
         try {
             PreparedStatement pstm = connection.prepareStatement(query.toString());
             for (int i = 0; i < parameters.size(); i++) {
-                pstm.setObject(i + 1, parameters.get(i));
+                if (parameters.get(i) instanceof String && i == parameters.size() - 1) {
+                    pstm.setObject(i + 1, parameters.get(i));
+                }else{
+                    pstm.setObject(i+1,parameters.get(i));
+                }
             }
             pstm.executeUpdate();
             return getById(promoCodeDto.getId());
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjate perditesimit", e);
+           e.printStackTrace();
         }
-
+return null;
     }
 }
