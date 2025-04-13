@@ -60,8 +60,8 @@ CREATE TABLE Cars (
     transmissionType TransmissionType NOT NULL
 );
 
-// -----   REZERVIMET    ----
-CREATE TABLE Rezervimet (
+// -----   RESERVATIONS    ----
+CREATE TABLE Reservations (
     id SERIAL PRIMARY KEY,
     idClient INT REFERENCES Clients(id) ON DELETE CASCADE,
     idCar INT REFERENCES Cars(id) ON DELETE CASCADE,
@@ -157,11 +157,11 @@ CREATE TABLE Dokumentet (
         dataUpload DATE NOT NULL
 );
 
-//----KerkesaSpeciale----
- CREATE TABLE KerkesaSpeciale (
+//----SpecialRequests----
+ CREATE TABLE SpecialRequests (
      id SERIAL PRIMARY KEY,
-     idRezervimet INT NOT NULL REFERENCES Rezervimet(id) ON DELETE CASCADE,
-     kerkese TEXT NOT NULL,
-     plotesuar BOOLEAN DEFAULT FALSE
+     idReservation INT NOT NULL REFERENCES Reservations(id) ON DELETE CASCADE,
+     request TEXT NOT NULL,
+     completed BOOLEAN DEFAULT FALSE
  );
 

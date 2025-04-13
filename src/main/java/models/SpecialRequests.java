@@ -5,41 +5,45 @@ import java.sql.SQLException;
 
 public class SpecialRequests {
     private int id;
-    private int idRezervimet;
-    private String kerkese;
-    private Boolean plotesuar;
+    private int idReservation;
+    private String request;
+    private Boolean completed;
 
-    private SpecialRequests(int id, int idRezervimet, String kerkese, Boolean plotesuar){
+    private SpecialRequests(int id, int idReservation, String request, Boolean completed){
         this.id=id;
-        this.idRezervimet=idRezervimet;
-        this.kerkese=kerkese;
-        this.plotesuar=plotesuar;
+        this.idReservation=idReservation;
+        this.request=request;
+        this.completed=completed;
     }
     public static SpecialRequests getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        int idRezervimet = resultSet.getInt("idRezervimet");
-        String kerkese = resultSet.getString("kerkese");
-        Boolean plotesuar = resultSet.getBoolean("plotesuar");
+        int idReservation = resultSet.getInt("idReservation");
+        String request = resultSet.getString("request");
+        Boolean completed = resultSet.getBoolean("completed");
 
-        return new SpecialRequests(id, idRezervimet,kerkese, plotesuar );
+        return new SpecialRequests(id, idReservation,request, completed );
     }
     public int getId(){
         return id;
     }
-    public int getIdRezervimet(){
-        return idRezervimet;
+
+    public int getIdReservation() {
+        return idReservation;
     }
-    public String getKerkese(){
-        return kerkese;
+
+    public String getRequest() {
+        return request;
     }
-    public Boolean getPlotesuar(){
-        return plotesuar;
+
+    public Boolean getCompleted() {
+        return completed;
     }
+
     public void printoTeDhenatKerkesaSpeciale(){
         System.out.println("Detajet e Kerkesave Speciale: ");
         System.out.println("ID: "+ getId());
-        System.out.println("IDRezerimet: " + getIdRezervimet());
-        System.out.println("Kerkesa: " + getKerkese());
-        System.out.println("Plotesuar: " + getPlotesuar());
+        System.out.println("IDRezerimet: " + getIdReservation());
+        System.out.println("Kerkesa: " + getRequest());
+        System.out.println("Plotesuar: " + getCompleted());
     }
 }

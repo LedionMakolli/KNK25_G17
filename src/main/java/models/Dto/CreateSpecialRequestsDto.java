@@ -1,32 +1,38 @@
 package models.Dto;
 
 public class CreateSpecialRequestsDto {
-    private int idRezervimet;
-    private String kerkese;
-    private Boolean plotesuar;
+    private int idReservation;
+    private String request;
+    private Boolean completed;
 
-    public CreateSpecialRequestsDto(int idRezervimet, String kerkese, boolean plotesuar){
-        this.idRezervimet=idRezervimet;
-        this.kerkese=kerkese;
-        this.plotesuar=plotesuar;
+    public CreateSpecialRequestsDto(int idReservation, String request, boolean completed){
+        this.idReservation=idReservation;
+        this.request=request;
+        this.completed=completed;
     }
-    public int getIdRezervimet(){
-        return idRezervimet;
+
+    public int getIdReservation() {
+        return idReservation;
     }
-    public void setIdRezervimet(int idRezervimet){
-        this.idRezervimet=idRezervimet;
+
+    public void setIdReservation(int idReservation) {
+        this.idReservation = idReservation;
     }
-    public String getKerkese(){
-        return kerkese;
+
+    public String getRequest() {
+        return request;
     }
-    public void setKerkese(String kerkese){
-        this.kerkese=kerkese;
+
+    public void setRequest(String request) {
+        this.request = request;
     }
-    public boolean isPlotesuar(){
-        return plotesuar;
+
+    public Boolean isCompleted() {
+        return completed;
     }
-    public void setPlotesuar(boolean plotesuar){
-        this.plotesuar=plotesuar;
+
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
     }
 }
 

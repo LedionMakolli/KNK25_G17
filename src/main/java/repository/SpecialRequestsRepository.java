@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SpecialRequestsRepository extends BaseRepository<SpecialRequests, CreateSpecialRequestsDto, UpdateSpecialRequestsDto> {
     public SpecialRequestsRepository() throws SQLException{
-        super("kerkesaspeciale");
+        super("specialrequests");
     }
 
     public SpecialRequests fromResultSet(ResultSet rs){
@@ -25,15 +25,15 @@ public class SpecialRequestsRepository extends BaseRepository<SpecialRequests, C
         }
     }
 
-    public SpecialRequests create(CreateSpecialRequestsDto kerkesatSpecialeDto){
+    public SpecialRequests create(CreateSpecialRequestsDto specialRequestsDto){
         String query= """
-                INSERT INTO KERKESASPECIALE (idRezervimet, kerkese, plotesuar) VALUES (?,?,?)""";
+                INSERT INTO KERKESASPECIALE (idReservation, request, completed) VALUES (?,?,?)""";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, kerkesatSpecialeDto.getIdRezervimet());
-            preparedStatement.setString(2, kerkesatSpecialeDto.getKerkese());
-            preparedStatement.setBoolean(3, kerkesatSpecialeDto.isPlotesuar());
+            preparedStatement.setInt(1, specialRequestsDto.getIdReservation());
+            preparedStatement.setString(2, specialRequestsDto.getRequest());
+            preparedStatement.setBoolean(3, specialRequestsDto.isCompleted());
             preparedStatement.execute();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
@@ -47,33 +47,33 @@ public class SpecialRequestsRepository extends BaseRepository<SpecialRequests, C
     }
 
 
-    public SpecialRequests update(UpdateSpecialRequestsDto kerkesatSpecialeDto) {
+    public SpecialRequests update(UpdateSpecialRequestsDto specialRequestsDto) {
         StringBuilder query = new StringBuilder("UPDATE KerkesaSpeciale SET ");
         List<Object> parameters = new ArrayList<>();
         boolean hasUpdates = false;
 
-        if (kerkesatSpecialeDto.getIdRezervimet() > 0) {
+        if (specialRequestsDto.getIdReservation() > 0) {
             query.append("idRezervimet=?, ");
-            parameters.add(kerkesatSpecialeDto.getIdRezervimet());
+            parameters.add(specialRequestsDto.getIdReservation());
             hasUpdates = true;
         }
-        if (kerkesatSpecialeDto.getKerkese() != null) {
+        if (specialRequestsDto.getRequest() != null) {
             query.append("kerkese=?, ");
-            parameters.add(kerkesatSpecialeDto.getKerkese());
+            parameters.add(specialRequestsDto.getRequest());
             hasUpdates = true;
         }
-        if (kerkesatSpecialeDto.isPlotesuar() != null) {
+        if (specialRequestsDto.isCompleted() != null) {
             query.append("plotesuar=?, ");
-            parameters.add(kerkesatSpecialeDto.isPlotesuar());
+            parameters.add(specialRequestsDto.isCompleted());
             hasUpdates = true;
         }
         if (!hasUpdates) {
-            return getById(kerkesatSpecialeDto.getId());
+            return getById(specialRequestsDto.getId());
 
         }
         query.setLength(query.length() - 2);
         query.append(" where id = ?");
-        parameters.add(kerkesatSpecialeDto.getId());
+        parameters.add(specialRequestsDto.getId());
 
         try {
             PreparedStatement pstm = connection.prepareStatement(query.toString());
@@ -81,7 +81,7 @@ public class SpecialRequestsRepository extends BaseRepository<SpecialRequests, C
                 pstm.setObject(i + 1, parameters.get(i));
             }
             pstm.executeUpdate();
-            return getById(kerkesatSpecialeDto.getId());
+            return getById(specialRequestsDto.getId());
         } catch (SQLException e) {
             e.printStackTrace();
         }
