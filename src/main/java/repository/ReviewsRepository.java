@@ -28,7 +28,7 @@ public class ReviewsRepository extends BaseRepository<Reviews, CreateReviewsDto,
 
     public Reviews create(CreateReviewsDto reviewDto) {
         String query = """
-                INSERT INTO reviews (clientid, carid, rating, text, date)
+                INSERT INTO reviews (clientId, carId, rating, text, date)
                 VALUES (?, ?, ?, ?, ?)
                 """;
         try {
