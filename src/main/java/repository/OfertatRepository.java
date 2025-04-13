@@ -2,7 +2,7 @@ package repository;
 
 import models.Dto.CreateOfertatDto;
 import models.Dto.UpdateOfertatDto;
-import models.Ofertat;
+import models.Offers;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OfertatRepository extends BaseRepository<Ofertat, CreateOfertatDto, UpdateOfertatDto> {
+public class OfertatRepository extends BaseRepository<Offers, CreateOfertatDto, UpdateOfertatDto> {
     public OfertatRepository() throws SQLException {
         super("ofertat");
     }
