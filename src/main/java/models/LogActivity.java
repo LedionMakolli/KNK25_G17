@@ -1,11 +1,7 @@
 package models;
 
-import models.enums.KarburantiEnum;
-import models.enums.StatusiMirembatjaEnum;
 import models.enums.VeprimetEnum;
 
-import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -13,33 +9,33 @@ import java.time.LocalDateTime;
 public class LogActivity {
     private int id;
     private Integer idUser;
-    private VeprimetEnum veprimi;
-    private LocalDateTime data;
+    private VeprimetEnum action;
+    private LocalDateTime date;
     private String ipAddress;
 
     // Constructor
-    public LogActivity(int id, Integer idUser, VeprimetEnum veprimi, LocalDateTime data, String ipAddress) {
+    public LogActivity(int id, Integer idUser, VeprimetEnum action, LocalDateTime date, String ipAddress) {
         this.id = id;
         this.idUser = idUser;
-        this.veprimi = veprimi;
-        this.data = data;
+        this.action = action;
+        this.date = date;
         this.ipAddress = ipAddress;
     }
 
 
-    public static LogActivity getLogActivityById(ResultSet resultSet) throws SQLException {
+    public static LogActivity getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
 
         Integer idUser = resultSet.getObject("idUser", Integer.class);
 
-        String veprimiStr = resultSet.getString("veprimi");
-        VeprimetEnum veprimi = VeprimetEnum.valueOf(veprimiStr.toUpperCase());
+        String actionStr = resultSet.getString("action");
+        VeprimetEnum action = VeprimetEnum.valueOf(actionStr.toUpperCase());
 
-        LocalDateTime data = resultSet.getTimestamp("data").toLocalDateTime();
+        LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
 
         String ipAddress = resultSet.getString("ipAddress");
 
-        return new LogActivity(id, idUser, veprimi, data, ipAddress);
+        return new LogActivity(id, idUser, action, date, ipAddress);
     }
 
 
@@ -51,12 +47,12 @@ public class LogActivity {
         return idUser;
     }
 
-    public VeprimetEnum getVeprimi() {
-        return veprimi;
+    public VeprimetEnum getAction() {
+        return action;
     }
 
-    public LocalDateTime getData() {
-        return data;
+    public LocalDateTime getDate() {
+        return date;
     }
 
     public String getIpAddress() {
@@ -66,11 +62,11 @@ public class LogActivity {
 
     public void printoTeDhenatPerMirembajtjen() {
         System.out.println("-----------------------------");
-        System.out.println("Detajet e Mirembajtjes");
+        System.out.println("Maintainance Details");
         System.out.println("ID: " + id);
         System.out.println("ID User: " + idUser);
-        System.out.println("Veprimi: " + veprimi);
-        System.out.println("Data: " + data);
+        System.out.println("Action: " + action);
+        System.out.println("Date: " + date);
         System.out.println("IP Address: " + ipAddress);
         System.out.println("-----------------------------");
     }

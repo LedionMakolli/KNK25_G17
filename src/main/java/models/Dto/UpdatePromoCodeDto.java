@@ -1,35 +1,37 @@
 package models.Dto;
 
-import java.time.LocalDate;
+
+import java.sql.Date;
 
 public class UpdatePromoCodeDto {
     private int id;
-    private String kodi;
-    private double zbritja;
-    private LocalDate dataSkadimit;
-    private Boolean aktiv;
+    private Date expiryDate;
+    private Boolean active;
 
-    public UpdatePromoCodeDto(int id, String kodi, double zbritja,LocalDate dataSkadimit, Boolean aktiv){
+    public UpdatePromoCodeDto(int id,Date expiryDate, Boolean active){
         this.id=id;
-        this.kodi=kodi;
-        this.zbritja=zbritja;
-        this.dataSkadimit=dataSkadimit;
-        this.aktiv=aktiv;
+
+        this.expiryDate=expiryDate;
+        this.active=active;
     }
 
 public int getId(){
         return id;
 }
-public LocalDate getDataSkadimit(){
-        return dataSkadimit;
-}
-public void setDataSkadimit(LocalDate dataSkadimit){
-        this.dataSkadimit=dataSkadimit;
-}
-public Boolean isAktiv(){
-        return aktiv;
-}
-public void setAktiv(Boolean aktiv){
-        this.aktiv=aktiv;
-}
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }
