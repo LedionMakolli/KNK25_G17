@@ -139,7 +139,7 @@ CREATE TABLE Mirembajtja (
     idStafi INT REFERENCES stafi(id) ON DELETE SET NULL
 );
 
---- Documents ---
+--- Dokumentet ---
 CREATE TABLE Dokumentet (
         id SERIAL PRIMARY KEY,
         idContract INT REFERENCES Kontrata(id) ON DELETE CASCADE,
