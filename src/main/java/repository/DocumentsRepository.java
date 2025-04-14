@@ -11,9 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DokumentetRepository extends BaseRepository<Documents, CreateDocumentsDto, UpdateDocumentsDto> {
+public class DocumentsRepository extends BaseRepository<Documents, CreateDocumentsDto, UpdateDocumentsDto> {
 
-    public DokumentetRepository() throws SQLException{
+    public DocumentsRepository() throws SQLException{
         super("Documents");
     }
     @Override
@@ -28,7 +28,7 @@ public class DokumentetRepository extends BaseRepository<Documents, CreateDocume
 
     // metoda create
     public Documents create(CreateDocumentsDto dokumentetDto){
-        String query = "INSERT INTO DOKUMENTET (idKontrata,lloji,path,dataUpLoad) VALUES (?,?,?,?)";
+        String query = "INSERT INTO Documents (idContract,type,path,dataUpLoad) VALUES (?,?,?,?)";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS); // per AUTO_INCREMENT
             preparedStatement.setInt(1, dokumentetDto.getIdContract());
@@ -50,7 +50,7 @@ public class DokumentetRepository extends BaseRepository<Documents, CreateDocume
     // metoda update
 
     public Documents update(UpdateDocumentsDto DokemntetDto){
-        StringBuilder query = new StringBuilder("UPDATE DOKUMENTET SET ");
+        StringBuilder query = new StringBuilder("UPDATE DOCUMENTS SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
 
@@ -60,7 +60,7 @@ public class DokumentetRepository extends BaseRepository<Documents, CreateDocume
             hasUpdates = true;
         }
         if (DokemntetDto.getType() != null){
-            query.append("lloji = ?, ");
+            query.append("type = ?, ");
             parametrat.add(DokemntetDto.getType());
             hasUpdates = true;
         }

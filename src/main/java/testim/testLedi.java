@@ -3,7 +3,7 @@ import models.Contract;
 import models.Dto.*;
 
 import models.enums.PaymentEnum;
-import repository.KontrataRepository;
+import repository.ContractRepository;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -16,20 +16,20 @@ public class testLedi {
 
             // KONTRATA TEST
             
-            KontrataRepository kontrataRepository = new KontrataRepository();
-            Contract contract = kontrataRepository.getById(1);
+            ContractRepository contractRepository = new ContractRepository();
+            Contract contract = contractRepository.getById(1);
             System.out.println("Contract ID: " + contract.getId());
 
             CreateContractDto createContractDto = new CreateContractDto(6,1,5000.0, PaymentEnum.CARD,date);
-            Contract newContract = kontrataRepository.create(createContractDto);
+            Contract newContract = contractRepository.create(createContractDto);
             newContract.printoTeDhenatPerKontraten();
 
             UpdateContractDto updateContractDto = new UpdateContractDto(4,2000.0, PaymentEnum.CASH,date);
-            kontrataRepository.update(updateContractDto);
+            contractRepository.update(updateContractDto);
 
             // DOKUMENTET TEST
 
-//            DokumentetRepository dokumentetRepository = new DokumentetRepository();
+//            DocumentsRepository dokumentetRepository = new DocumentsRepository();
 //            Documents dokumentet = dokumentetRepository.getById(2);
 //            System.out.println("Documents ID: " + dokumentet.getId());
 //
@@ -42,7 +42,7 @@ public class testLedi {
 //            newDokumentet.printoTeDhenatPerDokumentin();
 
 
-//            MirembajtjaRepository mirembajtjaRepository = new MirembajtjaRepository();
+//            MaintenanceRepository mirembajtjaRepository = new MaintenanceRepository();
 //            Maintenance mirembajtja = mirembajtjaRepository.getById(1);
 //            System.out.println("Maintenance ID: " + mirembajtja.getId());
 //

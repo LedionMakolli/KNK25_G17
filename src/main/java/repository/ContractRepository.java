@@ -8,10 +8,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KontrataRepository extends BaseRepository<Contract, CreateContractDto, UpdateContractDto> {
+public class ContractRepository extends BaseRepository<Contract, CreateContractDto, UpdateContractDto> {
 
-    public KontrataRepository() throws SQLException{
-        super("kontrata");
+    public ContractRepository() throws SQLException{
+        super("contract");
     }
 
     @Override
@@ -26,15 +26,15 @@ public class KontrataRepository extends BaseRepository<Contract, CreateContractD
 
     // metoda create
 
-    public Contract create(CreateContractDto KontrataDto){
-        String query = "INSERT INTO Kontrata (idRezervimet,shuma, pagesa, data) VALUES (?, ?, ?,?)";
+    public Contract create(CreateContractDto ContractDto){
+        String query = "INSERT INTO Contract (idReservation,sum, payment, date) VALUES (?, ?, ?,?)";
 
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setInt(1,KontrataDto.getIdReservation());
-            pstm.setDouble(2,KontrataDto.getSum());
-            pstm.setObject(3,KontrataDto.getPayment(), Types.OTHER);
-            pstm.setDate(4,KontrataDto.getDate());
+            pstm.setInt(1, ContractDto.getIdReservation());
+            pstm.setDouble(2, ContractDto.getSum());
+            pstm.setObject(3, ContractDto.getPayment(), Types.OTHER);
+            pstm.setDate(4, ContractDto.getDate());
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()){
@@ -50,22 +50,22 @@ public class KontrataRepository extends BaseRepository<Contract, CreateContractD
     // metoda update
 
     public Contract update(UpdateContractDto KontrataDto){
-        StringBuilder query = new StringBuilder("UPDATE KONTRATA SET ");
+        StringBuilder query = new StringBuilder("UPDATE CONTRACT SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdate = false;
 
         if (KontrataDto.getSum() > 0){
-            query.append("shuma = ?, ");
+            query.append("sum = ?, ");
             parametrat.add(KontrataDto.getSum());
             hasUpdate = true;
         }
         if (KontrataDto.getPayment() != null){
-            query.append("pagesa = CAST(? AS PaymentEnum), ");
+            query.append("payment = CAST(? AS PaymentEnum), ");
             parametrat.add(KontrataDto.getPayment().name());
             hasUpdate = true;
         }
         if (KontrataDto.getDate() != null){
-            query.append("data = ?, ");
+            query.append("date = ?, ");
             parametrat.add(KontrataDto.getDate());
             hasUpdate = true;
         }
