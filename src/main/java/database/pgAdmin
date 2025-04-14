@@ -1,50 +1,46 @@
 
-// #################### Tabelat per bazen e te dhenave ###########################
+ -----   ENUMS    ----
 
-// -----   ENUMS    ----
+CREATE TYPE FuelEnum AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
+CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE');
+CREATE TYPE TransmissionTypeEnum AS ENUM ('MANUAL', 'AUTOMATIC');
+CREATE TYPE StaffPositionEnum AS ENUM('ADMIN', 'MANAGER', 'STAF', 'MECHANIC');
+CREATE TYPE ReservationStatusEnum AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
+CREATE TYPE StatusMaintenanceEnum AS ENUM ('PLANED', 'IN_PROCESS', 'FINISHED', 'CANCELED');
+CREATE TYPE PaymentEnum AS ENUM ('CARD', 'CASH');
 
--- CREATE TYPE FuelEnum AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
--- CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE'); keto tri jane per Cars
--- CREATE TYPE TransmissionTypeEnum AS ENUM ('MANUAL', 'AUTOMATIC');
--- CREATE TYPE StaffPositionEnum AS ENUM('ADMIN', 'MANAGER', 'STAF', 'MECHANIC');
---Enum per User (Client & Staff)
+ -----   Clients    ----
 
--- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
--- CREATE TYPE StatusMaintenanceEnum AS ENUM ('PLANED', 'IN_PROCESS', 'FINISHED', 'CANCELED');
--- CREATE TYPE PaymentEnum AS ENUM ('CARD', 'CASH');
+CREATE TABLE Clients (
+     id SERIAL PRIMARY KEY,
+     firstname VARCHAR(255),
+     lastname VARCHAR(255),
+     age integer,
+	 personalnumber VARCHAR(20),
+	 email VARCHAR(255) UNIQUE,
+     username varchar(30) UNIQUE,
+ 	 password VARCHAR(255),
+     telephonenumber VARCHAR(20),
+);
 
-// -----   Clients    ----
+ ----- Stafi ----
 
--- CREATE TABLE Clients (
---     id SERIAL PRIMARY KEY,
---     firstname VARCHAR(255),
---     lastname VARCHAR(255),
---     age integer,
--- 	   personalnumber VARCHAR(20),
--- 	   email VARCHAR(255) UNIQUE,
---     username varchar(30) UNIQUE,
--- 	   password VARCHAR(255),
---     telephonenumber VARCHAR(20),
--- );
+CREATE TABLE Staff (
+     id SERIAL PRIMARY KEY,
+     firstName VARCHAR(255),
+     lastName VARCHAR(255),
+     age integer,
+ 	 personalnumber VARCHAR(20)
+     email VARCHAR(255) UNIQUE,
+     username varchar(30) UNIQUE,
+     password VARCHAR(255),
+     telephoneNumber VARCHAR(20),
+     position StaffPositionEnum DEFAULT 'STAFF',
+     employmentDate DATE,
+     Salary real
+);
 
-// ----- Stafi ----
-
--- CREATE TABLE Staff (
---     id SERIAL PRIMARY KEY,
---     firstName VARCHAR(255),
---     lastName VARCHAR(255),
---     age integer,
--- 	   personalnumber VARCHAR(20)
---     email VARCHAR(255) UNIQUE,
---     username varchar(30) UNIQUE,
---     password VARCHAR(255),
---     telephoneNumber VARCHAR(20),
---     position StaffPositionEnum DEFAULT 'STAFF',
---     employmentDate DATE,
---     Salary real
--- );
-
-// -----   Cars    ----
+ -----   Cars    ----
 
 CREATE TABLE Cars (
     id SERIAL PRIMARY KEY,
@@ -60,7 +56,8 @@ CREATE TABLE Cars (
     transmissionType TransmissionType NOT NULL
 );
 
-// -----   RESERVATIONS    ----
+ -----   RESERVATIONS    ----
+
 CREATE TABLE Reservations (
     id SERIAL PRIMARY KEY,
     idClient INT REFERENCES Clients(id) ON DELETE CASCADE,
@@ -72,39 +69,39 @@ CREATE TABLE Reservations (
     CHECK (startDate < endDate)
 );
 
-// -----   Contract    ----
+ -----   Contract    ----
 
--- CREATE TABLE Contract (
---     id SERIAL PRIMARY KEY,
---     idReservation INT REFERENCES Rezervimet(id) ON DELETE CASCADE,
---     sum REAL NOT NULL,
---     payment PaymentEnum NOT NULL,
---     date TIMESTAMP NOT NULL
--- );
+CREATE TABLE Contract (
+     id SERIAL PRIMARY KEY,
+     idReservation INT REFERENCES Reservations(id) ON DELETE CASCADE,
+     sum REAL NOT NULL,
+     payment PaymentEnum NOT NULL,
+     date TIMESTAMP NOT NULL
+);
 
-// -----   Sigurimi    ----
+ -----   Sigurimi    ----
 
-CREATE TABLE Sigurimi (
+CREATE TABLE Insurance (
     id SERIAL PRIMARY KEY,
-    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Cars(id) ON DELETE CASCADE,
     kompania VARCHAR(255) NOT NULL,
     dateStart DATE NOT NULL,
     dateFininsh DATE NOT NULL,
     cost DECIMAL(10,2) NOT NULL
 );
 
-// -----   Offers    ----
+ -----   Offers    ----
 
 CREATE TABLE offers (
     id SERIAL PRIMARY KEY,
-    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Cars(id) ON DELETE CASCADE,
     discount DECIMAL(10,2) NOT NULL,
     startDate DATE NOT NULL,
     endDate DATE NOT NULL
     CHECK (endDate >= startDate)
 );
 
-// -----   Reviews    ----
+ -----   Reviews    ----
 
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
@@ -116,18 +113,18 @@ CREATE TABLE reviews (
 );
 
 
-// ----- Penalizimet ----
+ ----- Penalizimet ----
 
-CREATE TABLE PENALIZIMET (
+CREATE TABLE Penalties (
     id SERIAL PRIMARY KEY,
-    idReservation INT NOT NULL REFERENCES REZERVIMET(id),
-    arsyeja VARCHAR(255) NOT NULL,
-    sum DECIMAL(10, 2) NOT NULL,
+    reservationId INT NOT NULL REFERENCES Reservations(id),
+    reasonOfPenalty VARCHAR(255) NOT NULL,
+    moneyAmount DECIMAL(10, 2) NOT NULL,
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    paguar BOOLEAN NOT NULL
+    paid BOOLEAN NOT NULL
 );
 
-// -----PromoCode ----
+ -----PromoCode ----
 CREATE TABLE PROMOCODE (
     id SERIAL PRIMARY KEY,
     kodi VARCHAR(255) NOT NULL,
@@ -136,28 +133,31 @@ CREATE TABLE PROMOCODE (
     aktiv BOOLEAN
 );
 
-// --- Maintenance ---
+ ----- Maintenance ---
+ 
 CREATE TABLE Maintenance (
     id SERIAL PRIMARY KEY,
-    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Cars(id) ON DELETE CASCADE,
     description TEXT,
     dateStart DATE,
     dateFininsh DATE,
     cost DECIMAL(10,2),
     status StatusMaintenanceEnum,
-    idStaff INT REFERENCES stafi(id) ON DELETE SET NULL
+    idStaff INT REFERENCES Staff(id) ON DELETE SET NULL
 );
 
-// --- Documents ---
+ ----- Documents ---
+
 CREATE TABLE Documents (
         id SERIAL PRIMARY KEY,
-        idContract INT REFERENCES Kontrata(id) ON DELETE CASCADE,
-        type VARCHAR(10) NOT NULL,  -- PDF, IMG, etj.
-        path TEXT NOT NULL,          -- Rruga e dokumentit në sistem
+        idContract INT REFERENCES Contracts(id) ON DELETE CASCADE,
+        type VARCHAR(10) NOT NULL,        -- PDF, IMG, etj.
+        path TEXT NOT NULL,               -- Rruga e dokumentit ne sistem
         dataUpload DATE NOT NULL
 );
 
-//----SpecialRequests----
+---- SpecialRequests ----
+
  CREATE TABLE SpecialRequests (
      id SERIAL PRIMARY KEY,
      idReservation INT NOT NULL REFERENCES Reservations(id) ON DELETE CASCADE,
