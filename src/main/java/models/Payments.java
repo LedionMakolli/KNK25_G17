@@ -31,12 +31,12 @@ public class Payments {
 
     public static Payments getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        Integer idReservation = resultSet.getInt("idrservation");
+        Integer idReservation = resultSet.getInt("idreservation");
         String typeStr = resultSet.getString("type");
         PaymentEnum type = PaymentEnum.valueOf(typeStr.toUpperCase());
         Integer promoCodeId = resultSet.getObject("promocodeid", Integer.class);
-        BigDecimal totalNoDiscount = resultSet.getBigDecimal("totalNoDiscount");
-        BigDecimal totalFinal = resultSet.getBigDecimal("totalFinal");
+        BigDecimal totalNoDiscount = resultSet.getBigDecimal("totalnodiscount");
+        BigDecimal totalFinal = resultSet.getBigDecimal("totaldinal");
         LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
 
         return new Payments(id, idReservation, type, promoCodeId, totalNoDiscount, totalFinal, date);
