@@ -1,13 +1,13 @@
 package models.enums;
 
-public enum VeprimetEnum {  // nashta duhet me ndryshu
+public enum AuthenticationEnum {
     // Autentikim
     LOGIN_SUKSES,
     LOGIN_DESHTIM,
     LOGOUT,
     NDERRRO_PASSWORD,
 
-    // Menaxhimi i Përdoruesve
+   /* // Menaxhimi i Përdoruesve
     KRIJO_PERDORUES,
     PERDITESO_PERDORUES,
     FSHIJ_PERDORUES,
@@ -44,5 +44,5 @@ public enum VeprimetEnum {  // nashta duhet me ndryshu
     // Sistemi
     GABIM_SISTEMI,
     ACCESS_DENIED,
-    KERKIM_JO_AUTORIZUAR
+    KERKIM_JO_AUTORIZUAR*/
 }
