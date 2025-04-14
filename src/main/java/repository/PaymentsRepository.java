@@ -13,7 +13,7 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
         super("pagesat");
     }
     @Override
-    public PaymentsRepository fromResultSet(ResultSet rs) {
+    public Payments fromResultSet(ResultSet rs) {
         try {
             return Payments.getInstance(rs);
         } catch (SQLException e) {
