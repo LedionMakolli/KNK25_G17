@@ -86,22 +86,22 @@ CREATE TABLE Reservations (
 
 CREATE TABLE Sigurimi (
     id SERIAL PRIMARY KEY,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
     kompania VARCHAR(255) NOT NULL,
-    dataFillimit DATE NOT NULL,
-    dataMbarimit DATE NOT NULL,
-    kosto DECIMAL(10,2) NOT NULL
+    dateStart DATE NOT NULL,
+    dateFininsh DATE NOT NULL,
+    cost DECIMAL(10,2) NOT NULL
 );
 
 // -----   Ofertat    ----
 
 CREATE TABLE Ofertat (
     id SERIAL PRIMARY KEY,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
     zbritja DECIMAL(10,2) NOT NULL,
-    dataFillimit DATE NOT NULL,
-    dataMbarimit DATE NOT NULL
-    CHECK (dataMbarimit >= dataFillimit)
+    dateStart DATE NOT NULL,
+    dateFininsh DATE NOT NULL
+    CHECK (dateFininsh >= dateStart)
 );
 
 // -----   Vleresimet    ----
@@ -109,7 +109,7 @@ CREATE TABLE Ofertat (
 CREATE TABLE Vleresimet (
     id SERIAL PRIMARY KEY,
     idKlienti INT REFERENCES Klientet(id) ON DELETE CASCADE,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
     text TEXT,
     date TIMESTAMP NOT NULL
@@ -139,13 +139,13 @@ CREATE TABLE PROMOCODE (
 // --- Mirembajtja ---
 CREATE TABLE Mirembajtja (
     id SERIAL PRIMARY KEY,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
-    pershkrimi TEXT,
-    dataFillimit DATE,
-    dataMbarimit DATE,
-    kosto DECIMAL(10,2),
-    statusi StatusiMirembatjaEnum,
-    idStafi INT REFERENCES stafi(id) ON DELETE SET NULL
+    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    description TEXT,
+    dateStart DATE,
+    dateFininsh DATE,
+    cost DECIMAL(10,2),
+    status StatusiMirembatjaEnum,
+    idStaff INT REFERENCES stafi(id) ON DELETE SET NULL
 );
 
 // --- Documents ---

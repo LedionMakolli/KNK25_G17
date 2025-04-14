@@ -34,8 +34,8 @@ public class OfertatRepository extends BaseRepository<Ofertat, CreateOfertatDto,
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, ofertatDto.getIdVetura());
             pstm.setDouble(2, ofertatDto.getZbritja());
-//            pstm.setDate(3, ofertatDto.getDataFillimit());
-//            pstm.setDate(4, ofertatDto.getDataMbarimit());  ki error e bana koment deri te ndreqsh
+//            pstm.setDate(3, ofertatDto.getDateStart());
+//            pstm.setDate(4, ofertatDto.getDateFininsh());  ki error e bana koment deri te ndreqsh
             pstm.execute();
             ResultSet rs = pstm.getGeneratedKeys();
             if(rs.next()) {

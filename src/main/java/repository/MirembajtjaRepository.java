@@ -1,40 +1,40 @@
 package repository;
 
-import models.Dto.CreateMirembajtjaDto;
-import models.Dto.UpdateMirembajtjaDto;
-import models.Mirembajtja;
+import models.Dto.CreateMaintenanceDto;
+import models.Dto.UpdateMaintenanceDto;
+import models.Maintenance;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MirembajtjaRepository extends BaseRepository<Mirembajtja, CreateMirembajtjaDto, UpdateMirembajtjaDto> {
+public class MirembajtjaRepository extends BaseRepository<Maintenance, CreateMaintenanceDto, UpdateMaintenanceDto> {
 
     public MirembajtjaRepository() throws SQLException {
-        super("Mirembajtja");
+        super("Maintenance");
     }
 
     @Override
-    Mirembajtja fromResultSet(ResultSet rs) {
+    Maintenance fromResultSet(ResultSet rs) {
         try{
-            return Mirembajtja.getInstance(rs);
+            return Maintenance.getInstance(rs);
         }catch (SQLException e){
             return null;
         }
     }
 
     // metoda create
-    public Mirembajtja create(CreateMirembajtjaDto Mirembajtjadto) {
+    public Maintenance create(CreateMaintenanceDto Mirembajtjadto) {
         String query = "INSERT INTO MIREMBAJTJA (idVetura,pershkrimi,dataFillimit,dataMbarimit,kosto,statusi,idStafi) Values (?,?,?,?,?,?,?)";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, Mirembajtjadto.getIdVetura());
-            preparedStatement.setString(2, Mirembajtjadto.getPershkrimi());
-            preparedStatement.setDate(3, Mirembajtjadto.getDataFillimit());
-            preparedStatement.setDate(4, Mirembajtjadto.getDataMbarimit());
-            preparedStatement.setBigDecimal(5, Mirembajtjadto.getKosto());
-            preparedStatement.setObject(6, Mirembajtjadto.getStatusi(), Types.OTHER);
-            preparedStatement.setInt(7, Mirembajtjadto.getIdStafi());
+            preparedStatement.setInt(1, Mirembajtjadto.getIdCar());
+            preparedStatement.setString(2, Mirembajtjadto.getDescription());
+            preparedStatement.setDate(3, Mirembajtjadto.getDateStart());
+            preparedStatement.setDate(4, Mirembajtjadto.getDateFinish());
+            preparedStatement.setBigDecimal(5, Mirembajtjadto.getCost());
+            preparedStatement.setObject(6, Mirembajtjadto.getStatus(), Types.OTHER);
+            preparedStatement.setInt(7, Mirembajtjadto.getIdStaff());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -49,34 +49,34 @@ public class MirembajtjaRepository extends BaseRepository<Mirembajtja, CreateMir
 
     //metoda update
 
-    public Mirembajtja update(UpdateMirembajtjaDto Mirembajtjadto) {
+    public Maintenance update(UpdateMaintenanceDto Mirembajtjadto) {
         StringBuilder query = new StringBuilder("UPDATE MIREMBAJTJA SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdate = false;
 
-        if (Mirembajtjadto.getPershkrimi() != null) {
+        if (Mirembajtjadto.getDescription() != null) {
             query.append("pershkrimi = ?, ");
-            parametrat.add(Mirembajtjadto.getPershkrimi());
+            parametrat.add(Mirembajtjadto.getDescription());
             hasUpdate = true;
         }
-        if (Mirembajtjadto.getDataFillimit() != null) {
+        if (Mirembajtjadto.getDateStart() != null) {
             query.append("dataFillimit = ?, ");
-            parametrat.add(Mirembajtjadto.getDataFillimit());
+            parametrat.add(Mirembajtjadto.getDateStart());
             hasUpdate = true;
         }
-        if (Mirembajtjadto.getDataMbarimit() != null) {
+        if (Mirembajtjadto.getDateFininsh() != null) {
             query.append("dataMbarimit = ?, ");
-            parametrat.add(Mirembajtjadto.getDataMbarimit());
+            parametrat.add(Mirembajtjadto.getDateFininsh());
             hasUpdate = true;
         }
-        if (Mirembajtjadto.getKosto() != null) {
+        if (Mirembajtjadto.getCost() != null) {
             query.append("kosto = ?, ");
-            parametrat.add(Mirembajtjadto.getKosto());
+            parametrat.add(Mirembajtjadto.getCost());
             hasUpdate = true;
         }
-        if (Mirembajtjadto.getStatusi() != null) {
-            query.append("statusi = CAST(? AS StatusiMirembatjaEnum), ");
-            parametrat.add(Mirembajtjadto.getStatusi().name());
+        if (Mirembajtjadto.getStatus() != null) {
+            query.append("statusi = CAST(? AS StatusiMaintenanceEnum), ");
+            parametrat.add(Mirembajtjadto.getStatus().name());
             hasUpdate = true;
         }
 

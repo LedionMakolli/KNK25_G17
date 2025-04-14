@@ -43,14 +43,14 @@ public class testLedi {
 
 
 //            MirembajtjaRepository mirembajtjaRepository = new MirembajtjaRepository();
-//            Mirembajtja mirembajtja = mirembajtjaRepository.getById(1);
-//            System.out.println("Mirembajtja ID: " + mirembajtja.getId());
+//            Maintenance mirembajtja = mirembajtjaRepository.getById(1);
+//            System.out.println("Maintenance ID: " + mirembajtja.getId());
 //
-//            CreateMirembajtjaDto createMirembajtjaDto = new CreateMirembajtjaDto(1, date, "test", date, new BigDecimal("45.50"), StatusiMirembatjaEnum.NE_PROCES, 1);
-//            Mirembajtja newMireMbajtja = mirembajtjaRepository.create(createMirembajtjaDto);
+//            CreateMaintenanceDto createMirembajtjaDto = new CreateMaintenanceDto(1, date, "test", date, new BigDecimal("45.50"), StatusiMaintenanceEnum.IN_PROCESS, 1);
+//            Maintenance newMireMbajtja = mirembajtjaRepository.create(createMirembajtjaDto);
 //            newMireMbajtja.printoTeDhenatPerMirembajtjen();
 //
-//            UpdateMirembajtjaDto updateMirembajtjaDto = new UpdateMirembajtjaDto(1,"MIRE",date,date,new BigDecimal("45.00"),StatusiMirembatjaEnum.ANULUAR);
+//            UpdateMaintenanceDto updateMirembajtjaDto = new UpdateMaintenanceDto(1,"MIRE",date,date,new BigDecimal("45.00"),StatusiMaintenanceEnum.ANULUAR);
 //            newMireMbajtja = mirembajtjaRepository.update(updateMirembajtjaDto);
 //            newMireMbajtja.printoTeDhenatPerMirembajtjen();
 
