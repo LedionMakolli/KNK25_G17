@@ -20,7 +20,7 @@ CREATE TABLE Clients (
 	 email VARCHAR(255) UNIQUE,
      username varchar(30) UNIQUE,
  	 password VARCHAR(255),
-     telephonenumber VARCHAR(20),
+     telephonenumber VARCHAR(20)
 );
 
  ----- Stafi ----
@@ -134,7 +134,7 @@ CREATE TABLE PROMOCODE (
 );
 
  ----- Maintenance ---
- 
+
 CREATE TABLE Maintenance (
     id SERIAL PRIMARY KEY,
     idCar INT REFERENCES Cars(id) ON DELETE CASCADE,
