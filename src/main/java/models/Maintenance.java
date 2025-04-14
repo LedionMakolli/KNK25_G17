@@ -1,6 +1,6 @@
 package models;
 
-import models.enums.StatusiMaintenanceEnum;
+import models.enums.StatusMaintenanceEnum;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -14,10 +14,10 @@ public class Maintenance {
     private Date dateStart;
     private Date dateFinish;
     private BigDecimal cost;
-    private StatusiMaintenanceEnum status;
+    private StatusMaintenanceEnum status;
     private Integer idStaff;  // Integer per te lejuar NULL (nese fshihet punetori..)
 
-    private Maintenance(int id, int idCar, String description, Date dateStart, Date dateFinish, BigDecimal cost, StatusiMaintenanceEnum status, Integer idStaff) {
+    private Maintenance(int id, int idCar, String description, Date dateStart, Date dateFinish, BigDecimal cost, StatusMaintenanceEnum status, Integer idStaff) {
         this.id = id;
         this.idCar = idCar;
         this.description = description;
@@ -35,7 +35,7 @@ public class Maintenance {
         Date dateStart = resultSet.getDate("dateStart");
         Date dateFinish = resultSet.getDate("dateFinish");
         BigDecimal cost = resultSet.getBigDecimal("cost");
-        StatusiMaintenanceEnum status = StatusiMaintenanceEnum.valueOf(resultSet.getString("status"));
+        StatusMaintenanceEnum status = StatusMaintenanceEnum.valueOf(resultSet.getString("status"));
         Integer idStaff = resultSet.getInt("idStaff");
         return new Maintenance(id,idCar,description,dateStart,dateFinish,cost,status,idStaff); // edhe dy ke me i shtu
     }
@@ -64,7 +64,7 @@ public class Maintenance {
         return cost;
     }
 
-    public StatusiMaintenanceEnum getStatus() {
+    public StatusMaintenanceEnum getStatus() {
         return status;
     }
 

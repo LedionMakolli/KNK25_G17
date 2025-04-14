@@ -10,7 +10,7 @@
 --Enum per User (Client & Staff)
 
 -- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
--- CREATE TYPE StatusiMirembatjaEnum AS ENUM ('PLANIFIKUAR', 'NE_PROCES', 'PERFUNDUAR', 'ANULUAR');
+-- CREATE TYPE StatusMaintenanceEnum AS ENUM ('PLANED', 'IN_PROCESS', 'FINISHED', 'CANCELED');
 -- CREATE TYPE PaymentEnum AS ENUM ('CARD', 'CASH');
 
 // -----   Clients    ----
@@ -136,15 +136,15 @@ CREATE TABLE PROMOCODE (
     aktiv BOOLEAN
 );
 
-// --- Mirembajtja ---
-CREATE TABLE Mirembajtja (
+// --- Maintenance ---
+CREATE TABLE Maintenance (
     id SERIAL PRIMARY KEY,
     idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
     description TEXT,
     dateStart DATE,
     dateFininsh DATE,
     cost DECIMAL(10,2),
-    status StatusiMirembatjaEnum,
+    status StatusMaintenanceEnum,
     idStaff INT REFERENCES stafi(id) ON DELETE SET NULL
 );
 

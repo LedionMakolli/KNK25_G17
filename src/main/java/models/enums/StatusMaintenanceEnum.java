@@ -1,8 +1,8 @@
 package models.enums;
 
-public enum StatusiMaintenanceEnum {
+public enum StatusMaintenanceEnum {
     PLANED,
     IN_PROCESS,
     FINISHED,
-    ANULUAR
+    CANCELED
 }

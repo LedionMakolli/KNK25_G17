@@ -75,7 +75,7 @@ public class MirembajtjaRepository extends BaseRepository<Maintenance, CreateMai
             hasUpdate = true;
         }
         if (Mirembajtjadto.getStatus() != null) {
-            query.append("statusi = CAST(? AS StatusiMaintenanceEnum), ");
+            query.append("statusi = CAST(? AS StatusMaintenanceEnum), ");
             parametrat.add(Mirembajtjadto.getStatus().name());
             hasUpdate = true;
         }

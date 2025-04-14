@@ -1,6 +1,6 @@
 package models.Dto;
 
-import models.enums.StatusiMaintenanceEnum;
+import models.enums.StatusMaintenanceEnum;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -11,10 +11,10 @@ public class CreateMaintenanceDto {
     private Date dateStart;
     private Date dateFinish;
     private BigDecimal cost;
-    private StatusiMaintenanceEnum status;
+    private StatusMaintenanceEnum status;
     private Integer idStaff;
 
-    public CreateMaintenanceDto(int idCar, Date dateStart, String description, Date dateFinish, BigDecimal cost, StatusiMaintenanceEnum status, Integer idStaff) {
+    public CreateMaintenanceDto(int idCar, Date dateStart, String description, Date dateFinish, BigDecimal cost, StatusMaintenanceEnum status, Integer idStaff) {
         this.idCar = idCar;
         this.dateStart = dateStart;
         this.description = description;
@@ -44,7 +44,7 @@ public class CreateMaintenanceDto {
         return cost;
     }
 
-    public StatusiMaintenanceEnum getStatus() {
+    public StatusMaintenanceEnum getStatus() {
         return status;
     }
 
@@ -72,7 +72,7 @@ public class CreateMaintenanceDto {
         this.cost = cost;
     }
 
-    public void setStatus(StatusiMaintenanceEnum status) {
+    public void setStatus(StatusMaintenanceEnum status) {
         this.status = status;
     }
 

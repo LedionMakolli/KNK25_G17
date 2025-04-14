@@ -46,11 +46,11 @@ public class testLedi {
 //            Maintenance mirembajtja = mirembajtjaRepository.getById(1);
 //            System.out.println("Maintenance ID: " + mirembajtja.getId());
 //
-//            CreateMaintenanceDto createMirembajtjaDto = new CreateMaintenanceDto(1, date, "test", date, new BigDecimal("45.50"), StatusiMaintenanceEnum.IN_PROCESS, 1);
+//            CreateMaintenanceDto createMirembajtjaDto = new CreateMaintenanceDto(1, date, "test", date, new BigDecimal("45.50"), StatusMaintenanceEnum.IN_PROCESS, 1);
 //            Maintenance newMireMbajtja = mirembajtjaRepository.create(createMirembajtjaDto);
 //            newMireMbajtja.printoTeDhenatPerMirembajtjen();
 //
-//            UpdateMaintenanceDto updateMirembajtjaDto = new UpdateMaintenanceDto(1,"MIRE",date,date,new BigDecimal("45.00"),StatusiMaintenanceEnum.ANULUAR);
+//            UpdateMaintenanceDto updateMirembajtjaDto = new UpdateMaintenanceDto(1,"MIRE",date,date,new BigDecimal("45.00"),StatusMaintenanceEnum.CANCELED);
 //            newMireMbajtja = mirembajtjaRepository.update(updateMirembajtjaDto);
 //            newMireMbajtja.printoTeDhenatPerMirembajtjen();
 
