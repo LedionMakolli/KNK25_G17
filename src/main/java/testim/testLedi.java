@@ -1,16 +1,10 @@
 package testim;
-import models.Dokumentet;
+import models.Contract;
 import models.Dto.*;
 
-import models.Kontrata;
-import models.Mirembajtja;
-import models.enums.PagesaEnum;
-import models.enums.StatusiMirembatjaEnum;
-import repository.DokumentetRepository;
-import repository.KontrataRepository;
-import repository.MirembajtjaRepository;
+import models.enums.PaymentEnum;
+import repository.ContractRepository;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.SQLException;
 
@@ -22,41 +16,41 @@ public class testLedi {
 
             // KONTRATA TEST
             
-            KontrataRepository kontrataRepository = new KontrataRepository();
-            Kontrata kontrata = kontrataRepository.getById(1);
-            System.out.println("Kontrata ID: " + kontrata.getId());
+            ContractRepository contractRepository = new ContractRepository();
+            Contract contract = contractRepository.getById(1);
+            System.out.println("Contract ID: " + contract.getId());
 
-            CreateKontrataDto createKontrataDto = new CreateKontrataDto(6,1,5000.0, PagesaEnum.KARTELE,date);
-            Kontrata newKontrata = kontrataRepository.create(createKontrataDto);
-            newKontrata.printoTeDhenatPerKontraten();
+            CreateContractDto createContractDto = new CreateContractDto(6,1,5000.0, PaymentEnum.CARD,date);
+            Contract newContract = contractRepository.create(createContractDto);
+            newContract.printoTeDhenatPerKontraten();
 
-            UpdateKontrataDto updateKontrataDto = new UpdateKontrataDto(4,2000.0, PagesaEnum.KESH,date);
-            kontrataRepository.update(updateKontrataDto);
+            UpdateContractDto updateContractDto = new UpdateContractDto(4,2000.0, PaymentEnum.CASH,date);
+            contractRepository.update(updateContractDto);
 
             // DOKUMENTET TEST
 
-//            DokumentetRepository dokumentetRepository = new DokumentetRepository();
-//            Dokumentet dokumentet = dokumentetRepository.getById(2);
-//            System.out.println("Dokumentet ID: " + dokumentet.getId());
+//            DocumentsRepository dokumentetRepository = new DocumentsRepository();
+//            Documents dokumentet = dokumentetRepository.getById(2);
+//            System.out.println("Documents ID: " + dokumentet.getId());
 //
 //            CreateDokumentetDto createDokumentetDto = new CreateDokumentetDto(4, "PDF", "test.pdf", date);
-//            Dokumentet newDokumentet = dokumentetRepository.create(createDokumentetDto);
+//            Documents newDokumentet = dokumentetRepository.create(createDokumentetDto);
 //            newDokumentet.printoTeDhenatPerDokumentin();
 ////
-//            UpdateDokumentetDto updateDokumentetDto = new UpdateDokumentetDto(3,"IMG","test",date);
+//            UpdateDocumentsDto updateDokumentetDto = new UpdateDocumentsDto(3,"IMG","test",date);
 //            newDokumentet = dokumentetRepository.update(updateDokumentetDto);
 //            newDokumentet.printoTeDhenatPerDokumentin();
 
 
-//            MirembajtjaRepository mirembajtjaRepository = new MirembajtjaRepository();
-//            Mirembajtja mirembajtja = mirembajtjaRepository.getById(1);
-//            System.out.println("Mirembajtja ID: " + mirembajtja.getId());
+//            MaintenanceRepository mirembajtjaRepository = new MaintenanceRepository();
+//            Maintenance mirembajtja = mirembajtjaRepository.getById(1);
+//            System.out.println("Maintenance ID: " + mirembajtja.getId());
 //
-//            CreateMirembajtjaDto createMirembajtjaDto = new CreateMirembajtjaDto(1, date, "test", date, new BigDecimal("45.50"), StatusiMirembatjaEnum.NE_PROCES, 1);
-//            Mirembajtja newMireMbajtja = mirembajtjaRepository.create(createMirembajtjaDto);
+//            CreateMaintenanceDto createMirembajtjaDto = new CreateMaintenanceDto(1, date, "test", date, new BigDecimal("45.50"), StatusMaintenanceEnum.IN_PROCESS, 1);
+//            Maintenance newMireMbajtja = mirembajtjaRepository.create(createMirembajtjaDto);
 //            newMireMbajtja.printoTeDhenatPerMirembajtjen();
 //
-//            UpdateMirembajtjaDto updateMirembajtjaDto = new UpdateMirembajtjaDto(1,"MIRE",date,date,new BigDecimal("45.00"),StatusiMirembatjaEnum.ANULUAR);
+//            UpdateMaintenanceDto updateMirembajtjaDto = new UpdateMaintenanceDto(1,"MIRE",date,date,new BigDecimal("45.00"),StatusMaintenanceEnum.CANCELED);
 //            newMireMbajtja = mirembajtjaRepository.update(updateMirembajtjaDto);
 //            newMireMbajtja.printoTeDhenatPerMirembajtjen();
 

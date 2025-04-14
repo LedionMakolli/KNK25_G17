@@ -4,45 +4,45 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Dokumentet {
+public class Documents {
     private int id;
-    private int idKontrata;
-    private String lloji;
+    private int idContract;
+    private String type;
     private String path;
     private Date dataUpload;
 
-    private Dokumentet(int id, int idKontrata, String lloji, String path, Date dataUpload) {
+    private Documents(int id, int idContract, String type, String path, Date dataUpload) {
         this.id = id;
-        this.idKontrata = idKontrata;
-        this.lloji = lloji;
+        this.idContract = idContract;
+        this.type = type;
         this.path = path;
         this.dataUpload = dataUpload;
     }
 
-    public static Dokumentet getInstance(ResultSet resultSet) throws SQLException {
+    public static Documents getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        int idKontrata = resultSet.getInt("idKontrata");
-        String lloji = resultSet.getString("lloji");
-        String path = resultSet.getString("path");
+        int idContract = resultSet.getInt("idContract");
+        String lloji = resultSet.getString("type");
+        String type = resultSet.getString("path");
         Date dataUpload = resultSet.getDate("dataUpload");
 
-        return new Dokumentet(id, idKontrata, lloji, path, dataUpload);
+        return new Documents(id, idContract, lloji, type, dataUpload);
     }
 
     public int getId() {
         return id;
     }
 
-    public int getIdKontrata() {
-        return idKontrata;
+    public int getIdContract() {
+        return idContract;
     }
 
     public String getPath() {
         return path;
     }
 
-    public String getLloji() {
-        return lloji;
+    public String getType() {
+        return type;
     }
 
     public Date getDataUpload() {
@@ -52,8 +52,8 @@ public class Dokumentet {
     public void printoTeDhenatPerDokumentin(){
         System.out.println("--------------------");
         System.out.println("ID: " + getId());
-        System.out.println("IDKontrata: " + getIdKontrata());
-        System.out.println("Lloji: " + getLloji());
+        System.out.println("IDKontrata: " + getIdContract());
+        System.out.println("Lloji: " + getType());
         System.out.println("Path: " + getPath());
         System.out.println("DataUpload: " + getDataUpload());
         System.out.println("--------------------");

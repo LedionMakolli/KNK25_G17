@@ -10,8 +10,8 @@
 --Enum per User (Client & Staff)
 
 -- CREATE TYPE Statusi_Rezervimet AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
--- CREATE TYPE StatusiMirembatjaEnum AS ENUM ('PLANIFIKUAR', 'NE_PROCES', 'PERFUNDUAR', 'ANULUAR');
--- CREATE TYPE PagesaEnum AS ENUM ('KARTELE', 'KESH');
+-- CREATE TYPE StatusMaintenanceEnum AS ENUM ('PLANED', 'IN_PROCESS', 'FINISHED', 'CANCELED');
+-- CREATE TYPE PaymentEnum AS ENUM ('CARD', 'CASH');
 
 // -----   Clients    ----
 
@@ -60,56 +60,56 @@ CREATE TABLE Cars (
     transmissionType TransmissionType NOT NULL
 );
 
-// -----   REZERVIMET    ----
-CREATE TABLE Rezervimet (
+// -----   RESERVATIONS    ----
+CREATE TABLE Reservations (
     id SERIAL PRIMARY KEY,
-    idKlienti INT REFERENCES Klientet(id) ON DELETE CASCADE,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
-    dataFillimit DATE NOT NULL,
-    dataMbarimit DATE NOT NULL,
-    statusiRezervimet Statusi_Rezervimet NOT NULL DEFAULT 'REZERVIMI_AKTIV',
+    idClient INT REFERENCES Clients(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Cars(id) ON DELETE CASCADE,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    reservationStatus ReservationStatusEnum NOT NULL DEFAULT 'ACTIVE_STATUS',
     createdAt TIMESTAMP DEFAULT NOW(),
-    CHECK (dataFillimit < dataMbarimit)
+    CHECK (startDate < endDate)
 );
 
-// -----   Kontrata    ----
+// -----   Contract    ----
 
--- CREATE TABLE Kontrata (
+-- CREATE TABLE Contract (
 --     id SERIAL PRIMARY KEY,
---     idRezervimet INT REFERENCES Rezervimet(id) ON DELETE CASCADE,
---     shuma REAL NOT NULL,
---     pagesa PagesaEnum NOT NULL,
---     data TIMESTAMP NOT NULL
+--     idReservation INT REFERENCES Rezervimet(id) ON DELETE CASCADE,
+--     sum REAL NOT NULL,
+--     payment PaymentEnum NOT NULL,
+--     date TIMESTAMP NOT NULL
 -- );
 
 // -----   Sigurimi    ----
 
 CREATE TABLE Sigurimi (
     id SERIAL PRIMARY KEY,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
     kompania VARCHAR(255) NOT NULL,
-    dataFillimit DATE NOT NULL,
-    dataMbarimit DATE NOT NULL,
-    kosto DECIMAL(10,2) NOT NULL
+    dateStart DATE NOT NULL,
+    dateFininsh DATE NOT NULL,
+    cost DECIMAL(10,2) NOT NULL
 );
 
-// -----   Offers    ----
+// -----   Ofertat    ----
 
-CREATE TABLE offers (
+CREATE TABLE Ofertat (
     id SERIAL PRIMARY KEY,
-    carId INT REFERENCES Veturat(id) ON DELETE CASCADE,
-    discount DECIMAL(10,2) NOT NULL,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL
-    CHECK (endDate >= startDate)
+    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    zbritja DECIMAL(10,2) NOT NULL,
+    dateStart DATE NOT NULL,
+    dateFininsh DATE NOT NULL
+    CHECK (dateFininsh >= dateStart)
 );
 
-// -----   Reviews    ----
+// -----   Vleresimet    ----
 
-CREATE TABLE reviews (
+CREATE TABLE Vleresimet (
     id SERIAL PRIMARY KEY,
-    clientId INT REFERENCES Klientet(id) ON DELETE CASCADE,
-    carId INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idKlienti INT REFERENCES Klientet(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
     text TEXT,
     date TIMESTAMP NOT NULL
@@ -120,10 +120,10 @@ CREATE TABLE reviews (
 
 CREATE TABLE PENALIZIMET (
     id SERIAL PRIMARY KEY,
-    idRezervimet INT NOT NULL REFERENCES REZERVIMET(id),
+    idReservation INT NOT NULL REFERENCES REZERVIMET(id),
     arsyeja VARCHAR(255) NOT NULL,
-    shuma DECIMAL(10, 2) NOT NULL,
-    data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    sum DECIMAL(10, 2) NOT NULL,
+    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     paguar BOOLEAN NOT NULL
 );
 
@@ -136,24 +136,32 @@ CREATE TABLE PROMOCODE (
     aktiv BOOLEAN
 );
 
-// --- Mirembajtja ---
-CREATE TABLE Mirembajtja (
+// --- Maintenance ---
+CREATE TABLE Maintenance (
     id SERIAL PRIMARY KEY,
-    idVetura INT REFERENCES Veturat(id) ON DELETE CASCADE,
-    pershkrimi TEXT,
-    dataFillimit DATE,
-    dataMbarimit DATE,
-    kosto DECIMAL(10,2),
-    statusi StatusiMirembatjaEnum,
-    idStafi INT REFERENCES stafi(id) ON DELETE SET NULL
+    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    description TEXT,
+    dateStart DATE,
+    dateFininsh DATE,
+    cost DECIMAL(10,2),
+    status StatusMaintenanceEnum,
+    idStaff INT REFERENCES stafi(id) ON DELETE SET NULL
 );
 
-// --- Dokumentet ---
-CREATE TABLE Dokumentet (
+// --- Documents ---
+CREATE TABLE Documents (
         id SERIAL PRIMARY KEY,
-        kontrataId INT REFERENCES Kontrata(id_kontrata) ON DELETE CASCADE,
-        lloji VARCHAR(10) NOT NULL,  -- PDF, IMG, etj.
+        idContract INT REFERENCES Kontrata(id) ON DELETE CASCADE,
+        type VARCHAR(10) NOT NULL,  -- PDF, IMG, etj.
         path TEXT NOT NULL,          -- Rruga e dokumentit në sistem
         dataUpload DATE NOT NULL
 );
+
+//----SpecialRequests----
+ CREATE TABLE SpecialRequests (
+     id SERIAL PRIMARY KEY,
+     idReservation INT NOT NULL REFERENCES Reservations(id) ON DELETE CASCADE,
+     request TEXT NOT NULL,
+     completed BOOLEAN DEFAULT FALSE
+ );
 

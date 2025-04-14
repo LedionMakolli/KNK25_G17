@@ -1,25 +1,23 @@
 package models.Dto;
 
-import models.enums.PagesaEnum;
 import models.enums.VeprimetEnum;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class UpdateLogActivityDto {
     private int id;
     private Integer idUser;
     private String ipAddress;
-    private VeprimetEnum veprimi;
-    private LocalDateTime data;
+    private VeprimetEnum action;
+    private LocalDateTime date;
 
 
-   /* public UpdateLogActivityDto(int id,Integer idUser String ipAddress, VeprimetEnum veprimi, LocalDateTime data) {
+    public UpdateLogActivityDto(int id, Integer idUser, String ipAddress, VeprimetEnum action, LocalDateTime date) {
         this.id = id;
         this.idUser=idUser;
         this.ipAddress = ipAddress;
-        this.veprimi = veprimi;
-        this.data = data;
+        this.action = action;
+        this.date = date;
     }
 
 
@@ -31,16 +29,16 @@ public class UpdateLogActivityDto {
         return idUser;
     }
 
-    public String getIpAddress() { // Corrected return type from double to String
+    public String getIpAddress() {
         return ipAddress;
     }
 
-    public VeprimetEnum getVeprimi() {
-        return veprimi;
+    public VeprimetEnum getAction() {
+        return action;
     }
 
-    public LocalDateTime getData() {
-        return data;
+    public LocalDateTime getDate() {
+        return date;
     }
 
 
@@ -48,16 +46,16 @@ public class UpdateLogActivityDto {
         this.idUser = idUser;
     }
 
-    public void setIpAddress(String ipAddress) { // Added setter for ipAddress
+    public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }
 
-    public void setVeprimi(VeprimetEnum veprimi) {
-        this.veprimi = veprimi;
+    public void setAction(VeprimetEnum action) {
+        this.action = action;
     }
 
-    public void setData(LocalDateTime data) {
-        this.data = data;
-    }*/
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
 }
 

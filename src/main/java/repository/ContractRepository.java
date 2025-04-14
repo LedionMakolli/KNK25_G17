@@ -8,16 +8,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataDto, UpdateKontrataDto> {
+public class ContractRepository extends BaseRepository<Contract, CreateContractDto, UpdateContractDto> {
 
-    public KontrataRepository() throws SQLException{
-        super("kontrata");
+    public ContractRepository() throws SQLException{
+        super("contract");
     }
 
     @Override
-    public Kontrata fromResultSet(ResultSet rs){
+    public Contract fromResultSet(ResultSet rs){
         try{
-            return Kontrata.getInstance(rs);
+            return Contract.getInstance(rs);
         }catch (SQLException e){
             e.printStackTrace();
             return null;
@@ -26,15 +26,15 @@ public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataD
 
     // metoda create
 
-    public Kontrata create(CreateKontrataDto KontrataDto){
-        String query = "INSERT INTO Kontrata (idRezervimet,shuma, pagesa, data) VALUES (?, ?, ?,?)";
+    public Contract create(CreateContractDto ContractDto){
+        String query = "INSERT INTO Contract (idReservation,sum, payment, date) VALUES (?, ?, ?,?)";
 
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setInt(1,KontrataDto.getIdRezervimet());
-            pstm.setDouble(2,KontrataDto.getShuma());
-            pstm.setObject(3,KontrataDto.getPagesa(), Types.OTHER);
-            pstm.setDate(4,KontrataDto.getData());
+            pstm.setInt(1, ContractDto.getIdReservation());
+            pstm.setDouble(2, ContractDto.getSum());
+            pstm.setObject(3, ContractDto.getPayment(), Types.OTHER);
+            pstm.setDate(4, ContractDto.getDate());
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()){
@@ -49,24 +49,24 @@ public class KontrataRepository extends BaseRepository<Kontrata, CreateKontrataD
 
     // metoda update
 
-    public Kontrata update(UpdateKontrataDto KontrataDto){
-        StringBuilder query = new StringBuilder("UPDATE KONTRATA SET ");
+    public Contract update(UpdateContractDto KontrataDto){
+        StringBuilder query = new StringBuilder("UPDATE CONTRACT SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdate = false;
 
-        if (KontrataDto.getShuma() > 0){
-            query.append("shuma = ?, ");
-            parametrat.add(KontrataDto.getShuma());
+        if (KontrataDto.getSum() > 0){
+            query.append("sum = ?, ");
+            parametrat.add(KontrataDto.getSum());
             hasUpdate = true;
         }
-        if (KontrataDto.getPagesa() != null){
-            query.append("pagesa = CAST(? AS PagesaEnum), ");
-            parametrat.add(KontrataDto.getPagesa().name());
+        if (KontrataDto.getPayment() != null){
+            query.append("payment = CAST(? AS PaymentEnum), ");
+            parametrat.add(KontrataDto.getPayment().name());
             hasUpdate = true;
         }
-        if (KontrataDto.getData() != null){
-            query.append("data = ?, ");
-            parametrat.add(KontrataDto.getData());
+        if (KontrataDto.getDate() != null){
+            query.append("date = ?, ");
+            parametrat.add(KontrataDto.getDate());
             hasUpdate = true;
         }
 

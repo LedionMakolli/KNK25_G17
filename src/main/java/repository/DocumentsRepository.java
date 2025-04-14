@@ -1,10 +1,8 @@
 package repository;
 
-import models.Dokumentet;
-import models.Dto.CreateDokumentetDto;
-import models.Dto.UpdateDokumentetDto;
-import models.Dto.UpdateKontrataDto;
-import models.Kontrata;
+import models.Documents;
+import models.Dto.CreateDocumentsDto;
+import models.Dto.UpdateDocumentsDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,15 +11,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokumentetDto, UpdateDokumentetDto> {
+public class DocumentsRepository extends BaseRepository<Documents, CreateDocumentsDto, UpdateDocumentsDto> {
 
-    public DokumentetRepository() throws SQLException{
-        super("Dokumentet");
+    public DocumentsRepository() throws SQLException{
+        super("Documents");
     }
     @Override
-    public Dokumentet fromResultSet(ResultSet rs){
+    public Documents fromResultSet(ResultSet rs){
         try{
-            return Dokumentet.getInstance(rs);
+            return Documents.getInstance(rs);
         }catch (SQLException e){
             e.printStackTrace();
             return null;
@@ -29,12 +27,12 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
     }
 
     // metoda create
-    public Dokumentet create(CreateDokumentetDto dokumentetDto){
-        String query = "INSERT INTO DOKUMENTET (idKontrata,lloji,path,dataUpLoad) VALUES (?,?,?,?)";
+    public Documents create(CreateDocumentsDto dokumentetDto){
+        String query = "INSERT INTO Documents (idContract,type,path,dataUpLoad) VALUES (?,?,?,?)";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS); // per AUTO_INCREMENT
-            preparedStatement.setInt(1, dokumentetDto.getIdKontrata());
-            preparedStatement.setString(2, dokumentetDto.getLloji());
+            preparedStatement.setInt(1, dokumentetDto.getIdContract());
+            preparedStatement.setString(2, dokumentetDto.getType());
             preparedStatement.setString(3, dokumentetDto.getPath());
             preparedStatement.setDate(4,dokumentetDto.getDataUpload());
             preparedStatement.execute();
@@ -51,8 +49,8 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
 
     // metoda update
 
-    public Dokumentet update(UpdateDokumentetDto DokemntetDto){
-        StringBuilder query = new StringBuilder("UPDATE DOKUMENTET SET ");
+    public Documents update(UpdateDocumentsDto DokemntetDto){
+        StringBuilder query = new StringBuilder("UPDATE DOCUMENTS SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
 
@@ -61,9 +59,9 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
             parametrat.add(DokemntetDto.getDataUpload());
             hasUpdates = true;
         }
-        if (DokemntetDto.getLloji() != null){
-            query.append("lloji = ?, ");
-            parametrat.add(DokemntetDto.getLloji());
+        if (DokemntetDto.getType() != null){
+            query.append("type = ?, ");
+            parametrat.add(DokemntetDto.getType());
             hasUpdates = true;
         }
         if (DokemntetDto.getPath() != null){
