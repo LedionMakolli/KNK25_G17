@@ -9,7 +9,7 @@ public class UpdateOffersDto {
     private Date startDate;
     private Date endDate;
 
-    public UpdateOffersDto(int id, int carId, double discount, Date startDate, Date endDate) {
+    public UpdateOffersDto(int id, Integer carId, Double discount, Date startDate, Date endDate) {
         this.id = id;
         this.carId = carId;
         this.discount = discount;

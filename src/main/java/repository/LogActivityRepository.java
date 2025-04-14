@@ -32,7 +32,7 @@ public class LogActivityRepository extends BaseRepository<LogActivity, CreateLog
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1,LogActivityDto.getIdUser());
             pstm.setObject(2,LogActivityDto.getAction(), Types.OTHER);
-            pstm.setString(3,LogActivityDto.getIpAddress());
+//            pstm.setString(3,LogActivityDto.getIpAddress());
             pstm.setTimestamp(4, java.sql.Timestamp.valueOf(LogActivityDto.getDate()));
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
