@@ -4,7 +4,7 @@
 CREATE TYPE FuelEnum AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
 CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE');
 CREATE TYPE TransmissionTypeEnum AS ENUM ('MANUAL', 'AUTOMATIC');
-CREATE TYPE StaffPositionEnum AS ENUM('ADMIN', 'MANAGER', 'STAF', 'MECHANIC');
+CREATE TYPE StaffPositionEnum AS ENUM('ADMIN', 'MANAGER', 'STAFF', 'MECHANIC');
 CREATE TYPE ReservationStatusEnum AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
 CREATE TYPE StatusMaintenanceEnum AS ENUM ('PLANED', 'IN_PROCESS', 'FINISHED', 'CANCELED');
 CREATE TYPE PaymentEnum AS ENUM ('CARD', 'CASH');
@@ -30,7 +30,7 @@ CREATE TABLE Staff (
      firstName VARCHAR(255),
      lastName VARCHAR(255),
      age integer,
- 	 personalnumber VARCHAR(20)
+ 	 personalnumber VARCHAR(20),
      email VARCHAR(255) UNIQUE,
      username varchar(30) UNIQUE,
      password VARCHAR(255),
@@ -152,7 +152,7 @@ CREATE TABLE Maintenance (
 CREATE TABLE Documents (
         id SERIAL PRIMARY KEY,
         idContract INT REFERENCES Contracts(id) ON DELETE CASCADE,
-        type VARCHAR(10) NOT NULL,       
+        type VARCHAR(10) NOT NULL,
         path TEXT NOT NULL,
         dataUpload DATE NOT NULL
 );
