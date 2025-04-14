@@ -167,3 +167,13 @@ CREATE TABLE Documents (
      completed BOOLEAN DEFAULT FALSE
  );
 
+
+----- LogActivity -----
+
+CREATE TABLE LogActivity (
+    id SERIAL PRIMARY KEY,
+    idUser INT NOT NULL,
+    userType VARCHAR(10) CHECK (userType IN ('CLIENT', 'STAFF')) NOT NULL,
+    action VARCHAR(50) NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+);

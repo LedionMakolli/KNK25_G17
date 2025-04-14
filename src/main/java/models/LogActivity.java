@@ -13,8 +13,7 @@ public class LogActivity {
     private LocalDateTime date;
     private String ipAddress;
 
-    // Constructor
-    public LogActivity(int id, Integer idUser, VeprimetEnum action, LocalDateTime date, String ipAddress) {
+    private LogActivity(int id, Integer idUser, VeprimetEnum action, LocalDateTime date, String ipAddress) {
         this.id = id;
         this.idUser = idUser;
         this.action = action;
@@ -22,19 +21,13 @@ public class LogActivity {
         this.ipAddress = ipAddress;
     }
 
-
     public static LogActivity getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-
-        Integer idUser = resultSet.getObject("idUser", Integer.class);
-
+        Integer idUser = resultSet.getObject("iduser", Integer.class);
         String actionStr = resultSet.getString("action");
         VeprimetEnum action = VeprimetEnum.valueOf(actionStr.toUpperCase());
-
         LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
-
-        String ipAddress = resultSet.getString("ipAddress");
-
+        String ipAddress = resultSet.getString("ipaddress");
         return new LogActivity(id, idUser, action, date, ipAddress);
     }
 
