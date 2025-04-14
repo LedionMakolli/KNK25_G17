@@ -9,35 +9,28 @@ import java.time.LocalDateTime;
 public class LogActivity {
     private int id;
     private Integer idUser;
+    private String userType; // Client or Staff
     private VeprimetEnum action;
     private LocalDateTime date;
-    private String ipAddress;
 
-    // Constructor
-    public LogActivity(int id, Integer idUser, VeprimetEnum action, LocalDateTime date, String ipAddress) {
+    private LogActivity(int id, Integer idUser, String userType, VeprimetEnum action, LocalDateTime date) {
         this.id = id;
         this.idUser = idUser;
+        this.userType = userType;
         this.action = action;
         this.date = date;
-        this.ipAddress = ipAddress;
     }
-
 
     public static LogActivity getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-
         Integer idUser = resultSet.getObject("idUser", Integer.class);
-
+        String userType = resultSet.getString("userType");
         String actionStr = resultSet.getString("action");
         VeprimetEnum action = VeprimetEnum.valueOf(actionStr.toUpperCase());
-
         LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
 
-        String ipAddress = resultSet.getString("ipAddress");
-
-        return new LogActivity(id, idUser, action, date, ipAddress);
+        return new LogActivity(id, idUser, userType, action, date);
     }
-
 
     public int getId() {
         return id;
@@ -45,6 +38,10 @@ public class LogActivity {
 
     public Integer getIdUser() {
         return idUser;
+    }
+
+    public String getUserType() {
+        return userType;
     }
 
     public VeprimetEnum getAction() {
@@ -55,19 +52,14 @@ public class LogActivity {
         return date;
     }
 
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
-
-    public void printoTeDhenatPerMirembajtjen() {
+    public void printLogActivityDetails() {
         System.out.println("-----------------------------");
-        System.out.println("Maintainance Details");
+        System.out.println("Log Activity Details");
         System.out.println("ID: " + id);
         System.out.println("ID User: " + idUser);
+        System.out.println("User Type: " + userType);
         System.out.println("Action: " + action);
         System.out.println("Date: " + date);
-        System.out.println("IP Address: " + ipAddress);
         System.out.println("-----------------------------");
     }
 }

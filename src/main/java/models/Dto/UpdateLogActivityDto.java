@@ -4,7 +4,7 @@ import models.enums.VeprimetEnum;
 
 import java.time.LocalDateTime;
 
-public class UpdateLogActivityDto {
+/*public class UpdateLogActivityDto {
     private int id;
     private Integer idUser;
     private String ipAddress;
@@ -57,5 +57,5 @@ public class UpdateLogActivityDto {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
-}
+}*/
 
