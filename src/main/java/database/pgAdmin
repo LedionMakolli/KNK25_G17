@@ -139,11 +139,11 @@ CREATE TABLE Mirembajtja (
     idStafi INT REFERENCES stafi(id) ON DELETE SET NULL
 );
 
---- Dokumentet ---
+--- Documents ---
 CREATE TABLE Dokumentet (
         id SERIAL PRIMARY KEY,
-        kontrataId INT REFERENCES Kontrata(id_kontrata) ON DELETE CASCADE,
-        lloji VARCHAR(10) NOT NULL,  -- PDF, IMG, etj.
+        idContract INT REFERENCES Kontrata(id) ON DELETE CASCADE,
+        type VARCHAR(10) NOT NULL,  -- PDF, IMG, etj.
         path TEXT NOT NULL,          -- Rruga e dokumentit në sistem
         dataUpload DATE NOT NULL
 );

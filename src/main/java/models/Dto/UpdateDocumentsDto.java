@@ -1,20 +1,17 @@
 package models.Dto;
 
-import models.enums.StatusiMirembatjaEnum;
-
-import java.math.BigDecimal;
 import java.sql.Date;
 
-public class UpdateDokumentetDto {
+public class UpdateDocumentsDto {
     private int id;
-    private int idKontrata;
-    private String lloji;
+    private int idContract;
+    private String type;
     private String path;
     private Date dataUpload;
 
-    public UpdateDokumentetDto(int id, String lloji, String path, Date dataUpload) {
+    public UpdateDocumentsDto(int id, String type, String path, Date dataUpload) {
         this.id = id;
-        this.lloji = lloji;
+        this.type = type;
         this.path = path;
         this.dataUpload = dataUpload;
     }
@@ -23,12 +20,12 @@ public class UpdateDokumentetDto {
         return id;
     }
 
-    public int getIdKontrata() {
-        return idKontrata;
+    public int getIdContract() {
+        return idContract;
     }
 
-    public String getLloji() {
-        return lloji;
+    public String getType() {
+        return type;
     }
 
     public String getPath() {
@@ -39,12 +36,12 @@ public class UpdateDokumentetDto {
         return dataUpload;
     }
 
-    public void setIdKontrata(int idKontrata) {
-        this.idKontrata = idKontrata;
+    public void setIdContract(int idContract) {
+        this.idContract = idContract;
     }
 
-    public void setLloji(String lloji) {
-        this.lloji = lloji;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setPath(String path) {

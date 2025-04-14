@@ -1,16 +1,10 @@
 package testim;
-import models.Dokumentet;
 import models.Dto.*;
 
 import models.Kontrata;
-import models.Mirembajtja;
 import models.enums.PagesaEnum;
-import models.enums.StatusiMirembatjaEnum;
-import repository.DokumentetRepository;
 import repository.KontrataRepository;
-import repository.MirembajtjaRepository;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.SQLException;
 
@@ -36,14 +30,14 @@ public class testLedi {
             // DOKUMENTET TEST
 
 //            DokumentetRepository dokumentetRepository = new DokumentetRepository();
-//            Dokumentet dokumentet = dokumentetRepository.getById(2);
-//            System.out.println("Dokumentet ID: " + dokumentet.getId());
+//            Documents dokumentet = dokumentetRepository.getById(2);
+//            System.out.println("Documents ID: " + dokumentet.getId());
 //
 //            CreateDokumentetDto createDokumentetDto = new CreateDokumentetDto(4, "PDF", "test.pdf", date);
-//            Dokumentet newDokumentet = dokumentetRepository.create(createDokumentetDto);
+//            Documents newDokumentet = dokumentetRepository.create(createDokumentetDto);
 //            newDokumentet.printoTeDhenatPerDokumentin();
 ////
-//            UpdateDokumentetDto updateDokumentetDto = new UpdateDokumentetDto(3,"IMG","test",date);
+//            UpdateDocumentsDto updateDokumentetDto = new UpdateDocumentsDto(3,"IMG","test",date);
 //            newDokumentet = dokumentetRepository.update(updateDokumentetDto);
 //            newDokumentet.printoTeDhenatPerDokumentin();
 
