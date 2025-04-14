@@ -23,8 +23,8 @@ public class Reviews {
 
     public static Reviews getInstance(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
-        int clientId = rs.getInt("clientId");
-        int carId = rs.getInt("carId");
+        int clientId = rs.getInt("idClient");
+        int carId = rs.getInt("idCar");
         int rating = rs.getInt("rating");
         String text = rs.getString("text");
         Timestamp date = rs.getTimestamp("date");

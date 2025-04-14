@@ -21,7 +21,7 @@ public class Offers {
 
     public static Offers getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        int carId = resultSet.getInt("carId");
+        int carId = resultSet.getInt("idCar");
         double discount = resultSet.getDouble("discount");
         Date startDate = resultSet.getDate("startDate");
         Date endDate = resultSet.getDate("endDate");

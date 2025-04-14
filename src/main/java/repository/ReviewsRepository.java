@@ -28,7 +28,7 @@ public class ReviewsRepository extends BaseRepository<Reviews, CreateReviewsDto,
 
     public Reviews create(CreateReviewsDto reviewDto) {
         String query = """
-                INSERT INTO reviews (clientId, carId, rating, text, date)
+                INSERT INTO reviews (idClient, idCar, rating, text, date)
                 VALUES (?, ?, ?, ?, ?)
                 """;
         try {
@@ -57,12 +57,12 @@ public class ReviewsRepository extends BaseRepository<Reviews, CreateReviewsDto,
         boolean hasUpdates = false;
 
         if (reviewDto.getClientId() != null) {
-            query.append("clientId = ?, ");
+            query.append("idClient = ?, ");
             params.add(reviewDto.getClientId());
             hasUpdates = true;
         }
         if (reviewDto.getCarId() != null) {
-            query.append("carId = ?, ");
+            query.append("idCar = ?, ");
             params.add(reviewDto.getCarId());
             hasUpdates = true;
         }

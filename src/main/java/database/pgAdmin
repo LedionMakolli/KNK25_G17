@@ -97,7 +97,7 @@ CREATE TABLE Sigurimi (
 
 CREATE TABLE offers (
     id SERIAL PRIMARY KEY,
-    carId INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Veturat(id) ON DELETE CASCADE,
     discount DECIMAL(10,2) NOT NULL,
     startDate DATE NOT NULL,
     endDate DATE NOT NULL
@@ -108,8 +108,8 @@ CREATE TABLE offers (
 
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    clientId INT REFERENCES Klientet(id) ON DELETE CASCADE,
-    carId INT REFERENCES Veturat(id) ON DELETE CASCADE,
+    idClient INT REFERENCES Clients(id) ON DELETE CASCADE,
+    idCar INT REFERENCES Cars(id) ON DELETE CASCADE,
     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
     text TEXT,
     date TIMESTAMP NOT NULL

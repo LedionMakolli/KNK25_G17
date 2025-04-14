@@ -28,7 +28,7 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
 
     public Offers create(CreateOffersDto offersDto) {
         String query = """
-                INSERT INTO offers (carid, discount, startdate, enddate)
+                INSERT INTO offers (idCar, discount, startDate, endDate)
                 VALUES (?, ?, ?, ?)
                 """;
         try {
@@ -55,7 +55,7 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
         boolean hasUpdates = false;
 
         if (offersDto.getCarId() != null) {
-            query.append("carId = ?, ");
+            query.append("idCar = ?, ");
             params.add(offersDto.getCarId());
             hasUpdates = true;
         }
