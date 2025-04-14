@@ -3,7 +3,7 @@ package repository;
 import database.DBConnection;
 import models.Dto.CreateInsuranceDto;
 import models.Dto.UpdateInsuranceDto;
-import models.Insurance;
+import models.Payments;
 import models.enums.KompaniaEnum;
 
 import java.sql.*;
@@ -20,14 +20,14 @@ public class InsuranceRepository {
         }
     }
 
-    public ArrayList<Insurance> getAll() {
-        ArrayList<Insurance> insurances = new ArrayList<>();
+    public ArrayList<Payments> getAll() {
+        ArrayList<Payments> insurances = new ArrayList<>();
         String query = "SELECT * FROM INSURANCE";
         try {
             Statement statement = this.connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                insurances.add(Insurance.getInstance(resultSet));
+                insurances.add(Payments.getInstance(resultSet));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,14 +35,14 @@ public class InsuranceRepository {
         return insurances;
     }
 
-    public Insurance getById(int idInsurance) {
+    public Payments getById(int idInsurance) {
         String query = "SELECT * FROM Sigurimi WHERE idInsurance=?";
         try {
             PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1, idInsurance);
             ResultSet resultSet = pstm.executeQuery();
             if (resultSet.next()) {
-                return Insurance.getInstance(resultSet);
+                return Payments.getInstance(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,7 +50,7 @@ public class InsuranceRepository {
         return null;
     }
 
-    public Insurance create(CreateInsuranceDto InsuranceDto) {
+    public Payments create(CreateInsuranceDto InsuranceDto) {
         String query = """
             INSERT INTO SIGURIMI (IDINSURANCE,COMPANY, STARTDATE, ENDDATE, COST)
             VALUES (?, ?, ?, ?,?)
@@ -75,7 +75,7 @@ public class InsuranceRepository {
         return null;
     }
 
-    public Insurance update(UpdateInsuranceDto insuranceDto) {
+    public Payments update(UpdateInsuranceDto insuranceDto) {
         StringBuilder query = new StringBuilder("UPDATE INSURANCE SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
@@ -122,8 +122,8 @@ public class InsuranceRepository {
         return false;
     }
 
-    public ArrayList<Insurance> filter(KompaniaEnum company, Date startDate, Date endDate, double cost) {
-        ArrayList<Insurance> insurances = new ArrayList<>();
+    public ArrayList<Payments> filter(KompaniaEnum company, Date startDate, Date endDate, double cost) {
+        ArrayList<Payments> insurances = new ArrayList<>();
         StringBuilder query = new StringBuilder("SELECT * FROM INSURANCE WHERE 1=1");
         List<Object> parametrat = new ArrayList<>();
 
@@ -156,7 +156,7 @@ public class InsuranceRepository {
             }
             ResultSet resultSet = pstm.executeQuery();
             while (resultSet.next()) {
-                insurances.add(Insurance.getInstance(resultSet));
+                insurances.add(Payments.getInstance(resultSet));
             }
             if (insurances.isEmpty()) {
                 System.out.println("No items found.");

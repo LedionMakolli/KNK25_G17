@@ -39,7 +39,7 @@ public class Insurance {
         return idInsurance;
     }
 
-    public int getIdvetura() {
+    public int getIdCar() {
         return idCar;
     }
 
@@ -63,7 +63,7 @@ public class Insurance {
         System.out.println("----------------------------------------");
         System.out.println("Insurance information:");
         System.out.println("ID Insurance: " + getIdInsurance());
-        System.out.println("ID Car: " + getIdvetura());
+        System.out.println("ID Car: " + getIdCar());
         System.out.println("Insurance company: " + getCompany());
         System.out.println("Registration Date: " + getStartDate());
         System.out.println("Expires: " + getEndDate());
