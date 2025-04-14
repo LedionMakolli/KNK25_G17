@@ -101,7 +101,7 @@ CREATE TABLE offers (
     discount DECIMAL(10,2) NOT NULL,
     startDate DATE NOT NULL,
     endDate DATE NOT NULL
-    CHECK (dataMbarimit >= dataFillimit)
+    CHECK (endDate >= startDate)
 );
 
 // -----   Reviews    ----
