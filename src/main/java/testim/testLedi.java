@@ -1,8 +1,8 @@
 package testim;
+import models.Contract;
 import models.Dto.*;
 
-import models.Kontrata;
-import models.enums.PagesaEnum;
+import models.enums.PaymentEnum;
 import repository.KontrataRepository;
 
 import java.sql.Date;
@@ -17,15 +17,15 @@ public class testLedi {
             // KONTRATA TEST
             
             KontrataRepository kontrataRepository = new KontrataRepository();
-            Kontrata kontrata = kontrataRepository.getById(1);
-            System.out.println("Kontrata ID: " + kontrata.getId());
+            Contract contract = kontrataRepository.getById(1);
+            System.out.println("Contract ID: " + contract.getId());
 
-            CreateKontrataDto createKontrataDto = new CreateKontrataDto(6,1,5000.0, PagesaEnum.KARTELE,date);
-            Kontrata newKontrata = kontrataRepository.create(createKontrataDto);
-            newKontrata.printoTeDhenatPerKontraten();
+            CreateContractDto createContractDto = new CreateContractDto(6,1,5000.0, PaymentEnum.CARD,date);
+            Contract newContract = kontrataRepository.create(createContractDto);
+            newContract.printoTeDhenatPerKontraten();
 
-            UpdateKontrataDto updateKontrataDto = new UpdateKontrataDto(4,2000.0, PagesaEnum.KESH,date);
-            kontrataRepository.update(updateKontrataDto);
+            UpdateContractDto updateContractDto = new UpdateContractDto(4,2000.0, PaymentEnum.CASH,date);
+            kontrataRepository.update(updateContractDto);
 
             // DOKUMENTET TEST
 

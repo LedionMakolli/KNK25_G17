@@ -1,6 +1,6 @@
 package models.Dto;
 
-import models.enums.PagesaEnum;
+import models.enums.PaymentEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -8,14 +8,14 @@ import java.time.LocalDateTime;
 public class UpdatePaymentsDto {
     private int id;
     private Integer idReservation;
-    private PagesaEnum type;
+    private PaymentEnum type;
     private LocalDateTime date;
     private Integer promoCodeId;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
 
     // Constructor
-    public UpdatePaymentsDto(int id, int idReservation, PagesaEnum type, Integer promoCodeId,
+    public UpdatePaymentsDto(int id, int idReservation, PaymentEnum type, Integer promoCodeId,
                              BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
         this.id = id;
         this.idReservation = idReservation;
@@ -35,7 +35,7 @@ public class UpdatePaymentsDto {
         return idReservation;
     }
 
-    public PagesaEnum getType() {
+    public PaymentEnum getType() {
         return type;
     }
 
@@ -60,7 +60,7 @@ public class UpdatePaymentsDto {
 
 
 
-    public void setType(PagesaEnum type) {
+    public void setType(PaymentEnum type) {
         this.type = type;
     }
 
