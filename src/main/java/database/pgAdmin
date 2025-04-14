@@ -50,7 +50,7 @@ CREATE TABLE Cars (
     yearOfManufacture INT CHECK (yearOfManufacture >= 1900),
     mileage DECIMAL(10, 2) CHECK (mileage >= 0),
     seatCount INT CHECK (seatCount > 0),
-    fuelType FuelDtoEnum NOT NULL,
+    fuelType FuelEnum NOT NULL,
     dailyPrice DECIMAL(10, 2) CHECK (dailyPrice >= 0),
     status CarStatusEnum DEFAULT 'AVAILABLE',
     transmissionType TransmissionType NOT NULL
@@ -125,6 +125,7 @@ CREATE TABLE Penalties (
 );
 
  -----PromoCode ----
+
 CREATE TABLE PROMOCODE (
     id SERIAL PRIMARY KEY,
     kodi VARCHAR(255) NOT NULL,
@@ -151,8 +152,8 @@ CREATE TABLE Maintenance (
 CREATE TABLE Documents (
         id SERIAL PRIMARY KEY,
         idContract INT REFERENCES Contracts(id) ON DELETE CASCADE,
-        type VARCHAR(10) NOT NULL,        -- PDF, IMG, etj.
-        path TEXT NOT NULL,               -- Rruga e dokumentit ne sistem
+        type VARCHAR(10) NOT NULL,       
+        path TEXT NOT NULL,
         dataUpload DATE NOT NULL
 );
 
