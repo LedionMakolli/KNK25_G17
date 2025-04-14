@@ -1,6 +1,6 @@
 package models;
 
-import models.enums.KompaniaEnum;
+import models.enums.InsuranceCompanyEnum;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,13 +9,13 @@ import java.util.Date;
 public class Insurance {
     private int idInsurance;
     private int idCar;
-    private KompaniaEnum company;
+    private InsuranceCompanyEnum company;
     private Date startDate;
     private Date endDate;
     private double cost;
 
 
-    private Insurance(int idInsurance, int idCar, KompaniaEnum company, Date startDate, Date endDate, double cost) {
+    private Insurance(int idInsurance, int idCar, InsuranceCompanyEnum company, Date startDate, Date endDate, double cost) {
         this.idInsurance = idInsurance;
         this.idCar = idCar;
         this.company = company;
@@ -28,7 +28,7 @@ public class Insurance {
         int idInsurance = resultSet.getInt("idInsurance");
         int idCar = resultSet.getInt("idCar");
         String companyStr = resultSet.getString("company");
-        KompaniaEnum company = KompaniaEnum.valueOf(companyStr.toUpperCase());
+        InsuranceCompanyEnum company = InsuranceCompanyEnum.valueOf(companyStr.toUpperCase());
         Date startDate = resultSet.getDate("startDate");
         Date endDate = resultSet.getDate("endDate");
         double cost = resultSet.getDouble("cost");
@@ -43,7 +43,7 @@ public class Insurance {
         return idCar;
     }
 
-    public KompaniaEnum getCompany() {
+    public InsuranceCompanyEnum getCompany() {
         return company;
     }
 

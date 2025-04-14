@@ -1,10 +1,9 @@
 package models.enums;
 
-public enum KompaniaEnum {
+public enum InsuranceCompanyEnum {
         KASKO,
         EUROSIG,
         SIGMA
-
     }
 
 
