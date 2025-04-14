@@ -1,13 +1,14 @@
 
  -----   ENUMS    ----
 
-CREATE TYPE FuelEnum AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HIBRID');
+CREATE TYPE FuelEnum AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HYBRID');
 CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE');
 CREATE TYPE TransmissionTypeEnum AS ENUM ('MANUAL', 'AUTOMATIC');
 CREATE TYPE StaffPositionEnum AS ENUM('ADMIN', 'MANAGER', 'STAFF', 'MECHANIC');
-CREATE TYPE ReservationStatusEnum AS ENUM ( 'REZERVIMI_AKTIV', 'REZERVIMI_PERFUNDUAR','REZERVIMI_ANULUAR');
+CREATE TYPE ReservationStatusEnum AS ENUM ( 'ACTIVE_RESERVATION', 'ENDED_RESERVATION', 'CANCELLED_RESERVATION');
 CREATE TYPE StatusMaintenanceEnum AS ENUM ('PLANED', 'IN_PROCESS', 'FINISHED', 'CANCELED');
 CREATE TYPE PaymentEnum AS ENUM ('CARD', 'CASH');
+CREATE TYPE InsuranceCompanyEnum AS ENUM ('KASKO', 'EUROSIG', 'SIGMA');
 
  -----   Clients    ----
 
@@ -53,7 +54,7 @@ CREATE TABLE Cars (
     fuelType FuelEnum NOT NULL,
     dailyPrice DECIMAL(10, 2) CHECK (dailyPrice >= 0),
     status CarStatusEnum DEFAULT 'AVAILABLE',
-    transmissionType TransmissionType NOT NULL
+    transmissionType TransmissionTypeEnum NOT NULL
 );
 
  -----   RESERVATIONS    ----

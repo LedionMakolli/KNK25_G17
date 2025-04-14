@@ -1,18 +1,18 @@
 package models.Dto;
 
-import models.enums.KompaniaEnum;
+import models.enums.InsuranceCompanyEnum;
 
 import java.util.Date;
 
 public class CreateInsuranceDto {
     private int idCar;
-    private KompaniaEnum company;
+    private InsuranceCompanyEnum company;
     private Date startDate;
     private Date endDate;
     private double cost;
 
 
-    private CreateInsuranceDto(int id_sigurimi, int idCar, KompaniaEnum company, Date startDate, Date endDate, double cost) {
+    private CreateInsuranceDto(int id_sigurimi, int idCar, InsuranceCompanyEnum company, Date startDate, Date endDate, double cost) {
         this.idCar = idCar;
         this.company = company;
         this.startDate = startDate;
@@ -23,7 +23,7 @@ public class CreateInsuranceDto {
     public int getIdCar() {
         return idCar;
     }
-    public KompaniaEnum getCompany() {
+    public InsuranceCompanyEnum getCompany() {
         return company;
     }
 
@@ -40,7 +40,7 @@ public class CreateInsuranceDto {
     }
 
 
-public void setCompany(KompaniaEnum company){
+public void setCompany(InsuranceCompanyEnum company){
     this.company = company;
 }
     public void setIdCar(int idCar){

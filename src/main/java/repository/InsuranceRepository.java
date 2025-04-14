@@ -4,7 +4,7 @@ import database.DBConnection;
 import models.Dto.CreateInsuranceDto;
 import models.Dto.UpdateInsuranceDto;
 import models.Payments;
-import models.enums.KompaniaEnum;
+import models.enums.InsuranceCompanyEnum;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -122,7 +122,7 @@ public class InsuranceRepository {
         return false;
     }
 
-    public ArrayList<Payments> filter(KompaniaEnum company, Date startDate, Date endDate, double cost) {
+    public ArrayList<Payments> filter(InsuranceCompanyEnum company, Date startDate, Date endDate, double cost) {
         ArrayList<Payments> insurances = new ArrayList<>();
         StringBuilder query = new StringBuilder("SELECT * FROM INSURANCE WHERE 1=1");
         List<Object> parametrat = new ArrayList<>();
