@@ -6,15 +6,14 @@ import java.sql.Date;
 
 public class UpdateContractDto {
     private int id;
+    private int idPayment;
     private int idReservation;
     private double sum;
-    private PaymentEnum payment;
     private Date date;
 
-    public UpdateContractDto(int id, double sum, PaymentEnum payment, Date date) {
+    public UpdateContractDto(int id, double sum,  Date date) {
         this.id = id;
         this.sum = sum;
-        this.payment = payment;
         this.date = date;
     }
 
@@ -30,9 +29,6 @@ public class UpdateContractDto {
         return sum;
     }
 
-    public PaymentEnum getPayment() {
-        return payment;
-    }
 
     public Date getDate() {
         return date;
@@ -46,8 +42,12 @@ public class UpdateContractDto {
         this.sum = sum;
     }
 
-    public void setPayment(PaymentEnum payment) {
-        this.payment = payment;
+    public int getIdPayment() {
+        return idPayment;
+    }
+
+    public void setIdPayment(int idPayment) {
+        this.idPayment = idPayment;
     }
 
     public void setDate(Date date) {
