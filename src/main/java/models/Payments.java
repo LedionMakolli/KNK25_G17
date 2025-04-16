@@ -11,17 +11,17 @@ public class Payments {
     private int id;
     private int idReservation;
     private PaymentEnum type;
-    private PromoCode promoCode;
+    private int promoCodeId;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
     private LocalDateTime date;
 
-    public Payments(int id, int idReservation, PaymentEnum type, PromoCode promoCode,
+    public Payments(int id, int idReservation, PaymentEnum type, int promoCodeId,
                     BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
         this.id = id;
         this.idReservation = idReservation;
         this.type = type;
-        this.promoCode = promoCode;
+        this.promoCodeId = promoCodeId;
         this.totalNoDiscount = totalNoDiscount;
         this.totalFinal = totalFinal;
         this.date = date;
@@ -32,30 +32,23 @@ public class Payments {
         int idReservation = resultSet.getInt("idreservation");
         String typeStr = resultSet.getString("type");
         PaymentEnum type = PaymentEnum.valueOf(typeStr.toUpperCase());
-
-        PromoCode promoCode = null;
-        Integer promoCodeId = resultSet.getObject("promocodeid", Integer.class);
-        if (promoCodeId != null) {
-            try {
-                PromoCodeRepository promoCodeRepository = new PromoCodeRepository();
-                promoCode = promoCodeRepository.getById(promoCodeId);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        int promoCodeId = 0;
+        Integer promoCodeIdNullable = resultSet.getObject("promocodeid", Integer.class);
+        if (promoCodeIdNullable != null) {
+            promoCodeId = promoCodeIdNullable;
         }
-
         BigDecimal totalNoDiscount = resultSet.getBigDecimal("totalnodiscount");
-        BigDecimal totalFinal = resultSet.getBigDecimal("totaldinal");
+        BigDecimal totalFinal = resultSet.getBigDecimal("totalfinal");
         LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
 
-        return new Payments(id, idReservation, type, promoCode, totalNoDiscount, totalFinal, date);
+        return new Payments(id, idReservation, type, promoCodeId, totalNoDiscount, totalFinal, date);
     }
 
     public int getId() {
         return id;
     }
 
-    public Integer getIdReservation() {
+    public int getIdReservation() {
         return idReservation;
     }
 
@@ -63,8 +56,8 @@ public class Payments {
         return type;
     }
 
-    public PromoCode getPromoCode() {
-        return promoCode;
+    public int getPromoCodeId() {  // Changed from getPromoCode()
+        return promoCodeId;
     }
 
     public BigDecimal getTotalNoDiscount() {
@@ -84,7 +77,7 @@ public class Payments {
         System.out.println("ID: " + getId());
         System.out.println("ID Reservation: " + getIdReservation());
         System.out.println("Type: " + getType());
-        System.out.println("Promo Code: " + (getPromoCode() != null ? getPromoCode().getCode() : "N/A"));
+        System.out.println("Promo Code ID: " + getPromoCodeId());
         System.out.println("Total without discount: " + getTotalNoDiscount() + " €");
         System.out.println("Total final: " + getTotalFinal() + " €");
         System.out.println("Date: " + getDate());

@@ -1,8 +1,6 @@
 package models.Dto;
 
-import models.PromoCode;
 import models.enums.PaymentEnum;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -11,21 +9,22 @@ public class UpdatePaymentsDto {
     private Integer idReservation;
     private PaymentEnum type;
     private LocalDateTime date;
-    private PromoCode promoCode;
+    private int promoCodeId;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
 
-    public UpdatePaymentsDto(int id, int idReservation, PaymentEnum type, PromoCode promoCode,
+    public UpdatePaymentsDto(int id, int idReservation, PaymentEnum type, int promoCodeId,
                              BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
         this.id = id;
         this.idReservation = idReservation;
         this.type = type;
-        this.promoCode = promoCode;
+        this.promoCodeId = promoCodeId;
         this.totalNoDiscount = totalNoDiscount;
         this.totalFinal = totalFinal;
         this.date = date;
     }
 
+    // Getters
     public int getId() {
         return id;
     }
@@ -42,8 +41,8 @@ public class UpdatePaymentsDto {
         return date;
     }
 
-    public PromoCode getPromoCode() {
-        return promoCode;
+    public int getPromoCodeId() {
+        return promoCodeId;
     }
 
     public BigDecimal getTotalNoDiscount() {
@@ -54,6 +53,7 @@ public class UpdatePaymentsDto {
         return totalFinal;
     }
 
+    // Setters (only for fields that should be updatable)
     public void setType(PaymentEnum type) {
         this.type = type;
     }
@@ -62,8 +62,8 @@ public class UpdatePaymentsDto {
         this.date = date;
     }
 
-    public void setPromoCode(PromoCode promoCode) {
-        this.promoCode = promoCode;
+    public void setPromoCodeId(int promoCodeId) {
+        this.promoCodeId = promoCodeId;
     }
 
     public void setTotalNoDiscount(BigDecimal totalNoDiscount) {

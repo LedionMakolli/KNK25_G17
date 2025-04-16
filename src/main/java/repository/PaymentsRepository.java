@@ -23,10 +23,10 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
         }
     }
 
-    // 3. metoda create
+    // Create method
     public Payments create(CreatePaymentsDto paymentsDto) {
         String query = """
-                INSERT INTO PAGESAT (ID, IDRESERVATION, TYPE, PROMOCODEID,
+                INSERT INTO PAYMENTS (ID, IDRESERVATION, TYPE, PROMOCODEID,
                 TOTALNODISCOUNT, TOTALFINAL, DATE)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 """;
@@ -34,11 +34,11 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, paymentsDto.getId());
             preparedStatement.setInt(2, paymentsDto.getIdReservation());
-            preparedStatement.setObject(3, paymentsDto.getType(), Types.OTHER);
-            preparedStatement.setObject(4, paymentsDto.getPromoCode());
+            preparedStatement.setString(3, paymentsDto.getType().toString());
+            preparedStatement.setInt(4, paymentsDto.getPromoCodeId());  // Changed from getPromoCode()
             preparedStatement.setBigDecimal(5, paymentsDto.getTotalNoDiscount());
             preparedStatement.setBigDecimal(6, paymentsDto.getTotalFinal());
-            preparedStatement.setTimestamp(7, java.sql.Timestamp.valueOf(paymentsDto.getDate()));
+            preparedStatement.setTimestamp(7, Timestamp.valueOf(paymentsDto.getDate()));
 
             preparedStatement.execute();
             ResultSet result = preparedStatement.getGeneratedKeys();
@@ -52,7 +52,7 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
         return null;
     }
 
-    // 4. metoda update
+    // Update method
     public Payments update(UpdatePaymentsDto paymentsDto) {
         StringBuilder query = new StringBuilder("UPDATE PAYMENTS SET ");
         List<Object> parameters = new ArrayList<>();
@@ -60,12 +60,12 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
 
         if (paymentsDto.getType() != null) {
             query.append("type = ?, ");
-            parameters.add(paymentsDto.getType());
+            parameters.add(paymentsDto.getType().toString());
             hasUpdates = true;
         }
-        if (paymentsDto.getPromoCode() != null) {
+        if (paymentsDto.getPromoCodeId() != 0) {  // Changed to check for 0 instead of null
             query.append("promocodeid = ?, ");
-            parameters.add(paymentsDto.getPromoCode().getId());
+            parameters.add(paymentsDto.getPromoCodeId());  // Using promoCodeId directly
             hasUpdates = true;
         }
         if (paymentsDto.getTotalNoDiscount() != null) {
@@ -80,7 +80,7 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
         }
         if (paymentsDto.getDate() != null) {
             query.append("date = ?, ");
-            parameters.add(paymentsDto.getDate());
+            parameters.add(Timestamp.valueOf(paymentsDto.getDate()));
             hasUpdates = true;
         }
 
@@ -95,7 +95,12 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query.toString());
             for (int i = 0; i < parameters.size(); i++) {
-                preparedStatement.setObject(i + 1, parameters.get(i), Types.OTHER);
+                Object param = parameters.get(i);
+                if (param instanceof Timestamp) {
+                    preparedStatement.setTimestamp(i + 1, (Timestamp) param);
+                } else {
+                    preparedStatement.setObject(i + 1, param);
+                }
             }
             preparedStatement.executeUpdate();
             return getById(paymentsDto.getId());
