@@ -102,6 +102,18 @@ CREATE TABLE offers (
     CHECK (endDate >= startDate)
 );
 
+----- Payments -----
+
+CREATE TABLE Payments (
+    id SERIAL PRIMARY KEY,
+    id_reservation INTEGER NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    promo_code_id INTEGER references PromoCode(id),
+    total_no_discount NUMERIC(10, 2) NOT NULL,
+    total_final NUMERIC(10, 2) NOT NULL,
+    date TIMESTAMP NOT NULL
+);
+
  -----   Reviews    ----
 
 CREATE TABLE reviews (

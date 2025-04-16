@@ -1,7 +1,5 @@
 package models;
 
-import models.enums.VeprimetEnum;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -10,14 +8,13 @@ public class LogActivity {
     private int id;
     private Integer idUser;
     private String userType; // Client or Staff
-    private VeprimetEnum action;
+    private static final String action="Log In";
     private LocalDateTime date;
 
-    private LogActivity(int id, Integer idUser, String userType, VeprimetEnum action, LocalDateTime date) {
+    private LogActivity(int id, Integer idUser, String userType, LocalDateTime date) {
         this.id = id;
         this.idUser = idUser;
         this.userType = userType;
-        this.action = action;
         this.date = date;
     }
 
@@ -26,10 +23,9 @@ public class LogActivity {
         Integer idUser = resultSet.getObject("idUser", Integer.class);
         String userType = resultSet.getString("userType");
         String actionStr = resultSet.getString("action");
-        VeprimetEnum action = VeprimetEnum.valueOf(actionStr.toUpperCase());
         LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
 
-        return new LogActivity(id, idUser, userType, action, date);
+        return new LogActivity(id, idUser, userType, date);
     }
 
     public int getId() {
@@ -44,7 +40,7 @@ public class LogActivity {
         return userType;
     }
 
-    public VeprimetEnum getAction() {
+    public String getAction() {
         return action;
     }
 

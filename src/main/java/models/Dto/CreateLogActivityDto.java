@@ -1,18 +1,16 @@
 package models.Dto;
 
-import models.enums.VeprimetEnum;
 import java.time.LocalDateTime;
 
 public class CreateLogActivityDto {
     private Integer idUser;
     private String userType; // Client or Staff
-    private VeprimetEnum action;
+    private static final String action="Log In";
     private LocalDateTime date;
 
-    public CreateLogActivityDto(Integer idUser, String userType, VeprimetEnum action, LocalDateTime date) {
+    public CreateLogActivityDto(Integer idUser, String userType, LocalDateTime date) {
         this.idUser = idUser;
         this.userType = userType;
-        this.action = action;
         this.date = date;
     }
 
@@ -24,7 +22,7 @@ public class CreateLogActivityDto {
         return userType;
     }
 
-    public VeprimetEnum getAction() {
+    public String getAction() {
         return action;
     }
 
@@ -38,10 +36,6 @@ public class CreateLogActivityDto {
 
     public void setUserType(String userType) {
         this.userType = userType;
-    }
-
-    public void setAction(VeprimetEnum action) {
-        this.action = action;
     }
 
     public void setDate(LocalDateTime date) {

@@ -1,11 +1,8 @@
 package repository;
 
 import models.Dto.CreateLogActivityDto;
-
 import models.Dto.UpdateLogActivityDto;
-
 import models.LogActivity;
-
 import java.sql.*;
 
 public class LogActivityRepository extends BaseRepository<LogActivity, CreateLogActivityDto, UpdateLogActivityDto> {
