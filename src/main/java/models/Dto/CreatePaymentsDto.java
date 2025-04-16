@@ -1,5 +1,6 @@
 package models.Dto;
 
+import models.PromoCode;
 import models.enums.PaymentEnum;
 
 import java.math.BigDecimal;
@@ -10,22 +11,20 @@ public class CreatePaymentsDto {
     private Integer idReservation;
     private PaymentEnum type;
     private LocalDateTime date;
-    private Integer promoCodeId;
+    private PromoCode promoCode;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
 
-
-    public CreatePaymentsDto(int id, int idReservation, PaymentEnum type, Integer promoCodeId,
+    public CreatePaymentsDto(int id, int idReservation, PaymentEnum type, PromoCode promoCode,
                              BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
         this.id = id;
         this.idReservation = idReservation;
         this.type = type;
-        this.promoCodeId = promoCodeId;
+        this.promoCode = promoCode;
         this.totalNoDiscount = totalNoDiscount;
         this.totalFinal = totalFinal;
         this.date = date;
     }
-
 
     public int getId() {
         return id;
@@ -43,8 +42,8 @@ public class CreatePaymentsDto {
         return date;
     }
 
-    public Integer getPromoCodeId() {
-        return promoCodeId;
+    public PromoCode getPromoCode() {
+        return promoCode;
     }
 
     public BigDecimal getTotalNoDiscount() {
@@ -54,7 +53,6 @@ public class CreatePaymentsDto {
     public BigDecimal getTotalFinal() {
         return totalFinal;
     }
-
 
     public void setId(int id) {
         this.id = id;
@@ -72,8 +70,8 @@ public class CreatePaymentsDto {
         this.date = date;
     }
 
-    public void setPromoCodeId(Integer promoCodeId) {
-        this.promoCodeId = promoCodeId;
+    public void setPromoCode(PromoCode promoCode) {
+        this.promoCode = promoCode;
     }
 
     public void setTotalNoDiscount(BigDecimal totalNoDiscount) {
@@ -84,6 +82,3 @@ public class CreatePaymentsDto {
         this.totalFinal = totalFinal;
     }
 }
-
-
-
