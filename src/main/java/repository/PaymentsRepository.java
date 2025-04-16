@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsDto, UpdatePaymentsDto> {
     public PaymentsRepository() throws SQLException {
-        super("pagesat");
+        super("payments");
     }
 
     @Override
@@ -63,9 +63,9 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
             parameters.add(paymentsDto.getType());
             hasUpdates = true;
         }
-        if (paymentsDto.getPromoCode() != null) {  // Now checking for PromoCode object
+        if (paymentsDto.getPromoCode() != null) {
             query.append("promocodeid = ?, ");
-            parameters.add(paymentsDto.getPromoCode().getId());  // Adding promoCode's ID
+            parameters.add(paymentsDto.getPromoCode().getId());
             hasUpdates = true;
         }
         if (paymentsDto.getTotalNoDiscount() != null) {
@@ -88,7 +88,7 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
             return getById(paymentsDto.getId());
         }
 
-        query.setLength(query.length() - 2); // Remove last comma
+        query.setLength(query.length() - 2);
         query.append(" WHERE id=?");
         parameters.add(paymentsDto.getId());
 

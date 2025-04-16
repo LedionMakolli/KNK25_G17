@@ -41,7 +41,6 @@ public class Payments {
                 promoCode = promoCodeRepository.getById(promoCodeId);
             } catch (SQLException e) {
                 e.printStackTrace();
-                // Mund të vendosni një trajtim të gabimit më të mirë këtu
             }
         }
 
