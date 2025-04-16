@@ -5,32 +5,26 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class UpdatePaymentsDto {
-    private int id;
-    private Integer idReservation;
+    private final int id;
     private PaymentEnum type;
     private LocalDateTime date;
     private int promoCodeId;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
 
-    public UpdatePaymentsDto(int id, int idReservation, PaymentEnum type, int promoCodeId,
-                             BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
+    public UpdatePaymentsDto(int id, PaymentEnum type, LocalDateTime date,
+                             int promoCodeId, BigDecimal totalNoDiscount,
+                             BigDecimal totalFinal) {
         this.id = id;
-        this.idReservation = idReservation;
         this.type = type;
+        this.date = date;
         this.promoCodeId = promoCodeId;
         this.totalNoDiscount = totalNoDiscount;
         this.totalFinal = totalFinal;
-        this.date = date;
     }
 
-    // Getters
     public int getId() {
         return id;
-    }
-
-    public Integer getIdReservation() {
-        return idReservation;
     }
 
     public PaymentEnum getType() {
@@ -53,7 +47,6 @@ public class UpdatePaymentsDto {
         return totalFinal;
     }
 
-    // Setters (only for fields that should be updatable)
     public void setType(PaymentEnum type) {
         this.type = type;
     }

@@ -106,11 +106,11 @@ CREATE TABLE offers (
 
 CREATE TABLE Payments (
     id SERIAL PRIMARY KEY,
-    id_reservation INTEGER NOT NULL,
+    idreservation INTEGER NOT NULL,
     type VARCHAR(50) NOT NULL,
-    promo_code_id INTEGER references PromoCode(id),
-    total_no_discount NUMERIC(10, 2) NOT NULL,
-    total_final NUMERIC(10, 2) NOT NULL,
+    promocod_id INTEGER references PromoCode(id),
+    totalnodiscount NUMERIC(10, 2) NOT NULL,
+    totalfinal NUMERIC(10, 2) NOT NULL,
     date TIMESTAMP NOT NULL
 );
 

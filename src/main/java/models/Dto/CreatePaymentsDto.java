@@ -1,12 +1,10 @@
 package models.Dto;
 
 import models.enums.PaymentEnum;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class CreatePaymentsDto {
-    private int id;
     private Integer idReservation;
     private PaymentEnum type;
     private LocalDateTime date;
@@ -14,9 +12,9 @@ public class CreatePaymentsDto {
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
 
-    public CreatePaymentsDto(int id, int idReservation, PaymentEnum type, int promoCodeId,
+    // Constructor without id parameter
+    public CreatePaymentsDto(Integer idReservation, PaymentEnum type, int promoCodeId,
                              BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
-        this.id = id;
         this.idReservation = idReservation;
         this.type = type;
         this.promoCodeId = promoCodeId;
@@ -25,10 +23,7 @@ public class CreatePaymentsDto {
         this.date = date;
     }
 
-    public int getId() {
-        return id;
-    }
-
+    // Getters and Setters (removed getId() and setId() since we don't need them)
     public Integer getIdReservation() {
         return idReservation;
     }
@@ -41,7 +36,7 @@ public class CreatePaymentsDto {
         return date;
     }
 
-    public int getPromoCodeId() {  // Changed from getPromoCode()
+    public int getPromoCodeId() {
         return promoCodeId;
     }
 
@@ -51,10 +46,6 @@ public class CreatePaymentsDto {
 
     public BigDecimal getTotalFinal() {
         return totalFinal;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setIdReservation(Integer idReservation) {
