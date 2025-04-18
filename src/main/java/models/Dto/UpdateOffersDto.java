@@ -1,6 +1,6 @@
 package models.Dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UpdateOffersDto {
     private int id;

@@ -1,6 +1,5 @@
 package models.Dto;
 
-import models.enums.VeprimetEnum;
 
 import java.time.LocalDateTime;
 

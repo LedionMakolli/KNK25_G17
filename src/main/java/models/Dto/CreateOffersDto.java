@@ -1,6 +1,6 @@
 package models.Dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class CreateOffersDto {
     private int carId;
@@ -39,11 +39,11 @@ public class CreateOffersDto {
         return discount;
     }
 
-    public java.sql.Date getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public java.sql.Date getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 }
