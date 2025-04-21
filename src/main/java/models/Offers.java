@@ -48,4 +48,14 @@ public class Offers {
     public Date getEndDate() {
         return endDate;
     }
+
+    private static void printOfferDetails(Offers offer) {
+        System.out.println("---------------------------------");
+        System.out.println("Offer ID: " + offer.getId());
+        System.out.println("Car ID: " + offer.getCarId());
+        System.out.println("Discount: " + offer.getDiscount() + "%");
+        System.out.println("Start Date: " + offer.getStartDate());
+        System.out.println("End Date: " + offer.getEndDate());
+        System.out.println("---------------------------------");
+    }
 }
