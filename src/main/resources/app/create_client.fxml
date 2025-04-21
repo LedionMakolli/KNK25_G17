@@ -99,16 +99,16 @@
                </children>
             </VBox>
             <VBox layoutX="260.0" layoutY="43.0" spacing="10.0">
-               <children>
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField prefWidth="147.0" />
-               </children>
+                <children>
+                    <TextField fx:id="txtFirstName" />
+                    <TextField fx:id="txtLastName" />
+                    <TextField fx:id="txtAge" />
+                    <TextField fx:id="txtPersonalNumber" />
+                    <TextField fx:id="txtEmail" />
+                    <TextField fx:id="txtUsername" />
+                    <TextField fx:id="txtPassword" />
+                    <TextField fx:id="txtTelephoneNumber" prefWidth="147.0" />
+                </children>
             </VBox>
             <Label layoutX="303.0" layoutY="8.0" text="Sign Up" textFill="#fc0000">
                <font>
