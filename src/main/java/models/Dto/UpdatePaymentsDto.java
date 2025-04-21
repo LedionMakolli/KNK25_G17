@@ -1,38 +1,30 @@
 package models.Dto;
 
 import models.enums.PaymentEnum;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class UpdatePaymentsDto {
-    private int id;
-    private Integer idReservation;
+    private final int id;
     private PaymentEnum type;
     private LocalDateTime date;
-    private Integer promoCodeId;
+    private int promoCodeId;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
 
-    // Constructor
-    public UpdatePaymentsDto(int id, int idReservation, PaymentEnum type, Integer promoCodeId,
-                             BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
+    public UpdatePaymentsDto(int id, PaymentEnum type, LocalDateTime date,
+                             int promoCodeId, BigDecimal totalNoDiscount,
+                             BigDecimal totalFinal) {
         this.id = id;
-        this.idReservation = idReservation;
         this.type = type;
+        this.date = date;
         this.promoCodeId = promoCodeId;
         this.totalNoDiscount = totalNoDiscount;
         this.totalFinal = totalFinal;
-        this.date = date;
     }
 
-    // Getters
     public int getId() {
         return id;
-    }
-
-    public Integer getIdReservation() {
-        return idReservation;
     }
 
     public PaymentEnum getType() {
@@ -43,7 +35,7 @@ public class UpdatePaymentsDto {
         return date;
     }
 
-    public Integer getPromoCodeId() {
+    public int getPromoCodeId() {
         return promoCodeId;
     }
 
@@ -55,11 +47,6 @@ public class UpdatePaymentsDto {
         return totalFinal;
     }
 
-    // Setters
-
-
-
-
     public void setType(PaymentEnum type) {
         this.type = type;
     }
@@ -68,7 +55,7 @@ public class UpdatePaymentsDto {
         this.date = date;
     }
 
-    public void setPromoCodeId(Integer promoCodeId) {
+    public void setPromoCodeId(int promoCodeId) {
         this.promoCodeId = promoCodeId;
     }
 
@@ -80,4 +67,3 @@ public class UpdatePaymentsDto {
         this.totalFinal = totalFinal;
     }
 }
-

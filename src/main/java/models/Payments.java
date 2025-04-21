@@ -1,7 +1,7 @@
 package models;
 
 import models.enums.PaymentEnum;
-
+import repository.PromoCodeRepository;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,13 +11,12 @@ public class Payments {
     private int id;
     private int idReservation;
     private PaymentEnum type;
-    private Integer promoCodeId; // Integer for handling NULL values
-    private BigDecimal totalNoDiscount; // Total before discount
-    private BigDecimal totalFinal; // Total after applying discounts
+    private int promoCodeId;
+    private BigDecimal totalNoDiscount;
+    private BigDecimal totalFinal;
     private LocalDateTime date;
 
-
-    public Payments(int id, int idReservation, PaymentEnum type, Integer promoCodeId,
+    public Payments(int id, int idReservation, PaymentEnum type, int promoCodeId,
                     BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
         this.id = id;
         this.idReservation = idReservation;
@@ -28,26 +27,28 @@ public class Payments {
         this.date = date;
     }
 
-
     public static Payments getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        Integer idReservation = resultSet.getInt("idreservation");
+        int idReservation = resultSet.getInt("idreservation");
         String typeStr = resultSet.getString("type");
         PaymentEnum type = PaymentEnum.valueOf(typeStr.toUpperCase());
-        Integer promoCodeId = resultSet.getObject("promocodeid", Integer.class);
+        int promoCodeId = 0;
+        Integer promoCodeIdNullable = resultSet.getObject("promocodeid", Integer.class);
+        if (promoCodeIdNullable != null) {
+            promoCodeId = promoCodeIdNullable;
+        }
         BigDecimal totalNoDiscount = resultSet.getBigDecimal("totalnodiscount");
-        BigDecimal totalFinal = resultSet.getBigDecimal("totaldinal");
+        BigDecimal totalFinal = resultSet.getBigDecimal("totalfinal");
         LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
 
         return new Payments(id, idReservation, type, promoCodeId, totalNoDiscount, totalFinal, date);
     }
 
-    // Getters
     public int getId() {
         return id;
     }
 
-    public Integer getIdReservation() {
+    public int getIdReservation() {
         return idReservation;
     }
 
@@ -55,7 +56,7 @@ public class Payments {
         return type;
     }
 
-    public Integer getPromoCodeId() {
+    public int getPromoCodeId() {  // Changed from getPromoCode()
         return promoCodeId;
     }
 
@@ -71,17 +72,15 @@ public class Payments {
         return date;
     }
 
-    // Method to print details
     public void printPaymentDetails() {
         System.out.println("----------------------------------------");
         System.out.println("ID: " + getId());
         System.out.println("ID Reservation: " + getIdReservation());
         System.out.println("Type: " + getType());
-        System.out.println("Promo Code ID: " + (getPromoCodeId() != null ? getPromoCodeId() : "N/A"));
+        System.out.println("Promo Code ID: " + getPromoCodeId());
         System.out.println("Total without discount: " + getTotalNoDiscount() + " €");
         System.out.println("Total final: " + getTotalFinal() + " €");
         System.out.println("Date: " + getDate());
         System.out.println("----------------------------------------");
     }
 }
-

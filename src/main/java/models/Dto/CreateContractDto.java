@@ -6,21 +6,29 @@ import java.sql.Date;
 
 public class CreateContractDto {
     private int id;
+    private int idPayment;
     private int idReservation;
     private double sum;
-    private PaymentEnum payment;
     private Date date;
 
-    public CreateContractDto(int id, int idReservation, double sum, PaymentEnum payment, Date date) {
+    public CreateContractDto(int id, int idPayment,int idReservation, double sum, Date date) {
         this.id = id;
         this.idReservation = idReservation;
+        this.idPayment = idPayment;
         this.sum = sum;
-        this.payment = payment;
         this.date = date;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getIdPayment() {
+        return idPayment;
+    }
+
+    public void setIdPayment(int idPayment) {
+        this.idPayment = idPayment;
     }
 
     public int getIdReservation() {
@@ -31,9 +39,6 @@ public class CreateContractDto {
         return sum;
     }
 
-    public PaymentEnum getPayment() {
-        return payment;
-    }
 
     public Date getDate() {
         return date;
@@ -47,9 +52,6 @@ public class CreateContractDto {
         this.sum = sum;
     }
 
-    public void setPayment(PaymentEnum payment) {
-        this.payment = payment;
-    }
 
     public void setDate(Date date) {
         this.date = date;

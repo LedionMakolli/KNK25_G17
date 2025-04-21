@@ -3,15 +3,15 @@ package repository;
 import models.Dto.CreatePaymentsDto;
 import models.Dto.UpdatePaymentsDto;
 import models.Payments;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsDto, UpdatePaymentsDto> {
     public PaymentsRepository() throws SQLException {
-        super("pagesat");
+        super("payments");
     }
+
     @Override
     public Payments fromResultSet(ResultSet rs) {
         try {
@@ -21,82 +21,71 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
             return null;
         }
     }
-    // 3. metoda create
-    public Payments create(CreatePaymentsDto paymentsDto) {
-        String query= """
-                INSERT INTO PAGESAT (ID, IDRESERVATION, TYPE, PROMOCODEID,
-                TOTALNODISCOUNT, TOTALFINAL, DATE)
-                VALUES (?, ?, ?, ?, ?, ?, ?,)
-                """;
-        try {
-            PreparedStatement preparedStatement= connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, paymentsDto.getId());
-            preparedStatement.setInt(2, paymentsDto.getIdReservation());
-            preparedStatement.setObject(3, paymentsDto.getType(),Types.OTHER);
-            preparedStatement.setInt(4, paymentsDto.getPromoCodeId());
-            preparedStatement.setBigDecimal(5, paymentsDto.getTotalNoDiscount());
-            preparedStatement.setBigDecimal(6, paymentsDto.getTotalFinal());
-            preparedStatement.setTimestamp(7, java.sql.Timestamp.valueOf(paymentsDto.getDate()));
 
-            preparedStatement.execute();
-            ResultSet result=preparedStatement.getGeneratedKeys();
-            if(result.next()) {
-                int id=result.getInt(1);
-                return this.getById(id);
+    public Payments create(CreatePaymentsDto paymentsDto) {
+        String query = "INSERT INTO PAYMENTS (IDRESERVATION, TYPE, PROMOCODEID, TOTALNODISCOUNT, TOTALFINAL, DATE) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, paymentsDto.getIdReservation());
+            preparedStatement.setString(2, paymentsDto.getType().toString());
+            preparedStatement.setInt(3, paymentsDto.getPromoCodeId());
+            preparedStatement.setBigDecimal(4, paymentsDto.getTotalNoDiscount());
+            preparedStatement.setBigDecimal(5, paymentsDto.getTotalFinal());
+            preparedStatement.setTimestamp(6, Timestamp.valueOf(paymentsDto.getDate()));
+
+            preparedStatement.executeUpdate();
+            ResultSet result = preparedStatement.getGeneratedKeys();
+            if (result.next()) {
+                return this.getById(result.getInt(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-    // 4. metoda update
-    public Payments update(UpdatePaymentsDto PaymentsDto) {
-        StringBuilder query = new StringBuilder("UPDATE PAYMENTS SET ");
-        List<Object> parametrat = new ArrayList<>();
-        boolean hasUpdates=false;
 
-        if (PaymentsDto.getType() != null) {
+    public Payments update(UpdatePaymentsDto paymentsDto) {
+        StringBuilder query = new StringBuilder("UPDATE PAYMENTS SET ");
+        List<Object> parameters = new ArrayList<>();
+
+        if (paymentsDto.getType() != null) {
             query.append("type = ?, ");
-            parametrat.add(PaymentsDto.getType());
-            hasUpdates=true;
+            parameters.add(paymentsDto.getType().toString());
         }
-        if (PaymentsDto.getPromoCodeId() != null) {
+        if (paymentsDto.getPromoCodeId() > 0) {
             query.append("promocodeid = ?, ");
-            parametrat.add(PaymentsDto.getPromoCodeId());
-            hasUpdates=true;
+            parameters.add(paymentsDto.getPromoCodeId());
         }
-        if (PaymentsDto.getTotalNoDiscount() !=null) {
+        if (paymentsDto.getTotalNoDiscount() != null) {
             query.append("totalnodiscount = ?, ");
-            parametrat.add(PaymentsDto.getTotalNoDiscount());
-            hasUpdates=true;
+            parameters.add(paymentsDto.getTotalNoDiscount());
         }
-        if (PaymentsDto.getTotalFinal() != null) {
+        if (paymentsDto.getTotalFinal() != null) {
             query.append("totalfinal = ?, ");
-            parametrat.add(PaymentsDto.getTotalFinal());
-            hasUpdates=true;
+            parameters.add(paymentsDto.getTotalFinal());
         }
-        if (PaymentsDto.getDate() != null) {
+        if (paymentsDto.getDate() != null) {
             query.append("date = ?, ");
-            parametrat.add(PaymentsDto.getDate());
-            hasUpdates=true;
+            parameters.add(Timestamp.valueOf(paymentsDto.getDate()));
         }
-        if (!hasUpdates) {
-            return getById(PaymentsDto.getId());
+
+        if (parameters.isEmpty()) {
+            return getById(paymentsDto.getId());
         }
-        query.setLength(query.length()-2);
-        query.append(" WHERE id=?");
-        parametrat.add(PaymentsDto.getId());
+
+        query.setLength(query.length() - 2);
+        query.append(" WHERE id = ?");
+        parameters.add(paymentsDto.getId());
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query.toString());
-            for(int i=0; i<parametrat.size(); i++) {
-                preparedStatement.setObject(i+1, parametrat.get(i), Types.OTHER);
+            for (int i = 0; i < parameters.size(); i++) {
+                preparedStatement.setObject(i + 1, parameters.get(i));
             }
             preparedStatement.executeUpdate();
-            return getById(PaymentsDto.getId());
+            return getById(paymentsDto.getId());
         } catch (SQLException e) {
-            throw new RuntimeException("Error during update!", e);
+            throw new RuntimeException("Error updating payment", e);
         }
     }
-
 }

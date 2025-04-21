@@ -20,11 +20,11 @@ public class testLedi {
             Contract contract = contractRepository.getById(1);
             System.out.println("Contract ID: " + contract.getId());
 
-            CreateContractDto createContractDto = new CreateContractDto(6,1,5000.0, PaymentEnum.CARD,date);
+            CreateContractDto createContractDto = new CreateContractDto(6,1,1,5000.0,date);
             Contract newContract = contractRepository.create(createContractDto);
             newContract.printoTeDhenatPerKontraten();
 
-            UpdateContractDto updateContractDto = new UpdateContractDto(4,2000.0, PaymentEnum.CASH,date);
+            UpdateContractDto updateContractDto = new UpdateContractDto(4,2000.0,date);
             contractRepository.update(updateContractDto);
 
             // DOKUMENTET TEST

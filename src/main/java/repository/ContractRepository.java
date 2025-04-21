@@ -27,13 +27,13 @@ public class ContractRepository extends BaseRepository<Contract, CreateContractD
     // metoda create
 
     public Contract create(CreateContractDto ContractDto){
-        String query = "INSERT INTO Contract (idReservation,sum, payment, date) VALUES (?, ?, ?,?)";
+        String query = "INSERT INTO Contract (idReservation,sum, date) VALUES (?, ?, ?,?)";
 
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, ContractDto.getIdReservation());
-            pstm.setDouble(2, ContractDto.getSum());
-            pstm.setObject(3, ContractDto.getPayment(), Types.OTHER);
+            pstm.setObject(2, ContractDto.getIdPayment());
+            pstm.setDouble(3, ContractDto.getSum());
             pstm.setDate(4, ContractDto.getDate());
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
@@ -57,11 +57,6 @@ public class ContractRepository extends BaseRepository<Contract, CreateContractD
         if (KontrataDto.getSum() > 0){
             query.append("sum = ?, ");
             parametrat.add(KontrataDto.getSum());
-            hasUpdate = true;
-        }
-        if (KontrataDto.getPayment() != null){
-            query.append("payment = CAST(? AS PaymentEnum), ");
-            parametrat.add(KontrataDto.getPayment().name());
             hasUpdate = true;
         }
         if (KontrataDto.getDate() != null){
