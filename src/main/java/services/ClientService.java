@@ -5,18 +5,12 @@ import models.Dto.CreateClientDto;
 import models.Dto.UpdateClientDto;
 import models.Dto.CreateLogActivityDto;
 import repository.ClientRepository;
-import repository.LogActivityRepository;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class ClientService {
     private ClientRepository clientRepository;
-    private LogActivityRepository logActivityRepository;
 
     public ClientService() throws Exception {
         this.clientRepository = new ClientRepository();
-        this.logActivityRepository = new LogActivityRepository();
     }
 
     public Clients getById(int id) throws Exception {
@@ -31,7 +25,6 @@ public class ClientService {
     }
 
     public Clients create(CreateClientDto clientDto) throws Exception {
-        // Validimi i të dhënave
         if (clientDto.getFirstName() == null || clientDto.getFirstName().trim().isEmpty() ||
                 clientDto.getLastName() == null || clientDto.getLastName().trim().isEmpty() ||
                 clientDto.getAge() <= 12 || clientDto.getEmail() == null || clientDto.getEmail().trim().isEmpty()) {
@@ -42,19 +35,8 @@ public class ClientService {
         if (client == null) {
             throw new Exception("Client not created!");
         }
-
-        try {
-            CreateLogActivityDto createLogActivityDto = new CreateLogActivityDto(
-                    client.getUsername(), null, "SIGN UP"
-            );
-            logActivityRepository.create(createLogActivityDto);
-        } catch (Exception e) {
-            System.err.println("Failed to log activity: " + e.getMessage());
-        }
-
         return client;
     }
-
 
 
     public Clients update(UpdateClientDto updateDto) throws Exception {

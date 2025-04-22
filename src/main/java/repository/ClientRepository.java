@@ -38,27 +38,27 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
     }
 
 
-    public Clients create(CreateClientDto klientetDto) {
+    public Clients create(CreateClientDto clientDto) {
         String query = """
         INSERT INTO CLIENTS (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        RETURNING * 
         """;
         try {
-            PreparedStatement pstm = this.connection.prepareStatement(query);
-            pstm.setString(1, klientetDto.getFirstName());
-            pstm.setString(2, klientetDto.getLastName());
-            pstm.setInt(3, klientetDto.getAge());
-            pstm.setString(4, klientetDto.getPersonalNumber());
-            pstm.setString(5, klientetDto.getEmail());
-            pstm.setString(6, klientetDto.getUsername());
-            pstm.setString(7, klientetDto.getPassword());
-            pstm.setString(8, klientetDto.getTelephoneNumber());
+            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstm.setString(1, clientDto.getFirstName());
+            pstm.setString(2, clientDto.getLastName());
+            pstm.setInt(3, clientDto.getAge());
+            pstm.setString(4, clientDto.getPersonalNumber());
+            pstm.setString(5, clientDto.getEmail());
+            pstm.setString(6, clientDto.getUsername());
+            pstm.setString(7, clientDto.getPassword());
+            pstm.setString(8, clientDto.getTelephoneNumber());
 
-            ResultSet result = pstm.executeQuery();
-            if (result.next()) {
-                System.out.println("Generated ID: " + result.getInt("id"));
-                return fromResultSet(result);
+            pstm.execute();
+            ResultSet resultSet = pstm.getGeneratedKeys();
+            if (resultSet.next()){
+                int id = resultSet.getInt(1);
+                return this.getById(id);
             }
         } catch (SQLException e) {
             e.printStackTrace();
