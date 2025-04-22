@@ -52,34 +52,32 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
     public Offers update(UpdateOffersDto offersDto) {
         StringBuilder query = new StringBuilder("UPDATE offers SET ");
         List<Object> params = new ArrayList<>();
-        boolean hasUpdates = false;
 
         if (offersDto.getCarId() != null) {
             query.append("idCar = ?, ");
             params.add(offersDto.getCarId());
-            hasUpdates = true;
         }
         if (offersDto.getDiscount() != null) {
             query.append("discount = ?, ");
             params.add(offersDto.getDiscount());
-            hasUpdates = true;
         }
         if (offersDto.getStartDate() != null) {
             query.append("startDate = ?, ");
             params.add(offersDto.getStartDate());
-            hasUpdates = true;
         }
         if (offersDto.getEndDate() != null) {
-            query.append("endDate = ?");
+            query.append("endDate = ?, ");
             params.add(offersDto.getEndDate());
-            hasUpdates = true;
         }
 
-        if (!hasUpdates) {
+
+        if (params.isEmpty()) {
             return getById(offersDto.getId());
         }
 
+
         query.setLength(query.length() - 2);
+
         query.append(" WHERE id = ?");
         params.add(offersDto.getId());
 
@@ -93,7 +91,7 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-//            throw new RuntimeException("Gabim gjate perditesimit te ofertes!", e);
         }
     }
+
 }
