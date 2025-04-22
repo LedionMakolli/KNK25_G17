@@ -5,5 +5,10 @@ module com.example.projket_knk {
     requires java.sql;
 
     opens com.example.projket_knk to javafx.fxml;
+    opens app to javafx.fxml;
+    opens controllers to javafx.fxml;
+
     exports com.example.projket_knk;
+    exports app;
+    exports controllers;
 }
