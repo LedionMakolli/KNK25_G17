@@ -4,8 +4,6 @@ import models.Clients;
 import models.Dto.CreateClientDto;
 import models.Dto.UpdateClientDto;
 import models.Dto.CreateLogActivityDto;
-import models.LogActivity;
-import models.enums.ActionEnum;
 import repository.ClientRepository;
 import repository.LogActivityRepository;
 
@@ -42,7 +40,7 @@ public class ClientService {
         }
 
         CreateLogActivityDto createLogActivityDto=new CreateLogActivityDto(
-                client.getUsername(), null, ActionEnum.SIGN_UP
+                client.getUsername(), null, "SIGN UP"
         );
         this.logActivityRepository.create(createLogActivityDto);
 

@@ -1,14 +1,11 @@
 package models.Dto;
 
-import models.enums.ActionEnum;
-import models.enums.UserTypeEnum;
-
 public class CreateLogActivityDto {
     private String clientUsername;
     private String staffUsername;
-    private ActionEnum action;
+    private String action; // Ndryshuar në String
 
-    public CreateLogActivityDto(String clientUsername, String staffUsername, ActionEnum action) {
+    public CreateLogActivityDto(String clientUsername, String staffUsername, String action) {
         this.clientUsername = clientUsername;
         this.staffUsername = staffUsername;
         this.action = action;
@@ -30,11 +27,11 @@ public class CreateLogActivityDto {
         this.staffUsername = staffUsername;
     }
 
-    public ActionEnum getAction() {
+    public String getAction() {
         return action;
     }
 
-    public void setAction(ActionEnum action) {
+    public void setAction(String action) {
         this.action = action;
     }
 }

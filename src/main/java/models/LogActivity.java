@@ -9,10 +9,10 @@ public class LogActivity {
     private int id;
     private String clientUsername;
     private String staffUsername;
-    private ActionEnum action;
+    private String action;
     private LocalDateTime date;
 
-    public LogActivity(int id, String clientUsername, String staffUsername, ActionEnum action, LocalDateTime date) {
+    public LogActivity(int id, String clientUsername, String staffUsername, String action, LocalDateTime date) {
         this.id = id;
         this.clientUsername = clientUsername;
         this.staffUsername = staffUsername;
@@ -24,28 +24,40 @@ public class LogActivity {
         int id = rs.getInt("id");
         String clientUsername = rs.getString("clientUsername");
         String staffUsername = rs.getString("staffUsername");
-        ActionEnum action = ActionEnum.valueOf(rs.getString("action"));
+        String action = rs.getString("action");
         LocalDateTime date = rs.getTimestamp("date").toLocalDateTime();
 
         return new LogActivity(id, clientUsername, staffUsername, action, date);
     }
 
     public static LogActivity createForClient(String clientUsername, ActionEnum action) {
-        return new LogActivity(0, clientUsername, null, action, LocalDateTime.now());
+        return new LogActivity(0, clientUsername, null, action.toString(), LocalDateTime.now());
     }
 
     public static LogActivity createForStaff(String staffUsername, ActionEnum action) {
-        return new LogActivity(0, null, staffUsername, action, LocalDateTime.now());
+        return new LogActivity(0, null, staffUsername, action.toString(), LocalDateTime.now());
     }
 
-    // Getters
-    public int getId() { return id; }
-    public String getClientUsername() { return clientUsername; }
-    public String getStaffUsername() { return staffUsername; }
-    public ActionEnum getAction() { return action; }
-    public LocalDateTime getDate() { return date; }
+    public int getId() {
+        return id;
+    }
 
-    // Utility method to get the acting username regardless of type
+    public String getClientUsername() {
+        return clientUsername;
+    }
+
+    public String getStaffUsername() {
+        return staffUsername;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
     public String getActorUsername() {
         return clientUsername != null ? clientUsername : staffUsername;
     }

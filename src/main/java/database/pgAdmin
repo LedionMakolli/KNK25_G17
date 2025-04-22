@@ -187,7 +187,7 @@ CREATE TABLE LogActivity (
   id SERIAL PRIMARY KEY,
   clientUsername VARCHAR(30) REFERENCES Clients(username),
   staffUsername VARCHAR(30) REFERENCES Staff(username),
-  action ActionEnum NOT NULL,
+  action varchar(40) NOT NULL,
   date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   CONSTRAINT chk_one_username_only
