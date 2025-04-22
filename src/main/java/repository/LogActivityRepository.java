@@ -3,66 +3,65 @@ package repository;
 import database.DBConnection;
 import models.Dto.CreateLogActivityDto;
 import models.LogActivity;
+
 import java.sql.*;
 import java.util.ArrayList;
-import java.time.LocalDateTime;
 
 public class LogActivityRepository {
     private Connection connection;
 
     public LogActivityRepository() throws SQLException {
-        this.connection= DBConnection.getConnection();
+        this.connection = DBConnection.getConnection();
     }
 
-    //metoda getAll
-    public ArrayList<LogActivity> getAll(){
-        ArrayList<LogActivity> logActivity = new ArrayList<>();
+    // Metoda getAll
+    public ArrayList<LogActivity> getAll() {
+        ArrayList<LogActivity> logActivities = new ArrayList<>();
         String query = "SELECT * FROM LOGACTIVITY";
-        try{
+        try {
             Statement statement = this.connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            while(rs.next()) {
-                logActivity.add(LogActivity.getInstance(rs));
+            while (rs.next()) {
+                logActivities.add(LogActivity.fromResultSet(rs));
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return logActivity;
+        return logActivities;
     }
 
-    //metoda getById
-    public LogActivity getById (int id) {
+    // Metoda getById
+    public LogActivity getById(int id) {
         String query = "SELECT * FROM LOGACTIVITY WHERE id = ?";
-        try{
+        try {
             PreparedStatement statement = this.connection.prepareStatement(query);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-            if(rs.next()) {
-                return LogActivity.getInstance(rs);
+            if (rs.next()) {
+                return LogActivity.fromResultSet(rs);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    // metoda create
+    // Metoda create
     public LogActivity create(CreateLogActivityDto logActivityDto) {
-        String query = "INSERT INTO LogActivity (idUser, userType, action, date) VALUES (?, ?, ?, CURRENT_DATE)";
+        String query = "INSERT INTO LogActivity (clientUsername, staffUsername, action, date) VALUES (?, ?, ?::actionEnum, CURRENT_DATE)";
 
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstm.setString(1, logActivityDto.getClientUsername());
+            pstm.setString(2, logActivityDto.getStaffUsername());
+            pstm.setObject(3, logActivityDto.getAction().name());
 
-            pstm.setInt(1, logActivityDto.getIdUser());
-            pstm.setString(2, logActivityDto.getUserType());
-            pstm.setObject(3, "Log In");
-
-            pstm.execute();
+            pstm.executeUpdate();
 
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {
                 int id = resultSet.getInt(1);
-                return this.getById(id);
+                return getById(id);
             }
 
         } catch (SQLException e) {
@@ -71,17 +70,17 @@ public class LogActivityRepository {
 
         return null;
     }
-    // metoda delete
-    public  boolean delete(int id) {
+
+    // Metoda delete
+    public boolean delete(int id) {
         String query = "DELETE FROM LOGACTIVITY WHERE id = ?";
-        try{
+        try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             return pstm.executeUpdate() == 1;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
-
 }

@@ -3,13 +3,19 @@ package services;
 import models.Clients;
 import models.Dto.CreateClientDto;
 import models.Dto.UpdateClientDto;
+import models.Dto.CreateLogActivityDto;
+import models.LogActivity;
+import models.enums.ActionEnum;
 import repository.ClientRepository;
+import repository.LogActivityRepository;
 
 public class ClientService {
     private ClientRepository clientRepository;
+    private LogActivityRepository logActivityRepository;
 
     public ClientService() throws Exception {
         this.clientRepository = new ClientRepository();
+        this.logActivityRepository = new LogActivityRepository();
     }
 
     public Clients getById(int id) throws Exception {
@@ -34,6 +40,11 @@ public class ClientService {
         if (client == null) {
             throw new Exception("Client not created!");
         }
+
+        CreateLogActivityDto createLogActivityDto=new CreateLogActivityDto(
+                client.getUsername(), null, ActionEnum.SIGN_UP
+        );
+        this.logActivityRepository.create(createLogActivityDto);
 
         return client;
     }

@@ -4,30 +4,30 @@ import models.enums.ActionEnum;
 import models.enums.UserTypeEnum;
 
 public class CreateLogActivityDto {
-    private Integer idUser;
-    private UserTypeEnum userType; // Client or Staff
+    private String clientUsername;
+    private String staffUsername;
     private ActionEnum action;
 
-    public CreateLogActivityDto(Integer idUser, UserTypeEnum userType, ActionEnum action) {
-        this.idUser = idUser;
-        this.userType = userType;
-        this.action=action;
+    public CreateLogActivityDto(String clientUsername, String staffUsername, ActionEnum action) {
+        this.clientUsername = clientUsername;
+        this.staffUsername = staffUsername;
+        this.action = action;
     }
 
-    public Integer getIdUser() {
-        return idUser;
+    public String getClientUsername() {
+        return clientUsername;
     }
 
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setClientUsername(String clientUsername) {
+        this.clientUsername = clientUsername;
     }
 
-    public UserTypeEnum getUserType() {
-        return userType;
+    public String getStaffUsername() {
+        return staffUsername;
     }
 
-    public void setUserType(UserTypeEnum userType) {
-        this.userType = userType;
+    public void setStaffUsername(String staffUsername) {
+        this.staffUsername = staffUsername;
     }
 
     public ActionEnum getAction() {
