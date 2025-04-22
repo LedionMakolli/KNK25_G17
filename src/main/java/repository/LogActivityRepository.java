@@ -52,8 +52,8 @@ public class LogActivityRepository {
 
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setString(1, logActivityDto.getClientUsername());
-            pstm.setString(2, logActivityDto.getStaffUsername());
+            pstm.setObject(1, logActivityDto.getClientUsername());
+            pstm.setObject(2, logActivityDto.getStaffUsername());
             pstm.setString(3, logActivityDto.getAction());
 
             pstm.executeUpdate();

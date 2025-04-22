@@ -30,14 +30,6 @@ public class LogActivity {
         return new LogActivity(id, clientUsername, staffUsername, action, date);
     }
 
-    public static LogActivity createForClient(String clientUsername, ActionEnum action) {
-        return new LogActivity(0, clientUsername, null, action.toString(), LocalDateTime.now());
-    }
-
-    public static LogActivity createForStaff(String staffUsername, ActionEnum action) {
-        return new LogActivity(0, null, staffUsername, action.toString(), LocalDateTime.now());
-    }
-
     public int getId() {
         return id;
     }

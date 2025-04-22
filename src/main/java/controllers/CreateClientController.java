@@ -71,14 +71,14 @@ public class CreateClientController {
     }
 
     private CreateClientDto getClientInputData() {
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        int age = Integer.parseInt(txtAge.getText());
-        String personalNumber = txtPersonalNumber.getText();
-        String email = txtEmail.getText();
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
-        String telephoneNumber = txtTelephoneNumber.getText();
+        String firstName = txtFirstName.getText().trim();
+        String lastName = txtLastName.getText().trim();
+        int age = Integer.parseInt(txtAge.getText().trim());
+        String personalNumber = txtPersonalNumber.getText().trim();
+        String email = txtEmail.getText().trim();
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText().trim();
+        String telephoneNumber = txtTelephoneNumber.getText().trim();
 
         return new CreateClientDto(firstName, lastName, age, personalNumber, email, username, password, telephoneNumber);
     }

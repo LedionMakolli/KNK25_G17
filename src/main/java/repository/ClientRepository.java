@@ -22,14 +22,30 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
             return null;
         }
     }
+    public Clients getByUsername(String username) {
+        String query = "SELECT * FROM CLIENTS WHERE USERNAME = ?";
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setString(1, username);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return fromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public Clients create(CreateClientDto klientetDto) {
         String query = """
-                INSERT INTO CLIENTS (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                """;
+        INSERT INTO CLIENTS (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        RETURNING * 
+        """;
         try {
-            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setString(1, klientetDto.getFirstName());
             pstm.setString(2, klientetDto.getLastName());
             pstm.setInt(3, klientetDto.getAge());
@@ -38,17 +54,18 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
             pstm.setString(6, klientetDto.getUsername());
             pstm.setString(7, klientetDto.getPassword());
             pstm.setString(8, klientetDto.getTelephoneNumber());
-            pstm.execute();
-            ResultSet result = pstm.getGeneratedKeys();
+
+            ResultSet result = pstm.executeQuery();
             if (result.next()) {
-                int id = result.getInt(1);
-                return this.getById(id);
+                System.out.println("Generated ID: " + result.getInt("id"));
+                return fromResultSet(result);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
 
     public Clients update(UpdateClientDto klientetDto) {
         StringBuilder query = new StringBuilder("UPDATE CLIENTS SET ");
