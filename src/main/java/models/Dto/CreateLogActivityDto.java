@@ -1,44 +1,40 @@
 package models.Dto;
 
-import java.time.LocalDateTime;
+import models.enums.ActionEnum;
+import models.enums.UserTypeEnum;
 
 public class CreateLogActivityDto {
     private Integer idUser;
-    private String userType; // Client or Staff
-    private static final String action="Log In";
-    private LocalDateTime date;
+    private UserTypeEnum userType; // Client or Staff
+    private ActionEnum action;
 
-    public CreateLogActivityDto(Integer idUser, String userType, LocalDateTime date) {
+    public CreateLogActivityDto(Integer idUser, UserTypeEnum userType, ActionEnum action) {
         this.idUser = idUser;
         this.userType = userType;
-        this.date = date;
+        this.action=action;
     }
 
     public Integer getIdUser() {
         return idUser;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
     public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
-    public void setUserType(String userType) {
+    public UserTypeEnum getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserTypeEnum userType) {
         this.userType = userType;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public ActionEnum getAction() {
+        return action;
+    }
+
+    public void setAction(ActionEnum action) {
+        this.action = action;
     }
 }

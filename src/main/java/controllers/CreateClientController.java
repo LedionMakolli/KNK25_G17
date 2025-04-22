@@ -7,7 +7,7 @@ import models.Dto.CreateClientDto;
 import services.ClientService;
 
 public class CreateClientController {
-
++
     @FXML
     private TextField txtFirstName;
 
@@ -53,6 +53,7 @@ public class CreateClientController {
             Clients client = this.clientService.create(this.getClientInputData());
             System.out.println("Client inserted successfully!");
             System.out.println("Client Id: " + client.getId());
+
             this.cleanFields();
         } catch (Exception e) {
             System.out.println("Error inserting client: " + e.getMessage());
