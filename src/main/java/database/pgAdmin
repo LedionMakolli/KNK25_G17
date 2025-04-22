@@ -1,6 +1,7 @@
 
  -----   ENUMS    ----
 
+CREATE TYPE ActionEnum AS ENUM ('LOG_IN', 'SIGN_UP');
 CREATE TYPE FuelEnum AS ENUM ('GASOLINE', 'DIESEL', 'ELECTRIC', 'HYBRID');
 CREATE TYPE CarStatusEnum AS ENUM ('AVAILABLE', 'RESERVED', 'IN_SERVICE');
 CREATE TYPE TransmissionTypeEnum AS ENUM ('MANUAL', 'AUTOMATIC');
@@ -183,9 +184,16 @@ CREATE TABLE Documents (
 ----- LogActivity -----
 
 CREATE TABLE LogActivity (
-    id SERIAL PRIMARY KEY,
-    idUser INT NOT NULL,
-    userType VARCHAR(10) CHECK (userType IN ('CLIENT', 'STAFF')) NOT NULL,
-    action VARCHAR(50) NOT NULL,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  id SERIAL PRIMARY KEY,
+  clientUsername VARCHAR(30) REFERENCES Clients(username),
+  staffUsername VARCHAR(30) REFERENCES Staff(username),
+  action actionEnum NOT NULL,
+  date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT chk_one_username_only
+    CHECK (
+      (clientUsername IS NOT NULL AND staffUsername IS NULL)
+      OR
+      (staffUsername IS NOT NULL AND clientUsername IS NULL)
+    )
 );
