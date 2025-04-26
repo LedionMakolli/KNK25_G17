@@ -1,76 +1,83 @@
 package testim;
 
-import models.Cars;
-import models.Dto.CreateCarDto;
-import models.Dto.CreateOffersDto;
-import models.Dto.UpdateOffersDto;
-import models.Offers;
-import models.enums.FuelEnum;
-import models.enums.CarStatusEnum;
-import models.enums.TransmissionTypeEnum;
-import repository.CarRepository;
-import repository.OffersRepository;
+import models.Dto.CreateReviewsDto;
+import models.Dto.UpdateReviewsDto;
+import models.Reviews;
+import repository.ReviewsRepository;
 
-import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class testEjona {
     public static void main(String[] args) {
         try {
+            ReviewsRepository reviewsRepository = new ReviewsRepository();
 
-            OffersRepository offersRepository = new OffersRepository();
-
-
-            CreateOffersDto newOffer = new CreateOffersDto(
+            // Test create
+            System.out.println("Testing create...");
+            CreateReviewsDto createDto = new CreateReviewsDto(
                     1,
-                    20.0,
-                    Date.valueOf("2025-05-01"),
-                    Date.valueOf("2025-05-15")
+                    1,
+                    5,
+                    "Great car! Very comfortable.",
+                    new Timestamp(new Date().getTime())
             );
+            Reviews createdReview = reviewsRepository.create(createDto);
+            System.out.println("Created review: " + createdReview.getId());
 
-            Offers createdOffer = offersRepository.create(newOffer);
+            // Test getById
+            System.out.println("\nTesting getById...");
+            Reviews retrievedReview = reviewsRepository.getById(createdReview.getId());
+            System.out.println("Retrieved review:");
+            printReviewDetails(retrievedReview);
 
-
-            if (createdOffer != null) {
-                System.out.println("Offer created successfully:");
-                printOffer(createdOffer);
-            } else {
-                System.out.println("Failed to create offer.");
-            }
-
-            // Step 4: (Optional) Update the offer
-            if (createdOffer != null) {
-                UpdateOffersDto updateOffer = new UpdateOffersDto(
-                        createdOffer.getId(),
-                        null,
-                        25.0,
-                        null,
-                        Date.valueOf("2025-05-20")
+            // Test update
+            if (createdReview != null) {
+                UpdateReviewsDto updateDto = new UpdateReviewsDto(
+                        createdReview.getId(),
+                        createdReview.getClientId(), // must pass real int (not null)
+                        createdReview.getCarId(),
+                        4, // updated rating
+                        "Good car but a bit expensive.", // updated text
+                        new Timestamp(System.currentTimeMillis())
                 );
 
-                Offers updatedOffer = offersRepository.update(updateOffer);
-                if (updatedOffer != null) {
-                    System.out.println("Offer updated successfully:");
-                    printOffer(updatedOffer);
+                Reviews updatedReview = reviewsRepository.update(updateDto);
+                if (updatedReview != null) {
+                    System.out.println("Review Updated:");
+                    printReviewDetails(updatedReview);
                 } else {
-                    System.out.println("Failed to update offer.");
+                    System.out.println("Failed to update review.");
                 }
             }
 
+            // Test getAll
+            System.out.println("\nTesting getAll...");
+            System.out.println("All reviews:");
+            reviewsRepository.getAll().forEach(testEjona::printReviewDetails);
+
+            // Test delete
+            System.out.println("\nTesting delete...");
+            boolean deleted = reviewsRepository.delete(createdReview.getId());
+            System.out.println("Delete successful: " + deleted);
+
         } catch (SQLException e) {
-            System.out.println("Database error: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    private static void printOffer(Offers offer) {
-        System.out.println("---------------------------------");
-        System.out.println("Offer ID: " + offer.getId());
-        System.out.println("Car ID: " + offer.getCarId());
-        System.out.println("Discount: " + offer.getDiscount() + "%");
-        System.out.println("Start Date: " + offer.getStartDate());
-        System.out.println("End Date: " + offer.getEndDate());
-        System.out.println("---------------------------------");
+    private static void printReviewDetails(Reviews review) {
+        if (review == null) {
+            System.out.println("Review is null");
+            return;
+        }
+        System.out.println("ID: " + review.getId());
+        System.out.println("Client ID: " + review.getClientId());
+        System.out.println("Car ID: " + review.getCarId());
+        System.out.println("Rating: " + review.getRating());
+        System.out.println("Text: " + review.getText());
+        System.out.println("Date: " + review.getDate());
+        System.out.println("---------------------");
     }
 }
