@@ -5,10 +5,9 @@ public class CreateLogActivityDto {
     private String staffUsername;
     private String action; // Ndryshuar në String
 
-    public CreateLogActivityDto(String clientUsername, String staffUsername, String action) {
+    public CreateLogActivityDto(String clientUsername, String staffUsername) {
         this.clientUsername = clientUsername;
         this.staffUsername = staffUsername;
-        this.action = action;
     }
 
     public String getClientUsername() {

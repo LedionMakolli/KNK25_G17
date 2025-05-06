@@ -48,13 +48,12 @@ public class LogActivityRepository {
 
     // Metoda create
     public LogActivity create(CreateLogActivityDto logActivityDto) {
-        String query = "INSERT INTO LogActivity (clientUsername, staffUsername, action, date) VALUES (?, ?, ?, CURRENT_DATE)";
+        String query = "INSERT INTO LogActivity (clientUsername, staffUsername, action, date) VALUES (?, ?, 'Logged in', CURRENT_DATE)";
 
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setObject(1, logActivityDto.getClientUsername());
             pstm.setObject(2, logActivityDto.getStaffUsername());
-            pstm.setString(3, logActivityDto.getAction());
 
             pstm.executeUpdate();
 
