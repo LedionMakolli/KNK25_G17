@@ -1,7 +1,10 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import models.Clients;
 import models.Dto.CreateClientDto;
 import services.ClientService;
@@ -27,7 +30,10 @@ public class CreateClientController {
     private TextField txtUsername;
 
     @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
+
+    @FXML
+    private PasswordField txtConfirmPassword;
 
     @FXML
     private TextField txtTelephoneNumber;
@@ -50,24 +56,32 @@ public class CreateClientController {
     @FXML
     private void handleSaveClick() {
         try {
+            String password = txtPassword.getText().trim();
+            String confirmPassword = txtConfirmPassword.getText().trim();
+
+            if (!password.equals(confirmPassword)) {
+                showAlert(AlertType.ERROR, "Password Mismatch", "Fjalëkalimi dhe konfirmimi nuk përputhen.");
+                return;
+            }
+
             Clients client = this.clientService.create(this.getClientInputData());
-            System.out.println("Client inserted successfully!");
-            System.out.println("Client Id: " + client.getId());
+            showAlert(AlertType.INFORMATION, "Sukses", "Klienti u regjistrua me sukses!");
             this.cleanFields();
         } catch (Exception e) {
-            System.out.println("Error inserting client: " + e.getMessage());
+            showAlert(AlertType.ERROR, "Gabim", "Gabim gjatë regjistrimit: " + e.getMessage());
         }
     }
 
     private void cleanFields() {
-        this.txtFirstName.setText("");
-        this.txtLastName.setText("");
-        this.txtAge.setText("");
-        this.txtPersonalNumber.setText("");
-        this.txtEmail.setText("");
-        this.txtUsername.setText("");
-        this.txtPassword.setText("");
-        this.txtTelephoneNumber.setText("");
+        txtFirstName.clear();
+        txtLastName.clear();
+        txtAge.clear();
+        txtPersonalNumber.clear();
+        txtEmail.clear();
+        txtUsername.clear();
+        txtPassword.clear();
+        txtConfirmPassword.clear();
+        txtTelephoneNumber.clear();
     }
 
     private CreateClientDto getClientInputData() {
@@ -81,5 +95,13 @@ public class CreateClientController {
         String telephoneNumber = txtTelephoneNumber.getText().trim();
 
         return new CreateClientDto(firstName, lastName, age, personalNumber, email, username, password, telephoneNumber);
+    }
+
+    private void showAlert(AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

@@ -77,21 +77,19 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="422.0" prefWidth="688.0" VBox.vgrow="ALWAYS">
       <children>
-            <VBox layoutX="145.0" layoutY="47.0" prefHeight="270.0" prefWidth="109.0" spacing="18.0">
+            <VBox layoutX="65.0" layoutY="71.0" prefHeight="246.0" prefWidth="118.0" spacing="18.0">
                <children>
-                  <Label prefWidth="83.0" text="First Name:" />
+                  <Label prefHeight="15.0" prefWidth="71.0" text="First Name:" />
                   <Label text="Last Name:" />
                   <Label text="Age:" />
                   <Label text="Personal Number:" />
                   <Label text="Email:" />
                   <Label text="Username:" />
-                  <Label text="Password:" />
-                  <Label text="Telephone Number:" />
                </children>
             </VBox>
-            <VBox layoutX="260.0" layoutY="43.0" spacing="10.0">
+            <VBox layoutX="174.0" layoutY="68.0" prefHeight="253.0" prefWidth="138.0" spacing="10.0">
                 <children>
                     <TextField fx:id="txtFirstName" />
                     <TextField fx:id="txtLastName" />
@@ -99,17 +97,21 @@
                     <TextField fx:id="txtPersonalNumber" />
                     <TextField fx:id="txtEmail" />
                     <TextField fx:id="txtUsername" />
-                    <TextField fx:id="txtPassword" />
-                    <TextField fx:id="txtTelephoneNumber" prefWidth="147.0" />
                 </children>
             </VBox>
-            <Label layoutX="303.0" layoutY="8.0" text="Sign Up" textFill="#fc0000">
+            <Label layoutX="301.0" layoutY="1.0" text="Sign Up" textFill="#fc0000">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
             <Button layoutX="277.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleCancelClick" text="Discard" />
             <Button layoutX="346.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleSaveClick" text="Save" />
+            <TextField fx:id="txtTelephoneNumber" layoutX="482.0" layoutY="65.0" prefHeight="26.0" prefWidth="138.0" />
+            <Label layoutX="366.0" layoutY="65.0" prefHeight="26.0" prefWidth="106.0" text="Telephone Number:" />
+            <Label layoutX="419.0" layoutY="107.0" text="Password:" />
+            <Label layoutX="377.0" layoutY="146.0" prefHeight="18.0" prefWidth="106.0" text="Confirm Password:" />
+            <PasswordField fx:id="txtPassword" layoutX="482.0" layoutY="142.0" prefHeight="26.0" prefWidth="138.0" />
+            <PasswordField fx:id="txtConfirmPassword" layoutX="482.0" layoutY="102.0" prefHeight="26.0" prefWidth="138.0" />
       </children>
     </AnchorPane>
   </children>
