@@ -9,17 +9,15 @@ import repository.ClientRepository;
 import repository.LogActivityRepository;
 import repository.StaffRepository;
 
-
-
 public class LoginService {
-    private final ClientRepository clientRepository;
-    private final StaffRepository staffRepository;
-    private final LogActivityRepository logActivityRepository;
+    private ClientRepository clientRepository;
+    private StaffRepository staffRepository;
+    private LogActivityRepository logActivityRepository;
 
-    public LoginService(ClientRepository clientRepository, StaffRepository staffRepository,LogActivityRepository logActivityRepository){
-        this.clientRepository = clientRepository;
-        this.staffRepository = staffRepository;
-        this.logActivityRepository = logActivityRepository;
+    public LoginService() throws Exception {
+        this.clientRepository = new ClientRepository();
+        this.staffRepository = new StaffRepository();
+        this.logActivityRepository = new LogActivityRepository();
     }
 
     public LoginResponse login(String username, String password){
@@ -37,12 +35,12 @@ public class LoginService {
         throw new RuntimeException("Invallid email or Password");
     }
 
-    public  void StaffRegisterActivity(String staffUsername){
+    public void StaffRegisterActivity(String staffUsername){
         CreateLogActivityDto createLogActivityDto = new CreateLogActivityDto(null,staffUsername);
         logActivityRepository.create(createLogActivityDto);
     }
 
-    public  void ClientRegisterActivity(String clientUsername){
+    public void ClientRegisterActivity(String clientUsername){
         System.out.println("Logging activity for clientUsername: " + clientUsername); // debug
         CreateLogActivityDto createLogActivityDto = new CreateLogActivityDto(clientUsername,null);
         logActivityRepository.create(createLogActivityDto);
