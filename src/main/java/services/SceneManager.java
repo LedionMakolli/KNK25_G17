@@ -14,7 +14,7 @@ public class SceneManager {
 
     private SceneManager(){
         this.languageManager = LanguageManager.getInstance();
-        this.currentPath = SceneLocator.HOME_PAGE;
+        this.currentPath = SceneLocator.SIGNUP_PAGE;
         this.scene = this.initScene();
     }
 
@@ -32,9 +32,8 @@ public class SceneManager {
         }
     }
 
-
     public static void load(String path) throws Exception{
-        if(sceneManager == null){
+        if(sceneManager == null) {
             throw new Exception("Scene manager is not initialized yet!");
         }
         sceneManager.loadParent(path);
@@ -53,7 +52,7 @@ public class SceneManager {
         scene.setRoot(parent);
     }
 
-    private void loadParent(String path, Pane pane) throws Exception{
+    private void loadParent(String path, Pane pane) throws Exception {
         pane.getChildren().clear();
 
         Parent parent = getParent(path);

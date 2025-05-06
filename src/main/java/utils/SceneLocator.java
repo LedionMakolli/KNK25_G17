@@ -1,7 +1,7 @@
 package utils;
 
 public class SceneLocator {
-    public static final String HOME_PAGE = "/group_03/views/home.fxml";
-    public static final String CREATE_USER_PAGE = "/group_03/views/create_user.fxml";
+    public static final String SIGNUP_PAGE = "/views/create_client.fxml";
+    public static final String LOGIN_PAGE="/views/login.fxml";
 //    ...
 }

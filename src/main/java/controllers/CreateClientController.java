@@ -65,7 +65,8 @@ public class CreateClientController {
             }
 
             Clients client = this.clientService.create(this.getClientInputData());
-            showAlert(AlertType.INFORMATION, "Sukses", "Klienti u regjistrua me sukses!");
+            showAlert(AlertType.INFORMATION, "Sukses", "Klienti u regjistrua me sukses!\n" +
+                    "ID e klientit: " + client.getId());
             this.cleanFields();
         } catch (Exception e) {
             showAlert(AlertType.ERROR, "Gabim", "Gabim gjatë regjistrimit: " + e.getMessage());
