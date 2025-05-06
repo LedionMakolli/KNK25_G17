@@ -4,6 +4,7 @@ import database.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.function.Function;
 
 abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
     protected Connection connection;
@@ -29,6 +30,21 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
             e.printStackTrace();
         }
         return models;
+    }
+
+    protected <T> T findByCredentials(String query, String username, String password, Function<ResultSet,T> mapper){
+        try{
+            PreparedStatement ptsm = this.connection.prepareStatement(query);
+            ptsm.setString(1,username);
+            ptsm.setString(2,password);
+            ResultSet rs = ptsm.executeQuery();
+            if (rs.next()){
+                return mapper.apply(rs);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // metoda getById
@@ -59,7 +75,6 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         }
         return false;
     }
-
-
 }
+
 

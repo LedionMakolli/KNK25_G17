@@ -1,5 +1,6 @@
 package repository;
 
+import models.Clients;
 import models.Staff;
 import models.Dto.CreateStafDto;
 import models.Dto.UpdateStafDto;
@@ -52,6 +53,15 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
         }
         return null;
     }
+
+    // login metoda
+
+    public Staff findByUsernameAndPassword(String username, String password){
+        String query = "SELECT * FROM STAFF WHERE USERNAME = ? and PASSWORD = ?";
+        return findByCredentials(query,username,password,this::fromResultSet);
+    }
+
+
     public Staff update(UpdateStafDto stafiDto) {
         StringBuilder query = new StringBuilder("UPDATE STAFF SET ");
         List<Object> parametrat = new ArrayList<>();

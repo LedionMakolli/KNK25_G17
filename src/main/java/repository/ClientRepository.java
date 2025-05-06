@@ -38,6 +38,13 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
     }
 
 
+    // login metoda
+    public Clients findByUsernameAndPassword(String username,String password){
+        String query = "SELECT * FROM CLIENTS WHERE USERNAME = ? and PASSWORD = ?";
+        return findByCredentials(query,username,password,this::fromResultSet);
+    }
+
+
     public Clients create(CreateClientDto clientDto) {
         String query = """
         INSERT INTO CLIENTS (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER)
