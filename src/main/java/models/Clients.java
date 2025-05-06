@@ -20,7 +20,7 @@ public class Clients extends User {
         String username=resultSet.getString("username");
         String password=resultSet.getString("password");
         String telephonenumber = resultSet.getString("telephonenumber");
-        return new Clients(id, firstName, lastName, age, personalNumber, username, email, password, telephonenumber);
+        return new Clients(id, firstName, lastName, age, personalNumber, email, username, password, telephonenumber);
     }
     public void printClientData() {
         System.out.println("Client is Found:");
