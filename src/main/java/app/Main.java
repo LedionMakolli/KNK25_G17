@@ -12,7 +12,7 @@ public class Main extends Application {
         SceneManager manager = SceneManager.getInstance();
         LanguageManager languageManager=LanguageManager.getInstance();
 
-        languageManager.setLocale(new Locale("sq"));
+        languageManager.setLocale(new Locale("en"));
 
         stage.setScene(manager.getScene());
         stage.setTitle("Log In");

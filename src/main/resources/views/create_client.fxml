@@ -104,9 +104,9 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Button layoutX="277.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleCancelClick" text="%btn.discard" style="-fx-background-color: red; -fx-font-size: 14px; -fx-padding: 10px 20px;"/>
-            <Button layoutX="346.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleSaveClick" text="%btn.save" style="-fx-background-color: blue; -fx-font-size: 14px; -fx-padding: 10px 20px;"/>
-            <TextField fx:id="txtTelephoneNumber" layoutX="482.0" layoutY="65.0" prefHeight="26.0" prefWidth="138.0"/>
+          <Button layoutX="270.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleCancelClick" text="%btn.discard" style="-fx-background-color: red; -fx-font-size: 14px; -fx-padding: 10px 20px;"/>
+          <Button layoutX="360.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleSaveClick" text="%btn.save" style="-fx-background-color: #4fa3d1; -fx-font-size: 14px; -fx-padding: 10px 20px;"/>
+          <TextField fx:id="txtTelephoneNumber" layoutX="482.0" layoutY="65.0" prefHeight="26.0" prefWidth="138.0"/>
             <Label layoutX="366.0" layoutY="65.0" prefHeight="26.0" prefWidth="106.0" text="%txt.telephoneNumber" />
             <Label layoutX="419.0" layoutY="107.0" text="%txt.password" />
             <Label layoutX="370.0" layoutY="146.0" prefHeight="18.0" prefWidth="106.0" text="%txt.confirmPassword" />
