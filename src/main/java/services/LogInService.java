@@ -3,18 +3,17 @@ package services;
 import models.Clients;
 import models.Dto.CreateLogActivityDto;
 import models.Dto.LoginResponse;
-import models.LogActivity;
 import models.Staff;
 import repository.ClientRepository;
 import repository.LogActivityRepository;
 import repository.StaffRepository;
 
-public class LoginService {
+public class LogInService {
     private ClientRepository clientRepository;
     private StaffRepository staffRepository;
     private LogActivityRepository logActivityRepository;
 
-    public LoginService() throws Exception {
+    public LogInService() throws Exception {
         this.clientRepository = new ClientRepository();
         this.staffRepository = new StaffRepository();
         this.logActivityRepository = new LogActivityRepository();

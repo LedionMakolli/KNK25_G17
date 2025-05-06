@@ -8,6 +8,8 @@ import javafx.scene.control.Alert.AlertType;
 import models.Clients;
 import models.Dto.CreateClientDto;
 import services.ClientService;
+import services.SceneManager;
+import utils.SceneLocator;
 
 public class CreateClientController {
 
@@ -49,8 +51,9 @@ public class CreateClientController {
     }
 
     @FXML
-    private void handleCancelClick() {
+    private void handleCancelClick() throws Exception {
         this.cleanFields();
+        SceneManager.load(SceneLocator.LOGIN_PAGE);
     }
 
     @FXML
