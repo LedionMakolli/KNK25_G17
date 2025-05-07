@@ -3,6 +3,8 @@ package repository;
 import models.Dto.UpdateClientDto;
 import models.Clients;
 import models.Dto.CreateClientDto;
+import services.PasswordHasher;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +49,8 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
 
     public Clients create(CreateClientDto clientDto) {
         String query = """
-        INSERT INTO CLIENTS (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO CLIENTS (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, SALTEDHASH, TELEPHONENUMBER)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -58,8 +60,9 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
             pstm.setString(4, clientDto.getPersonalNumber());
             pstm.setString(5, clientDto.getEmail());
             pstm.setString(6, clientDto.getUsername());
-            pstm.setString(7, clientDto.getPassword());
-            pstm.setString(8, clientDto.getTelephoneNumber());
+            pstm.setString(7, PasswordHasher.generateSaltedHash(clientDto.getPassword(), clientDto.getSaltedHash()));
+            pstm.setString(8, clientDto.getSaltedHash());
+            pstm.setString(9, clientDto.getTelephoneNumber());
 
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();

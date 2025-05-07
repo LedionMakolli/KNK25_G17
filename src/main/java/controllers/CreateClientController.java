@@ -8,6 +8,7 @@ import javafx.scene.control.Alert.AlertType;
 import models.Clients;
 import models.Dto.CreateClientDto;
 import services.ClientService;
+import services.PasswordHasher;
 import services.SceneManager;
 import utils.SceneLocator;
 
@@ -96,9 +97,10 @@ public class CreateClientController {
         String email = txtEmail.getText().trim();
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();
+        String saltedHash= PasswordHasher.generateSalt();
         String telephoneNumber = txtTelephoneNumber.getText().trim();
-
-        return new CreateClientDto(firstName, lastName, age, personalNumber, email, username, password, telephoneNumber);
+        System.out.println("Salt is: " + saltedHash);
+        return new CreateClientDto(firstName, lastName, age, personalNumber, email, username, password, saltedHash, telephoneNumber);
     }
 
     private void showAlert(AlertType alertType, String title, String content) {
