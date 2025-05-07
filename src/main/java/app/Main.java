@@ -2,24 +2,30 @@ package app;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import services.LanguageManager;
+import repository.StaffRepository;
+import services.PasswordHasher;
 import services.SceneManager;
-import java.util.Locale;
 
 public class Main extends Application {
-    @Override
-    public void start(Stage stage) throws Exception {
-        SceneManager manager = SceneManager.getInstance();
-        LanguageManager languageManager=LanguageManager.getInstance();
-
-        languageManager.setLocale(new Locale("en"));
-
-        stage.setScene(manager.getScene());
-        stage.setTitle("Log In");
+    public void start(Stage stage) {
+        SceneManager sceneManager=SceneManager.getInstance();
+        stage.setScene(sceneManager.getScene());
         stage.show();
     }
+//    public static void main(String[] args) {
+//        String salt = PasswordHasher.generateSalt();
+//        String saltedPassword = PasswordHasher.generateSaltedHash("medimedi", salt);
+//
+//        boolean isValid = PasswordHasher.compareSaltedHash("medimedi", salt, saltedPassword);
+//
+//        System.out.println("Salti: " + salt);
+//        System.out.println("Passwordi i kriposur: " + saltedPassword);
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+//        if (isValid) {
+//            System.out.println("Fjalekalimi eshte i sakte.");
+//        } else {
+//            System.out.println("Fjalekalimi eshte gabim.");
+//        }
+
+//    }
 }
