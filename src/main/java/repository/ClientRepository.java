@@ -53,7 +53,7 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
                 String storedHash = rs.getString("PASSWORD");
 
                 if (PasswordHasher.compareSaltedHash(password, salt, storedHash)) {
-                    return fromResultSet(rs);
+                    return fromResultSet(rs); // kjo metodë duhet ta ndërtojë objektin Clients nga ResultSet
                 }
             }
         } catch (SQLException e) {
