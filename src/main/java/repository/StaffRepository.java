@@ -4,6 +4,8 @@ import models.Clients;
 import models.Staff;
 import models.Dto.CreateStafDto;
 import models.Dto.UpdateStafDto;
+import services.PasswordHasher;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +29,8 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
     // Metoda Create
     public Staff create(CreateStafDto stafiDto) {
         String query = """
-                INSERT INTO STAFI (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, TELEPHONENUMBER, POSITION, EMPLOYEMENTDATE, SALARY)
-                VALUES (?,?,?,?,?,?,?,?,?,CURRENT_DATE,?);
+                INSERT INTO STAFI (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD,SALTEDHASH, TELEPHONENUMBER, POSITION, EMPLOYEMENTDATE, SALARY)
+                VALUES (?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?);
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -38,10 +40,11 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             pstm.setString(4, stafiDto.getPersonalNumber());
             pstm.setString(5, stafiDto.getEmail());
             pstm.setString(6, stafiDto.getUsername());
-            pstm.setString(7, stafiDto.getPassword());
-            pstm.setString(8, stafiDto.getTelephoneNumber());
-            pstm.setObject(9, stafiDto.getPosition(), Types.OTHER);
-            pstm.setDouble(10, stafiDto.getSalary());
+            pstm.setString(7, PasswordHasher.generateSaltedHash(stafiDto.getPassword(),stafiDto.getSaltedHash()));
+            pstm.setString(8,stafiDto.getSaltedHash());
+            pstm.setString(9, stafiDto.getTelephoneNumber());
+            pstm.setObject(10, stafiDto.getPosition(), Types.OTHER);
+            pstm.setDouble(11, stafiDto.getSalary());
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
             if (result.next()) {
