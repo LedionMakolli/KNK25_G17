@@ -5,13 +5,15 @@ abstract class UpdateUserDto {
     private int age;
     private String email;
     private String password;
+    private String saltedHash;
     private String telephoneNumber;
 
-    public UpdateUserDto(int id, int age, String email, String password, String telephoneNumber) {
+    public UpdateUserDto(int id, int age, String email, String password, String saltedHash, String telephoneNumber) {
         this.id=id;
         this.age=age;
         this.email = email;
         this.password = password;
+        this.saltedHash=saltedHash;
         this.telephoneNumber=telephoneNumber;
     }
 
@@ -48,5 +50,11 @@ abstract class UpdateUserDto {
 
     public String getTelephoneNumber() {
         return telephoneNumber;
+    }
+    public void setSaltedHash(String saltedHash) {
+        this.saltedHash=saltedHash;
+    }
+    public String getSaltedHash() {
+        return saltedHash;
     }
 }
