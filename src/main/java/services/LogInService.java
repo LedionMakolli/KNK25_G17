@@ -22,6 +22,10 @@ public class LogInService {
     public LoginResponse login(String username, String password){
         Clients client  = clientRepository.findByUsernameAndPassword(username,password);
         if (client != null) {
+            String salt = client.getSaltedHash(); // salt
+            String storedHash = client.getPassword(); // satlted hash
+
+            String inputHash = PasswordHasher.generateSaltedHash(password,salt);
             ClientRegisterActivity(client.getUsername());
             return new LoginResponse("client",client.getUsername());
         }

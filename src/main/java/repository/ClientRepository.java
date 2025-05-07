@@ -41,11 +41,26 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
 
 
     // login metoda
-    public Clients findByUsernameAndPassword(String username,String password){
-        String query = "SELECT * FROM CLIENTS WHERE USERNAME = ? and PASSWORD = ?";
-        return findByCredentials(query,username,password,this::fromResultSet);
-    }
+    public Clients findByUsernameAndPassword(String username, String password) {
+        String query = "SELECT * FROM CLIENTS WHERE USERNAME = ?";
+        try {
+            PreparedStatement ptsm = this.connection.prepareStatement(query);
+            ptsm.setString(1, username);
+            ResultSet rs = ptsm.executeQuery();
 
+            if (rs.next()) {
+                String salt = rs.getString("SALTEDHASH");
+                String storedHash = rs.getString("PASSWORD");
+
+                if (PasswordHasher.compareSaltedHash(password, salt, storedHash)) {
+                    return fromResultSet(rs); // kjo metodë duhet ta ndërtojë objektin Clients nga ResultSet
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public Clients create(CreateClientDto clientDto) {
         String query = """
