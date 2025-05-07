@@ -6,8 +6,8 @@ import java.sql.SQLException;
 public class Clients extends User {
 
     private Clients(int id, String firstName, String lastName, int age, String personalNumber,
-                    String email, String username, String password, String telephoneNumber) {
-        super(id, firstName, lastName, age, personalNumber, email, username, password, telephoneNumber);
+                    String email, String username, String password, String saltedHash, String telephoneNumber) {
+        super(id, firstName, lastName, age, personalNumber, email, username, password, saltedHash, telephoneNumber);
     }
 
     public static Clients getInstance(ResultSet resultSet) throws SQLException {
@@ -19,8 +19,9 @@ public class Clients extends User {
         String email=resultSet.getString("email");
         String username=resultSet.getString("username");
         String password=resultSet.getString("password");
+        String saltedHash=resultSet.getString("saltedhash");
         String telephonenumber = resultSet.getString("telephonenumber");
-        return new Clients(id, firstName, lastName, age, personalNumber, email, username, password, telephonenumber);
+        return new Clients(id, firstName, lastName, age, personalNumber, email, username, password, saltedHash, telephonenumber);
     }
     public void printClientData() {
         System.out.println("Client is Found:");
@@ -31,7 +32,7 @@ public class Clients extends User {
         System.out.println("Personal Number: " + getPersonalNumber());
         System.out.println("Email: " + getEmail());
         System.out.println("Username: " + getUsername());
-        // password ?
+        System.out.println("Salted hash: " + getSaltedHash());
         System.out.println("Telephone Number: " + getTelephoneNumber());
         System.out.println("------------------------------");
     }

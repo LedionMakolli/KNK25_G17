@@ -12,10 +12,11 @@ abstract class User {
     private String email;
     private String username;
     private String password;
+    private String saltedHash;
     private String telephoneNumber;
 
     protected User(int id, String firstName, String lastName, int age, String personalNumber, String email,
-                   String username, String password, String telephoneNumber) {
+                   String username, String password, String saltedHash, String telephoneNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +25,7 @@ abstract class User {
         this.email = email;
         this.username=username;
         this.password = password;
+        this.saltedHash=saltedHash;
         this.telephoneNumber=telephoneNumber;
     }
 
@@ -61,5 +63,8 @@ abstract class User {
 
     public String getTelephoneNumber() {
         return telephoneNumber;
+    }
+    public String getSaltedHash() {
+        return saltedHash;
     }
 }
