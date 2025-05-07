@@ -32,12 +32,11 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:controller="controllers.LogInController" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LogInController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -85,22 +84,18 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnLogin" layoutX="258.0" layoutY="213.0"
-                        mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0"
-                        style="-fx-background-color: blue;" text="%btn.login"
-                        textAlignment="CENTER" textFill="WHITE"
-                        onAction="#handleLogin"/>
-                <Label layoutX="191.0" layoutY="124.0" text="Username:" />
-                <Label layoutX="191.0" layoutY="160.0" text="Password:" />
-                <TextField fx:id="txtUsername" layoutX="259.0" layoutY="120.0" />
-                <TextField fx:id="txtPassword" layoutX="259.0" layoutY="165.0" />
+                <Button fx:id="btnLogin" layoutX="258.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: blue;" text="%btn.login" textAlignment="CENTER" textFill="WHITE" />
+                <Label layoutX="191.0" layoutY="124.0" text="%txt.username" />
+                <Label layoutX="193.0" layoutY="168.0" text="%txt.password" />
+                <TextField fx:id="txtUsername" layoutX="258.0" layoutY="120.0" />
+                <TextField fx:id="txtPassword" layoutX="259.0" layoutY="164.0" />
                 <Text fill="#fc0000" layoutX="274.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rent A Car">
                     <font>
                         <Font name="System Bold" size="21.0" />
                     </font>
                 </Text>
-                <Label layoutX="234.0" layoutY="270.0" text="Don't have an account?" />
-                <Button layoutX="365.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleSignUpFromLogIn" text="Sign Up" textFill="#ff0909" />
+                <Label layoutX="243.0" layoutY="270.0" text="%txt.dontHaveAccount" />
+                <Button layoutX="365.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleSignUpFromLogIn" text="%txt.SignUp" />
             </children>
         </AnchorPane>
     </children>

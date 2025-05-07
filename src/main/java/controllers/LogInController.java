@@ -43,7 +43,7 @@ public class LogInController {
             showAlert(Alert.AlertType.INFORMATION, "Sukses", "Jeni kyçur si " + response.getRole());
 
             if ("client".equals(response.getRole())) {
-                SceneManager.load("/views/after.fxml");// veq test
+                SceneManager.load("/views/welcome.fxml");// veq test
             } else if ("staff".equals(response.getRole())) {
                 SceneManager.load("/views/staff_dashboard.fxml");
             }

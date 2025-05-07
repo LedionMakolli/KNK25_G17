@@ -32,11 +32,16 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateClientController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -77,42 +82,14 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="422.0" prefWidth="688.0" VBox.vgrow="ALWAYS">
-      <children>
-            <VBox layoutX="65.0" layoutY="71.0" prefHeight="246.0" prefWidth="118.0" spacing="18.0">
-               <children>
-                  <Label prefHeight="15.0" prefWidth="71.0" text="%txt.firstName" />
-                  <Label text="%txt.lastName" />
-                  <Label text="%txt.age" />
-                  <Label text="%txt.personalNumber" />
-                  <Label text="%txt.email" />
-                  <Label text="%txt.username" />
-               </children>
-            </VBox>
-            <VBox layoutX="174.0" layoutY="68.0" prefHeight="253.0" prefWidth="138.0" spacing="10.0">
-                <children>
-                    <TextField fx:id="txtFirstName" />
-                    <TextField fx:id="txtLastName" />
-                    <TextField fx:id="txtAge" />
-                    <TextField fx:id="txtPersonalNumber" />
-                    <TextField fx:id="txtEmail" />
-                    <TextField fx:id="txtUsername" />
-                </children>
-            </VBox>
-            <Label layoutX="311.0" layoutY="1.0" prefHeight="50.0" prefWidth="94.0" text="Sign Up" textAlignment="CENTER" textFill="RED">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label layoutX="110.0" layoutY="137.0" text="Welcome to our application!">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font size="33.0" />
                </font>
             </Label>
-          <Button layoutX="243.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="37.0" prefWidth="94.0" text="%btn.discard" />
-          <Button layoutX="362.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: blue;" text="%btn.save" textFill="WHITE" />
-          <TextField fx:id="txtTelephoneNumber" layoutX="482.0" layoutY="65.0" prefHeight="26.0" prefWidth="138.0" />
-            <Label layoutX="366.0" layoutY="65.0" prefHeight="26.0" prefWidth="106.0" text="%txt.telephoneNumber" />
-            <Label layoutX="419.0" layoutY="107.0" text="%txt.password" />
-            <Label layoutX="370.0" layoutY="146.0" prefHeight="18.0" prefWidth="106.0" text="%txt.confirmPassword" />
-            <PasswordField fx:id="txtPassword" layoutX="482.0" layoutY="142.0" prefHeight="26.0" prefWidth="138.0" />
-            <PasswordField fx:id="txtConfirmPassword" layoutX="482.0" layoutY="102.0" prefHeight="26.0" prefWidth="138.0" />
-      </children>
+         </children>
     </AnchorPane>
   </children>
 </VBox>
