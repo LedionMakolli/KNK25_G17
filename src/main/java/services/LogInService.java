@@ -30,12 +30,16 @@ public class LogInService {
             return new LoginResponse("client",client.getUsername());
         }
 
-        Staff staff  = staffRepository.findByUsernameAndPassword(username,password);
+        Staff staff  = staffRepository.findByUsernameAndPassword(username, password);
         if (staff != null){
+            String salt = staff.getSaltedHash();
+            String storedHash = staff.getPassword();
+
+            String inputHash=PasswordHasher.generateSaltedHash(password, salt);
             StaffRegisterActivity(staff.getUsername());
-            return new LoginResponse("staff",staff.getUsername());
+            return new LoginResponse("staff", staff.getUsername());
         }
-        throw new RuntimeException("Invallid email or Password");
+        return null;
     }
 
     public void StaffRegisterActivity(String staffUsername){
