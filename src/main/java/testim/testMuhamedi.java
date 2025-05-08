@@ -20,6 +20,15 @@ import java.util.Date;
 
 public class testMuhamedi {
     public static void main(String[] args) throws SQLException {
+//        StaffRepository staffRepository=new StaffRepository();
+//
+//        CreateStafDto createStafDto=new CreateStafDto(
+//                "Besa", "Gashi", 20, "102313293",
+//                "besagashi@gmail.com", "besagashi", "besa",
+//                PasswordHasher.generateSalt(), "049442222", StaffPositionEnum.MANAGER,
+//                LocalDate.now(), 130000
+//        );
+//        staffRepository.create(createStafDto);
 
     }
 }

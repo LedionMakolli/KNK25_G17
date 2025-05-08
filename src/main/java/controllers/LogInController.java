@@ -15,7 +15,7 @@ public class LogInController {
     private TextField txtUsername;
 
     @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
 
     private LogInService logInService;
 

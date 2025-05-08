@@ -88,7 +88,7 @@
                 <Label layoutX="191.0" layoutY="124.0" text="%txt.username" />
                 <Label layoutX="193.0" layoutY="168.0" text="%txt.password" />
                 <TextField fx:id="txtUsername" layoutX="258.0" layoutY="120.0" />
-                <TextField fx:id="txtPassword" layoutX="259.0" layoutY="164.0" />
+                <PasswordField fx:id="txtPassword" layoutX="259.0" layoutY="164.0" />
                 <Text fill="#fc0000" layoutX="274.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rent A Car">
                     <font>
                         <Font name="System Bold" size="21.0" />
