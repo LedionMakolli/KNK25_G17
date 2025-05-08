@@ -9,10 +9,9 @@ import java.util.Locale;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        SceneManager manager = SceneManager.getInstance();
         LanguageManager languageManager=LanguageManager.getInstance();
-
-        languageManager.setLocale(new Locale("sq"));
+        languageManager.setLocale(new Locale("en"));
+        SceneManager manager = SceneManager.getInstance();
 
         stage.setScene(manager.getScene());
         stage.setTitle("Log In");

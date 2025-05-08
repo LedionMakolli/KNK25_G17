@@ -94,8 +94,8 @@
                         <Font name="System Bold" size="21.0" />
                     </font>
                 </Text>
-                <Label layoutX="243.0" layoutY="270.0" text="%txt.dontHaveAccount" />
-                <Button layoutX="365.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleSignUpFromLogIn" text="%txt.SignUp" />
+                <Label layoutX="231.0" layoutY="270.0" text="%txt.dontHaveAccount" />
+                <Button layoutX="360.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleSignUpFromLogIn" text="%txt.SignUp" />
             </children>
         </AnchorPane>
     </children>

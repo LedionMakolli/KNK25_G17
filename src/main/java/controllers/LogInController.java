@@ -24,7 +24,7 @@ public class LogInController {
             this.logInService = new LogInService();
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Nuk u inicializua LogInService.");
+            showAlertWithKeys(Alert.AlertType.ERROR, "error.title", "error.loginServiceInitializationFailed");
         }
     }
 
@@ -34,26 +34,32 @@ public class LogInController {
         String password = txtPassword.getText().trim();
 
         if (username.isEmpty() || password.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Kujdes", "Ju lutem plotësoni të gjitha fushat!");
+            showAlertWithKeys(Alert.AlertType.WARNING, "warning.title", "warning.emptyFields");
             return;
         }
 
         try {
             LoginResponse response = logInService.login(username, password);
 
-            showAlert(Alert.AlertType.INFORMATION, "Sukses", "Jeni kyçur si " + response.getRole());
+            String roleKey = "role." + response.getRole();
+            String roleTranslated = LanguageManager.getInstance().getResourceBundle().getString(roleKey);
+            String loginMessage = LanguageManager.getInstance().getResourceBundle().getString("success.loginSuccessfulWithRole");
+
+            showAlert(Alert.AlertType.INFORMATION,
+                    LanguageManager.getInstance().getResourceBundle().getString("success.title"),
+                    String.format(loginMessage, roleTranslated));
 
             if ("client".equals(response.getRole())) {
-                SceneManager.load("/views/welcome.fxml");// veq test
+                SceneManager.load("/views/welcome.fxml"); // veq per test jon qito dyja niher
             } else if ("staff".equals(response.getRole())) {
                 SceneManager.load("/views/staff-view.fxml");
             }
 
-        } catch (RuntimeException e) { // kqyre qitu noshta prej qisaj po del gabimi
-            showAlert(Alert.AlertType.ERROR, "Gabim", e.getMessage());
+        } catch (RuntimeException e) {
+            showAlertWithKeys(Alert.AlertType.ERROR, "error.title", "error.invalidCredentials");
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Nuk mund të ndërroni skenën.");
+            showAlertWithKeys(Alert.AlertType.ERROR, "error.title", "error.sceneTransitionFailed");
         }
     }
 
@@ -63,17 +69,21 @@ public class LogInController {
             SceneManager.load(SceneLocator.SIGNUP_PAGE);
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Nuk mund të hapet faqja për regjistrim.");
+            showAlertWithKeys(Alert.AlertType.ERROR, "error.title", "error.signUpPageFailed");
         }
     }
 
-    private void showAlert(Alert.AlertType alertType, String title, String messageKey) {
+    private void showAlertWithKeys(Alert.AlertType alertType, String titleKey, String messageKey) {
+        String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
         String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);
+        showAlert(alertType, title, message);
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }
