@@ -10,6 +10,7 @@ import models.Dto.CreateClientDto;
 import services.ClientService;
 import services.PasswordHasher;
 import services.SceneManager;
+import services.LanguageManager;
 import utils.SceneLocator;
 
 public class CreateClientController {
@@ -64,16 +65,16 @@ public class CreateClientController {
             String confirmPassword = txtConfirmPassword.getText().trim();
 
             if (!password.equals(confirmPassword)) {
-                showAlert(AlertType.ERROR, "Password Mismatch", "Fjalëkalimi dhe konfirmimi nuk përputhen.");
+                showAlert(AlertType.ERROR, "error.title", "error.passwordMismatch");
                 return;
             }
 
             Clients client = this.clientService.create(this.getClientInputData());
-            showAlert(AlertType.INFORMATION, "Sukses", "Klienti u regjistrua me sukses!\n" +
-                    "ID e klientit: " + client.getId());
+            showAlert(AlertType.INFORMATION, "success.title", "success.clientRegistered");
             this.cleanFields();
         } catch (Exception e) {
-            showAlert(AlertType.ERROR, "Gabim", "Gabim gjatë regjistrimit: " + e.getMessage());
+            e.printStackTrace();
+            showAlert(AlertType.ERROR, "error.title", "error.registrationFailed");
         }
     }
 
@@ -97,17 +98,19 @@ public class CreateClientController {
         String email = txtEmail.getText().trim();
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();
-        String saltedHash= PasswordHasher.generateSalt();
+        String saltedHash = PasswordHasher.generateSalt();
         String telephoneNumber = txtTelephoneNumber.getText().trim();
         System.out.println("Salt is: " + saltedHash);
         return new CreateClientDto(firstName, lastName, age, personalNumber, email, username, password, saltedHash, telephoneNumber);
     }
 
-    private void showAlert(AlertType alertType, String title, String content) {
+    private void showAlert(AlertType alertType, String titleKey, String messageKey) {
+        String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
+        String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText(content);
+        alert.setContentText(message);
         alert.showAndWait();
     }
 }

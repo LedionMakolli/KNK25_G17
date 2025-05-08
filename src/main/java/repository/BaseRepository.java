@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.function.Function;
 
-abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
+public abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
     protected Connection connection;
     private String tableName;
 

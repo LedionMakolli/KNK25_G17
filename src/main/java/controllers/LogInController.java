@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Dto.LoginResponse;
+import services.LanguageManager;
 import services.LogInService;
 import services.SceneManager;
 import utils.SceneLocator;
@@ -66,11 +67,13 @@ public class LogInController {
         }
     }
 
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
+    private void showAlert(Alert.AlertType alertType, String title, String messageKey) {
+        String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
+
 }

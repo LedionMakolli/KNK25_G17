@@ -25,6 +25,4 @@ public class LanguageManager {
     public ResourceBundle getResourceBundle(){
         return ResourceBundle.getBundle(BASE_NAME, getLocale());
     }
-
-
 }
