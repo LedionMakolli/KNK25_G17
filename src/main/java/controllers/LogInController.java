@@ -45,7 +45,7 @@ public class LogInController {
             if ("client".equals(response.getRole())) {
                 SceneManager.load("/views/welcome.fxml");// veq test
             } else if ("staff".equals(response.getRole())) {
-                SceneManager.load("/views/staff_dashboard.fxml");
+                SceneManager.load("/views/staff-view.fxml");
             }
 
         } catch (RuntimeException e) { // kqyre qitu noshta prej qisaj po del gabimi

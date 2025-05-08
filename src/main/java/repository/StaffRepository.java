@@ -29,8 +29,8 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
     // Metoda Create
     public Staff create(CreateStafDto stafiDto) {
         String query = """
-                INSERT INTO STAFI (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD,SALTEDHASH, TELEPHONENUMBER, POSITION, EMPLOYEMENTDATE, SALARY)
-                VALUES (?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?);
+                INSERT INTO STAFF (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD,SALTEDHASH, TELEPHONENUMBER, POSITION, EMPLOYMENTDATE, SALARY)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -44,7 +44,8 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             pstm.setString(8,stafiDto.getSaltedHash());
             pstm.setString(9, stafiDto.getTelephoneNumber());
             pstm.setObject(10, stafiDto.getPosition(), Types.OTHER);
-            pstm.setDouble(11, stafiDto.getSalary());
+            pstm.setDate(11, java.sql.Date.valueOf(stafiDto.getEmploymentDate()));
+            pstm.setDouble(12, stafiDto.getSalary());
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
             if (result.next()) {
@@ -59,10 +60,27 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
 
     // login metoda
 
-    public Staff findByUsernameAndPassword(String username, String password){
-        String query = "SELECT * FROM STAFF WHERE USERNAME = ? and PASSWORD = ?";
-        return findByCredentials(query,username,password,this::fromResultSet);
+    public Staff findByUsernameAndPassword(String username, String password) {
+        String query = "SELECT * FROM STAFF WHERE USERNAME = ?";
+        try {
+            PreparedStatement ptsm = this.connection.prepareStatement(query);
+            ptsm.setString(1, username);
+            ResultSet rs = ptsm.executeQuery();
+
+            if (rs.next()) {
+                String salt = rs.getString("SALTEDHASH");
+                String storedHash = rs.getString("PASSWORD");
+
+                if (PasswordHasher.compareSaltedHash(password, salt, storedHash)) {
+                    return fromResultSet(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 
 
     public Staff update(UpdateStafDto stafiDto) {
