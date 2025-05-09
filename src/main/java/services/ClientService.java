@@ -27,7 +27,7 @@ public class ClientService {
     public Clients create(CreateClientDto clientDto) throws Exception {
         if (clientDto.getFirstName() == null || clientDto.getFirstName().trim().isEmpty() ||
                 clientDto.getLastName() == null || clientDto.getLastName().trim().isEmpty() ||
-                clientDto.getAge() <= 12 || clientDto.getEmail() == null || clientDto.getEmail().trim().isEmpty()) {
+                clientDto.getAge() <= 12 || clientDto.getEmail() == null || !clientDto.getEmail().contains("@")|| clientDto.getEmail().trim().isEmpty()) {
             throw new Exception("Client data is not valid!");
         }
 

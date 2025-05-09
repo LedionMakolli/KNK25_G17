@@ -68,10 +68,10 @@ public class CreateClientController {
                 showAlert(AlertType.ERROR, "error.title", "error.passwordMismatch");
                 return;
             }
-
             Clients client = this.clientService.create(this.getClientInputData());
             showAlert(AlertType.INFORMATION, "success.title", "success.clientRegistered");
             this.cleanFields();
+            SceneManager.load(SceneLocator.LOGIN_PAGE);
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(AlertType.ERROR, "error.title", "error.registrationFailed");
