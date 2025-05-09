@@ -24,8 +24,12 @@ public class LogInService {
         if (client != null) {
             String salt = client.getSaltedHash(); // salt
             String storedHash = client.getPassword(); // satlted hash
-
             String inputHash = PasswordHasher.generateSaltedHash(password,salt);
+
+            if(!inputHash.equals(storedHash)){  //qitu e kom ndryshu qe nese passwordi so i njejt si qysh e ka bo kur sign up me to mos me lon me hi
+                return null; //se nese se bojna qita spe validojna account me password po veq me username - spe di a e keni bo najkun tjeter...  - Dua
+            }
+            SessionManager.getInstance().loginClient(client); //edhe qit rresht e kom shtu per me lidh me sessionmanager mu rujt gjendja e login - Dua
             ClientRegisterActivity(client.getUsername());
             return new LoginResponse("client",client.getUsername());
         }
@@ -34,8 +38,11 @@ public class LogInService {
         if (staff != null){
             String salt = staff.getSaltedHash();
             String storedHash = staff.getPassword();
-
             String inputHash=PasswordHasher.generateSaltedHash(password, salt);
+            if(!inputHash.equals(storedHash)){ //njejt si ma nalt - Dua
+                return null;
+            }
+            SessionManager.getInstance().loginStaff(staff); //njejt si ma nalt veq me staf - Dua
             StaffRegisterActivity(staff.getUsername());
             return new LoginResponse("staff", staff.getUsername());
         }
