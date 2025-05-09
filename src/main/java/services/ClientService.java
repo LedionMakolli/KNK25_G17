@@ -33,7 +33,7 @@ public class ClientService {
             throw new Exception("Client data is not valid!");
         }
 
-        if (!this.clientRepository.existsByUsername(clientDto.getUsername()) || !this.staffRepository.existsByUsername(clientDto.getUsername())){
+        if (this.clientRepository.existsByUsername(clientDto.getUsername()) || this.staffRepository.existsByUsername(clientDto.getUsername())){
             throw new Exception("Username is already taken");
         }
 
