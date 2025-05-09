@@ -3,14 +3,16 @@ package services;
 import models.Clients;
 import models.Dto.CreateClientDto;
 import models.Dto.UpdateClientDto;
-import models.Dto.CreateLogActivityDto;
 import repository.ClientRepository;
+import repository.StaffRepository;
 
 public class ClientService {
     private ClientRepository clientRepository;
+    private StaffRepository staffRepository;
 
     public ClientService() throws Exception {
         this.clientRepository = new ClientRepository();
+        this.staffRepository = new StaffRepository();
     }
 
     public Clients getById(int id) throws Exception {
@@ -29,6 +31,10 @@ public class ClientService {
                 clientDto.getLastName() == null || clientDto.getLastName().trim().isEmpty() ||
                 clientDto.getAge() <= 12 || clientDto.getEmail() == null || !clientDto.getEmail().contains("@")|| clientDto.getEmail().trim().isEmpty()) {
             throw new Exception("Client data is not valid!");
+        }
+
+        if (this.clientRepository.existsByUsername(clientDto.getUsername()) || this.staffRepository.existsByUsername(clientDto.getUsername())){
+            throw new Exception("Username is already taken");
         }
 
         Clients client = this.clientRepository.create(clientDto);

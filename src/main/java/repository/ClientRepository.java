@@ -137,4 +137,24 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
         }
     }
 
+    // kontrollo username
+
+    public boolean existsByUsername(String username) {
+        String query = "SELECT COUNT(*) FROM CLIENTS WHERE USERNAME = ?";
+        try (PreparedStatement pstm = connection.prepareStatement(query)) {
+            pstm.setString(1, username);
+
+            try (ResultSet rs = pstm.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error during existsByUsername in clients!", e);
+        }
+        return false;
+    }
+
+
 }

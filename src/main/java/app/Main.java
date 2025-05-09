@@ -1,5 +1,6 @@
 package app;
 
+import controllers.ChangeLanguageController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import services.LanguageManager;
@@ -9,8 +10,7 @@ import java.util.Locale;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        LanguageManager languageManager=LanguageManager.getInstance();
-        languageManager.setLocale(new Locale("en"));
+        ChangeLanguageController changeLanguageController=new ChangeLanguageController();
         SceneManager manager = SceneManager.getInstance();
 
         stage.setScene(manager.getScene());

@@ -14,7 +14,7 @@ public class SceneManager {
 
     private SceneManager(){
         this.languageManager = LanguageManager.getInstance();
-        this.currentPath = SceneLocator.LOGIN_PAGE;
+        this.currentPath = SceneLocator.FIRST_PAGE;
         this.scene = this.initScene();
     }
 
