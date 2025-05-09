@@ -67,4 +67,8 @@ abstract class User {
     public String getSaltedHash() {
         return saltedHash;
     }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
 }
