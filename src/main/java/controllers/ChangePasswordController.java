@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import services.ChangePasswordService;
+import services.SceneManager;
 
 
 public class ChangePasswordController {
@@ -59,6 +60,14 @@ public class ChangePasswordController {
             }
         }catch (Exception e){
             showAlert(Alert.AlertType.ERROR, "Gabim", "Ndodhi nje gabim gjate ndryshimit te fjalekalimit");
+        }
+    }
+    @FXML
+    private void handleCancelNewPassword(){
+        try {
+            SceneManager.load("/views/welcome.fxml");  //veq prove o qikjo
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
