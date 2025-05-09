@@ -6,6 +6,7 @@ import models.Dto.CreateStafDto;
 import models.Dto.UpdateStafDto;
 import services.PasswordHasher;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -136,9 +137,26 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             return getById(stafiDto.getId());
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Error during staf update!", e);
+            throw new RuntimeException("Error during staff update!", e);
         }
     }
 
+    // kontrollo username
+
+    public boolean existsByUsername(String username) {
+        try {
+            String query = "SELECT COUNT(*) FROM STAFF WHERE USERNAME = ?";
+            PreparedStatement pstm = connection.prepareStatement(query);
+            pstm.setString(1, username);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error during existsByUsername in staff!",e);
+        }
+        return false;
+    }
 
 }
