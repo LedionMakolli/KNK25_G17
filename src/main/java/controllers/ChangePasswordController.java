@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import services.ChangePasswordService;
 
+
 public class ChangePasswordController {
     @FXML
     private PasswordField pwdFieldOld;
@@ -49,7 +50,16 @@ public class ChangePasswordController {
             return;
         }
 
-        
+        try{
+            boolean success = changePasswordService.changePassword(oldPassword, newPassword);
+            if(success){
+                showAlert( Alert.AlertType.INFORMATION, "Sukses", "Fjalekalimi eshte ndryshuar me sukses");
+            }else {
+                showAlert(Alert.AlertType.ERROR, "Gabim", "Fjalekalimi i vjeter eshte i gabuar");
+            }
+        }catch (Exception e){
+            showAlert(Alert.AlertType.ERROR, "Gabim", "Ndodhi nje gabim gjate ndryshimit te fjalekalimit");
+        }
     }
 
 
