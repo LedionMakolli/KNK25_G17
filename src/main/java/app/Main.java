@@ -10,7 +10,6 @@ import java.util.Locale;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        ChangeLanguageController changeLanguageController=new ChangeLanguageController();
         SceneManager manager = SceneManager.getInstance();
 
         stage.setScene(manager.getScene());

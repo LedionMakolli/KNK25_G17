@@ -102,10 +102,10 @@ public class CreateClientController {
         String email = txtEmail.getText().trim();
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();
-        String saltedHash = PasswordHasher.generateSalt();
+        String salt = PasswordHasher.generateSalt();
         String telephoneNumber = txtTelephoneNumber.getText().trim();
-        System.out.println("Salt is: " + saltedHash);
-        return new CreateClientDto(firstName, lastName, age, personalNumber, email, username, password, saltedHash, telephoneNumber);
+        System.out.println("Salt is: " + salt);
+        return new CreateClientDto(firstName, lastName, age, personalNumber, email, username, password, salt, telephoneNumber);
     }
 
     private void showAlert(AlertType alertType, String titleKey, String messageKey) {

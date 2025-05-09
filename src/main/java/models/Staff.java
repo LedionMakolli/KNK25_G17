@@ -12,8 +12,8 @@ public class Staff extends User {
     private double salary;
 
     private Staff(int id, String firstName, String lastName, int age, String personalNumber, String email, String username,
-                  String password, String saltedHash, String telephoneNumber, StaffPositionEnum position, LocalDate employmentDate, double salary) {
-        super(id, firstName, lastName, age, personalNumber, email, username, password, saltedHash, telephoneNumber);
+                  String password, String salt, String telephoneNumber, StaffPositionEnum position, LocalDate employmentDate, double salary) {
+        super(id, firstName, lastName, age, personalNumber, email, username, password, salt, telephoneNumber);
         this.position = position;
         this.employmentDate = employmentDate;
         this.salary=salary;
@@ -28,13 +28,13 @@ public class Staff extends User {
         String email = resultSet.getString("email");
         String username = resultSet.getString("username");
         String password = resultSet.getString("password");
-        String saltedHash=resultSet.getString("saltedhash");
+        String salt=resultSet.getString("salt");
         String telephoneNumber = resultSet.getString("telephonenumber");
         String positionString = resultSet.getString("position");
         StaffPositionEnum position = StaffPositionEnum.valueOf(positionString);
         LocalDate employmentDate = resultSet.getDate("employmentDate").toLocalDate();
         double salary=resultSet.getDouble("salary");
-        return new Staff(id, firstName, lastName, age, personalNumber, email, username, password, saltedHash, telephoneNumber, position, employmentDate,salary);
+        return new Staff(id, firstName, lastName, age, personalNumber, email, username, password, salt, telephoneNumber, position, employmentDate,salary);
     }
 
     public StaffPositionEnum getPosition() {

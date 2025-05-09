@@ -49,7 +49,7 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
             ResultSet rs = ptsm.executeQuery();
 
             if (rs.next()) {
-                String salt = rs.getString("SALTEDHASH");
+                String salt = rs.getString("salt");
                 String storedHash = rs.getString("PASSWORD");
 
                 if (PasswordHasher.compareSaltedHash(password, salt, storedHash)) {
@@ -64,7 +64,7 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
 
     public Clients create(CreateClientDto clientDto) {
         String query = """
-        INSERT INTO CLIENTS (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, SALTEDHASH, TELEPHONENUMBER)
+        INSERT INTO CLIENTS (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, SALT, TELEPHONENUMBER)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
         try {
@@ -75,8 +75,8 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
             pstm.setString(4, clientDto.getPersonalNumber());
             pstm.setString(5, clientDto.getEmail());
             pstm.setString(6, clientDto.getUsername());
-            pstm.setString(7, PasswordHasher.generateSaltedHash(clientDto.getPassword(), clientDto.getSaltedHash()));
-            pstm.setString(8, clientDto.getSaltedHash());
+            pstm.setString(7, PasswordHasher.generateSaltedHash(clientDto.getPassword(), clientDto.getSalt()));
+            pstm.setString(8, clientDto.getSalt());
             pstm.setString(9, clientDto.getTelephoneNumber());
 
             pstm.execute();

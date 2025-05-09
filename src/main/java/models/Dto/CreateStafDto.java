@@ -10,8 +10,8 @@ public class CreateStafDto extends CreateUserDto {
     private double salary;
 
     public CreateStafDto(String firstName, String lastName, int age, String personalNumber, String email,
-                         String username, String password, String saltedHash, String telephoneNumber, StaffPositionEnum position, LocalDate employmentDate, double salary) {
-        super(firstName, lastName, age, personalNumber, email, username, password, saltedHash, telephoneNumber);
+                         String username, String password, String salt, String telephoneNumber, StaffPositionEnum position, LocalDate employmentDate, double salary) {
+        super(firstName, lastName, age, personalNumber, email, username, password, salt, telephoneNumber);
         this.position = position;
         this.employmentDate = employmentDate;
         this.salary=salary;

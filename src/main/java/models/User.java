@@ -1,8 +1,5 @@
 package models;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 abstract class User {
     private int id;
     private String firstName;
@@ -12,11 +9,11 @@ abstract class User {
     private String email;
     private String username;
     private String password;
-    private String saltedHash;
+    private String salt;
     private String telephoneNumber;
 
     protected User(int id, String firstName, String lastName, int age, String personalNumber, String email,
-                   String username, String password, String saltedHash, String telephoneNumber) {
+                   String username, String password, String salt, String telephoneNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,7 +22,7 @@ abstract class User {
         this.email = email;
         this.username=username;
         this.password = password;
-        this.saltedHash=saltedHash;
+        this.salt =salt;
         this.telephoneNumber=telephoneNumber;
     }
 
@@ -64,8 +61,8 @@ abstract class User {
     public String getTelephoneNumber() {
         return telephoneNumber;
     }
-    public String getSaltedHash() {
-        return saltedHash;
+    public String getSalt() {
+        return salt;
     }
 
     public void setPassword(String password){

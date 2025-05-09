@@ -30,7 +30,7 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
     // Metoda Create
     public Staff create(CreateStafDto stafiDto) {
         String query = """
-                INSERT INTO STAFF (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD,SALTEDHASH, TELEPHONENUMBER, POSITION, EMPLOYMENTDATE, SALARY)
+                INSERT INTO STAFF (FIRSTNAME, LASTNAME, AGE, PERSONALNUMBER, EMAIL, USERNAME, PASSWORD, SALT, TELEPHONENUMBER, POSITION, EMPLOYMENTDATE, SALARY)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
                 """;
         try {
@@ -41,8 +41,8 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             pstm.setString(4, stafiDto.getPersonalNumber());
             pstm.setString(5, stafiDto.getEmail());
             pstm.setString(6, stafiDto.getUsername());
-            pstm.setString(7, PasswordHasher.generateSaltedHash(stafiDto.getPassword(),stafiDto.getSaltedHash()));
-            pstm.setString(8,stafiDto.getSaltedHash());
+            pstm.setString(7, PasswordHasher.generateSaltedHash(stafiDto.getPassword(),stafiDto.getSalt()));
+            pstm.setString(8,stafiDto.getSalt());
             pstm.setString(9, stafiDto.getTelephoneNumber());
             pstm.setObject(10, stafiDto.getPosition(), Types.OTHER);
             pstm.setDate(11, java.sql.Date.valueOf(stafiDto.getEmploymentDate()));
@@ -69,7 +69,7 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             ResultSet rs = ptsm.executeQuery();
 
             if (rs.next()) {
-                String salt = rs.getString("SALTEDHASH");
+                String salt = rs.getString("SALT");
                 String storedHash = rs.getString("PASSWORD");
 
                 if (PasswordHasher.compareSaltedHash(password, salt, storedHash)) {

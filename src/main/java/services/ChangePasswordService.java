@@ -22,29 +22,29 @@ public boolean changePassword(String oldPassword, String newPassword){
 
           if(role.equals("client")){
               Clients client = SessionManager.getInstance().getCurrentClient();
-              String hashOld = PasswordHasher.generateSaltedHash(oldPassword, client.getSaltedHash());
+              String hashOld = PasswordHasher.generateSaltedHash(oldPassword, client.getSalt());
 
               if(!hashOld.equals(client.getPassword())){
                   return false;
               }
 
-              String newHashed = PasswordHasher.generateSaltedHash(newPassword, client.getSaltedHash());
+              String newHashed = PasswordHasher.generateSaltedHash(newPassword, client.getSalt());
               client.setPassword(newHashed);
-              UpdateClientDto updateClientDto = new UpdateClientDto(client.getId(), client.getAge(), client.getEmail(),newHashed, client.getSaltedHash(), client.getTelephoneNumber());
+              UpdateClientDto updateClientDto = new UpdateClientDto(client.getId(), client.getAge(), client.getEmail(),newHashed, client.getSalt(), client.getTelephoneNumber());
               return clientRepository.update(updateClientDto) != null;
           }
           if(role.equals("staff")){
               Staff staff = SessionManager.getInstance().getCurrentStaff();
-              String hashOld = PasswordHasher.generateSaltedHash(oldPassword, staff.getSaltedHash());
+              String hashOld = PasswordHasher.generateSaltedHash(oldPassword, staff.getSalt());
 
               if(!hashOld.equals(staff.getPassword())){
                   return false;
               }
 
-              String newHashed = PasswordHasher.generateSaltedHash(newPassword, staff.getSaltedHash());
+              String newHashed = PasswordHasher.generateSaltedHash(newPassword, staff.getSalt());
               staff.setPassword(newHashed);
 
-              UpdateStafDto updateStaffDto = new UpdateStafDto(staff.getId(), staff.getAge(), staff.getEmail(), newHashed, staff.getSaltedHash(), staff.getTelephoneNumber(), staff.getPosition(), staff.getSalary());
+              UpdateStafDto updateStaffDto = new UpdateStafDto(staff.getId(), staff.getAge(), staff.getEmail(), newHashed, staff.getSalt(), staff.getTelephoneNumber(), staff.getPosition(), staff.getSalary());
               return staffRepository.update(updateStaffDto) != null;
           }
         }catch(Exception e){

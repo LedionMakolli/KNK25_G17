@@ -8,11 +8,11 @@ abstract class CreateUserDto {
     private String email;
     private String username;
     private String password;
-    private String saltedHash;
+    private String salt;
     private String telephoneNumber;
 
     public CreateUserDto(String firstName, String lastName, int age, String personalNumber, String email,
-                         String username, String password, String saltedHash, String telephoneNumber) {
+                         String username, String password, String salt, String telephoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age=age;
@@ -20,7 +20,7 @@ abstract class CreateUserDto {
         this.email = email;
         this.username=username;
         this.password = password;
-        this.saltedHash=saltedHash;
+        this.salt=salt;
         this.telephoneNumber=telephoneNumber;
     }
 
@@ -87,10 +87,10 @@ abstract class CreateUserDto {
     public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
-    public void setSaltedHash(String saltedHash) {
-        this.saltedHash=saltedHash;
+    public void setSalt(String salt) {
+        this.salt=salt;
     }
-    public String getSaltedHash() {
-        return saltedHash;
+    public String getSalt() {
+        return salt;
     }
 }

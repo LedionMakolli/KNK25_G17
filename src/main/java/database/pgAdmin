@@ -21,8 +21,8 @@ CREATE TABLE Clients (
 	 personalnumber VARCHAR(20),
 	 email VARCHAR(255) UNIQUE,
      username varchar(30) UNIQUE,
- 	 password VARCHAR(255),
- 	 saltedHash varchar(300),
+ 	 password VARCHAR(300),
+ 	 salt varchar(300),
      telephonenumber VARCHAR(20)
 );
 
@@ -36,8 +36,8 @@ CREATE TABLE Staff (
  	 personalnumber VARCHAR(20),
      email VARCHAR(255) UNIQUE,
      username varchar(30) UNIQUE,
-     password VARCHAR(255),
-     saltedHash varchar(255),
+     password VARCHAR(300),
+     salt varchar(300),
      telephoneNumber VARCHAR(20),
      position StaffPositionEnum DEFAULT 'STAFF',
      employmentDate DATE,

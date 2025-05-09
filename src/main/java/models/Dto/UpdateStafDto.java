@@ -6,8 +6,8 @@ public class UpdateStafDto extends UpdateUserDto {
     private StaffPositionEnum position;
     private double salary;
 
-    public UpdateStafDto(int id, int age, String email, String password, String saltedHash, String telephoneNumber, StaffPositionEnum position, double salary) {
-        super(id, age, email, password, saltedHash, telephoneNumber);
+    public UpdateStafDto(int id, int age, String email, String password, String salt, String telephoneNumber, StaffPositionEnum position, double salary) {
+        super(id, age, email, password, salt, telephoneNumber);
         this.position=position;
         this.salary=salary;
     }

@@ -22,7 +22,7 @@ public class LogInService {
     public LoginResponse login(String username, String password){
         Clients client  = clientRepository.findByUsernameAndPassword(username,password);
         if (client != null) {
-            String salt = client.getSaltedHash(); // salt
+            String salt = client.getSalt(); // salt
             String storedHash = client.getPassword(); // satlted hash
             String inputHash = PasswordHasher.generateSaltedHash(password,salt);
 
@@ -36,7 +36,7 @@ public class LogInService {
 
         Staff staff  = staffRepository.findByUsernameAndPassword(username, password);
         if (staff != null){
-            String salt = staff.getSaltedHash();
+            String salt = staff.getSalt();
             String storedHash = staff.getPassword();
             String inputHash=PasswordHasher.generateSaltedHash(password, salt);
             if(!inputHash.equals(storedHash)){ //njejt si ma nalt - Dua
