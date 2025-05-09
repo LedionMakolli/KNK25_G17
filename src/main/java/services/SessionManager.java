@@ -3,7 +3,7 @@ package services;
 import models.Clients;
 import models.Staff;
 
-public class SessionManager<T> {
+public class SessionManager {
     private static SessionManager sessionManager;
     private String currentRole;
     private Clients currentClient;
