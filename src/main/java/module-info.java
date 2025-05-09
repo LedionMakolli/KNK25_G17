@@ -11,4 +11,7 @@ module com.example.projket_knk {
     exports com.example.projket_knk;
     exports app;
     exports controllers;
+
+    opens testim to javafx.fxml;
+    exports testim;
 }

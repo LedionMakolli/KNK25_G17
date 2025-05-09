@@ -1,7 +1,17 @@
 package testim;
 
-public class testDua {
-    public static void main(String[] args) {
+import controllers.ChangePasswordController;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import models.Clients;
+import services.LanguageManager;
+import services.SceneManager;
+import services.SessionManager;
+
+import java.util.Locale;
+
+public class testDua extends  Application {
+//    public static void main(String[] args) {
 
 
 //
@@ -73,8 +83,24 @@ public class testDua {
 //            }catch(SQLException e){
 //                e.printStackTrace();
 //            }
+//}
+@Override
+public void start(Stage stage) throws Exception {
+    LanguageManager languageManager = LanguageManager.getInstance();
+    languageManager.setLocale(new Locale("en"));
+
+    SceneManager manager = SceneManager.getInstance();
+    SceneManager.load("/views/changepassword.fxml"); // Sigurohu që ky path është i saktë
+
+    stage.setScene(manager.getScene());
+    stage.setTitle("Ndrysho Fjalëkalimin");
+    stage.show();
+}
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 
-        }
     }
 

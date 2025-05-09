@@ -5,6 +5,7 @@ import models.Staff;
 
 public class SessionManager<T> {
     private static SessionManager sessionManager;
+    private String currentRole;
     private Clients currentClient;
     private Staff currentStaff;
     private String theme;
@@ -32,9 +33,16 @@ public class SessionManager<T> {
     public Clients getCurrentClient(){
         return currentClient;
     }
+    public void setCurrentClient(Clients currentClient){
+        this.currentClient = currentClient;
+    }
 
     public Staff getCurrentStaff(){
         return currentStaff;
+    }
+
+    public void setCurrentStaff(Staff currentStaff){
+        this.currentStaff = currentStaff;
     }
 
     public String getCurrentUsername(){
@@ -43,6 +51,10 @@ public class SessionManager<T> {
 
     public String getCurrentRole(){
         return currentClient != null ? "client" : "staff";
+    }
+
+    public void setCurrentRole(String role){
+        this.currentRole = role;
     }
 
     public void setTheme(String theme){
