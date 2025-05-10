@@ -15,6 +15,9 @@ public class StaffViewController {
     private Button btnPenalties;
 
     @FXML
+    private Button btnContracts;
+
+    @FXML
     public void seePenalties() {
         try {
             SceneManager.load(SceneLocator.SEE_PENALTIES);
@@ -22,6 +25,16 @@ public class StaffViewController {
             e.printStackTrace();
             showErrorAlert("Unable to load Penalties Page",
                     "An error occurred while trying to load the penalties page.");
+        }
+    }
+
+    @FXML
+    public void seeContracts(){
+        try{
+            SceneManager.load(SceneLocator.SEE_CONTRACTS);
+        }catch (Exception e){
+            showErrorAlert("Unable to load Contracts",
+                    "An error occurred while trying to load the contracts page.");
         }
     }
 
