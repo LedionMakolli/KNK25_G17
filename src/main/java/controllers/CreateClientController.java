@@ -76,7 +76,10 @@ public class CreateClientController {
             e.printStackTrace();
             if (e.getMessage().equals("Username is already taken")){
                 showAlert(AlertType.ERROR, "error.title", "error.usernameTaken");
-            }else {
+            }if (e.getMessage().equals("Client data is not valid!")){
+                showAlert(AlertType.WARNING,"warning.title","warning.emptyFields");
+            }
+            else {
                 showAlert(AlertType.ERROR, "error.title", "error.registrationFailed");
             }
         }
