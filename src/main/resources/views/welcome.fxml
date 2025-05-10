@@ -36,7 +36,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="controllers.ControllerPerWelcome">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerPerWelcome">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -84,7 +84,8 @@
                   <Font size="33.0" />
                </font>
             </Label>
-           <Button layoutX="425.0" layoutY="242.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="122.0" text="ChangePassword" onAction="#ClickOnChangePassword"/>
+           <Button layoutX="425.0" layoutY="242.0" mnemonicParsing="false" onAction="#ClickOnChangePassword" prefHeight="40.0" prefWidth="122.0" text="ChangePassword" />
+           <Button fx:id="btnContracts" layoutX="169.0" layoutY="242.0" mnemonicParsing="false" onAction="#seeContracts" prefHeight="40.0" prefWidth="108.0" text="See Contract" />
          </children>
     </AnchorPane>
   </children>
