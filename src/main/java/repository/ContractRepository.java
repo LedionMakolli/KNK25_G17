@@ -10,15 +10,15 @@ import java.util.List;
 
 public class ContractRepository extends BaseRepository<Contract, CreateContractDto, UpdateContractDto> {
 
-    public ContractRepository() throws SQLException{
+    public ContractRepository() throws SQLException {
         super("contract");
     }
 
     @Override
-    public Contract fromResultSet(ResultSet rs){
-        try{
+    public Contract fromResultSet(ResultSet rs) {
+        try {
             return Contract.getInstance(rs);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -26,10 +26,10 @@ public class ContractRepository extends BaseRepository<Contract, CreateContractD
 
     // metoda create
 
-    public Contract create(CreateContractDto ContractDto){
+    public Contract create(CreateContractDto ContractDto) {
         String query = "INSERT INTO Contract (idReservation,idPayment,sum, date) VALUES (?, ?, ?,?)";
 
-        try{
+        try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, ContractDto.getIdReservation());
             pstm.setObject(2, ContractDto.getIdPayment());
@@ -37,11 +37,11 @@ public class ContractRepository extends BaseRepository<Contract, CreateContractD
             pstm.setDate(4, ContractDto.getDate());
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 return this.getById(id);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -49,44 +49,61 @@ public class ContractRepository extends BaseRepository<Contract, CreateContractD
 
     // metoda update
 
-    public Contract update(UpdateContractDto KontrataDto){
+    public Contract update(UpdateContractDto KontrataDto) {
         StringBuilder query = new StringBuilder("UPDATE CONTRACT SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdate = false;
 
-        if (KontrataDto.getSum() > 0){
+        if (KontrataDto.getSum() > 0) {
             query.append("sum = ?, ");
             parametrat.add(KontrataDto.getSum());
             hasUpdate = true;
         }
-        if (KontrataDto.getDate() != null){
+        if (KontrataDto.getDate() != null) {
             query.append("date = ?, ");
             parametrat.add(KontrataDto.getDate());
             hasUpdate = true;
         }
 
-        if (!hasUpdate){
+        if (!hasUpdate) {
             return getById(KontrataDto.getId());
         }
-        query.setLength(query.length()-2);
+        query.setLength(query.length() - 2);
         query.append(" WHERE id = ?");
         parametrat.add(KontrataDto.getId());
 
-        try{
+        try {
             PreparedStatement pstm = this.connection.prepareStatement(query.toString());
-            for (int i = 0; i<parametrat.size(); i++){
-                if (parametrat.get(i) instanceof String && i == parametrat.size()-1){
-                    pstm.setObject(i+1,parametrat.get(i), Types.OTHER);
-                }else {
+            for (int i = 0; i < parametrat.size(); i++) {
+                if (parametrat.get(i) instanceof String && i == parametrat.size() - 1) {
+                    pstm.setObject(i + 1, parametrat.get(i), Types.OTHER);
+                } else {
                     pstm.setObject(i + 1, parametrat.get(i));
                 }
             }
             pstm.execute();
             return getById(KontrataDto.getId());
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    public List<Contract> getByClientId(int clientId) throws SQLException {
+        List<Contract> contracts = new ArrayList<>();
+        String query = "SELECT c.* FROM Contract c " +
+                "JOIN Reservations r ON c.idReservation = r.id " +
+                "WHERE r.idClient = ?";
+
+        PreparedStatement pstm = this.connection.prepareStatement(query);
+        pstm.setInt(1, clientId);
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            Contract contract = fromResultSet(rs); // ose Contract.getInstance(rs)
+            contracts.add(contract);
+        }
+
+        return contracts;
+    }
 }
