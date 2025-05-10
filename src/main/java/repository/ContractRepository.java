@@ -27,7 +27,7 @@ public class ContractRepository extends BaseRepository<Contract, CreateContractD
     // metoda create
 
     public Contract create(CreateContractDto ContractDto){
-        String query = "INSERT INTO Contract (idReservation,sum, date) VALUES (?, ?, ?,?)";
+        String query = "INSERT INTO Contract (idReservation,idPayment,sum, date) VALUES (?, ?, ?,?)";
 
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);

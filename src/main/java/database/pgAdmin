@@ -79,7 +79,7 @@ CREATE TABLE Contract (
      id SERIAL PRIMARY KEY,
      idReservation INT REFERENCES Reservations(id) ON DELETE CASCADE,
      sum REAL NOT NULL,
-     payment PaymentEnum NOT NULL,
+     idPayment INT NOT NULL REFERENCES Payment(id) ON DELETE CASCADE,
      date TIMESTAMP NOT NULL
 );
 
