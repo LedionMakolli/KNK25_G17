@@ -85,6 +85,7 @@
                </font>
             </Label>
            <Button fx:id="btnPenalties" layoutX="52.0" layoutY="29.0" mnemonicParsing="false" onAction="#seePenalties" text="See Penalties" />
+           <Button fx:id="btnContracts" layoutX="154.0" layoutY="29.0" mnemonicParsing="false" onAction="#seeContracts" text="See Contracts" />
          </children>
     </AnchorPane>
   </children>
