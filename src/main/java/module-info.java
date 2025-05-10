@@ -7,11 +7,13 @@ module com.example.projket_knk {
     opens com.example.projket_knk to javafx.fxml;
     opens app to javafx.fxml;
     opens controllers to javafx.fxml;
+    opens testim to javafx.fxml;
+
+    opens models to javafx.base;
 
     exports com.example.projket_knk;
     exports app;
     exports controllers;
-
-    opens testim to javafx.fxml;
     exports testim;
+    exports models;
 }

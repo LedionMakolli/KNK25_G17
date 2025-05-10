@@ -27,9 +27,9 @@ public class Penalties {
         int reservationId=resultSet.getInt("reservationid");
         String reasonOfPenalty=resultSet.getString("reasonofpenalty");
         BigDecimal moneyAmount=resultSet.getBigDecimal("moneyamount");
-        Timestamp timestamp=resultSet.getTimestamp("data");
+        Timestamp timestamp=resultSet.getTimestamp("date");
         LocalDateTime date=timestamp.toLocalDateTime();
-        boolean paid=resultSet.getBoolean("paguar");
+        boolean paid=resultSet.getBoolean("paid");
 
         return new Penalties(id,reservationId,reasonOfPenalty,moneyAmount,date,paid);
     }
