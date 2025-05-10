@@ -74,7 +74,7 @@ public class CreateClientController {
             SceneManager.load(SceneLocator.LOGIN_PAGE);
         } catch (Exception e) {
             e.printStackTrace();
-            if (e.getMessage() == "Username is already taken"){
+            if (e.getMessage().equals("Username is already taken")){
                 showAlert(AlertType.ERROR, "error.title", "error.usernameTaken");
             }else {
                 showAlert(AlertType.ERROR, "error.title", "error.registrationFailed");

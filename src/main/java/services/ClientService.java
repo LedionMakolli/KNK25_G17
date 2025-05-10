@@ -10,6 +10,7 @@ public class ClientService {
     private ClientRepository clientRepository;
     private StaffRepository staffRepository;
 
+
     public ClientService() throws Exception {
         this.clientRepository = new ClientRepository();
         this.staffRepository = new StaffRepository();
