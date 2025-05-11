@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import services.ChangePasswordService;
+import services.LanguageManager;
 import services.SceneManager;
 
 
@@ -43,23 +44,23 @@ public class ChangePasswordController {
         String confirmPassword = pwdFieldConfirm.getText().trim();
 
         if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Kujdes", "Plotësoni të gjitha fushat.");
+            showAlert(Alert.AlertType.WARNING, "warning_title", "warning.emptyFields");
             return;
         }
         if(!newPassword.equals(confirmPassword)){
-            showAlert(Alert.AlertType.ERROR, "Gabim", "Fjalekalimi i ri dhe konfirmimi nuk perputhen");
+            showAlert(Alert.AlertType.ERROR, "error.title", "error.passwordMismatch");
             return;
         }
 
         try{
             boolean success = changePasswordService.changePassword(oldPassword, newPassword);
             if(success){
-                showAlert( Alert.AlertType.INFORMATION, "Sukses", "Fjalekalimi eshte ndryshuar me sukses");
+                showAlert( Alert.AlertType.INFORMATION, "success.title", "success.passwordChanged");
             }else {
-                showAlert(Alert.AlertType.ERROR, "Gabim", "Fjalekalimi i vjeter eshte i gabuar");
+                showAlert(Alert.AlertType.ERROR, "error.title", "error.wrongOldPassword");
             }
         }catch (Exception e){
-            showAlert(Alert.AlertType.ERROR, "Gabim", "Ndodhi nje gabim gjate ndryshimit te fjalekalimit");
+            showAlert(Alert.AlertType.ERROR, "error.title", "error.changingPassword");
         }
     }
     @FXML
@@ -69,6 +70,12 @@ public class ChangePasswordController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAlertWithKeys(Alert.AlertType alertType, String titleKey, String messageKey) {
+        String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
+        String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);
+        showAlert(alertType, title, message);
     }
 
 
