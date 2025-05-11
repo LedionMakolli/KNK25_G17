@@ -5,6 +5,7 @@ import models.Dto.*;
 import models.enums.FuelEnum;
 import models.enums.CarStatusEnum;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class CarRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarDto> {
@@ -22,6 +23,34 @@ public class CarRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarD
             return null;
         }
     }
+
+    public List<Cars> findAvailable(LocalDate start, LocalDate end) {
+        String sql = """
+        SELECT *
+          FROM cars c
+         WHERE NOT EXISTS (
+               SELECT 1
+                 FROM reservations r
+                WHERE r.idcar = c.id
+                  AND NOT (r.enddate < ? OR r.startdate > ?)
+               )
+        """;
+
+        List<Cars> list = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setDate(1, java.sql.Date.valueOf(start));
+            ps.setDate(2, java.sql.Date.valueOf(end));
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    list.add(Cars.getInstance(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding available cars", e);
+        }
+        return list;
+    }
+
 
     // 3. create method
     public Cars create(CreateCarDto carDto) {
