@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Contract;
 import repository.ContractRepository;
+import services.SessionManager;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -55,7 +56,17 @@ public class ContractsController {
 
     private void loadContracts(){
         try{
-            List<Contract> contracts = contractRepository.getAll();
+            List<Contract> contracts;
+
+            String role = SessionManager.getInstance().getCurrentRole();
+
+            if ("client".equals(role)){
+                int clientId = SessionManager.getInstance().getCurrentClient().getId();
+                contracts = contractRepository.getByClientId(clientId);
+            }else{
+                contracts = contractRepository.getAll();
+            }
+
             ObservableList<Contract> data = FXCollections.observableArrayList(contracts);
             contractsTable.setItems(data);
         }catch (Exception e){
