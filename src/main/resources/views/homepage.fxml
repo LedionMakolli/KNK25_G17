@@ -50,12 +50,12 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="%txt.Homepage">
+        <Menu fx:id="gotoHomepage" mnemonicParsing="false" text="%txt.Homepage" onAction="#goToHomepage">
         </Menu>
           <Menu mnemonicParsing="false" text="Settings">
               <items>
                   <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword"/>
-                  <MenuItem fx:id="seeContract" mnemonicParsing="false" text="%txt.seeContract"/>
+                  <MenuItem fx:id="seeContract" mnemonicParsing="false" text="%txt.seeContract" onAction="#seeContracts"/>
                   <MenuItem fx:id="signOut" mnemonicParsing="false" text="%txt.SignOut"/>
               </items>
           </Menu>

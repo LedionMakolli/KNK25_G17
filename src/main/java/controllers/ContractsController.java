@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ContractsController {
+public class ContractsController extends BaseController {
     @FXML
     private TableView<Contract> contractsTable;
 
@@ -36,7 +36,7 @@ public class ContractsController {
     private ContractRepository contractRepository;
 
     @FXML
-    private void initialize(){
+    private void init(){
         try{
             this.contractRepository = new ContractRepository();
             setupTableColumns();

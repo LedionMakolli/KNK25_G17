@@ -1,11 +1,10 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import services.LanguageManager;
 import services.SceneManager;
+import utils.SceneLocator;
 
 import java.util.Locale;
 
@@ -15,6 +14,8 @@ public class BaseController {
 
     @FXML private RadioMenuItem txtShqip;
     @FXML private RadioMenuItem txtEnglish;
+    @FXML protected MenuItem seeContract;
+    @FXML protected MenuItem gotoHomepage;
 
 
     public void setAlbanianLanguage() {
@@ -35,6 +36,23 @@ public class BaseController {
         }
     }
 
+    public void seeContracts(){
+        try{
+            SceneManager.load(SceneLocator.SEE_CONTRACTS);
+        }catch (Exception e){
+            showErrorAlert("Unable to load Contracts",
+                    "An error occurred while trying to load the contracts page.");
+        }
+    }
+
+    public void goToHomepage(){
+        try{
+            SceneManager.load(SceneLocator.HOME_PAGE);
+        }catch (Exception e){
+            showErrorAlert("Unable to load Homepage",
+                    "An error occured while trying to load the homepage");
+        }
+    }
 
     protected void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

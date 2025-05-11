@@ -14,7 +14,7 @@ import repository.CarRepository;
 import services.SceneManager;
 import utils.SceneLocator;
 
-public class CarDetailsController {
+public class CarDetailsController extends BaseController{
 
     @FXML private Button btnBack;
     @FXML private Label lblID;

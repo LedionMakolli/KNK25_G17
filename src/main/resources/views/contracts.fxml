@@ -2,21 +2,44 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.ContractsController">
-
-    <TableView fx:id="contractsTable" layoutX="10" layoutY="10" prefHeight="400" prefWidth="600">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ContractsController">
+    <MenuBar VBox.vgrow="NEVER">
+        <menus>
+            <Menu mnemonicParsing="false" text="%txt.Homepage">
+                <items>
+                    <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" text="Go to Home" onAction="#goToHomepage" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+                <items>
+                    <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" />
+                    <MenuItem fx:id="seeContract" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract" />
+                    <MenuItem fx:id="signOut" mnemonicParsing="false" text="%txt.SignOut" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%txt.Edit">
+                <items>
+                    <RadioMenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip" />
+                    <RadioMenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%txt.Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    <TableView fx:id="contractsTable" layoutY="26.0" prefHeight="400" prefWidth="600">
         <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="paymenIdColumn" text="Payment ID" prefWidth="100"/>
-            <TableColumn fx:id="reservationIdColumn" text="Reservation ID" prefWidth="150"/>
-            <TableColumn fx:id="amountColumn" text="Amount (€)" prefWidth="100"/>
-            <TableColumn fx:id="dateColumn" text="Date" prefWidth="150"/>
+            <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
+            <TableColumn fx:id="paymenIdColumn" prefWidth="100" text="Payment ID" />
+            <TableColumn fx:id="reservationIdColumn" prefWidth="150" text="Reservation ID" />
+            <TableColumn fx:id="amountColumn" prefWidth="100" text="Amount (€)" />
+            <TableColumn fx:id="dateColumn" prefWidth="150" text="Date" />
         </columns>
     </TableView>
 
-    <Button layoutX="520" layoutY="420" text="Refresh" onAction="#initialize"/>
+    <Button layoutX="520" layoutY="420" onAction="#init" text="Refresh" />
 </AnchorPane>
