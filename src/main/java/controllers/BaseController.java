@@ -16,6 +16,7 @@ public class BaseController {
     @FXML private RadioMenuItem txtEnglish;
     @FXML protected MenuItem seeContract;
     @FXML protected MenuItem gotoHomepage;
+    @FXML protected MenuItem changePassword;
 
 
     public void setAlbanianLanguage() {
@@ -54,6 +55,15 @@ public class BaseController {
         }
     }
 
+    public void handleChangePassword(){
+        try{
+            SceneManager.load(SceneLocator.CHANGE_PASSWORD_PAGE);
+        }catch (Exception e){
+            showErrorAlert("Unable to load",
+                    "An error occured while trying to load the homepage");
+        }
+}
+
     protected void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -85,4 +95,5 @@ public class BaseController {
             txtEnglish.setSelected(true);
         }
     }
+
 }
