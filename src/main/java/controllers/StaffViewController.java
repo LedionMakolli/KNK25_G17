@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import services.SceneManager;
 import utils.SceneLocator;
 
-public class StaffViewController extends baseController{
+public class StaffViewController extends BaseController{
     @FXML
     private Button btnPenalties;
 
