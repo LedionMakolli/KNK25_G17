@@ -52,7 +52,7 @@ public class LogInController {
             if ("client".equals(response.getRole())) {
                 SceneManager.load(SceneLocator.HOME_PAGE); // veq per test jon qito dyja niher
             } else if ("staff".equals(response.getRole())) {
-                SceneManager.load("/views/staff-view.fxml");
+                SceneManager.load(SceneLocator.HOME_PAGE); // momentale vetem per testim
             }
 
         } catch (RuntimeException e) {
