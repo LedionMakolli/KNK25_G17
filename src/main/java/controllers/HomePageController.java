@@ -3,6 +3,7 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -67,9 +68,17 @@ public class HomePageController extends BaseController{
         showCarDetails(6, event);
     }
 
-    private void showCarDetails(int carId, ActionEvent event) throws Exception {
+    public void showCarDetails(int carId, ActionEvent event) throws Exception {
         Cars car = this.carRepository.getById(carId);
 
-        SceneManager.load(SceneLocator.SEE_CAR_DETAILS);;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/car-details.fxml"));
+        Parent root = loader.load(); // Kjo inicializon komponentët nga FXML
+        CarDetailsController controller = loader.getController(); // Merr kontrolluesin që u inicializua nga FXML
+
+        controller.setCar(car); // Thirr metodën pasi FXML komponentët janë inicializuar
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }
