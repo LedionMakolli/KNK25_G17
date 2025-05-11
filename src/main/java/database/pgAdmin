@@ -73,13 +73,35 @@ CREATE TABLE Reservations (
     CHECK (startDate < endDate)
 );
 
+ -----PromoCode ----
+
+CREATE TABLE PROMOCODE (
+    id SERIAL PRIMARY KEY,
+    kodi VARCHAR(255) NOT NULL,
+    zbritja DOUBLE PRECISION NOT NULL,
+    dataSkadimit DATE,
+    aktiv BOOLEAN
+);
+
+----- Payments -----
+
+CREATE TABLE Payments (
+    id SERIAL PRIMARY KEY,
+    idreservation INTEGER NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    promocod_id INTEGER references PromoCode(id),
+    totalnodiscount NUMERIC(10, 2) NOT NULL,
+    totalfinal NUMERIC(10, 2) NOT NULL,
+    date TIMESTAMP NOT NULL
+);
+
  -----   Contract    ----
 
 CREATE TABLE Contract (
      id SERIAL PRIMARY KEY,
      idReservation INT REFERENCES Reservations(id) ON DELETE CASCADE,
      sum REAL NOT NULL,
-     idPayment INT NOT NULL REFERENCES Payment(id) ON DELETE CASCADE,
+     idPayment INT NOT NULL REFERENCES Payments(id) ON DELETE CASCADE,
      date TIMESTAMP NOT NULL
 );
 
@@ -105,17 +127,6 @@ CREATE TABLE offers (
     CHECK (endDate >= startDate)
 );
 
------ Payments -----
-
-CREATE TABLE Payments (
-    id SERIAL PRIMARY KEY,
-    idreservation INTEGER NOT NULL,
-    type VARCHAR(50) NOT NULL,
-    promocod_id INTEGER references PromoCode(id),
-    totalnodiscount NUMERIC(10, 2) NOT NULL,
-    totalfinal NUMERIC(10, 2) NOT NULL,
-    date TIMESTAMP NOT NULL
-);
 
  -----   Reviews    ----
 
@@ -138,16 +149,6 @@ CREATE TABLE Penalties (
     moneyAmount DECIMAL(10, 2) NOT NULL,
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     paid BOOLEAN NOT NULL
-);
-
- -----PromoCode ----
-
-CREATE TABLE PROMOCODE (
-    id SERIAL PRIMARY KEY,
-    kodi VARCHAR(255) NOT NULL,
-    zbritja DOUBLE PRECISION NOT NULL,
-    dataSkadimit DATE,
-    aktiv BOOLEAN
 );
 
  ----- Maintenance ---
