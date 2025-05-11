@@ -3,13 +3,14 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import models.Cars;
+import repository.CarRepository;
 import services.CarService;
+import services.CarService2;
 import services.SceneManager;
 import utils.SceneLocator;
 
@@ -17,95 +18,54 @@ import java.io.IOException;
 
 public class HomePageController {
 
-//    private javafx.scene.control.ScrollPane scrollPane;
+    @FXML private Button btnViewDetailsE36;
+    @FXML private Button btnViewDetailsM3;
+    @FXML private Button btnViewDetailsX5;
+    @FXML private Button btnViewDetailsGolf8;
+    @FXML private Button btnViewDetailsS60;
+    @FXML private Button btnViewDetailsCClass;
 
-    @FXML
-    private javafx.scene.control.Button btnReserveE36;
+    private final CarService carService;
+    private final CarRepository carRepository;
 
-    @FXML
-    private javafx.scene.control.Button btnReserveM3;
-
-    @FXML
-    private javafx.scene.control.Button btnReserveX5;
-
-    @FXML
-    private javafx.scene.control.Button btnReserveGolf8;
-
-    @FXML
-    private javafx.scene.control.Button btnReserveS60;
-
-    @FXML
-    private javafx.scene.control.Button btnReserveCClass;
-
-
-//    @FXML
-//    private void handleViewDetailsE36(ActionEvent e) {
-//        Cars c = CarService.getById(1);
-//        openReservationForm(c);
-//    }
-
-    @FXML
-    private void handleViewDetailsM3(ActionEvent event) {
-        handleViewDetails("BMW M3", "2018");
+    public HomePageController() throws Exception {
+        this.carService=new CarService();
+        this.carRepository=new CarRepository();
     }
 
     @FXML
-    private void handleViewDetailsX5(ActionEvent event) {
-        handleViewDetails("BMW X5", "2023");
+    private void handleViewDetailsE36(ActionEvent event) throws Exception {
+        showCarDetails(1, event);
     }
 
     @FXML
-    private void handleViewDetailsGolf8(ActionEvent event) {
-        handleViewDetails("Golf 8", "2020");
+    private void handleViewDetailsM3(ActionEvent event) throws Exception {
+        showCarDetails(2, event);
     }
 
     @FXML
-    private void handleViewDetailsS60(ActionEvent event) {
-        handleViewDetails("Volvo S60", "2023");
+    private void handleViewDetailsX5(ActionEvent event) throws Exception {
+        showCarDetails(3, event);
     }
 
     @FXML
-    private void handleViewDetailsCClass(ActionEvent event) {
-        handleViewDetails("Mercedes C-Class", "2020");
+    private void handleViewDetailsGolf8(ActionEvent event) throws Exception {
+        showCarDetails(4, event);
     }
 
     @FXML
-    private void handleViewDetails(ActionEvent event) {
-        try {
-            int carId = Integer.parseInt(
-                    ((Button)event.getSource()).getUserData().toString()
-            );
-
-            ReservationFormController formCtrl =
-                    SceneManager.<ReservationFormController>loadWithController(
-                            SceneLocator.RESERVATION_FORM
-                    );
-
-            // 3) Fetch the Cars model and hand it off
-            Cars car = new CarService().getById(carId);
-            formCtrl.setCar(car);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            showErrorAlert(
-                    "Unable to open reservation form",
-                    e.getMessage()
-            );
-        }
+    private void handleViewDetailsS60(ActionEvent event) throws Exception {
+        showCarDetails(5, event);
     }
 
-
-    private void openReservationForm(Cars car) {
-        try {
-            SceneManager.load(SceneLocator.RESERVATION_FORM);
-
-            // now hand over the Car instance
-//            ctrl.setCar(car);
-
-        } catch(Exception ex) {
-            ex.printStackTrace();
-            // show error…
-        }
+    @FXML
+    private void handleViewDetailsCClass(ActionEvent event) throws Exception {
+        showCarDetails(6, event);
     }
 
+    private void showCarDetails(int carId, ActionEvent event) throws Exception {
+        Cars car = this.carRepository.getById(carId);
+
+        SceneManager.load(SceneLocator.RESERVATION_FORM);;
+    }
 }

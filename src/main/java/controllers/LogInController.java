@@ -50,7 +50,7 @@ public class LogInController {
                     String.format(loginMessage, roleTranslated));
 
             if ("client".equals(response.getRole())) {
-                SceneManager.load("/views/welcome.fxml"); // veq per test jon qito dyja niher
+                SceneManager.load(SceneLocator.HOME_PAGE); // veq per test jon qito dyja niher
             } else if ("staff".equals(response.getRole())) {
                 SceneManager.load("/views/staff-view.fxml");
             }
