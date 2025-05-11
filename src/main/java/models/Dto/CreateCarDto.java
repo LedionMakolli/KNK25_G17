@@ -16,11 +16,10 @@ public class CreateCarDto {
     private int dailyPrice;
     private CarStatusEnum status;
     private TransmissionTypeEnum transmissionType;
-    private String imagePath;
 
     public CreateCarDto(String licensePlate, String model, String color,
                         int yearOfManufacture, BigDecimal mileage, int numberOfSeats,
-                        FuelEnum fuelType, int dailyPrice, CarStatusEnum status, TransmissionTypeEnum transmissionType, String imagePath) {
+                        FuelEnum fuelType, int dailyPrice, CarStatusEnum status, TransmissionTypeEnum transmissionType) {
         this.licensePlate = licensePlate;
         this.model = model;
         this.color = color;
@@ -31,7 +30,6 @@ public class CreateCarDto {
         this.dailyPrice = dailyPrice;
         this.status = status;
         this.transmissionType = transmissionType;
-        this.imagePath = imagePath;
     }
 
     public void setLicensePlate(String licensePlate) {
@@ -74,9 +72,6 @@ public class CreateCarDto {
         this.transmissionType = transmissionType;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
 
     public String getLicensePlate() {
         return licensePlate;
@@ -118,7 +113,4 @@ public class CreateCarDto {
         return transmissionType;
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
 }

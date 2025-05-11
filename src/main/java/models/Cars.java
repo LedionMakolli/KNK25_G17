@@ -20,11 +20,10 @@ public class Cars {
     private int dailyPrice;
     private CarStatusEnum status;
     private TransmissionTypeEnum transmissionType;
-    private String imagePath;
 
     private Cars(int id, String licensePlate, String model, String color,
                  int yearOfManufacture, BigDecimal mileage, int seatCount,
-                 FuelEnum fuelType, int dailyPrice, CarStatusEnum status, TransmissionTypeEnum transmissionType, String imagePath) {
+                 FuelEnum fuelType, int dailyPrice, CarStatusEnum status, TransmissionTypeEnum transmissionType) {
         this.id = id;
         this.licensePlate = licensePlate;
         this.model = model;
@@ -36,7 +35,6 @@ public class Cars {
         this.dailyPrice = dailyPrice;
         this.status = status;
         this.transmissionType=transmissionType;
-        this.imagePath = imagePath;
     }
 
     public static Cars getInstance(ResultSet resultSet) throws SQLException {
@@ -54,9 +52,8 @@ public class Cars {
         CarStatusEnum status = CarStatusEnum.valueOf(statusStr.toUpperCase());
         String transmissionType1=resultSet.getString("transmissiontype");
         TransmissionTypeEnum transmissionType= TransmissionTypeEnum.valueOf(transmissionType1.toUpperCase());
-        String imagePath = resultSet.getString("imagepath");
 
-        return new Cars(id, licensePlate, model, color, yearOfManufacture, mileage, seatCount, fuelType, dailyPrice, status, transmissionType, imagePath);
+        return new Cars(id, licensePlate, model, color, yearOfManufacture, mileage, seatCount, fuelType, dailyPrice, status, transmissionType);
     }
 
     public int getId() {
@@ -103,9 +100,6 @@ public class Cars {
         return transmissionType;
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
 
     public void printCarDetails() {
         System.out.println("----------------------------------------");

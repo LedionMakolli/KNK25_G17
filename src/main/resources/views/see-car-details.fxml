@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CarDetailsController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu text="File">
+          <items>
+            <MenuItem text="New" />
+            <MenuItem text="Open…" />
+            <Menu text="Open Recent" />
+            <SeparatorMenuItem />
+            <MenuItem text="Close" />
+            <MenuItem text="Save" />
+            <MenuItem text="Save As…" />
+            <MenuItem text="Revert" />
+            <SeparatorMenuItem />
+            <MenuItem text="Preferences…" />
+            <SeparatorMenuItem />
+            <MenuItem text="Quit" />
+          </items>
+        </Menu>
+        <Menu text="Edit">
+          <items>
+            <MenuItem text="Undo" />
+            <MenuItem text="Redo" />
+            <SeparatorMenuItem />
+            <MenuItem text="Cut" />
+            <MenuItem text="Copy" />
+            <MenuItem text="Paste" />
+            <MenuItem text="Delete" />
+            <SeparatorMenuItem />
+            <MenuItem text="Select All" />
+            <MenuItem text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu text="Help">
+          <items>
+            <MenuItem text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+
+    <AnchorPane VBox.vgrow="ALWAYS">
+      <children>
+        <VBox alignment="CENTER" layoutX="216.0" prefHeight="375.0" prefWidth="206.0" spacing="10" style="-fx-padding: 20;">
+          <VBox spacing="5.0">
+            <children>
+              <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Detajet e Vetures:" />
+              <Label fx:id="lblID" text="ID: " />
+              <Label fx:id="lblLicensePlate" text="Targa: " />
+              <Label fx:id="lblModel" text="Modeli: " />
+              <Label fx:id="lblColor" text="Ngjyra: " />
+              <Label fx:id="lblYear" text="Viti i Prodhimit: " />
+              <Label fx:id="lblMileage" text="Kilometrazha: " />
+              <Label fx:id="lblSeats" text="Ulëset: " />
+              <Label fx:id="lblFuel" text="Lloji i karburantit: " />
+              <Label fx:id="lblPrice" text="Çmimi ditor: " />
+              <Label fx:id="lblStatus" text="Statusi: " />
+              <Label fx:id="lblTransmission" text="Transmisioni: " />
+            </children>
+          </VBox>
+        </VBox>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

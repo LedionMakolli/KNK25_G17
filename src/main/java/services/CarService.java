@@ -48,3 +48,4 @@ public class CarService {
         return carRepository.filter(model, color, yearOfManufacture, seatCount, fuelType, dailyRentalPrice, status);
     }
 }
+

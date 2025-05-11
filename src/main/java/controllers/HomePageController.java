@@ -70,6 +70,6 @@ public class HomePageController extends BaseController{
     private void showCarDetails(int carId, ActionEvent event) throws Exception {
         Cars car = this.carRepository.getById(carId);
 
-        SceneManager.load(SceneLocator.RESERVATION_FORM);;
+        SceneManager.load(SceneLocator.SEE_CAR_DETAILS);;
     }
 }
