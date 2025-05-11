@@ -1,6 +1,9 @@
 package controllers;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.ToggleGroup;
 import services.LanguageManager;
 import services.SceneManager;
 
@@ -8,7 +11,11 @@ import java.util.Locale;
 
 public class BaseController {
     protected SceneManager sceneManager = SceneManager.getInstance();
-    private LanguageManager languageManager = LanguageManager.getInstance();
+    protected LanguageManager languageManager = LanguageManager.getInstance();
+
+    @FXML private RadioMenuItem txtShqip;
+    @FXML private RadioMenuItem txtEnglish;
+
 
     public void setAlbanianLanguage() {
         try{
@@ -43,5 +50,21 @@ public class BaseController {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    @FXML
+    public void initialize() {
+        ToggleGroup languageToggleGroup = new ToggleGroup();
+        txtShqip.setToggleGroup(languageToggleGroup);
+        txtEnglish.setToggleGroup(languageToggleGroup);
+
+
+        Locale currentLocale = LanguageManager.getInstance().getLocale();
+
+        if (currentLocale.getLanguage().equals("sq")) {
+            txtShqip.setSelected(true);
+        } else {
+            txtEnglish.setSelected(true);
+        }
     }
 }

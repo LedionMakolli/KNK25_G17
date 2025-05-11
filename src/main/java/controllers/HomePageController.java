@@ -6,15 +6,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import models.Cars;
 import repository.CarRepository;
 import services.CarService;
 import services.CarService2;
+import services.LanguageManager;
 import services.SceneManager;
 import utils.SceneLocator;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class HomePageController extends BaseController{
 
