@@ -122,42 +122,42 @@
                               <Image url="@../photos/bmwm3.jpg" />
                            </image>
                         </ImageView>
-                        <Label graphicTextGap="5.0" layoutX="109.0" layoutY="169.0" text="BMW E36, 1995">
+                        <Label graphicTextGap="5.0" layoutX="108.0" layoutY="174.0" text="BMW E36, 1995">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                         <Button layoutX="136.0" layoutY="204.0" mnemonicParsing="false" text="Reserve" />
-                        <Label graphicTextGap="5.0" layoutX="407.0" layoutY="174.0" text="BMW E36, 1995">
+                        <Label graphicTextGap="5.0" layoutX="407.0" layoutY="174.0" text="BMW M3, 2018">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button layoutX="434.0" layoutY="209.0" mnemonicParsing="false" text="Reserve" />
-                        <Label graphicTextGap="5.0" layoutX="108.0" layoutY="427.0" text="BMW E36, 1995">
+                        <Button layoutX="434.0" layoutY="204.0" mnemonicParsing="false" text="Reserve" />
+                        <Label graphicTextGap="5.0" layoutX="108.0" layoutY="427.0" text="BMW X5, 2023">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button layoutX="135.0" layoutY="462.0" mnemonicParsing="false" text="Reserve" />
-                        <Label graphicTextGap="5.0" layoutX="407.0" layoutY="431.0" text="BMW E36, 1995">
+                        <Button layoutX="136.0" layoutY="462.0" mnemonicParsing="false" text="Reserve" />
+                        <Label graphicTextGap="5.0" layoutX="421.0" layoutY="427.0" text="Golf 8, 2020">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button layoutX="434.0" layoutY="466.0" mnemonicParsing="false" text="Reserve" />
-                        <Label graphicTextGap="5.0" layoutX="109.0" layoutY="674.0" text="BMW E36, 1995">
+                        <Button layoutX="434.0" layoutY="462.0" mnemonicParsing="false" text="Reserve" />
+                        <Label graphicTextGap="5.0" layoutX="108.0" layoutY="674.0" text="Volvo S60, 2023">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                         <Button layoutX="136.0" layoutY="709.0" mnemonicParsing="false" text="Reserve" />
-                        <Label graphicTextGap="5.0" layoutX="407.0" layoutY="678.0" text="BMW E36, 1995">
+                        <Label graphicTextGap="5.0" layoutX="379.0" layoutY="674.0" text="Mercedes C-Class, 2020">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button layoutX="434.0" layoutY="713.0" mnemonicParsing="false" text="Reserve" />
+                        <Button layoutX="434.0" layoutY="709.0" mnemonicParsing="false" text="Reserve" />
                      </children>
                   </AnchorPane>
               </content>
