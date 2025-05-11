@@ -40,34 +40,12 @@ public class HomePageController extends BaseController{
     }
 
     @FXML
-    private void handleViewDetailsE36(ActionEvent event) throws Exception {
-        showCarDetails(1, event);
+    private void handleCarButtonClick(ActionEvent event) throws Exception {
+        Button source = (Button) event.getSource();
+        int carId = Integer.parseInt(source.getUserData().toString());
+        showCarDetails(carId, event);
     }
 
-    @FXML
-    private void handleViewDetailsM3(ActionEvent event) throws Exception {
-        showCarDetails(2, event);
-    }
-
-    @FXML
-    private void handleViewDetailsX5(ActionEvent event) throws Exception {
-        showCarDetails(3, event);
-    }
-
-    @FXML
-    private void handleViewDetailsGolf8(ActionEvent event) throws Exception {
-        showCarDetails(4, event);
-    }
-
-    @FXML
-    private void handleViewDetailsS60(ActionEvent event) throws Exception {
-        showCarDetails(5, event);
-    }
-
-    @FXML
-    private void handleViewDetailsCClass(ActionEvent event) throws Exception {
-        showCarDetails(6, event);
-    }
 
     public void showCarDetails(int carId, ActionEvent event) throws Exception {
         Cars car = this.carRepository.getById(carId);
