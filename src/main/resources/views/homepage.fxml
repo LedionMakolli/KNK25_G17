@@ -50,22 +50,22 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Homepage">
+        <Menu mnemonicParsing="false" text="%txt.Homepage">
         </Menu>
           <Menu mnemonicParsing="false" text="Settings">
               <items>
-                  <MenuItem mnemonicParsing="false" text="Change Password"/>
-                  <MenuItem mnemonicParsing="false" text="Conctracts"/>
-                  <MenuItem mnemonicParsing="false" text="Sign out"/>
+                  <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword"/>
+                  <MenuItem fx:id="seeContract" mnemonicParsing="false" text="%txt.seeContract"/>
+                  <MenuItem fx:id="signOut" mnemonicParsing="false" text="%txt.SignOut"/>
               </items>
           </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
+        <Menu mnemonicParsing="false" text="%txt.Edit">
             <items>
                 <RadioMenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip"  />
                 <RadioMenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
             </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="%txt.Help">
           <items>
             <MenuItem mnemonicParsing="false" text="About"/>
           </items>
