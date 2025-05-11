@@ -74,10 +74,10 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="783.0" prefWidth="637.0" VBox.vgrow="ALWAYS">
          <children>
-            <ScrollPane prefHeight="765.0" prefWidth="640.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="762.0" prefWidth="634.0">
-                     <children>
+             <ScrollPane prefHeight="765.0" prefWidth="640.0" fitToWidth="true">
+                 <content>
+                     <AnchorPane minHeight="1150.0" prefHeight="1000.0" prefWidth="634.0">
+                         <children>
                         <ImageView fitHeight="150.0" fitWidth="300.0" layoutX="52.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../photos/bmw.png" />
