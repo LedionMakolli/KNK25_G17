@@ -66,18 +66,10 @@
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
+            <items>
+                <MenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip" />
+                <MenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
+            </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
@@ -132,37 +124,37 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnViewDetailsE36" layoutX="125.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleViewDetailsE36" text="View Details" userData="1" />
+                        <Button fx:id="btnViewDetailsE36" layoutX="125.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleViewDetailsE36" text="%txt.viewDetails" userData="1" />
                         <Label graphicTextGap="5.0" layoutX="407.0" layoutY="174.0" text="BMW M3, 2018">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnViewDetailsM3" layoutX="423.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleViewDetailsM3" text="View Details" userData="2" />
+                        <Button fx:id="btnViewDetailsM3" layoutX="423.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleViewDetailsM3"  text="%txt.viewDetails" userData="2" />
                         <Label graphicTextGap="5.0" layoutX="108.0" layoutY="427.0" text="BMW X5, 2023">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnViewDetailsX5" layoutX="125.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleViewDetailsX5" text="View Details" userData="3" />
+                        <Button fx:id="btnViewDetailsX5" layoutX="125.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleViewDetailsX5"  text="%txt.viewDetails" userData="3" />
                         <Label graphicTextGap="5.0" layoutX="421.0" layoutY="427.0" text="Golf 8, 2020">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnViewDetailsGolf8" layoutX="423.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleViewDetailsGolf8" text="View Details" userData="4" />
+                        <Button fx:id="btnViewDetailsGolf8" layoutX="423.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleViewDetailsGolf8"  text="%txt.viewDetails" userData="4" />
                         <Label graphicTextGap="5.0" layoutX="109.0" layoutY="674.0" text="Volvo S60, 2023">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnViewDetailsS60" layoutX="125.0" layoutY="709.0" mnemonicParsing="false" onAction="#handleViewDetailsS60" text="View Details" userData="5" />
+                        <Button fx:id="btnViewDetailsS60" layoutX="125.0" layoutY="709.0" mnemonicParsing="false" onAction="#handleViewDetailsS60"  text="%txt.viewDetails" userData="5" />
                         <Label graphicTextGap="5.0" layoutX="379.0" layoutY="674.0" text="Mercedes C-Class, 2020">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnViewDetailsCClass" layoutX="423.0" layoutY="709.0" mnemonicParsing="false" onAction="#handleViewDetailsCClass" text="View Details" userData="6" />
+                        <Button fx:id="btnViewDetailsCClass" layoutX="423.0" layoutY="709.0" mnemonicParsing="false" onAction="#handleViewDetailsCClass"  text="%txt.viewDetails" userData="6" />
                      </children>
                   </AnchorPane>
               </content>
