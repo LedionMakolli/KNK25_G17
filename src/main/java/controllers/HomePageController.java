@@ -6,8 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import models.Cars;
+import services.CarService;
 import services.SceneManager;
 import utils.SceneLocator;
 
@@ -36,11 +38,11 @@ public class HomePageController {
     private javafx.scene.control.Button btnReserveCClass;
 
 
-    @FXML
-    private void handleViewDetailsE36(ActionEvent e) {
-        Cars c = carService.findById( /* the  E36’s ID */ );
-        openReservationForm(c);
-    }
+//    @FXML
+//    private void handleViewDetailsE36(ActionEvent e) {
+//        Cars c = CarService.getById(1);
+//        openReservationForm(c);
+//    }
 
     @FXML
     private void handleViewDetailsM3(ActionEvent event) {
@@ -66,6 +68,32 @@ public class HomePageController {
     private void handleViewDetailsCClass(ActionEvent event) {
         handleViewDetails("Mercedes C-Class", "2020");
     }
+
+    @FXML
+    private void handleViewDetails(ActionEvent event) {
+        try {
+            int carId = Integer.parseInt(
+                    ((Button)event.getSource()).getUserData().toString()
+            );
+
+            ReservationFormController formCtrl =
+                    SceneManager.<ReservationFormController>loadWithController(
+                            SceneLocator.RESERVATION_FORM
+                    );
+
+            // 3) Fetch the Cars model and hand it off
+            Cars car = new CarService().getById(carId);
+            formCtrl.setCar(car);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showErrorAlert(
+                    "Unable to open reservation form",
+                    e.getMessage()
+            );
+        }
+    }
+
 
     private void openReservationForm(Cars car) {
         try {
