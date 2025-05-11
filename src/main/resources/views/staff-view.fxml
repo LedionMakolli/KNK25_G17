@@ -58,16 +58,8 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
+            <MenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip" />
+            <MenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
@@ -79,13 +71,13 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="182.0" layoutY="158.0" text="Welcome, Staff!">
+            <Label layoutX="182.0" layoutY="158.0" text="%txt.welcomeStaff">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-           <Button fx:id="btnPenalties" layoutX="52.0" layoutY="29.0" mnemonicParsing="false" onAction="#seePenalties" text="See Penalties" />
-           <Button fx:id="btnContracts" layoutX="154.0" layoutY="29.0" mnemonicParsing="false" onAction="#seeContracts" text="See Contracts" />
+           <Button fx:id="btnPenalties" layoutX="52.0" layoutY="29.0" mnemonicParsing="false" onAction="#seePenalties" text="%txt.seePenalties" />
+           <Button fx:id="btnContracts" layoutX="169.0" layoutY="29.0" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract" />
          </children>
     </AnchorPane>
   </children>

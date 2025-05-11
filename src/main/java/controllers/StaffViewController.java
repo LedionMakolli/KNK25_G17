@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import services.SceneManager;
 import utils.SceneLocator;
 
-public class StaffViewController {
+public class StaffViewController extends baseController{
     @FXML
     private Button btnPenalties;
 
@@ -36,13 +36,5 @@ public class StaffViewController {
             showErrorAlert("Unable to load Contracts",
                     "An error occurred while trying to load the contracts page.");
         }
-    }
-
-    private void showErrorAlert(String header, String content) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 }

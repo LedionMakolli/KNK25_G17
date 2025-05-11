@@ -9,5 +9,6 @@ public class SceneLocator {
     public static final String RESERVATION_FORM = "/views/reservation_form.fxml";
     public static final String SEE_PENALTIES="/views/penalties.fxml";
     public static final String SEE_CONTRACTS="/views/contracts.fxml";
+    public  static final String SEE_WELCOME="/views/welcome.fxml";
 //    ...
 }

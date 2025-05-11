@@ -3,13 +3,24 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import services.LanguageManager;
 import services.SceneManager;
 import utils.SceneLocator;
-//TA DINI QE QIKJO VEQ PROVE PER BUTON
-public class ControllerPerWelcome {
-    @FXML
-    private Button btnContracts;
 
+import java.util.Locale;
+
+//TA DINI QE QIKJO VEQ PROVE PER BUTON
+public class ControllerPerWelcome extends baseController{
+
+    private SceneManager sceneManager;
+
+    private SceneManager getSceneManager() {
+        if (sceneManager == null) {
+            sceneManager = SceneManager.getInstance();
+        }
+        return sceneManager;
+    }
 
     @FXML
     private void ClickOnChangePassword() {
@@ -30,21 +41,5 @@ public class ControllerPerWelcome {
             showErrorAlert("Unable to load Contracts",
                     "An error occurred while trying to load the contracts page.");
         }
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    private void showErrorAlert(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 }
