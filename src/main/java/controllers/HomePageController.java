@@ -16,7 +16,7 @@ import utils.SceneLocator;
 
 import java.io.IOException;
 
-public class HomePageController extends baseController{
+public class HomePageController extends BaseController{
 
     @FXML private Button btnViewDetailsE36;
     @FXML private Button btnViewDetailsM3;

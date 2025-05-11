@@ -11,7 +11,7 @@ import utils.SceneLocator;
 import java.util.Locale;
 
 //TA DINI QE QIKJO VEQ PROVE PER BUTON
-public class ControllerPerWelcome extends baseController{
+public class ControllerPerWelcome extends BaseController{
 
     private SceneManager sceneManager;
 

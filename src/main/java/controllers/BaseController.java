@@ -6,7 +6,7 @@ import services.SceneManager;
 
 import java.util.Locale;
 
-public class baseController {
+public class BaseController {
     protected SceneManager sceneManager = SceneManager.getInstance();
     private LanguageManager languageManager = LanguageManager.getInstance();
 
