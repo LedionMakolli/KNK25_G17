@@ -37,35 +37,35 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.RadioMenuItem?>
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CarDetailsController">
   <children>
       <MenuBar VBox.vgrow="NEVER">
           <menus>
-              <Menu fx:id="gotoHomepage" mnemonicParsing="false" text="%txt.Homepage" onAction="#goToHomepage">
+              <Menu fx:id="gotoHomepage" mnemonicParsing="false" onAction="#goToHomepage" text="%txt.Homepage">
               </Menu>
               <Menu mnemonicParsing="false" text="Settings">
                   <items>
-                      <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" onAction="#handleChangePassword"/>
-                      <MenuItem fx:id="seeContract" mnemonicParsing="false" text="%txt.seeContract" onAction="#seeContracts"/>
-                      <MenuItem fx:id="SignOut" mnemonicParsing="false" text="%txt.SignOut" onAction="#SignOut"/>
+                      <MenuItem fx:id="changePassword" mnemonicParsing="false" onAction="#handleChangePassword" text="%txt.changePassword" />
+                      <MenuItem fx:id="seeContract" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract" />
+                      <MenuItem fx:id="SignOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
                   </items>
               </Menu>
               <Menu mnemonicParsing="false" text="%txt.Edit">
                   <items>
-                      <RadioMenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip"  />
+                      <RadioMenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip" />
                       <RadioMenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
                   </items>
               </Menu>
               <Menu mnemonicParsing="false" text="%txt.Help">
                   <items>
-                      <MenuItem mnemonicParsing="false" text="About"/>
+                      <MenuItem mnemonicParsing="false" text="About" />
                   </items>
               </Menu>
           </menus>
@@ -73,26 +73,29 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <ImageView fx:id="imgCar" fitHeight="308.0" fitWidth="342.0" layoutX="14.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="408.0" layoutY="304.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="200.0" text="\%txt.ReserveNow">
+            <Button layoutX="408.0" layoutY="304.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="200.0" text="%txt.ReserveNow">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <VBox layoutX="418.0" layoutY="44.0" prefHeight="217.0" prefWidth="112.0" spacing="5.0">
+            <VBox layoutX="418.0" layoutY="41.0" prefHeight="223.0" prefWidth="182.0" spacing="5.0">
                <children>
-                   <Label fx:id="lblId" contentDisplay="CENTER" text="%txt.id" wrapText="true" />
-                   <Label fx:id="lblPlates" contentDisplay="CENTER" text="%txt.Plates" wrapText="true" />
                   <Label fx:id="lblModel" contentDisplay="CENTER" text="%txt.Model" wrapText="true" />
                   <Label fx:id="lblColor" contentDisplay="CENTER" text="%txt.Color" wrapText="true" />
+                   <Label fx:id="lblPlates" contentDisplay="CENTER" text="%txt.Plates" wrapText="true" />
                   <Label fx:id="lblYear" contentDisplay="CENTER" text="%txt.Year" wrapText="true" />
                   <Label fx:id="lblMileage" contentDisplay="CENTER" text="%txt.Mileage" wrapText="true" />
+                   <Label fx:id="lblPriceDay" contentDisplay="CENTER" text="%txt.PriceDay" wrapText="true" />
+                   <Label fx:id="lblTransmissionType" contentDisplay="CENTER" text="%txt.TransmissionType" wrapText="true" />
                    <Label fx:id="lblSeats" contentDisplay="CENTER" text="%txt.Seats" wrapText="true" />
                    <Label fx:id="lblFuel" contentDisplay="CENTER" text="%txt.Fuel" wrapText="true" />
-                   <Label fx:id="lblPriceDay" contentDisplay="CENTER" text="%txt.PriceDay" wrapText="true" />
                    <Label fx:id="lblStatus" contentDisplay="CENTER" text="%txt.Status" wrapText="true" />
-                   <Label fx:id="lblTransmissionType" contentDisplay="CENTER" text="%txt.TransmissionType" wrapText="true" />
                </children>
             </VBox>
+            <Separator layoutX="407.0" layoutY="27.0" orientation="VERTICAL" prefHeight="250.0" prefWidth="3.0" />
+            <Separator layoutX="606.0" layoutY="28.0" orientation="VERTICAL" prefHeight="250.0" prefWidth="3.0" />
+            <Separator layoutX="409.0" layoutY="277.0" prefHeight="3.0" prefWidth="200.0" />
+            <Separator layoutX="408.0" layoutY="27.0" prefHeight="3.0" prefWidth="200.0" />
          </children></AnchorPane>
   </children>
 </VBox>

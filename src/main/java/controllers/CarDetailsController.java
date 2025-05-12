@@ -18,33 +18,32 @@ import utils.SceneLocator;
 
 public class CarDetailsController extends BaseController{
 
-    @FXML private Label lblId;
-    @FXML private Label lblPlate;
+    @FXML private Label lblPlates;
     @FXML private Label lblModel;
     @FXML private Label lblColor;
     @FXML private Label lblYear;
     @FXML private Label lblMileage;
     @FXML private Label lblSeats;
     @FXML private Label lblFuel;
-    @FXML private Label lblPrice;
+    @FXML private Label lblPriceDay;
     @FXML private Label lblStatus;
-    @FXML private Label lblTransmission;
-    @FXML private Label lblStatus;
+    @FXML private Label lblTransmissionType;
+
     @FXML private ImageView imgCar;
 
     private SceneManager sceneManager;
 
     public void setCar(Cars car) throws Exception {
-        lblPlate.setText("Targat: " + car.getLicensePlate());
+        lblPlates.setText("Targat: " + car.getLicensePlate());
         lblModel.setText("Model: " + car.getModel());
         lblColor.setText("Ngjyra: " + car.getColor());
         lblYear.setText("Viti i Prodhimit: " + car.getYearOfManufacture());
         lblMileage.setText("Kilometrazha: " + car.getMileage() + " km");
-        lblPrice.setText("Çmimi ditor: " + car.getDailyPrice() + "€");
-        lblTransmission.setText("Transmisioni: " + car.getTransmissionType());
         lblSeats.setText("Ulëset: " + car.getSeatCount());
         lblFuel.setText("Lloji i karburantit: " + car.getFuelType());
+        lblPriceDay.setText("Çmimi ditor: " + car.getDailyPrice() + "€");
         lblStatus.setText("Statusi: " + car.getStatus());
+        lblTransmissionType.setText("Transmisioni: " + car.getTransmissionType());
         Image image = new Image(
                 getClass().getResourceAsStream(car.getImagePath())
         );
