@@ -30,10 +30,6 @@ public class CarDetailsController extends BaseController{
     @FXML private Label lblTransmission;
     private SceneManager sceneManager;
 
-    public CarDetailsController() {
-        sceneManager=SceneManager.getInstance();
-    }
-
     public void setCar(Cars car) throws Exception {
         lblID.setText("ID: " + car.getId());
         lblLicensePlate.setText("Targat: " + car.getLicensePlate());
