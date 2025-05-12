@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import models.Cars;
 import repository.CarRepository;
 import services.SceneManager;
+import services.SessionManager;
 import utils.SceneLocator;
 
 public class CarDetailsController extends BaseController{
@@ -32,8 +33,11 @@ public class CarDetailsController extends BaseController{
     @FXML private ImageView imgCar;
 
     private SceneManager sceneManager;
+    private Cars currentCar;
+
 
     public void setCar(Cars car) throws Exception {
+        this.currentCar = car;
         lblPlates.setText("Targat: " + car.getLicensePlate());
         lblModel.setText("Model: " + car.getModel());
         lblColor.setText("Ngjyra: " + car.getColor());
@@ -50,7 +54,30 @@ public class CarDetailsController extends BaseController{
         imgCar.setImage(image);
     }
     @FXML
-    public void backToHomePage(ActionEvent event) throws Exception {
+    public void goToHomepage(ActionEvent event) throws Exception {
         SceneManager.load(SceneLocator.HOME_PAGE);
     }
+
+    @FXML
+    private void onReserveNow(ActionEvent event) {
+        try {
+            // load the reservation form and get its controller...
+            var formCtrl = SceneManager
+                    .<ReservationFormController>loadWithController(SceneLocator.RESERVATION_FORM);
+
+            // grab the currently logged-in client ID from SessionManager:
+            int clientId = SessionManager.getInstance()
+                    .getCurrentClient()
+                    .getId();
+
+            // and the car ID you already have:
+            formCtrl.setContext(clientId, this.currentCar.getId());
+
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            showErrorAlert("…", "…");
+        }
+    }
+
+
 }
