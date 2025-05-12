@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.Cars;
 import repository.CarRepository;
@@ -28,6 +29,8 @@ public class CarDetailsController extends BaseController{
     @FXML private Label lblPrice;
     @FXML private Label lblStatus;
     @FXML private Label lblTransmission;
+    @FXML private ImageView imgCar;
+
     private SceneManager sceneManager;
 
     public void setCar(Cars car) throws Exception {

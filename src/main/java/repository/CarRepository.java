@@ -56,8 +56,8 @@ public class CarRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarD
     public Cars create(CreateCarDto carDto) {
         String query = """
                 INSERT INTO CARS (LICENSEPLATE, MODEL, COLOR, YEAROFMANUFACTURE,
-                MILEAGE, SEATCOUNT, FUELTYPE, DAILYPRICE, STATUS, TRANSMISSIONTYPE)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                MILEAGE, SEATCOUNT, FUELTYPE, DAILYPRICE, STATUS, TRANSMISSIONTYPE, IMAGEPATH)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -71,6 +71,7 @@ public class CarRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarD
             preparedStatement.setInt(8, carDto.getDailyPrice());
             preparedStatement.setObject(9, carDto.getStatus().name(), Types.OTHER);
             preparedStatement.setObject(10, carDto.getTransmissionType().name(), Types.OTHER);
+            preparedStatement.setObject(11, carDto.getImagePath());
             preparedStatement.execute();
             ResultSet result = preparedStatement.getGeneratedKeys();
             if (result.next()) {

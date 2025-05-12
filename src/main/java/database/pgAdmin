@@ -58,6 +58,7 @@ CREATE TABLE Cars (
     dailyPrice DECIMAL(10, 2) CHECK (dailyPrice >= 0),
     status CarStatusEnum DEFAULT 'AVAILABLE',
     transmissionType TransmissionTypeEnum NOT NULL
+    imagePath TEXT
 );
 
  -----   RESERVATIONS    ----
