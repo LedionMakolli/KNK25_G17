@@ -40,24 +40,28 @@ public class ReservationFormController extends BaseController{
             return;
         }
 
-        CreateReservationsDto dto = new CreateReservationsDto(
-                clientId,
-                carId,
-                Date.valueOf(dpStartDate.getValue()),
-                Date.valueOf(dpEndDate.getValue()),
-                ReservationStatusEnum.ACTIVE
-        );
-
         try {
+            CreateReservationsDto dto = new CreateReservationsDto(
+                    clientId,
+                    carId,
+                    Date.valueOf(dpStartDate.getValue()),
+                    Date.valueOf(dpEndDate.getValue()),
+                    ReservationStatusEnum.ACTIVE
+            );
+
             ReservationsRepository repo = new ReservationsRepository();
             Reservations reservation = repo.create(dto);
 
-            new Alert(Alert.AlertType.INFORMATION,
-                    "Reservation confirmed! ID: " + reservation.getId()
-            ).showAndWait();
-
-            SceneManager.load(SceneLocator.HOME_PAGE);
-
+            if (reservation != null) {
+                new Alert(Alert.AlertType.INFORMATION,
+                        "Reservation confirmed! ID: " + reservation.getId()
+                ).showAndWait();
+                SceneManager.load(SceneLocator.HOME_PAGE);
+            } else {
+                new Alert(Alert.AlertType.ERROR,
+                        "Failed to create reservation. Please try again."
+                ).showAndWait();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR,
