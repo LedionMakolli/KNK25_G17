@@ -26,27 +26,28 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
 
     public Reservations create(CreateReservationsDto reservationsDto) {
         String query = """
-            
-                INSERT INTO Rezervimet (idClient, idCar, startDate, endDate, reservationStatus)
-            VALUES (?,?,?,?,?)""";
-    try{
-        PreparedStatement pstm = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        pstm.setInt(1, reservationsDto.getIdClient());
-        pstm.setInt(2, reservationsDto.getIdCar());
-        pstm.setDate(3, reservationsDto.getStartDate());
-        pstm.setDate(4, reservationsDto.getEndDate());
-        pstm.setObject(5, reservationsDto.getReservationStatus(), Types.OTHER);
-        pstm.execute();
-        ResultSet rs = pstm.getGeneratedKeys();
-        if(rs.next()){
-            int id = rs.getInt(1);
-        return this.getById(id);
+        INSERT INTO Reservations (idClient, idCar, startDate, endDate, reservationStatus)
+        VALUES (?,?,?,?,?) RETURNING *""";  // Added RETURNING * to get the created record
+
+        try {
+            PreparedStatement pstm = connection.prepareStatement(query);
+            pstm.setInt(1, reservationsDto.getIdClient());
+            pstm.setInt(2, reservationsDto.getIdCar());
+            pstm.setDate(3, reservationsDto.getStartDate());
+            pstm.setDate(4, reservationsDto.getEndDate());
+            pstm.setObject(5, reservationsDto.getReservationStatus(), Types.OTHER);
+
+            ResultSet rs = pstm.executeQuery();
+            if(rs.next()) {
+                return fromResultSet(rs);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to create reservation: " + e.getMessage());
         }
-    }catch(SQLException e){
-      e.printStackTrace();
+        return null;
     }
-    return null;
- }
+
  //4. Metoda update
     public Reservations update(UpdateReservationsDto reservationsDto) {
         StringBuilder query = new StringBuilder("UPDATE Reservations SET ");

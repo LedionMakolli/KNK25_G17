@@ -80,7 +80,7 @@
                          <children>
                         <ImageView fitHeight="150.0" fitWidth="300.0" layoutX="52.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../photos/bmw.png" />
+                              <Image url="@../photos/bmw_e36.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="300.0" layoutX="363.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
@@ -95,7 +95,7 @@
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="300.0" layoutX="45.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../photos/bmwx5.jpg" />
+                              <Image url="@../photos/bmw_x5.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="300.0" layoutX="350.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
@@ -105,7 +105,7 @@
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="300.0" layoutX="350.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../photos/bmwm3.jpg" />
+                              <Image url="@../photos/bmw_m3.png" />
                            </image>
                         </ImageView>
                         <Label graphicTextGap="5.0" layoutX="108.0" layoutY="174.0" text="BMW E36, 1995">

@@ -50,7 +50,7 @@
           <menus>
               <Menu mnemonicParsing="false" text="%txt.Homepage">
                   <items>
-                      <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" text="Go to Home" onAction="#goToHomepage" />
+                      <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" onAction="#goToHomepage" text="Go to Home" />
                   </items>
               </Menu>
               <Menu mnemonicParsing="false" text="Settings">
@@ -75,7 +75,7 @@
       </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fx:id="imgCar" fitHeight="308.0" fitWidth="342.0" layoutX="14.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgCar" fitHeight="308.0" fitWidth="342.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="408.0" layoutY="304.0" mnemonicParsing="false" onAction="#onReserveNow" prefHeight="34.0" prefWidth="200.0" text="%txt.ReserveNow">
                <font>
                   <Font size="16.0" />
