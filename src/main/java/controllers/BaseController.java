@@ -17,6 +17,7 @@ public class BaseController {
     @FXML protected MenuItem seeContract;
     @FXML protected MenuItem gotoHomepage;
     @FXML protected MenuItem changePassword;
+    @FXML protected MenuItem SignOut;
 
 
     public void setAlbanianLanguage() {
@@ -28,6 +29,8 @@ public class BaseController {
         }
     }
 
+
+
     public void setEnglishLanguage() {
         try{
             languageManager.setLocale(new Locale("en"));
@@ -37,6 +40,14 @@ public class BaseController {
         }
     }
 
+    public void SignOut(){
+        try{
+            SceneManager.load(SceneLocator.LOGIN_PAGE);
+        }catch (Exception e){
+            showErrorAlert("Unable to load LogIn",
+                    "An error occurred while trying to load the LogIn page.");
+        }
+    }
     public void seeContracts(){
         try{
             SceneManager.load(SceneLocator.SEE_CONTRACTS);
@@ -59,8 +70,8 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.CHANGE_PASSWORD_PAGE);
         }catch (Exception e){
-            showErrorAlert("Unable to load",
-                    "An error occured while trying to load the homepage");
+            showErrorAlert("Unable to load ChangePassword",
+                    "An error occured while trying to load the ChangePassword page");
         }
 }
 

@@ -71,11 +71,4 @@ public class ChangePasswordController extends BaseController {
             e.printStackTrace();
         }
     }
-
-    private void showAlertWithKeys(Alert.AlertType alertType, String titleKey, String messageKey) {
-        String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
-        String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);
-        showAlert(alertType, title, message);
-    }
-
 }
