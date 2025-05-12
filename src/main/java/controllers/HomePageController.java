@@ -55,6 +55,7 @@ public class HomePageController extends BaseController{
                     );
 
             Cars car = carRepository.getById(carId);
+            System.out.println("Hellooo");
             detailsCtrl.setCar(car);
 
         } catch (Exception e) {

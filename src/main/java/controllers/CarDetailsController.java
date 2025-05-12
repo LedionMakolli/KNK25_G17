@@ -18,7 +18,7 @@ import utils.SceneLocator;
 
 public class CarDetailsController extends BaseController{
 
-    @FXML private Button btnBack;
+    @FXML private Label lblId;
     @FXML private Label lblPlate;
     @FXML private Label lblModel;
     @FXML private Label lblColor;
@@ -29,14 +29,15 @@ public class CarDetailsController extends BaseController{
     @FXML private Label lblPrice;
     @FXML private Label lblStatus;
     @FXML private Label lblTransmission;
+    @FXML private Label lblStatus;
     @FXML private ImageView imgCar;
 
     private SceneManager sceneManager;
 
     public void setCar(Cars car) throws Exception {
+        lblPlate.setText("Targat: " + car.getLicensePlate());
         lblModel.setText("Model: " + car.getModel());
         lblColor.setText("Ngjyra: " + car.getColor());
-        lblPlate.setText("Targat: " + car.getLicensePlate());
         lblYear.setText("Viti i Prodhimit: " + car.getYearOfManufacture());
         lblMileage.setText("Kilometrazha: " + car.getMileage() + " km");
         lblPrice.setText("Çmimi ditor: " + car.getDailyPrice() + "€");
