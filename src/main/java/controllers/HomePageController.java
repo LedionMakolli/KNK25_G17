@@ -40,24 +40,31 @@ public class HomePageController extends BaseController{
     }
 
     @FXML
-    private void handleCarButtonClick(ActionEvent event) throws Exception {
-        Button source = (Button) event.getSource();
-        int carId = Integer.parseInt(source.getUserData().toString());
-        showCarDetails(carId, event);
-    }
+    private void handleCarButtonClick(ActionEvent event) {
+//        Button source = (Button) event.getSource();
+//        int carId = Integer.parseInt(source.getUserData().toString());
+//        showCarDetails(carId, event);
+        try {
+            int carId = Integer.parseInt(
+                    ((Button)event.getSource()).getUserData().toString()
+            );
 
+            CarDetailsController detailsCtrl =
+                    SceneManager.<CarDetailsController>loadWithController(
+                            SceneLocator.SEE_CAR_DETAILS
+                    );
 
-    public void showCarDetails(int carId, ActionEvent event) throws Exception {
-        Cars car = this.carRepository.getById(carId);
+            Cars car = carRepository.getById(carId);
+            detailsCtrl.setCar(car);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/car-details.fxml"));
-        Parent root = loader.load(); // Kjo inicializon komponentët nga FXML
-        CarDetailsController controller = loader.getController(); // Merr kontrolluesin që u inicializua nga FXML
-
-        controller.setCar(car); // Thirr metodën pasi FXML komponentët janë inicializuar
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showErrorAlert(
+                    "Unable to load car details",
+                    "An error occurred while loading details for car ID " +
+                            ((Button)event.getSource()).getUserData()
+            );
+        }
     }
 }
+

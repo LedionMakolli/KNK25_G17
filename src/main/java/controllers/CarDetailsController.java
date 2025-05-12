@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.Cars;
@@ -18,8 +19,7 @@ import utils.SceneLocator;
 public class CarDetailsController extends BaseController{
 
     @FXML private Button btnBack;
-    @FXML private Label lblID;
-    @FXML private Label lblLicensePlate;
+    @FXML private Label lblPlate;
     @FXML private Label lblModel;
     @FXML private Label lblColor;
     @FXML private Label lblYear;
@@ -34,17 +34,20 @@ public class CarDetailsController extends BaseController{
     private SceneManager sceneManager;
 
     public void setCar(Cars car) throws Exception {
-        lblID.setText("ID: " + car.getId());
-        lblLicensePlate.setText("Targat: " + car.getLicensePlate());
         lblModel.setText("Model: " + car.getModel());
         lblColor.setText("Ngjyra: " + car.getColor());
+        lblPlate.setText("Targat: " + car.getLicensePlate());
         lblYear.setText("Viti i Prodhimit: " + car.getYearOfManufacture());
         lblMileage.setText("Kilometrazha: " + car.getMileage() + " km");
+        lblPrice.setText("Çmimi ditor: " + car.getDailyPrice() + "€");
+        lblTransmission.setText("Transmisioni: " + car.getTransmissionType());
         lblSeats.setText("Ulëset: " + car.getSeatCount());
         lblFuel.setText("Lloji i karburantit: " + car.getFuelType());
-        lblPrice.setText("Çmimi ditor: " + car.getDailyPrice() + "€");
         lblStatus.setText("Statusi: " + car.getStatus());
-        lblTransmission.setText("Transmisioni: " + car.getTransmissionType());
+        Image image = new Image(
+                getClass().getResourceAsStream(car.getImagePath())
+        );
+        imgCar.setImage(image);
     }
     @FXML
     public void backToHomePage(ActionEvent event) throws Exception {
