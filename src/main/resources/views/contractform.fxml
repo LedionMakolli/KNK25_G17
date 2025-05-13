@@ -38,48 +38,39 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ContractsController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
+      <MenuBar VBox.vgrow="NEVER">
+          <menus>
+              <Menu fx:id="gotoHomepage" mnemonicParsing="false" text="%txt.Homepage" onAction="#goToHomepage">
+              </Menu>
+              <Menu mnemonicParsing="false" text="Settings">
+                  <items>
+                      <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" onAction="#handleChangePassword"/>
+                      <MenuItem fx:id="seeContract" mnemonicParsing="false" text="%txt.seeContract" onAction="#seeContracts"/>
+                      <MenuItem fx:id="SignOut" mnemonicParsing="false" text="%txt.SignOut" onAction="#SignOut"/>
+                  </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="%txt.Edit">
+                  <items>
+                      <RadioMenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip"  />
+                      <RadioMenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
+                  </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="%txt.Help">
+                  <items>
+                      <MenuItem mnemonicParsing="false" text="About"/>
+                  </items>
+              </Menu>
+              <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
+                  <items>
+                      <MenuItem fx:id="addContract" mnemonicParsing="false" text="%txt.AddContract" onAction="#handleAddContract"/>
+                  </items>
+              </Menu>
+
+          </menus>
+      </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="263.0" layoutY="30.0" prefHeight="25.0" prefWidth="113.0" text="     Contract" textAlignment="CENTER">
+            <Label layoutX="263.0" layoutY="30.0" prefHeight="25.0" prefWidth="113.0" text="Contract" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
