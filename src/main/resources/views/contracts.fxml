@@ -13,9 +13,9 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Settings">
                 <items>
-                    <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" />
-                    <MenuItem fx:id="seeContract" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract" />
-                    <MenuItem fx:id="signOut" mnemonicParsing="false" text="%txt.SignOut" />
+                    <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" onAction="#handleChangePassword"/>
+                    <MenuItem fx:id="seeContract" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract"/>
+                    <MenuItem fx:id="signOut" mnemonicParsing="false" text="%txt.SignOut" onAction="#SignOut"/>
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="%txt.Edit">
