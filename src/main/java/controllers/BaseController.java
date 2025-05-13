@@ -18,6 +18,7 @@ public class BaseController {
     @FXML protected MenuItem gotoHomepage;
     @FXML protected MenuItem changePassword;
     @FXML protected MenuItem SignOut;
+    @FXML protected MenuItem addContract;
 
 
     public void setAlbanianLanguage() {
@@ -75,8 +76,12 @@ public class BaseController {
         }
 }
 
-public void handleAdd(){
-
+public void handleAddContract(){
+try{
+    SceneManager.load(SceneLocator.CONTRACT_FORM);
+}catch (Exception e){
+    showErrorAlert("Unable to load Contract Form", "An error occured while trying to losf the ChangePassword page");
+}
 }
 
     protected void showAlert(Alert.AlertType alertType, String title, String message) {

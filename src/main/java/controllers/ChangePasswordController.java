@@ -44,7 +44,7 @@ public class ChangePasswordController extends BaseController {
         String confirmPassword = pwdFieldConfirm.getText().trim();
 
         if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "warning_title", "warning.emptyFields");
+            showAlert(Alert.AlertType.WARNING, "warning.title", "warning.emptyFields");
             return;
         }
         if(!newPassword.equals(confirmPassword)){
