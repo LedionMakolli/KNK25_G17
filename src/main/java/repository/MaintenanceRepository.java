@@ -64,9 +64,9 @@ public class MaintenanceRepository extends BaseRepository<Maintenance, CreateMai
             parametrat.add(MaintenanceDto.getDateStart());
             hasUpdate = true;
         }
-        if (MaintenanceDto.getDateFininsh() != null) {
+        if (MaintenanceDto.getDateFinish() != null) {
             query.append("dateFinish = ?, ");
-            parametrat.add(MaintenanceDto.getDateFininsh());
+            parametrat.add(MaintenanceDto.getDateFinish());
             hasUpdate = true;
         }
         if (MaintenanceDto.getCost() != null) {

@@ -10,7 +10,7 @@ public class UpdateMaintenanceDto {
     private int idCar;
     private String description;
     private Date dateStart;
-    private Date dateFininsh;
+    private Date dateFinish;
     private BigDecimal cost;
     private StatusMaintenanceEnum status;
     private Integer idStaff;
@@ -20,7 +20,7 @@ public class UpdateMaintenanceDto {
         this.id = id;
         this.description = description;
         this.dateStart = dateStart;
-        this.dateFininsh = dateFininsh;
+        this.dateFinish = dateFinish;
         this.cost = cost;
         this.status = status;
     }
@@ -42,7 +42,7 @@ public class UpdateMaintenanceDto {
     }
 
     public Date getDateFinish() {
-        return dateFininsh;
+        return dateFinish;
     }
 
     public BigDecimal getCost() {
@@ -69,8 +69,8 @@ public class UpdateMaintenanceDto {
         this.dateStart = dateStart;
     }
 
-    public void setDateFininsh(Date dateFininsh) {
-        this.dateFininsh = dateFininsh;
+    public void setDateFinish(Date dateFininsh) {
+        this.dateFinish = dateFininsh;
     }
 
     public void setStatus(StatusMaintenanceEnum status) {
