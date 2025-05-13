@@ -12,6 +12,7 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
         super("reservations");
     }
 
+    @Override
     public Reservations fromResultSet(ResultSet rs) {
         try {
             return Reservations.getInstance(rs);
@@ -21,16 +22,37 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
         }
     }
 
+    public boolean existsOverlap(int idCar, Date start, Date end) {
+        String query = """
+                SELECT 1
+                FROM reservations
+                WHERE idcar = ?
+                   AND reservationstatus = 'ACTIVE'
+                   AND NOT (enddate < ? OR startdate > ?)
+                LIMIT 1                
+                """;
+        try (PreparedStatement pstm = connection.prepareStatement(query)) {
+            pstm.setInt(1, idCar);
+            pstm.setDate(2, start);
+            pstm.setDate(3, end);
+            try (ResultSet rs = pstm.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error checking overlap", e);
+        }
+    }
 
 //3. Metoda create
 
     public Reservations create(CreateReservationsDto reservationsDto) {
         String query = """
         INSERT INTO Reservations (idClient, idCar, startDate, endDate, reservationStatus)
-        VALUES (?,?,?,?,?) RETURNING *""";  // Added RETURNING * to get the created record
+        VALUES (?,?,?,?,?) RETURNING *
+""";
 
-        try {
-            PreparedStatement pstm = connection.prepareStatement(query);
+        try (PreparedStatement pstm = connection.prepareStatement(query)) {
+
             pstm.setInt(1, reservationsDto.getIdClient());
             pstm.setInt(2, reservationsDto.getIdCar());
             pstm.setDate(3, reservationsDto.getStartDate());
@@ -38,43 +60,43 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
             pstm.setObject(5, reservationsDto.getReservationStatus(), Types.OTHER);
 
             ResultSet rs = pstm.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 return fromResultSet(rs);
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to create reservation: " + e.getMessage());
         }
         return null;
     }
 
- //4. Metoda update
+    //4. Metoda update
     public Reservations update(UpdateReservationsDto reservationsDto) {
         StringBuilder query = new StringBuilder("UPDATE Reservations SET ");
-        List<Object> parametrat = new ArrayList<>();
+        List<Object> params = new ArrayList<>();
         boolean hasUpdates = false;
 
         if (reservationsDto.getIdCar() > 0) {
-            query.append("idVetura = ?, ");
-            parametrat.add(reservationsDto.getIdCar());
+            query.append("idcar = ?, ");
+            params.add(reservationsDto.getIdCar());
             hasUpdates = true;
         }
 
         if (reservationsDto.getStartDate() != null) {
-            query.append("dataFillimit = ?, ");
-            parametrat.add(reservationsDto.getStartDate());
+            query.append("startdate = ?, ");
+            params.add(reservationsDto.getStartDate());
             hasUpdates = true;
         }
 
         if (reservationsDto.getEndDate() != null) {
-            query.append("dataMbarimit = ?, ");
-            parametrat.add(reservationsDto.getEndDate());
+            query.append("enddate = ?, ");
+            params.add(reservationsDto.getEndDate());
             hasUpdates = true;
         }
 
         if (reservationsDto.getReservationStatus() != null) {
-            query.append("statusiRezervimet = CAST(? AS StatusiRezervimetEnum), ");
-            parametrat.add(reservationsDto.getReservationStatus().name());
+            query.append("reservationstatus = ?, ");
+            params.add(reservationsDto.getReservationStatus().name());
             hasUpdates = true;
         }
         if (!hasUpdates) {
@@ -82,24 +104,26 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
         }
         query.setLength(query.length() - 2);
         query.append("WHERE id = ?");
-        parametrat.add(reservationsDto.getId());
+        params.add(reservationsDto.getId());
 
-        try {
-            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
-            for (int i = 0; i < parametrat.size(); i++) {
-                if (parametrat.get(i) instanceof String && i == parametrat.size() - 1) {
-                    pstm.setObject(i + 1, parametrat.get(i), Types.OTHER);
+        try (PreparedStatement pstm = connection.prepareStatement(query.toString())) {
+            for (int i = 0; i < params.size(); i++) {
+                Object p = params.get(i);
+                if (p instanceof String && query.toString().contains("reservationstatus")) {
+                    pstm.setObject(i + 1, p, Types.OTHER);
                 } else {
-                    pstm.setObject(i + 1, parametrat.get(i));
+                    pstm.setObject(i + 1, p);
                 }
             }
             pstm.executeUpdate();
             return getById(reservationsDto.getId());
         } catch (SQLException e) {
-         e.printStackTrace();
+            e.printStackTrace();
+            throw new RuntimeException("Failed to update reservation: " + e.getMessage(), e);
         }
-return null;
-    } }
+    }
+}
+
 
 
 

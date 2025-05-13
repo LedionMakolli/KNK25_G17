@@ -41,16 +41,28 @@ public class ReservationFormController extends BaseController{
         }
 
         try {
+            Date start = Date.valueOf(dpStartDate.getValue());
+            Date end   = Date.valueOf(dpEndDate.getValue());
+
+
+            ReservationsRepository repo = new ReservationsRepository();
+            if (repo.existsOverlap(carId, start, end)) {
+                new Alert(Alert.AlertType.ERROR,
+                        "This car is already reserved between " + start + " and " + end + ".")
+                        .showAndWait();
+                return;
+            }
+
+
             CreateReservationsDto dto = new CreateReservationsDto(
                     clientId,
                     carId,
-                    Date.valueOf(dpStartDate.getValue()),
-                    Date.valueOf(dpEndDate.getValue()),
+                    start,
+                    end,
                     ReservationStatusEnum.ACTIVE
             );
-
-            ReservationsRepository repo = new ReservationsRepository();
             Reservations reservation = repo.create(dto);
+
 
             if (reservation != null) {
                 new Alert(Alert.AlertType.INFORMATION,
@@ -62,6 +74,7 @@ public class ReservationFormController extends BaseController{
                         "Failed to create reservation. Please try again."
                 ).showAndWait();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR,
@@ -69,6 +82,7 @@ public class ReservationFormController extends BaseController{
             ).showAndWait();
         }
     }
+
 
 
     @FXML
