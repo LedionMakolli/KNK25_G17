@@ -41,7 +41,7 @@ public class UpdateMaintenanceDto {
         return dateStart;
     }
 
-    public Date getDateFininsh() {
+    public Date getDateFinish() {
         return dateFininsh;
     }
 

@@ -5,22 +5,16 @@ import models.enums.PaymentEnum;
 import java.sql.Date;
 
 public class CreateContractDto {
-    private int id;
     private int idPayment;
     private int idReservation;
     private double sum;
     private Date date;
 
-    public CreateContractDto(int id, int idPayment,int idReservation, double sum, Date date) {
-        this.id = id;
+    public CreateContractDto(int idPayment,int idReservation, double sum, Date date) {
         this.idReservation = idReservation;
         this.idPayment = idPayment;
         this.sum = sum;
         this.date = date;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getIdPayment() {
@@ -39,7 +33,6 @@ public class CreateContractDto {
         return sum;
     }
 
-
     public Date getDate() {
         return date;
     }
@@ -50,10 +43,6 @@ public class CreateContractDto {
 
     public void setSum(double sum) {
         this.sum = sum;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setDate(Date date) {
