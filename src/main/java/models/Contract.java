@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Contract {
@@ -11,10 +12,10 @@ public class Contract {
     private int idPayment;
     private int idReservation;
     private double sum;
-    private String date;
+    private Date date;
 
 
-    private Contract(int id, int idPayment, int idReservation, double sum, String date) {
+    private Contract(int id, int idPayment, int idReservation, double sum, Date date) {
         this.id = id;
         this.idPayment = idPayment;
         this.idReservation = idReservation;
@@ -27,7 +28,7 @@ public class Contract {
         int idPagesa = resultSet.getInt("idPayment");
         int idReservation = resultSet.getInt("idReservation");
         double sum = resultSet.getDouble("sum");
-        String data = resultSet.getString("date");
+        Date data = resultSet.getDate("data");
         return new Contract(id,idPagesa, idReservation, sum, data);
     }
 
@@ -65,11 +66,11 @@ public class Contract {
         this.sum = sum;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getDate() {return date;}
+    public Date getDate() {return date;}
 
     public void printoTeDhenatPerKontraten(){
         System.out.println("----------------------------------------");
