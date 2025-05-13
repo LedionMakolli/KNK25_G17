@@ -57,7 +57,6 @@
                   <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" onAction="#handleChangePassword"/>
                   <MenuItem fx:id="seeContract" mnemonicParsing="false" text="%txt.seeContract" onAction="#seeContracts"/>
                   <MenuItem fx:id="SignOut" mnemonicParsing="false" text="%txt.SignOut" onAction="#SignOut"/>
-                  <MenuItem fx:id="Add" mnemonicParsing="false" text="%txt.Add" onAction="#handleAdd"/>
               </items>
           </Menu>
         <Menu mnemonicParsing="false" text="%txt.Edit">
@@ -71,6 +70,11 @@
             <MenuItem mnemonicParsing="false" text="About"/>
           </items>
         </Menu>
+          <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
+              <items>
+                  <MenuItem fx:id="addContract" mnemonicParsing="false" text="%txt.AddContract" onAction="#handleAddContract"/>
+              </items>
+          </Menu>
       </menus>
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="783.0" prefWidth="637.0" VBox.vgrow="ALWAYS">
