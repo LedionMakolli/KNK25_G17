@@ -13,7 +13,6 @@ public class ReservationService {
         repo = new ReservationsRepository();
     }
 
-    /** Mark old reservations as ENDED. Call this at startup or before searches. */
     public void expireOldReservations() {
         String query = """
       UPDATE reservations
