@@ -57,6 +57,7 @@
                   <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" onAction="#handleChangePassword"/>
                   <MenuItem fx:id="seeContract" mnemonicParsing="false" text="%txt.seeContract" onAction="#seeContracts"/>
                   <MenuItem fx:id="SignOut" mnemonicParsing="false" text="%txt.SignOut" onAction="#SignOut"/>
+                  <MenuItem fx:id="Add" mnemonicParsing="false" text="%txt.Add" onAction="#handleAdd"/>
               </items>
           </Menu>
         <Menu mnemonicParsing="false" text="%txt.Edit">

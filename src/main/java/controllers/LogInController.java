@@ -7,6 +7,7 @@ import models.Dto.LoginResponse;
 import services.LanguageManager;
 import services.LogInService;
 import services.SceneManager;
+import services.SessionManager;
 import utils.SceneLocator;
 
 public class LogInController {

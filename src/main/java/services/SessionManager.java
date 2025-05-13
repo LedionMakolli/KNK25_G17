@@ -8,7 +8,7 @@ public class SessionManager {
     private String currentRole;
     private Clients currentClient;
     private Staff currentStaff;
-    private String theme;
+    private String theme; //nese nuk e bojna ma mire me fshi
 
     private SessionManager(){
         this.theme = "white-theme";
