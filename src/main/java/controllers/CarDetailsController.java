@@ -61,16 +61,15 @@ public class CarDetailsController extends BaseController{
     @FXML
     private void onReserveNow(ActionEvent event) {
         try {
-            // load the reservation form and get its controller...
             var formCtrl = SceneManager
                     .<ReservationFormController>loadWithController(SceneLocator.RESERVATION_FORM);
 
-            // grab the currently logged-in client ID from SessionManager:
+
             int clientId = SessionManager.getInstance()
                     .getCurrentClient()
                     .getId();
 
-            // and the car ID you already have:
+
             formCtrl.setContext(clientId, this.currentCar.getId());
 
         } catch(Exception ex) {

@@ -41,11 +41,10 @@ public class ReservationFormController extends BaseController{
         }
 
         try {
-            // 1) Parse dates
             Date start = Date.valueOf(dpStartDate.getValue());
             Date end   = Date.valueOf(dpEndDate.getValue());
 
-            // 2) Instantiate repository and check for overlap
+
             ReservationsRepository repo = new ReservationsRepository();
             if (repo.existsOverlap(carId, start, end)) {
                 new Alert(Alert.AlertType.ERROR,
@@ -54,7 +53,7 @@ public class ReservationFormController extends BaseController{
                 return;
             }
 
-            // 3) Build the DTO and create
+
             CreateReservationsDto dto = new CreateReservationsDto(
                     clientId,
                     carId,
@@ -64,7 +63,7 @@ public class ReservationFormController extends BaseController{
             );
             Reservations reservation = repo.create(dto);
 
-            // 4) Handle success/failure
+
             if (reservation != null) {
                 new Alert(Alert.AlertType.INFORMATION,
                         "Reservation confirmed! ID: " + reservation.getId()
