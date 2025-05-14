@@ -65,11 +65,7 @@ public class DocumentsController extends BaseController {
     private void refreshDocuments() {
         try {
             List<Documents> documents = documentsRepository.getAll();
-            if (documents == null || documents.isEmpty()) {
-                showErrorAlert("No Data", "No documents found in the database");
-            } else {
-                documentsTable.getItems().setAll(documents);
-            }
+            documentsTable.getItems().setAll(documents);
         } catch (Exception e) {
             showErrorAlert("Load Error", "Failed to load documents: " + e.getMessage());
             e.printStackTrace();
