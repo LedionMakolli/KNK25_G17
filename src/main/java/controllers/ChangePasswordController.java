@@ -6,6 +6,7 @@ import javafx.scene.control.PasswordField;
 import services.ChangePasswordService;
 import services.LanguageManager;
 import services.SceneManager;
+import utils.SceneLocator;
 
 
 public class ChangePasswordController extends BaseController {
@@ -66,7 +67,7 @@ public class ChangePasswordController extends BaseController {
     @FXML
     private void handleCancelNewPassword(){
         try {
-            SceneManager.load("/views/welcome.fxml");  //veq prove o qikjo
+            SceneManager.load(SceneLocator.HOME_PAGE);  
         } catch (Exception e) {
             e.printStackTrace();
         }
