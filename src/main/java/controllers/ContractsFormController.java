@@ -33,8 +33,7 @@ public class ContractsFormController extends ContractsController{
     @FXML
     private Button btnCancel;
 
-    @Override
-    public void initialize() {
+    public ContractsFormController() {
         super.initialize();
     }
 

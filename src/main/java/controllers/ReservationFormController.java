@@ -26,6 +26,10 @@ public class ReservationFormController extends BaseController{
     private int clientId;
     private int carId;
 
+    public ReservationFormController() {
+        super.initialize();
+    }
+
 
     public void setContext(int clientId, int carId) {
         this.clientId = clientId;

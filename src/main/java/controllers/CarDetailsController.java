@@ -35,6 +35,9 @@ public class CarDetailsController extends BaseController{
     private SceneManager sceneManager;
     private Cars currentCar;
 
+    public CarDetailsController() {
+        super.initialize();
+    }
 
     public void setCar(Cars car) throws Exception {
         this.currentCar = car;

@@ -30,6 +30,7 @@ public class DocumentsController extends BaseController {
     public DocumentsController() {
         try {
             this.documentsRepository = new DocumentsRepository();
+            super.initialize();
         } catch (Exception e) {
             showErrorAlert("Initialization Error", "Failed to initialize Documents repository: " + e.getMessage());
             throw new RuntimeException("Failed to initialize DocumentsRepository", e);

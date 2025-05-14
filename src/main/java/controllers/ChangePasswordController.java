@@ -27,9 +27,9 @@ public class ChangePasswordController extends BaseController {
     public ChangePasswordController(){
         try{
             this.changePasswordService = new ChangePasswordService();
+            super.initialize();
         }catch(Exception e){
             e.printStackTrace();
-
         }
     }
 

@@ -46,6 +46,7 @@ public class ContractsController extends BaseController {
     public void initialize(){
         try{
             this.contractRepository = new ContractRepository();
+            super.initialize();
             setupTableColumns();
             loadContracts();
         }catch (Exception e){

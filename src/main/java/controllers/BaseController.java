@@ -21,7 +21,7 @@ public class BaseController {
     @FXML protected MenuItem changePassword;
     @FXML protected MenuItem SignOut;
     @FXML protected MenuItem addContract;
-    @FXML protected Menu menuAdd;
+    @FXML protected MenuItem menuAdd;
 
 
     public void setAlbanianLanguage() {
@@ -121,25 +121,26 @@ public class BaseController {
 
     @FXML
     public void initialize() {
-        ToggleGroup languageToggleGroup = new ToggleGroup();
-        txtShqip.setToggleGroup(languageToggleGroup);
-        txtEnglish.setToggleGroup(languageToggleGroup);
+        if (txtShqip != null && txtEnglish != null) {
+            ToggleGroup languageToggleGroup = new ToggleGroup();
+            txtShqip.setToggleGroup(languageToggleGroup);
+            txtEnglish.setToggleGroup(languageToggleGroup);
 
-
-        Locale currentLocale = LanguageManager.getInstance().getLocale();
-
-        if (currentLocale.getLanguage().equals("sq")) {
-            txtShqip.setSelected(true);
-        } else {
-            txtEnglish.setSelected(true);
+            Locale currentLocale = LanguageManager.getInstance().getLocale();
+            if (currentLocale.getLanguage().equals("sq")) {
+                txtShqip.setSelected(true);
+            } else {
+                txtEnglish.setSelected(true);
+            }
         }
 
         String role = services.SessionManager.getInstance().getCurrentRole();
-        if("client".equals(role)){
-           menuAdd.setVisible(false);
+        if ("client".equals(role)) {
+            if (addContract != null) addContract.setVisible(false);
+            if (menuAdd != null) menuAdd.setVisible(false);
+            if (seeDocuments != null) seeDocuments.setVisible(false);
         }
 
     }
-
 
 }
