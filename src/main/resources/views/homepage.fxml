@@ -75,6 +75,7 @@
           <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
               <items>
                   <MenuItem fx:id="addContract" mnemonicParsing="false" text="%txt.AddContract" onAction="#handleAddContract"/>
+                  <MenuItem fx:id="addPayment" mnemonicParsing="false" text="%txt.AddPayment" onAction="#handleAddPayment"/>
               </items>
           </Menu>
       </menus>
