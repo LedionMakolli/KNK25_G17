@@ -40,7 +40,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="422.0" prefWidth="688.0" VBox.vgrow="ALWAYS">
       <children>
-            <VBox layoutX="65.0" layoutY="71.0" prefHeight="246.0" prefWidth="118.0" spacing="18.0">
+            <VBox layoutX="31.0" layoutY="71.0" prefHeight="246.0" prefWidth="118.0" spacing="18.0">
                <children>
                   <Label prefHeight="15.0" prefWidth="71.0" text="%txt.firstName" />
                   <Label text="%txt.lastName" />
@@ -50,7 +50,7 @@
                   <Label text="%txt.username" />
                </children>
             </VBox>
-            <VBox layoutX="174.0" layoutY="68.0" prefHeight="253.0" prefWidth="138.0" spacing="10.0">
+            <VBox layoutX="155.0" layoutY="68.0" prefHeight="254.0" prefWidth="138.0" spacing="10.0">
                 <children>
                     <TextField fx:id="txtFirstName" />
                     <TextField fx:id="txtLastName" />
@@ -67,12 +67,20 @@
             </Label>
           <Button layoutX="243.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="37.0" prefWidth="94.0" text="%btn.discard" />
           <Button layoutX="362.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: blue;" text="%btn.save" textFill="WHITE" />
-          <TextField fx:id="txtTelephoneNumber" layoutX="482.0" layoutY="65.0" prefHeight="26.0" prefWidth="138.0" />
-            <Label layoutX="366.0" layoutY="65.0" prefHeight="26.0" prefWidth="106.0" text="%txt.telephoneNumber" />
-            <Label layoutX="419.0" layoutY="107.0" text="%txt.password" />
-            <Label layoutX="370.0" layoutY="146.0" prefHeight="18.0" prefWidth="106.0" text="%txt.confirmPassword" />
-            <PasswordField fx:id="txtPassword" layoutX="482.0" layoutY="142.0" prefHeight="26.0" prefWidth="138.0" />
-            <PasswordField fx:id="txtConfirmPassword" layoutX="482.0" layoutY="102.0" prefHeight="26.0" prefWidth="138.0" />
+            <VBox layoutX="467.0" layoutY="65.0" prefHeight="103.0" prefWidth="138.0" spacing="12.0">
+               <children>
+                <TextField fx:id="txtTelephoneNumber" prefHeight="26.0" prefWidth="138.0" />
+                  <PasswordField fx:id="txtConfirmPassword" prefHeight="26.0" prefWidth="138.0" />
+                  <PasswordField fx:id="txtPassword" prefHeight="26.0" prefWidth="138.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="357.0" layoutY="65.0" prefHeight="102.0" prefWidth="109.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="106.0" text="%txt.telephoneNumber" />
+                  <Label text="%txt.password" />
+                  <Label prefHeight="18.0" prefWidth="106.0" text="%txt.confirmPassword" />
+               </children>
+            </VBox>
       </children>
     </AnchorPane>
   </children>
