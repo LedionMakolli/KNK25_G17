@@ -61,7 +61,7 @@ public class ContractsController extends BaseController {
     private ContractRepository contractRepository;
 
     @FXML
-    private void init(){
+    public void initialize(){
         try{
             this.contractRepository = new ContractRepository();
             setupTableColumns();
@@ -72,7 +72,7 @@ public class ContractsController extends BaseController {
     }
 
     @FXML
-    private void handleSaveClick(){  //veq me ju tregu qe mka met me bo si tbohet save forma me dal ne tabele updated 
+    private void handleSaveClick(){  //veq me ju tregu qe mka met me bo si tbohet save forma me dal ne tabele updated
      String reservationIdTxt = txtFieldReservationId.getText();
      String paymentIdTxt = txtFieldPaymentId.getText();
      String amountTxt = txtFieldAmount.getText();

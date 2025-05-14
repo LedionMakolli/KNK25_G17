@@ -48,5 +48,5 @@
         </columns>
     </TableView>
 
-    <Button layoutX="520" layoutY="420" onAction="#init" text="Refresh" />
+    <Button layoutX="520" layoutY="420" onAction="#initialize" text="Refresh" />
 </AnchorPane>

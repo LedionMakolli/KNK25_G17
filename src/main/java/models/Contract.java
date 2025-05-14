@@ -28,8 +28,8 @@ public class Contract {
         int idPagesa = resultSet.getInt("idPayment");
         int idReservation = resultSet.getInt("idReservation");
         double sum = resultSet.getDouble("sum");
-        Date data = resultSet.getDate("data");
-        return new Contract(id,idPagesa, idReservation, sum, data);
+        Date date = resultSet.getDate("date");
+        return new Contract(id,idPagesa, idReservation, sum, date);
     }
 
     public int getId() {
