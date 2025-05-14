@@ -12,8 +12,9 @@ public class BaseController {
     protected SceneManager sceneManager = SceneManager.getInstance();
     protected LanguageManager languageManager = LanguageManager.getInstance();
 
-    @FXML private RadioMenuItem txtShqip;
-    @FXML private RadioMenuItem txtEnglish;
+    @FXML protected RadioMenuItem txtShqip;
+    @FXML protected RadioMenuItem txtEnglish;
+    @FXML protected MenuItem seeDocuments;
     @FXML protected MenuItem seeContract;
     @FXML protected MenuItem gotoHomepage;
     @FXML protected MenuItem changePassword;
@@ -76,13 +77,21 @@ public class BaseController {
         }
 }
 
-public void handleAddContract(){
-try{
-    SceneManager.load(SceneLocator.CONTRACT_FORM);
-}catch (Exception e){
-    showErrorAlert("Unable to load Contract Form", "An error occured while trying to losf the ChangePassword page");
-}
-}
+    public void handleAddContract(){
+        try{
+            SceneManager.load(SceneLocator.CONTRACT_FORM);
+        }catch (Exception e){
+            showErrorAlert("Unable to load Contract Form", "An error occured while trying to load the ChangePassword page");
+        }
+    }
+
+    public void seeDocuments() {
+        try {
+            SceneManager.load(SceneLocator.DOCUMENTS);
+        } catch (Exception e) {
+            showErrorAlert("Unable to load Document Form", "An error occured while trying to load the Documents page");
+        }
+    }
 
     protected void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

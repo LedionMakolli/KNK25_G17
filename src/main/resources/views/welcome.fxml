@@ -62,8 +62,8 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem fx:id="txtShqip" mnemonicParsing="false" text="Shqip" onAction="#setAlbanianLanguage"/>
-            <MenuItem fx:id="txtEnglish" mnemonicParsing="false" text="English" onAction="#setEnglishLanguage" />
+<!--            <MenuItem fx:id="txtShqip" mnemonicParsing="false" text="Shqip" onAction="#setAlbanianLanguage"/>-->
+<!--            <MenuItem fx:id="txtEnglish" mnemonicParsing="false" text="English" onAction="#setEnglishLanguage" />-->
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
