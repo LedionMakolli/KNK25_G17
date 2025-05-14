@@ -38,24 +38,6 @@ public class ContractsController extends BaseController {
     @FXML
     private TableColumn<Contract, LocalDateTime> dateColumn;
 
-    @FXML
-    private TextField txtFieldReservationId;
-
-    @FXML
-    private TextField txtFieldPaymentId;
-
-    @FXML
-    private TextField txtFieldAmount;
-
-    @FXML
-    private DatePicker dpDate;
-
-    @FXML
-    private Button btnSave;
-
-    @FXML
-    private Button btnCancel;
-
 
 
     private ContractRepository contractRepository;
@@ -71,49 +53,6 @@ public class ContractsController extends BaseController {
         }
     }
 
-    @FXML
-    private void handleSaveClick(){  //veq me ju tregu qe mka met me bo si tbohet save forma me dal ne tabele updated
-     String reservationIdTxt = txtFieldReservationId.getText();
-     String paymentIdTxt = txtFieldPaymentId.getText();
-     String amountTxt = txtFieldAmount.getText();
-     LocalDate dateDp = dpDate.getValue();
-
-     if(reservationIdTxt.isEmpty() || paymentIdTxt.isEmpty() || amountTxt.isEmpty() || dateDp == null){
-         showAlert(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
-         return;
-     }
-
-     int reservationId = Integer.parseInt(reservationIdTxt);
-     int paymentId = Integer.parseInt(paymentIdTxt);
-     double amount = Double.parseDouble(amountTxt);
-     Date date = Date.valueOf(dateDp);
-
-     try{
-         CreateContractDto contractDto = new CreateContractDto(paymentId, reservationId, amount, date);
-
-         ContractRepository contractRepository = new ContractRepository();
-         Contract contract = contractRepository.create(contractDto);
-
-         if(contract != null){
-             SceneManager.load(SceneLocator.SEE_CONTRACTS);
-             showAlert(Alert.AlertType.INFORMATION, "success", "success");
-         }else {
-             showAlert(Alert.AlertType.ERROR, "fail", "fail");
-         }
-     }catch(Exception e){
-         e.printStackTrace();
-         showAlert(Alert.AlertType.ERROR, "fail", "fail");
-              }
-    }
-
-    @FXML
-    private void handleCancelClick(){
-        try{
-            SceneManager.load(SceneLocator.HOME_PAGE);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
 
     private void setupTableColumns(){
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
