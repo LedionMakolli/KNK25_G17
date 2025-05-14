@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.DocumentsController">
+
+    <TableView fx:id="documentsTable" layoutX="10" layoutY="10" prefHeight="400" prefWidth="600">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="contractIdColumn" text="Contract ID" prefWidth="100"/>
+            <TableColumn fx:id="typeColumn" text="Type" prefWidth="100"/>
+            <TableColumn fx:id="pathColumn" text="Path" prefWidth="200"/>
+            <TableColumn fx:id="uploadDateColumn" text="Upload Date" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <Button layoutX="520" layoutY="420" text="Refresh" onAction="#initialize"/>
+</AnchorPane>
