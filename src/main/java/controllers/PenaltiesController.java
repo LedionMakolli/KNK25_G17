@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class PenaltiesController {
+public class PenaltiesController extends BaseController {
     @FXML
     private TableView<Penalties> penaltiesTable;
 

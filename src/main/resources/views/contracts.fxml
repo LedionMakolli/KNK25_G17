@@ -3,20 +3,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ContractsController">
+<AnchorPane prefHeight="482.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ContractsController">
     <MenuBar VBox.vgrow="NEVER">
         <menus>
             <Menu mnemonicParsing="false" text="%txt.Homepage">
                 <items>
-                    <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" text="Go to Home" onAction="#goToHomepage" />
+                    <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" onAction="#goToHomepage" text="Go to Home" />
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Settings">
                 <items>
-                    <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" onAction="#handleChangePassword"/>
-                    <MenuItem fx:id="seeDocuments" mnemonicParsing="false" text="%txt.seeDocuments" onAction="#seeDocuments"/>
-                    <MenuItem fx:id="seeContract" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract"/>
-                    <MenuItem fx:id="signOut" mnemonicParsing="false" text="%txt.SignOut" onAction="#SignOut"/>
+                    <MenuItem fx:id="changePassword" mnemonicParsing="false" onAction="#handleChangePassword" text="%txt.changePassword" />
+                    <MenuItem fx:id="seeDocuments" mnemonicParsing="false" onAction="#seeDocuments" text="%txt.seeDocuments" />
+                    <MenuItem fx:id="seeContract" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract" />
+                    <MenuItem fx:id="seePenalties" mnemonicParsing="false" onAction="#seePenalties" text="%txt.seePenalties" />
+                    <MenuItem fx:id="signOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="%txt.Edit">
@@ -33,12 +34,12 @@
 
         <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
             <items>
-                <MenuItem fx:id="addContract" mnemonicParsing="false" text="%txt.AddContract" onAction="#handleAddContract"/>
+                <MenuItem fx:id="addContract" mnemonicParsing="false" onAction="#handleAddContract" text="%txt.AddContract" />
             </items>
         </Menu>
         </menus>
     </MenuBar>
-    <TableView fx:id="contractsTable" layoutY="26.0" prefHeight="400" prefWidth="600">
+    <TableView fx:id="contractsTable" layoutX="14.0" layoutY="36.0" prefHeight="384.0" prefWidth="551.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
             <TableColumn fx:id="paymenIdColumn" prefWidth="100" text="Payment ID" />
@@ -48,5 +49,5 @@
         </columns>
     </TableView>
 
-    <Button layoutX="520" layoutY="420" onAction="#initialize" text="Refresh" />
+    <Button layoutX="498.0" layoutY="428.0" onAction="#initialize" text="Refresh" />
 </AnchorPane>

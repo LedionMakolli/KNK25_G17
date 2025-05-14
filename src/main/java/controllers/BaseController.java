@@ -93,6 +93,14 @@ public class BaseController {
         }
     }
 
+    public void seePenalties() {
+        try {
+            SceneManager.load(SceneLocator.SEE_PENALTIES);
+        } catch (Exception e) {
+            showErrorAlert("Unable to load Penalties Form", "An error occured while trying to load the Penalties page");
+        }
+    }
+
     protected void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

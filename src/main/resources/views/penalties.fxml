@@ -2,22 +2,56 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.PenaltiesController">
+<AnchorPane prefHeight="489.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PenaltiesController">
+    <children>
+    <MenuBar VBox.vgrow="NEVER">
+        <menus>
+            <Menu mnemonicParsing="false" text="%txt.Homepage">
+                <items>
+                    <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" onAction="#goToHomepage" text="Go to Home" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+                <items>
+                    <MenuItem fx:id="changePassword" mnemonicParsing="false" onAction="#handleChangePassword" text="%txt.changePassword" />
+                    <MenuItem fx:id="seeDocuments" mnemonicParsing="false" onAction="#seeDocuments" text="%txt.seeDocuments" />
+                    <MenuItem fx:id="seeContract" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract" />
+                    <MenuItem fx:id="seePenalties" mnemonicParsing="false" onAction="#seePenalties" text="%txt.seePenalties" />
+                    <MenuItem fx:id="signOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%txt.Edit">
+                <items>
+                    <RadioMenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip" />
+                    <RadioMenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%txt.Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                </items>
+            </Menu>
 
-    <TableView fx:id="penaltiesTable" layoutX="10" layoutY="10" prefHeight="400" prefWidth="600">
+            <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
+                <items>
+                    <MenuItem fx:id="addContract" mnemonicParsing="false" onAction="#handleAddContract" text="%txt.AddContract" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <TableView fx:id="penaltiesTable" layoutX="14.0" layoutY="35.0" prefHeight="375.0" prefWidth="572.0">
         <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="reservationIdColumn" text="Reservation ID" prefWidth="100"/>
-            <TableColumn fx:id="reasonColumn" text="Reason" prefWidth="150"/>
-            <TableColumn fx:id="amountColumn" text="Amount (€)" prefWidth="100"/>
-            <TableColumn fx:id="dateColumn" text="Date" prefWidth="150"/>
-            <TableColumn fx:id="paidColumn" text="Paid" prefWidth="50"/>
+            <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
+            <TableColumn fx:id="reservationIdColumn" prefWidth="100" text="Reservation ID" />
+            <TableColumn fx:id="reasonColumn" prefWidth="150" text="Reason" />
+            <TableColumn fx:id="amountColumn" prefWidth="76.0" text="Amount (€)" />
+            <TableColumn fx:id="paidColumn" prefWidth="63.20001220703125" text="Paid" />
+            <TableColumn fx:id="dateColumn" prefWidth="130.4000244140625" text="Date" />
         </columns>
     </TableView>
 
-    <Button layoutX="520" layoutY="420" text="Refresh" onAction="#initialize"/>
+    <Button layoutX="520" layoutY="420" onAction="#initialize" text="Refresh" />
+    </children>
 </AnchorPane>
