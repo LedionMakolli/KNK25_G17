@@ -22,6 +22,7 @@ public class BaseController {
     @FXML protected MenuItem SignOut;
     @FXML protected MenuItem addContract;
     @FXML protected MenuItem menuAdd;
+    @FXML protected MenuItem addPayment;
 
 
     public void setAlbanianLanguage() {
@@ -147,6 +148,7 @@ public class BaseController {
             if (addContract != null) addContract.setVisible(false);
             if (menuAdd != null) menuAdd.setVisible(false);
             if (seeDocuments != null) seeDocuments.setVisible(false);
+            if(addPayment != null) addContract.setVisible(false);
         }
 
     }
