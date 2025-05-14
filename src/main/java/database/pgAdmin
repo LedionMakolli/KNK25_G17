@@ -85,15 +85,16 @@ CREATE TABLE PROMOCODE (
 
 ----- Payments -----
 
-CREATE TABLE Payments (
-    id SERIAL PRIMARY KEY,
-    idreservation INTEGER NOT NULL,
-    type VARCHAR(50) NOT NULL,
-    promocod_id INTEGER references PromoCode(id),
-    totalnodiscount NUMERIC(10, 2) NOT NULL,
-    totalfinal NUMERIC(10, 2) NOT NULL,
-    date TIMESTAMP NOT NULL
-);
+  CREATE TABLE payments (
+      id SERIAL PRIMARY KEY,
+      idreservation INTEGER NOT NULL,
+      type VARCHAR(50) NOT NULL,
+      promocodeid INTEGER,
+      totalnodiscount NUMERIC(10, 2) NOT NULL,
+      totalfinal NUMERIC(10, 2) NOT NULL,
+      date TIMESTAMP NOT NULL
+  );
+
 
  -----   Contract    ----
 
