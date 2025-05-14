@@ -1,9 +1,12 @@
 package repository;
 
+import models.Contract;
 import models.Dto.CreatePenaltyDto;
 import models.Dto.UpdatePenaltyDto;
 import models.Penalties;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PenaltiesRepository extends BaseRepository<Penalties, CreatePenaltyDto, UpdatePenaltyDto> {
     public PenaltiesRepository() throws SQLException {
@@ -20,7 +23,7 @@ public class PenaltiesRepository extends BaseRepository<Penalties, CreatePenalty
     }
     public Penalties create(CreatePenaltyDto penaltyDto) {
         String query = """
-                INSERT INTO PENALIZIMET (RESERVATIONID, REASONOFPENALTY, MONEYAMOUNT, DATE, PAID)
+                INSERT INTO Penalties (RESERVATIONID, REASONOFPENALTY, MONEYAMOUNT, DATE, PAID)
                 VALUES (?, ?, ?, ?, ?)
                 """;
         try {
@@ -58,5 +61,23 @@ public class PenaltiesRepository extends BaseRepository<Penalties, CreatePenalty
             throw new RuntimeException("Error while updating penalty!", e);
         }
         return null;
+    }
+
+    public List<Penalties> getByClientId(int clientId) throws SQLException {
+        List<Penalties> penalties = new ArrayList<>();
+        String query = "SELECT p.* FROM penalties p " +
+                "JOIN Reservations r ON p.reservationid = r.id " +
+                "WHERE r.idclient = ?";
+
+        PreparedStatement pstm = this.connection.prepareStatement(query);
+        pstm.setInt(1, clientId);
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            Penalties penalty = fromResultSet(rs); // ose Contract.getInstance(rs)
+            penalties.add(penalty);
+        }
+
+        return penalties;
     }
 }

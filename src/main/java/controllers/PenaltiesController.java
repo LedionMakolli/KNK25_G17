@@ -8,9 +8,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Penalties;
 import repository.PenaltiesRepository;
+import services.SessionManager;
 
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -60,7 +60,16 @@ public class PenaltiesController extends BaseController {
 
     private void loadPenalties() {
         try {
-            List<Penalties> penalties = penaltiesRepository.getAll();
+            List<Penalties> penalties;
+
+            String role = SessionManager.getInstance().getCurrentRole();
+            if ("client".equals(role)) {
+                int clientId = SessionManager.getInstance().getCurrentClient().getId();
+                penalties = penaltiesRepository.getByClientId(clientId);
+            } else {
+                penalties = penaltiesRepository.getAll();
+            }
+
             ObservableList<Penalties> data = FXCollections.observableArrayList(penalties);
             penaltiesTable.setItems(data);
         } catch (Exception e) {
