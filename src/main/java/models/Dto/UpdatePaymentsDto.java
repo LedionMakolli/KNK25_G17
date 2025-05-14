@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 
 public class UpdatePaymentsDto {
     private final int id;
-    private PaymentEnum type;
+    private String type;
     private LocalDateTime date;
     private int promoCodeId;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
 
-    public UpdatePaymentsDto(int id, PaymentEnum type, LocalDateTime date,
+    public UpdatePaymentsDto(int id, String type, LocalDateTime date,
                              int promoCodeId, BigDecimal totalNoDiscount,
                              BigDecimal totalFinal) {
         this.id = id;
@@ -27,7 +27,7 @@ public class UpdatePaymentsDto {
         return id;
     }
 
-    public PaymentEnum getType() {
+    public String getType() {
         return type;
     }
 
@@ -47,7 +47,7 @@ public class UpdatePaymentsDto {
         return totalFinal;
     }
 
-    public void setType(PaymentEnum type) {
+    public void setType(String type) {
         this.type = type;
     }
 

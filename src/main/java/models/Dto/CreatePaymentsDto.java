@@ -6,14 +6,14 @@ import java.time.LocalDateTime;
 
 public class CreatePaymentsDto {
     private Integer idReservation;
-    private PaymentEnum type;
+    private String type;
     private LocalDateTime date;
     private int promoCodeId;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
 
     // Constructor without id parameter
-    public CreatePaymentsDto(Integer idReservation, PaymentEnum type, int promoCodeId,
+    public CreatePaymentsDto(Integer idReservation, String type, int promoCodeId,
                              BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
         this.idReservation = idReservation;
         this.type = type;
@@ -28,7 +28,7 @@ public class CreatePaymentsDto {
         return idReservation;
     }
 
-    public PaymentEnum getType() {
+    public String getType() {
         return type;
     }
 
@@ -52,7 +52,7 @@ public class CreatePaymentsDto {
         this.idReservation = idReservation;
     }
 
-    public void setType(PaymentEnum type) {
+    public void setType(String type) {
         this.type = type;
     }
 
