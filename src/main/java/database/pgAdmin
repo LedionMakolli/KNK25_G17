@@ -1,4 +1,3 @@
-
  -----   ENUMS    ----
 
 CREATE TYPE ActionEnum AS ENUM ('LOG_IN', 'SIGN_UP');
@@ -74,6 +73,15 @@ CREATE TABLE Reservations (
     CHECK (startDate < endDate)
 );
 
+ -----PromoCode ----
+
+CREATE TABLE PROMOCODE (
+    id SERIAL PRIMARY KEY,
+    kodi VARCHAR(255) NOT NULL,
+    zbritja DOUBLE PRECISION NOT NULL,
+    dataSkadimit DATE,
+    aktiv BOOLEAN
+);
 
 ----- Payments -----
 
@@ -81,6 +89,8 @@ CREATE TABLE Payments (
     id SERIAL PRIMARY KEY,
     idreservation INTEGER NOT NULL,
     type VARCHAR(50) NOT NULL,
+    promocod_id INTEGER references PromoCode(id),
+    totalnodiscount NUMERIC(10, 2) NOT NULL,
     totalfinal NUMERIC(10, 2) NOT NULL,
     date TIMESTAMP NOT NULL
 );
@@ -190,5 +200,3 @@ CREATE TABLE LogActivity (
       (staffUsername IS NOT NULL AND clientUsername IS NULL)
     )
 );
-
-
