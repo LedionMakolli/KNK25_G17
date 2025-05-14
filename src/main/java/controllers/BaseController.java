@@ -87,6 +87,14 @@ public class BaseController {
         }
     }
 
+    public void handleAddPayment(){
+        try{
+            SceneManager.load(SceneLocator.PAYMENT_FORM);
+        }catch (Exception e){
+            showErrorAlert("Unable to load Payment Form", "An error occured while trying to load the PaymentForm page");
+        }
+    }
+
     public void seeDocuments() {
         try {
             SceneManager.load(SceneLocator.DOCUMENTS);
