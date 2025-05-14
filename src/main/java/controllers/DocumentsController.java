@@ -7,51 +7,72 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.Documents;
 import repository.DocumentsRepository;
 
-import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 public class DocumentsController extends BaseController {
 
     @FXML
     private TableView<Documents> documentsTable;
-
     @FXML
     private TableColumn<Documents, Integer> idColumn;
-
     @FXML
     private TableColumn<Documents, Integer> contractIdColumn;
-
     @FXML
     private TableColumn<Documents, String> typeColumn;
-
     @FXML
     private TableColumn<Documents, String> pathColumn;
-
     @FXML
-    private TableColumn<Documents, String> uploadDateColumn;
+    private TableColumn<Documents, Date> uploadDateColumn;
 
-    private DocumentsRepository documentsRepository;
-    public DocumentsController() throws Exception {
-        this.documentsRepository=new DocumentsRepository();
+    private final DocumentsRepository documentsRepository;
+
+    public DocumentsController() {
+        try {
+            this.documentsRepository = new DocumentsRepository();
+        } catch (Exception e) {
+            showErrorAlert("Initialization Error", "Failed to initialize Documents repository: " + e.getMessage());
+            throw new RuntimeException("Failed to initialize DocumentsRepository", e);
+        }
     }
+
     @FXML
     public void initialize() {
-        super.initialize();
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        contractIdColumn.setCellValueFactory(new PropertyValueFactory<>("idContract"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        pathColumn.setCellValueFactory(new PropertyValueFactory<>("path"));
-        uploadDateColumn.setCellValueFactory(new PropertyValueFactory<>("dataUpload"));
-
-        loadDocuments();
+        try {
+            super.initialize();
+            setupTableColumns();
+            refreshDocuments();
+        } catch (Exception e) {
+            showErrorAlert("Initialization Error", "Failed to initialize Documents view: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
-    private void loadDocuments() {
+    private void setupTableColumns() {
         try {
-            List<Documents> documents = this.documentsRepository.getAll();
-            documentsTable.getItems().setAll(documents);
+            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+            contractIdColumn.setCellValueFactory(new PropertyValueFactory<>("idContract"));
+            typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+            pathColumn.setCellValueFactory(new PropertyValueFactory<>("path"));
+            uploadDateColumn.setCellValueFactory(new PropertyValueFactory<>("dataUpload"));
         } catch (Exception e) {
-            showErrorAlert("Error loading documents", e.getMessage());
+            showErrorAlert("Column Setup Error", "Failed to setup table columns: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void refreshDocuments() {
+        try {
+            List<Documents> documents = documentsRepository.getAll();
+            if (documents == null || documents.isEmpty()) {
+                showErrorAlert("No Data", "No documents found in the database");
+            } else {
+                documentsTable.getItems().setAll(documents);
+            }
+        } catch (Exception e) {
+            showErrorAlert("Load Error", "Failed to load documents: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
