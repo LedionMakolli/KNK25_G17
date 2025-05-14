@@ -32,20 +32,12 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationFormController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationFormController">
   <children>
       <MenuBar VBox.vgrow="NEVER">
           <menus>
@@ -57,7 +49,7 @@
               <Menu mnemonicParsing="false" text="Settings">
                   <items>
                       <MenuItem fx:id="changePassword" mnemonicParsing="false" onAction="#handleChangePassword" text="%txt.changePassword" />
-                      <MenuItem fx:id="seeDocuments" mnemonicParsing="false" text="%txt.seeDocuments" onAction="#seeDocuments"/>
+                      <MenuItem fx:id="seeDocuments" mnemonicParsing="false" onAction="#seeDocuments" text="%txt.seeDocuments" />
                       <MenuItem fx:id="seeContract" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract" />
                       <MenuItem fx:id="seePenalties" mnemonicParsing="false" onAction="#seePenalties" text="%txt.seePenalties" />
                       <MenuItem fx:id="signOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
@@ -88,15 +80,15 @@
                <children>
                   <DatePicker fx:id="dpStartDate" layoutY="25.0" />
                   <DatePicker fx:id="dpEndDate" layoutX="215.1999969482422" layoutY="25.0" />
-                  <Text layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txt.startDate" />
-                  <Text layoutX="215.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txt.endDate" />
+                  <Text layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.startDate" />
+                  <Text layoutX="215.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.endDate" />
                </children>
             </Group>
             <TextArea fx:id="txtSpecialRequests" layoutX="170.59999084472656" layoutY="171.0" prefHeight="128.0" prefWidth="298.0" />
-            <Button fx:id="btnCancel" layoutX="192.1999969482422" layoutY="323.0" mnemonicParsing="false" onAction="#onCancel" text="\%txt.Cancel" />
-            <Button fx:id="btnSubmit" layoutX="370.5999755859375" layoutY="323.0" mnemonicParsing="false" onAction="#onSubmit" text="\%txt.Submit" />
-            <Text layoutX="171.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txt.specialRequests" />
-            <Text layoutX="190.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%txt.ReservationForm">
+            <Button fx:id="btnCancel" layoutX="192.1999969482422" layoutY="323.0" mnemonicParsing="false" onAction="#onCancel" text="%btn.discard" />
+            <Button fx:id="btnSubmit" layoutX="370.5999755859375" layoutY="323.0" mnemonicParsing="false" onAction="#onSubmit" text="%btn.submit" />
+            <Text layoutX="171.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.specialRequests" />
+            <Text layoutX="191.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.ReservationForm">
                <font>
                   <Font size="27.0" />
                </font>

@@ -30,6 +30,7 @@ public class DocumentsController extends BaseController {
     public DocumentsController() {
         try {
             this.documentsRepository = new DocumentsRepository();
+            super.initialize();
         } catch (Exception e) {
             showErrorAlert("Initialization Error", "Failed to initialize Documents repository: " + e.getMessage());
             throw new RuntimeException("Failed to initialize DocumentsRepository", e);
@@ -65,11 +66,7 @@ public class DocumentsController extends BaseController {
     private void refreshDocuments() {
         try {
             List<Documents> documents = documentsRepository.getAll();
-            if (documents == null || documents.isEmpty()) {
-                showErrorAlert("No Data", "No documents found in the database");
-            } else {
-                documentsTable.getItems().setAll(documents);
-            }
+            documentsTable.getItems().setAll(documents);
         } catch (Exception e) {
             showErrorAlert("Load Error", "Failed to load documents: " + e.getMessage());
             e.printStackTrace();

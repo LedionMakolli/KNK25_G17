@@ -37,6 +37,7 @@ public class HomePageController extends BaseController{
     public HomePageController() throws Exception {
         this.carService=new CarService();
         this.carRepository=new CarRepository();
+        super.initialize();
     }
 
     @FXML

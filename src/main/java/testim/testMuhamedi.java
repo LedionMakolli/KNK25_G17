@@ -23,9 +23,9 @@ public class testMuhamedi {
         StaffRepository staffRepository=new StaffRepository();
 
         CreateStafDto createStafDto=new CreateStafDto(
-                "Besa", "Gashi", 20, "102313293",
-                "besagashi@gmail.com", "besagashi", "besa",
-                PasswordHasher.generateSalt(), "049442222", StaffPositionEnum.MANAGER,
+                "Ledion", "Makolli", 20, "1023613293",
+                "ledionmakolli@gmail.com", "ledion", "ledion",
+                PasswordHasher.generateSalt(), "049442222", StaffPositionEnum.STAFF,
                 LocalDate.now(), 130000
         );
         staffRepository.create(createStafDto);

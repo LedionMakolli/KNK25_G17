@@ -42,6 +42,7 @@ public class PenaltiesController extends BaseController {
     public void initialize() {
         try {
             this.penaltiesRepository = new PenaltiesRepository();
+            super.initialize();
             setupTableColumns();
             loadPenalties();
         } catch (Exception e) {

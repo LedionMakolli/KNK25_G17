@@ -13,7 +13,7 @@ public class Main extends Application {
         SceneManager manager = SceneManager.getInstance();
 
         stage.setScene(manager.getScene());
-        stage.setTitle("Log In");
+        stage.setTitle("Rent a Car");
         stage.show();
     }
 
