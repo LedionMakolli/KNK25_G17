@@ -110,8 +110,8 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             hasUpdates = true;
         }
         if (stafiDto.getPosition() != null) {
-            query.append("POSITION = ?, ");
-            parametrat.add(stafiDto.getPosition());
+            query.append("POSITION = ?::staffpositionenum, "); // CAST HERE
+            parametrat.add(stafiDto.getPosition().name()); // Use enum name
             hasUpdates = true;
         }
         if (stafiDto.getSalary() > 0) {
