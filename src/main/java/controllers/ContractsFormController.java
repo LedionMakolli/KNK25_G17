@@ -29,9 +29,10 @@ public class ContractsFormController extends ContractsController{
 
     @FXML
     private Button btnSave;
-
     @FXML
     private Button btnCancel;
+
+
 
     @Override
     public void initialize() {
@@ -39,7 +40,7 @@ public class ContractsFormController extends ContractsController{
     }
 
     @FXML
-    private void handleSaveClick(){  //veq me ju tregu qe mka met me bo si tbohet save forma me dal ne tabele updated
+    private void handleSaveClick(){
         String reservationIdTxt = txtFieldReservationId.getText();
         String paymentIdTxt = txtFieldPaymentId.getText();
         String amountTxt = txtFieldAmount.getText();
