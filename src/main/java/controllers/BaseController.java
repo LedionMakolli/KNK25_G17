@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import models.enums.UserTypeEnum;
 import services.LanguageManager;
 import services.SceneManager;
 import utils.SceneLocator;
@@ -20,6 +21,7 @@ public class BaseController {
     @FXML protected MenuItem changePassword;
     @FXML protected MenuItem SignOut;
     @FXML protected MenuItem addContract;
+    @FXML protected Menu menuAdd;
 
 
     public void setAlbanianLanguage() {
@@ -131,6 +133,13 @@ public class BaseController {
         } else {
             txtEnglish.setSelected(true);
         }
+
+        String role = services.SessionManager.getInstance().getCurrentRole();
+        if("client".equals(role)){
+           menuAdd.setVisible(false);
+        }
+
     }
+
 
 }
