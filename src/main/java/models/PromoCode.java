@@ -1,5 +1,6 @@
 package models;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,11 +9,11 @@ import java.time.LocalDate;
 public class PromoCode {
     private int id;
     private String code;
-    private double discount;
+    private BigDecimal discount;
     private Date expiryDate;
     private Boolean active;
 
-    private PromoCode(int id,String code, double discount, Date expiryDate, Boolean active){
+    private PromoCode(int id,String code, BigDecimal discount, Date expiryDate, Boolean active){
         this.id=id;
         this.code=code;
         this.discount=discount;
@@ -22,7 +23,7 @@ public class PromoCode {
     public static PromoCode getInstance(ResultSet resultSet) throws SQLException{
         int id=resultSet.getInt("id");
         String code=resultSet.getString("code");
-        double discount = resultSet.getDouble("discount");
+        BigDecimal discount = resultSet.getBigDecimal("discount");
         Date expiryDate= resultSet.getDate("expiryDate");
         Boolean active = resultSet.getBoolean("active");
 
@@ -36,7 +37,7 @@ public class PromoCode {
         return code;
     }
 
-    public double getDiscount() {
+    public BigDecimal getDiscount() {
         return discount;
     }
 

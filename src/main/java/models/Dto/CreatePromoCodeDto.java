@@ -1,14 +1,15 @@
 package models.Dto;
 
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 public class CreatePromoCodeDto {
     private String code;
-    private double discount;
+    private BigDecimal discount;
     private Date expiryDate;
     private Boolean active;
-    public CreatePromoCodeDto(String code, double discount, Date expiryDate, Boolean active){
+    public CreatePromoCodeDto(String code, BigDecimal discount, Date expiryDate, Boolean active){
         this.code=code;
         this.discount=discount;
         this.expiryDate=expiryDate;
@@ -23,11 +24,11 @@ public class CreatePromoCodeDto {
         this.code = code;
     }
 
-    public double getDiscount() {
+    public BigDecimal getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(BigDecimal discount) {
         this.discount = discount;
     }
 
