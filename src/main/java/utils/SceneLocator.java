@@ -1,6 +1,7 @@
 package utils;
 
 public class SceneLocator {
+    public static final String FIRST_PAGE="/views/first_page.fxml";
     public static final String SIGNUP_PAGE = "/views/create_client.fxml";
     public static final String LOGIN_PAGE="/views/login.fxml";
     public static final String CHANGE_PASSWORD_PAGE = "/views/changepassword.fxml";
@@ -12,8 +13,5 @@ public class SceneLocator {
     public static final String CONTRACT_FORM = "/views/contractform.fxml";
     public static final String DOCUMENTS="/views/documents.fxml";
     public static final String PAYMENT_FORM = "/views/payment.fxml";
-    public static final String SEE_MAINTENACE="views/see-maintenace.fxml";
-    public static final String ADD_MAINTENACE="views/add-maintenace.fxml";
-    public static final String ADD_PENALTY="views/add-penalty.fxml";
 //    ...
 }
