@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import models.enums.UserTypeEnum;
 import services.LanguageManager;
 import services.SceneManager;
+import services.SessionManager;
 import utils.SceneLocator;
 
 import java.util.Locale;
@@ -23,6 +24,7 @@ public class BaseController {
     @FXML protected MenuItem addContract;
     @FXML protected MenuItem menuAdd;
     @FXML protected MenuItem addPayment;
+    @FXML protected MenuItem aboutProgram;
 
 
     public void setAlbanianLanguage() {
@@ -109,6 +111,21 @@ public class BaseController {
             SceneManager.load(SceneLocator.SEE_PENALTIES);
         } catch (Exception e) {
             showErrorAlert("Unable to load Penalties Form", "An error occured while trying to load the Penalties page");
+        }
+    }
+
+    public void seeAboutProgram(){
+        try{
+            if("staff".equals(SessionManager.getInstance().getCurrentRole())) {
+                SceneManager.load(SceneLocator.SEE_ABOUT_STAFF);
+            }else{
+            SceneManager.load(SceneLocator.SEE_ABOUT);
+            }
+        }catch (Exception e){
+            showErrorAlert("Unable to load About Program view", "An error occured while trying to load the About page");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            System.out.println("hello4");
         }
     }
 
