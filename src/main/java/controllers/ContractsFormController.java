@@ -14,7 +14,7 @@ import utils.SceneLocator;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class ContractsFormController extends ContractsController{
+public class ContractsFormController extends BaseController{
     @FXML
     private TextField txtFieldReservationId;
 
