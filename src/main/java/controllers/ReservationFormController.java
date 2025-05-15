@@ -7,9 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import models.Dto.CreateReservationsDto;
+import models.Dto.CreateSpecialRequestsDto;
 import models.Reservations;
+import models.SpecialRequests;
 import models.enums.ReservationStatusEnum;
 import repository.ReservationsRepository;
+import repository.SpecialRequestsRepository;
 import services.SceneManager;
 import utils.SceneLocator;
 
@@ -40,20 +43,20 @@ public class ReservationFormController extends BaseController{
     @FXML
     private void onSubmit(ActionEvent event) {
         if (dpStartDate.getValue() == null || dpEndDate.getValue() == null) {
-            new Alert(Alert.AlertType.WARNING, "Please select start and end dates.").showAndWait();
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select start and end dates.");
             return;
         }
 
         try {
             Date start = Date.valueOf(dpStartDate.getValue());
             Date end   = Date.valueOf(dpEndDate.getValue());
+            String specialRequest = txtSpecialRequests.getText().trim();
 
 
             ReservationsRepository repo = new ReservationsRepository();
             if (repo.existsOverlap(carId, start, end)) {
-                new Alert(Alert.AlertType.ERROR,
-                        "This car is already reserved between " + start + " and " + end + ".")
-                        .showAndWait();
+                showAlert(Alert.AlertType.ERROR, "Error",
+                        "This car is already reserved for the selected dates.");
                 return;
             }
 
@@ -68,22 +71,30 @@ public class ReservationFormController extends BaseController{
             Reservations reservation = repo.create(dto);
 
 
-            if (reservation != null) {
-                new Alert(Alert.AlertType.INFORMATION,
-                        "Reservation confirmed! ID: " + reservation.getId()
-                ).showAndWait();
-                SceneManager.load(SceneLocator.HOME_PAGE);
-            } else {
-                new Alert(Alert.AlertType.ERROR,
-                        "Failed to create reservation. Please try again."
-                ).showAndWait();
+            if (reservation == null) {
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to create reservation");
+                return;
             }
+
+            if (!specialRequest.isEmpty()) {
+                SpecialRequestsRepository srRepo = new SpecialRequestsRepository();
+                CreateSpecialRequestsDto srDto = new CreateSpecialRequestsDto(
+                        reservation.getId(), specialRequest, false
+                );
+                if (srRepo.create(srDto) == null) {
+                    showAlert(Alert.AlertType.WARNING, "Warning", "Reservation created but special request not saved.");
+                }
+            }
+
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Reservation #" + reservation.getId() + " created successfully!");
+
+            SceneManager.load(SceneLocator.HOME_PAGE);
 
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR,
-                    "Error creating reservation: " + e.getMessage()
-            ).showAndWait();
+            showAlert(Alert.AlertType.ERROR, "Error",
+                    "Failed to create reservation: " + e.getMessage()
+            );
         }
     }
 

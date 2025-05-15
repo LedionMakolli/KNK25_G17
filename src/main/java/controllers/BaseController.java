@@ -9,6 +9,7 @@ import services.SessionManager;
 import utils.SceneLocator;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class BaseController {
     protected SceneManager sceneManager = SceneManager.getInstance();
@@ -153,6 +154,15 @@ public class BaseController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+//    protected void showAlerts(Alert.AlertType type, String key, Object... args) {
+//        ResourceBundle rb = LanguageManager.getInstance().getResourceBundle();
+//        Alert alert = new Alert(type);
+//        alert.setTitle(rb.getString("alert.title"));
+//        alert.setHeaderText(null);
+//        alert.setContentText(String.format(rb.getString(key), args));
+//        alert.showAndWait();
+//    }
 
     @FXML
     public void initialize() {

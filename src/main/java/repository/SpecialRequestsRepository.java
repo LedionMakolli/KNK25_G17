@@ -16,6 +16,7 @@ public class SpecialRequestsRepository extends BaseRepository<SpecialRequests, C
         super("specialrequests");
     }
 
+    @Override
     public SpecialRequests fromResultSet(ResultSet rs){
         try{
             return SpecialRequests.getInstance(rs);
@@ -25,9 +26,10 @@ public class SpecialRequestsRepository extends BaseRepository<SpecialRequests, C
         }
     }
 
+
     public SpecialRequests create(CreateSpecialRequestsDto specialRequestsDto){
         String query= """
-                INSERT INTO KERKESASPECIALE (idReservation, request, completed) VALUES (?,?,?)""";
+                INSERT INTO specialrequests (idReservation, request, completed) VALUES (?,?,?)""";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
