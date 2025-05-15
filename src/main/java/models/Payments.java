@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 public class Payments {
     private int id;
     private int idReservation;
-    private PaymentEnum type;
+    private String type;
     private int promoCodeId;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
     private LocalDateTime date;
 
-    public Payments(int id, int idReservation, PaymentEnum type, int promoCodeId,
+    public Payments(int id, int idReservation, String type, int promoCodeId,
                     BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
         this.id = id;
         this.idReservation = idReservation;
@@ -31,7 +31,6 @@ public class Payments {
         int id = resultSet.getInt("id");
         int idReservation = resultSet.getInt("idreservation");
         String typeStr = resultSet.getString("type");
-        PaymentEnum type = PaymentEnum.valueOf(typeStr.toUpperCase());
         int promoCodeId = 0;
         Integer promoCodeIdNullable = resultSet.getObject("promocodeid", Integer.class);
         if (promoCodeIdNullable != null) {
@@ -41,7 +40,7 @@ public class Payments {
         BigDecimal totalFinal = resultSet.getBigDecimal("totalfinal");
         LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
 
-        return new Payments(id, idReservation, type, promoCodeId, totalNoDiscount, totalFinal, date);
+        return new Payments(id, idReservation, typeStr, promoCodeId, totalNoDiscount, totalFinal, date);
     }
 
     public int getId() {
@@ -52,7 +51,7 @@ public class Payments {
         return idReservation;
     }
 
-    public PaymentEnum getType() {
+    public String getType() {
         return type;
     }
 
