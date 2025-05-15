@@ -30,8 +30,8 @@ public class PenaltyService {
         if (dto.getMoneyAmount() == null || dto.getMoneyAmount().compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Money amount must be greater than 0.");
         }
-        if (dto.getDate() == null || dto.getDate().isAfter(LocalDateTime.now().plusDays(1))) {
-            throw new IllegalArgumentException("Date must be a valid past or present date.");
+        if (dto.getDate() == null || dto.getDate().isBefore(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0))) {
+            throw new IllegalArgumentException("Data duhet të jetë sot ose në të ardhmen.");
         }
     }
 }
