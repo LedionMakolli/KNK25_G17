@@ -28,7 +28,11 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, paymentsDto.getIdReservation());
             preparedStatement.setString(2, paymentsDto.getType().toString());
-            preparedStatement.setInt(3, paymentsDto.getPromoCodeId());
+            if(paymentsDto.getPromoCodeId() != null){
+                preparedStatement.setInt(3, paymentsDto.getPromoCodeId());
+            }else{
+                preparedStatement.setNull(3, Types.INTEGER);
+            }
             preparedStatement.setBigDecimal(4, paymentsDto.getTotalNoDiscount());
             preparedStatement.setBigDecimal(5, paymentsDto.getTotalFinal());
             preparedStatement.setTimestamp(6, Timestamp.valueOf(paymentsDto.getDate()));

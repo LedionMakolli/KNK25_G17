@@ -44,17 +44,20 @@ public class PaymentsFormController extends BaseController{
         String totalAmountTxt = txtFieldTotalAmount.getText();
         LocalDate dateDp = dpDate.getValue();
 
-        if (reservationIdTxt.isEmpty()|| paymentType.isEmpty() || promocodeIdTxt.isEmpty() || totalNodiscountTxt.isEmpty() || totalAmountTxt.isEmpty() || dateDp == null) {
+        if (reservationIdTxt.isEmpty()|| paymentType.isEmpty() || totalNodiscountTxt.isEmpty() || totalAmountTxt.isEmpty() || dateDp == null) {
             showAlert(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
             return;
         }
 
         int reservationId = Integer.parseInt(reservationIdTxt);
-        int promocodeId = Integer.parseInt(promocodeIdTxt);
         BigDecimal totalNodiscount = new BigDecimal(totalNodiscountTxt);
         BigDecimal totalAmount = new BigDecimal(totalAmountTxt);
          LocalDateTime dateTime = dateDp.atStartOfDay();
 
+         Integer promocodeId = null;
+         if(promocodeIdTxt !=null && !promocodeIdTxt.trim().isEmpty()){
+             promocodeId = Integer.parseInt(promocodeIdTxt);
+         }
 
         try{
             CreatePaymentsDto paymentsDto = new CreatePaymentsDto(reservationId, paymentType, promocodeId, totalNodiscount, totalAmount, dateTime);

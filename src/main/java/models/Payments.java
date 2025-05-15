@@ -11,12 +11,12 @@ public class Payments {
     private int id;
     private int idReservation;
     private String type;
-    private int promoCodeId;
+    private Integer promoCodeId;
     private BigDecimal totalNoDiscount;
     private BigDecimal totalFinal;
     private LocalDateTime date;
 
-    public Payments(int id, int idReservation, String type, int promoCodeId,
+    public Payments(int id, int idReservation, String type, Integer promoCodeId,
                     BigDecimal totalNoDiscount, BigDecimal totalFinal, LocalDateTime date) {
         this.id = id;
         this.idReservation = idReservation;
@@ -32,10 +32,7 @@ public class Payments {
         int idReservation = resultSet.getInt("idreservation");
         String typeStr = resultSet.getString("type");
         int promoCodeId = 0;
-        Integer promoCodeIdNullable = resultSet.getObject("promocodeid", Integer.class);
-        if (promoCodeIdNullable != null) {
-            promoCodeId = promoCodeIdNullable;
-        }
+        Integer promoCode = resultSet.getInt("promoCodeId");
         BigDecimal totalNoDiscount = resultSet.getBigDecimal("totalnodiscount");
         BigDecimal totalFinal = resultSet.getBigDecimal("totalfinal");
         LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
@@ -55,7 +52,7 @@ public class Payments {
         return type;
     }
 
-    public int getPromoCodeId() {  // Changed from getPromoCode()
+    public Integer getPromoCodeId() {  // Changed from getPromoCode()
         return promoCodeId;
     }
 
