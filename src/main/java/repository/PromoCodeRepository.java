@@ -32,7 +32,7 @@ public class PromoCodeRepository extends BaseRepository<PromoCode, CreatePromoCo
         try{
             PreparedStatement pstm= connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, promoCodeDto.getCode());
-            pstm.setDouble(2, promoCodeDto.getDiscount());
+            pstm.setBigDecimal(2, promoCodeDto.getDiscount());
             pstm.setDate(3, promoCodeDto.getExpiryDate());
             pstm.setBoolean(4, promoCodeDto.isActive());
             pstm.execute();
