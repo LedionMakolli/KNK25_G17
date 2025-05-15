@@ -1,14 +1,10 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import models.Dto.CreatePenaltyDto;
 import models.Penalties;
-import repository.PenaltiesRepository;
+import services.PenaltyService;
 import services.SceneManager;
 import utils.SceneLocator;
 
@@ -25,39 +21,33 @@ public class AddPenaltyController extends BaseController {
     @FXML private Button btnSave;
     @FXML private Button btnCancel;
 
+    private PenaltyService penaltyService;
+
     @FXML
     public void initialize() {
         super.initialize();
+        try {
+            this.penaltyService = new PenaltyService();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to initialize service");
+        }
     }
 
     @FXML
     private void handleSaveClick() {
-        String reservationIdTxt = txtFieldReservationId.getText();
-        String reason = txtFieldReason.getText();
-        String amountTxt = txtFieldAmount.getText();
-        LocalDate dateDp = dpDate.getValue();
-        boolean paid = cbPaid.isSelected();
-
-        if (reservationIdTxt.isEmpty() || reason.isEmpty() || amountTxt.isEmpty() || dateDp == null) {
-            showAlert(Alert.AlertType.ERROR, "Warning", "Please fill all required fields");
-            return;
-        }
-
         try {
-            int reservationId = Integer.parseInt(reservationIdTxt);
-            BigDecimal amount = new BigDecimal(amountTxt);
-            LocalDateTime dateTime = dateDp.atStartOfDay();
+            int reservationId = Integer.parseInt(txtFieldReservationId.getText());
+            String reason = txtFieldReason.getText();
+            BigDecimal amount = new BigDecimal(txtFieldAmount.getText());
+            LocalDateTime dateTime = dpDate.getValue().atStartOfDay();
+            boolean paid = cbPaid.isSelected();
 
-            CreatePenaltyDto penaltyDto = new CreatePenaltyDto(
-                    reservationId,
-                    reason,
-                    amount,
-                    paid
-            );
-            penaltyDto.setDate(dateTime);
+            CreatePenaltyDto dto = new CreatePenaltyDto(reservationId, reason, amount, paid);
+            dto.setDate(dateTime);
 
-            PenaltiesRepository penaltyRepository = new PenaltiesRepository();
-            Penalties penalty = penaltyRepository.create(penaltyDto);
+            PenaltyService penaltyService = new PenaltyService();
+            Penalties penalty = penaltyService.addPenalty(dto);
 
             if (penalty != null) {
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Penalty added successfully");
@@ -66,13 +56,17 @@ public class AddPenaltyController extends BaseController {
             } else {
                 showAlert(Alert.AlertType.ERROR, "Error", "Failed to add penalty");
             }
+
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Reservation ID and Amount must be valid numbers");
+        } catch (IllegalArgumentException e) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while saving the penalty");
         }
     }
+
 
     @FXML
     private void handleCancelClick() {
