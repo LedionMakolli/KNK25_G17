@@ -49,6 +49,12 @@ public class PromoCode {
         return active;
     }
 
+    public BigDecimal applyDiscount(BigDecimal amount){
+        BigDecimal discountFraction = discount.divide(BigDecimal.valueOf(100));
+        BigDecimal multiplier = BigDecimal.ONE.subtract(discountFraction);
+        return amount.multiply(multiplier);
+    }
+
     public void printPromoCode(){
         System.out.println("Te dhenat per PromoCode");
         System.out.println("ID: " + getId());
