@@ -77,10 +77,10 @@ CREATE TABLE Reservations (
 
 CREATE TABLE PROMOCODE (
     id SERIAL PRIMARY KEY,
-    kodi VARCHAR(255) NOT NULL,
-    zbritja DOUBLE PRECISION NOT NULL,
-    dataSkadimit DATE,
-    aktiv BOOLEAN
+    code VARCHAR(255) NOT NULL,
+    discount DOUBLE PRECISION NOT NULL,
+    expiryDate DATE,
+    active BOOLEAN
 );
 
 ----- Payments -----
@@ -89,7 +89,7 @@ CREATE TABLE PROMOCODE (
       id SERIAL PRIMARY KEY,
       idreservation INTEGER NOT NULL,
       type VARCHAR(50) NOT NULL,
-      promocodeid INTEGER,
+      promocodeid INTEGER references promocode(id),
       totalnodiscount NUMERIC(10, 2) NOT NULL,
       totalfinal NUMERIC(10, 2) NOT NULL,
       date TIMESTAMP NOT NULL
