@@ -46,11 +46,11 @@
     <TableView fx:id="penaltiesTable" layoutX="14.0" layoutY="35.0" prefHeight="375.0" prefWidth="572.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
-            <TableColumn fx:id="reservationIdColumn" prefWidth="100" text="Reservation ID" />
-            <TableColumn fx:id="reasonColumn" prefWidth="150" text="Reason" />
-            <TableColumn fx:id="amountColumn" prefWidth="76.0" text="Amount (€)" />
-            <TableColumn fx:id="paidColumn" prefWidth="63.20001220703125" text="Paid" />
-            <TableColumn fx:id="dateColumn" prefWidth="130.4000244140625" text="Date" />
+            <TableColumn fx:id="reservationIdColumn" prefWidth="100" text="%txt.reservationID" />
+            <TableColumn fx:id="reasonColumn" prefWidth="150" text="%txt.reason" />
+            <TableColumn fx:id="amountColumn" prefWidth="76.0" text="%txt.amount" />
+            <TableColumn fx:id="paidColumn" prefWidth="63.20001220703125" text="%txt.paid" />
+            <TableColumn fx:id="dateColumn" prefWidth="130.4000244140625" text="%txt.date" />
         </columns>
     </TableView>
 
