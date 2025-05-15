@@ -13,5 +13,6 @@ public class SceneLocator {
     public static final String CONTRACT_FORM = "/views/contractform.fxml";
     public static final String DOCUMENTS="/views/documents.fxml";
     public static final String PAYMENT_FORM = "/views/payment.fxml";
+    public static final String ADD_PENALTY="/views/add-penalty.fxml";
 //    ...
 }

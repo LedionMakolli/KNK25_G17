@@ -23,6 +23,7 @@ public class BaseController {
     @FXML protected MenuItem addContract;
     @FXML protected MenuItem menuAdd;
     @FXML protected MenuItem addPayment;
+    @FXML protected MenuItem addPenalty;
 
 
     public void setAlbanianLanguage() {
@@ -112,6 +113,14 @@ public class BaseController {
         }
     }
 
+    public void handleAddPenalty() {
+        try {
+            SceneManager.load(SceneLocator.ADD_PENALTY);
+        } catch (Exception e) {
+            showErrorAlert("Unable to load Penalties Form", "An error occured while trying to load the Penalties page");
+        }
+    }
+
     protected void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -149,6 +158,7 @@ public class BaseController {
             if (menuAdd != null) menuAdd.setVisible(false);
             if (seeDocuments != null) seeDocuments.setVisible(false);
             if(addPayment != null) addContract.setVisible(false);
+            if(addPenalty!=null) addPenalty.setVisible(false);
         }
 
     }
