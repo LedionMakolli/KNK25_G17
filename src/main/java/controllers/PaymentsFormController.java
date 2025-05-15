@@ -8,8 +8,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import models.Dto.CreatePaymentsDto;
 import models.Payments;
+import models.PromoCode;
 import models.enums.PaymentEnum;
 import repository.PaymentsRepository;
+import repository.PromoCodeRepository;
+import services.PaymentsService;
 import services.SceneManager;
 import utils.SceneLocator;
 
@@ -37,35 +40,37 @@ public class PaymentsFormController extends BaseController{
 
     @FXML
     private void handleSaveClick() {
+
         String reservationIdTxt = txtFieldReservationId.getText();
         String paymentType  = cbPaymentType.getSelectionModel().getSelectedItem().toString();
         String promocodeIdTxt = txtFieldPromocodeId.getText();
         String totalNodiscountTxt = txtFieldTotalNoDiscount.getText();
-        String totalAmountTxt = txtFieldTotalAmount.getText();
         LocalDate dateDp = dpDate.getValue();
 
-        if (reservationIdTxt.isEmpty()|| paymentType.isEmpty() || totalNodiscountTxt.isEmpty() || totalAmountTxt.isEmpty() || dateDp == null) {
+        if (reservationIdTxt.isEmpty()|| paymentType.isEmpty() || totalNodiscountTxt.isEmpty() || dateDp == null) {
             showAlert(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
             return;
         }
 
         int reservationId = Integer.parseInt(reservationIdTxt);
         BigDecimal totalNodiscount = new BigDecimal(totalNodiscountTxt);
-        BigDecimal totalAmount = new BigDecimal(totalAmountTxt);
          LocalDateTime dateTime = dateDp.atStartOfDay();
 
          Integer promocodeId = null;
          if(promocodeIdTxt !=null && !promocodeIdTxt.trim().isEmpty()){
              promocodeId = Integer.parseInt(promocodeIdTxt);
          }
+         try{
 
-        try{
-            CreatePaymentsDto paymentsDto = new CreatePaymentsDto(reservationId, paymentType, promocodeId, totalNodiscount, totalAmount, dateTime);
+            Payments payments = new Payments(0,reservationId, paymentType, promocodeId, totalNodiscount,null,  dateTime);
+             PaymentsService paymentsService = new PaymentsService();
 
-            PaymentsRepository paymentsRepository = new PaymentsRepository();
-            Payments payments = paymentsRepository.create(paymentsDto);
+             paymentsService.calculateTotalAmount(payments);
+             txtFieldTotalAmount.setText(payments.getTotalFinal().toString());
+             Payments saved = paymentsService.save(payments);
 
-            if(payments != null){
+
+            if(saved  != null){
                 SceneManager.load(SceneLocator.HOME_PAGE); //spo di ku duhna me qit
                 showAlert(Alert.AlertType.INFORMATION, "success", "success");
             }else{
