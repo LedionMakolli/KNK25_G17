@@ -68,6 +68,10 @@ public class Payments {
         return date;
     }
 
+    public void setTotalFinal(BigDecimal totalFinal){
+        this.totalFinal = totalFinal;
+    }
+
     public void printPaymentDetails() {
         System.out.println("----------------------------------------");
         System.out.println("ID: " + getId());
