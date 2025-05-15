@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="500" fx:controller="controllers.AboutController">
+    <children>
+        <VBox spacing="5" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+            <MenuBar>
+                <menus>
+                    <Menu mnemonicParsing="false" text="%txt.Homepage">
+                        <items>
+                            <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" onAction="#goToHomepage" text="Go to Home" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Settings">
+                        <items>
+                            <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" onAction="#handleChangePassword"/>
+                            <MenuItem fx:id="seeDocuments" mnemonicParsing="false" text="%txt.seeDocuments" onAction="#seeDocuments"/>
+                            <MenuItem fx:id="seeContract" mnemonicParsing="false" text="%txt.seeContract" onAction="#seeContracts"/>
+                            <MenuItem fx:id="seePenalties" mnemonicParsing="false" onAction="#seePenalties" text="%txt.seePenalties" />
+                            <MenuItem fx:id="SignOut" mnemonicParsing="false" text="%txt.SignOut" onAction="#SignOut"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="%txt.Edit">
+                        <items>
+                            <RadioMenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip" />
+                            <RadioMenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="%txt.Help">
+                        <items>
+                            <MenuItem fx:id="aboutProgram" mnemonicParsing="false" text="About" onAction="#seeAboutProgram"/>
+                        </items>
+                    </Menu>
+                    <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
+                        <items>
+                            <MenuItem fx:id="addContract" mnemonicParsing="false" text="%txt.AddContract" onAction="#handleAddContract"/>
+                            <MenuItem fx:id="addPayment" mnemonicParsing="false" text="%txt.AddPayment" onAction="#handleAddPayment"/>
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+
+            <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+                <content>
+                    <VBox spacing="15" alignment="TOP_LEFT">
+                        <padding>
+                            <Insets top="20" right="30" bottom="20" left="30"/>
+                        </padding>
+
+                        <Label text="Staff Panel - Rent a Car System" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+
+                        <Text wrappingWidth="540" text="Welcome to the staff management interface. This section is designed to help you manage vehicle rentals, client details, contracts, penalties, and maintenance effectively." />
+
+                        <Label text="Contract Management:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="As a staff member, you can add new rental contracts for any client. Specify vehicle details, rental period, and total price to complete the agreement." />
+
+                        <Label text="Penalty Management:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="If a client violates rental terms or causes damage to vehicles, you can apply penalties. These are recorded and associated with the client's account for full transparency." />
+
+                        <Label text="Vehicle Maintenance:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="Ensure all vehicles are in top condition. You can add maintenance records and track service history for each car before assigning it for a new rental." />
+
+                        <Label text="Client Monitoring:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="View all contracts, payments, penalties, and reservations of every client. This provides a complete overview to support decision making and customer service." />
+
+                        <Label text="Language and Settings:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="Switch the app language, change your password, and configure settings directly from the menu bar." />
+
+                        <Separator />
+
+                        <Text wrappingWidth="540" text="Thank you for your dedication in ensuring a smooth, reliable, and professional car rental experience!" />
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </VBox>
+    </children>
+</AnchorPane>
