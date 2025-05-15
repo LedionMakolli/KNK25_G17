@@ -69,13 +69,14 @@
         </Menu>
         <Menu mnemonicParsing="false" text="%txt.Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About"/>
+            <MenuItem fx:id="aboutProgram" mnemonicParsing="false" text="About" onAction="#seeAboutProgram"/>
           </items>
         </Menu>
           <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
               <items>
                   <MenuItem fx:id="addContract" mnemonicParsing="false" text="%txt.AddContract" onAction="#handleAddContract"/>
                   <MenuItem fx:id="addPayment" mnemonicParsing="false" text="%txt.AddPayment" onAction="#handleAddPayment"/>
+                  <MenuItem fx:id="addPenalty" mnemonicParsing="false" text="%txt.addPenalty" onAction="#handleAddPenalty"/>
               </items>
           </Menu>
       </menus>
