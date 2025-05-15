@@ -65,4 +65,16 @@ public class SessionManager {
         return this.theme;
     }
 
+    public boolean isClient() {
+        return "client".equals(getCurrentRole());
+    }
+
+    public boolean isStaff() {
+        return "staff".equals(getCurrentRole());
+    }
+
+    public boolean isLoggedIn() {
+        return currentClient != null || currentStaff != null;
+    }
+
 }

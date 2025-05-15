@@ -8,14 +8,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.Cars;
 import repository.CarRepository;
+import services.LanguageManager;
 import services.SceneManager;
 import services.SessionManager;
 import utils.SceneLocator;
+
+import java.util.ResourceBundle;
 
 public class CarDetailsController extends BaseController{
 
@@ -29,6 +33,7 @@ public class CarDetailsController extends BaseController{
     @FXML private Label lblPriceDay;
     @FXML private Label lblStatus;
     @FXML private Label lblTransmissionType;
+    @FXML private Button btnReserveNow;
 
     @FXML private ImageView imgCar;
 
@@ -37,6 +42,16 @@ public class CarDetailsController extends BaseController{
 
     public CarDetailsController() {
         super.initialize();
+    }
+
+    @FXML
+    public void initialize() {
+        super.initialize();
+
+        if(SessionManager.getInstance().isStaff()){
+            btnReserveNow.setDisable(true);
+            btnReserveNow.setTooltip(new Tooltip("Only clients can make reservation"));
+        }
     }
 
     public void setCar(Cars car) throws Exception {
@@ -78,6 +93,23 @@ public class CarDetailsController extends BaseController{
         } catch(Exception ex) {
             ex.printStackTrace();
             showErrorAlert("…", "…");
+        }
+    }
+
+    private void setupReserveButton() {
+        SessionManager sessionManager = SessionManager.getInstance();
+        ResourceBundle rb = LanguageManager.getInstance().getResourceBundle();
+
+        if (sessionManager.isClient()) {
+            btnReserveNow.setDisable(false);
+            btnReserveNow.setVisible(true);
+        } else if (sessionManager.isStaff()) {
+            btnReserveNow.setDisable(true);
+            btnReserveNow.setVisible(false);
+            btnReserveNow.setTooltip(new Tooltip(rb.getString("tooltip.staffCannotReserve")));
+        } else {
+            btnReserveNow.setDisable(true);
+            btnReserveNow.setTooltip(new Tooltip("Please log in as a client to reserve"));
         }
     }
 
