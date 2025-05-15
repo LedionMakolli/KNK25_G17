@@ -112,6 +112,31 @@ public class BaseController {
         }
     }
 
+    public void seeMaintenace() {
+        try {
+            SceneManager.load(SceneLocator.SEE_MAINTENACE);
+        } catch (Exception e) {
+            showErrorAlert("Unable to load Maintenace Form", "An error occured while trying to load the Maintenace page");
+
+        }
+    }
+
+    public void handleAddPenalty() {
+        try {
+            SceneManager.load(SceneLocator.ADD_PENALTY);
+        } catch (Exception e) {
+            showErrorAlert("Unable to load Penalty Form", "An error occured while trying to load the Penalty page");
+        }
+    }
+
+    public void handleAddMaintenace() {
+        try {
+            SceneManager.load(SceneLocator.ADD_MAINTENACE);
+        } catch (Exception e) {
+            showErrorAlert("Unable to load Maintenace Form", "An error occured while trying to load the Maintenace page");
+        }
+    }
+
     protected void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
