@@ -66,6 +66,7 @@
                       <MenuItem mnemonicParsing="false" text="About" />
                   </items>
               </Menu>
+
               <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
                   <items>
                       <MenuItem fx:id="addContract" mnemonicParsing="false" onAction="#handleAddContract" text="%txt.AddContract" />
