@@ -62,7 +62,7 @@
            </Menu>
            <Menu fx:id="update" mnemonicParsing="false" text="%txt.update">
               <items>
-                 <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.updateTables" onAction="#handleUpdateTable"/>
+                 <MenuItem fx:id="updateTable" mnemonicParsing="false" onAction="#handleUpdateTable" text="%txt.updateTables" />
               </items>
            </Menu>
            <Menu mnemonicParsing="false" text="%txt.Help">
@@ -106,12 +106,7 @@
                         <TextField fx:id="txtFieldPromocodeId" />
                      </children>
                   </HBox>
-                  <HBox spacing="18.0">
-                     <children>
-                        <Label fx:id="txtTotalNoDiscount" prefHeight="25.0" prefWidth="100.0" text="Total No Discount:" />
-                        <TextField fx:id="txtFieldTotalNoDiscount" />
-                     </children>
-                  </HBox>
+
                   <HBox spacing="20.0">
                      <children>
                         <Label fx:id="txtDate" prefHeight="25.0" prefWidth="98.0" text="Date: " />
@@ -120,7 +115,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox layoutX="203.0" layoutY="284.0" spacing="40.0">
+            <HBox layoutX="202.0" layoutY="249.0" spacing="40.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="33.0" prefWidth="97.0" text="Cancel" />
                   <Button mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="33.0" prefWidth="97.0" text="Save" />
