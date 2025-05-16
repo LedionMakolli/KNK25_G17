@@ -28,7 +28,7 @@ public class PaymentsFormController extends BaseController{
     @FXML private ComboBox cbPaymentType;
     @FXML private TextField txtFieldPromocodeId;
     @FXML private TextField txtFieldTotalNoDiscount;
-    @FXML private TextField txtFieldTotalAmount;
+
     @FXML private DatePicker dpDate;
     @FXML private Button btnSave;
     @FXML private Button btnCancel;
@@ -66,7 +66,7 @@ public class PaymentsFormController extends BaseController{
              PaymentsService paymentsService = new PaymentsService();
 
              paymentsService.calculateTotalAmount(payments);
-             txtFieldTotalAmount.setText(payments.getTotalFinal().toString());
+
              Payments saved = paymentsService.save(payments);
 
 
