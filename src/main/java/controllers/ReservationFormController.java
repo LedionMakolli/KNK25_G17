@@ -17,6 +17,7 @@ import services.SceneManager;
 import utils.SceneLocator;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class ReservationFormController extends BaseController{
 
@@ -46,6 +47,23 @@ public class ReservationFormController extends BaseController{
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select start and end dates.");
             return;
         }
+
+        LocalDate chosenStart = dpStartDate.getValue();
+        LocalDate chosenEnd = dpEndDate.getValue();
+        LocalDate today = LocalDate.now();
+
+        if (chosenStart.isBefore(today) || chosenEnd.isBefore(today)) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Dates", "You cannot reserve for dates earlier than today.");
+            return;
+        }
+
+        if (!chosenStart.isBefore(chosenEnd)) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Range", "Start date must be before end date.");
+            return;
+        }
+
+
+
 
         try {
             Date start = Date.valueOf(dpStartDate.getValue());
