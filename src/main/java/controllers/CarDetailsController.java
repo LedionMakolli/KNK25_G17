@@ -19,6 +19,7 @@ import services.SceneManager;
 import services.SessionManager;
 import utils.SceneLocator;
 
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class CarDetailsController extends BaseController{
@@ -40,12 +41,12 @@ public class CarDetailsController extends BaseController{
     private SceneManager sceneManager;
     private Cars currentCar;
 
-    public CarDetailsController() {
+    public CarDetailsController() throws SQLException {
         super.initialize();
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         super.initialize();
 
         if(SessionManager.getInstance().isStaff()){

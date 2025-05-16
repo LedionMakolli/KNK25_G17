@@ -9,6 +9,7 @@ import services.SceneManager;
 import utils.SceneLocator;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -24,7 +25,7 @@ public class AddPenaltyController extends BaseController {
     private PenaltyService penaltyService;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         super.initialize();
         try {
             this.penaltyService = new PenaltyService();

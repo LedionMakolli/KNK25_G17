@@ -12,6 +12,7 @@ import services.SceneManager;
 import utils.SceneLocator;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class ContractsFormController extends BaseController{
@@ -35,7 +36,7 @@ public class ContractsFormController extends BaseController{
 
 
     @Override
-    public void initialize() {
+    public void initialize() throws SQLException {
         super.initialize();
     }
 
