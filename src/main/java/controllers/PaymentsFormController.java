@@ -9,6 +9,7 @@ import javafx.scene.control.DatePicker;
 import models.Dto.CreatePaymentsDto;
 import models.Payments;
 import models.PromoCode;
+import models.Reservations;
 import models.enums.PaymentEnum;
 import repository.PaymentsRepository;
 import repository.PromoCodeRepository;
@@ -19,6 +20,7 @@ import utils.SceneLocator;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -27,11 +29,19 @@ public class PaymentsFormController extends BaseController{
     @FXML private TextField txtFieldReservationId;
     @FXML private ComboBox cbPaymentType;
     @FXML private TextField txtFieldPromocodeId;
-    @FXML private TextField txtFieldTotalNoDiscount;
-
     @FXML private DatePicker dpDate;
     @FXML private Button btnSave;
     @FXML private Button btnCancel;
+
+    private final PaymentsService paymentsService;
+
+     public PaymentsFormController() {
+         try {
+             this.paymentsService = new PaymentsService();
+         } catch (SQLException e) {
+             throw new RuntimeException("Failed to initialize PaymentsService", e);
+         }
+     }
 
     @FXML
     public void initialize() {
@@ -44,29 +54,26 @@ public class PaymentsFormController extends BaseController{
         String reservationIdTxt = txtFieldReservationId.getText();
         String paymentType  = cbPaymentType.getSelectionModel().getSelectedItem().toString();
         String promocodeIdTxt = txtFieldPromocodeId.getText();
-        String totalNodiscountTxt = txtFieldTotalNoDiscount.getText();
         LocalDate dateDp = dpDate.getValue();
 
-        if (reservationIdTxt.isEmpty()|| paymentType.isEmpty() || totalNodiscountTxt.isEmpty() || dateDp == null) {
+        if (reservationIdTxt.isEmpty()|| paymentType.isEmpty() || dateDp == null) {
             showAlert(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
             return;
         }
 
         int reservationId = Integer.parseInt(reservationIdTxt);
-        BigDecimal totalNodiscount = new BigDecimal(totalNodiscountTxt);
          LocalDateTime dateTime = dateDp.atStartOfDay();
-
          Integer promocodeId = null;
          if(promocodeIdTxt !=null && !promocodeIdTxt.trim().isEmpty()){
              promocodeId = Integer.parseInt(promocodeIdTxt);
          }
+
          try{
-
-            Payments payments = new Payments(0,reservationId, paymentType, promocodeId, totalNodiscount,null,  dateTime);
-             PaymentsService paymentsService = new PaymentsService();
-
+             Reservations reservations = paymentsService.getReservationById(reservationId);
+             Payments payments = new Payments(0,reservationId, paymentType, promocodeId, null,null,  dateTime);
+             paymentsService.calculateTotalNoDiscount(payments, reservations);
              paymentsService.calculateTotalAmount(payments);
-
+             
              Payments saved = paymentsService.save(payments);
 
 

@@ -4,6 +4,8 @@ import models.*;
 import models.Dto.*;
 import models.enums.FuelEnum;
 import models.enums.CarStatusEnum;
+
+import java.math.BigDecimal;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -184,5 +186,21 @@ public class CarRepository extends BaseRepository<Cars, CreateCarDto, UpdateCarD
             e.printStackTrace();
         }
         return cars;
+    }
+
+    public BigDecimal getDailyPrice(int carId){
+        String query = "SELECT dailyPrice FROM CARS WHERE id = ?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, carId);
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next()){
+                int price = resultSet.getInt("dailyPrice");
+                return BigDecimal.valueOf(price);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return BigDecimal.ZERO;
     }
 }
