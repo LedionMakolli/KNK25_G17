@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import services.UpdateTablesService;
 
+import java.sql.SQLException;
+
 public class UpdateTablesController extends BaseController {
 
     @FXML
@@ -23,7 +25,7 @@ public class UpdateTablesController extends BaseController {
     private UpdateTablesService updateTablesService;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws SQLException {
         super.initialize();
         ObservableList<String> tables = FXCollections.observableArrayList("Penalties", "SpecialRequests");
         txtChooseTable.setItems(tables);

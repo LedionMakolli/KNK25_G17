@@ -17,6 +17,7 @@ import services.SceneManager;
 import utils.SceneLocator;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class ReservationFormController extends BaseController{
@@ -29,7 +30,7 @@ public class ReservationFormController extends BaseController{
 
     private int clientId;
     private int carId;
-    public ReservationFormController() {
+    public ReservationFormController() throws SQLException {
         super.initialize();
     }
 

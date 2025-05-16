@@ -11,6 +11,7 @@ import services.SceneManager;
 import services.SessionManager;
 import utils.SceneLocator;
 
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -23,6 +24,7 @@ public class BaseController {
     @FXML protected MenuItem seeDocuments;
     @FXML protected MenuItem seeContract;
     @FXML protected MenuItem seePayments;
+    @FXML protected MenuItem addMaintenance;
     @FXML protected MenuItem gotoHomepage;
     @FXML protected MenuItem changePassword;
     @FXML protected MenuItem SignOut;
@@ -93,7 +95,16 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.CONTRACT_FORM);
         }catch (Exception e){
-            showErrorAlert("Unable to load Contract Form", "An error occured while trying to load the ChangePassword page");
+            showErrorAlert("Unable to load Contract Form", "An error occured while trying to load the Contract Form page");
+        }
+    }
+
+    public void handelAddMaintenance(){
+        try{
+            SceneManager.load(SceneLocator.MAINTENANCE_FORM);
+        }catch (Exception e){
+            e.printStackTrace();
+            showErrorAlert("Unable to load Contract Form", "An error occured while trying to load the Maintenance Form page");
         }
     }
 
@@ -212,7 +223,7 @@ public class BaseController {
 //    }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         if (txtShqip != null && txtEnglish != null) {
             ToggleGroup languageToggleGroup = new ToggleGroup();
             txtShqip.setToggleGroup(languageToggleGroup);

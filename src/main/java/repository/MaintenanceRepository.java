@@ -25,7 +25,7 @@ public class MaintenanceRepository extends BaseRepository<Maintenance, CreateMai
 
     // metoda create
     public Maintenance create(CreateMaintenanceDto MaintenanceDto) {
-        String query = "INSERT INTO Maintenance (idCar,description,dateStart,dateFinish,cost,status,idStaff) Values (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Maintenance (idCar,description,dateStart,dateFininsh,cost,status,idStaff) Values (?,?,?,?,?,?,?)";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, MaintenanceDto.getIdCar());
