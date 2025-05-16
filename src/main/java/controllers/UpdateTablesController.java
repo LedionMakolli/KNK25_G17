@@ -15,7 +15,7 @@ public class UpdateTablesController extends BaseController {
     private TextField txtId;
 
     @FXML
-    private CheckBox btnApprovement;
+    private CheckBox btnApprove;
 
     @FXML
     private Button btnUpdate;
@@ -38,7 +38,7 @@ public class UpdateTablesController extends BaseController {
     private void updateSpecificTable() {
         String selectedTable = txtChooseTable.getValue();
         String idStr = txtId.getText();
-        boolean isApproved = btnApprovement.isSelected();
+        boolean isApproved = btnApprove.isSelected();
 
         if (selectedTable == null || idStr.isEmpty()) {
             showAlert("Error", "Please fill all fields.");
@@ -85,6 +85,6 @@ public class UpdateTablesController extends BaseController {
     private void resetFields() {
         txtChooseTable.getSelectionModel().clearSelection();
         txtId.clear();
-        btnApprovement.setSelected(false);
+        btnApprove.setSelected(false);
     }
 }
