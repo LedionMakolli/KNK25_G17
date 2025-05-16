@@ -19,6 +19,7 @@ public class BaseController {
     @FXML protected RadioMenuItem txtEnglish;
     @FXML protected MenuItem seeDocuments;
     @FXML protected MenuItem seeContract;
+    @FXML protected MenuItem seePayments;
     @FXML protected MenuItem gotoHomepage;
     @FXML protected MenuItem changePassword;
     @FXML protected MenuItem SignOut;
@@ -106,6 +107,16 @@ public class BaseController {
             SceneManager.load(SceneLocator.DOCUMENTS);
         } catch (Exception e) {
             showErrorAlert("Unable to load Document Form", "An error occured while trying to load the Documents page");
+        }
+    }
+
+    public void seePayments() {
+        try {
+            SceneManager.load(SceneLocator.SEE_PAYMENTS);
+        } catch (Exception e) {
+            showErrorAlert("Unable to load Document Form", "An error occured while trying to load the Documents page");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

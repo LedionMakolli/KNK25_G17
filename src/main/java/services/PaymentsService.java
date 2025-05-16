@@ -5,8 +5,10 @@ import models.Payments;
 import models.PromoCode;
 import repository.PaymentsRepository;
 
+import javax.print.attribute.standard.RequestingUserName;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.List;
 
 public class PaymentsService {
   private final PromoCodeService promoCodeService;
@@ -44,4 +46,16 @@ public class PaymentsService {
      return paymentsRepository.create(dto);
   }
 
+  public List<Payments> checkRole() throws SQLException {
+      List<Payments> payments;
+      String role = SessionManager.getInstance().getCurrentRole();
+
+      if ("client".equals(role)){
+          int clientId = SessionManager.getInstance().getCurrentClient().getId();
+          payments = paymentsRepository.getByClientId(clientId);
+      }else {
+          payments = paymentsRepository.getAll();
+      }
+      return payments;
+  }
 }

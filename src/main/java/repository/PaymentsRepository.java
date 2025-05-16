@@ -92,4 +92,21 @@ public class PaymentsRepository extends BaseRepository<Payments, CreatePaymentsD
             throw new RuntimeException("Error updating payment", e);
         }
     }
+
+    public List<Payments> getByClientId(int clientId) throws SQLException{
+       List <Payments> payments = new ArrayList<>();
+       String query = "SELECT p.* FROM Payments p " +
+               "JOIN Reservations r ON p.idReservation = r.id " +
+               "WHERE r.idClient = ?";
+
+       PreparedStatement ptsm = this.connection.prepareStatement(query);
+       ptsm.setInt(1,clientId);
+       ResultSet rs = ptsm.executeQuery();
+
+       while (rs.next()){
+           Payments payment = fromResultSet(rs);
+           payments.add(payment);
+       }
+       return payments;
+    }
 }

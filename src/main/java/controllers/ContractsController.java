@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.Contract;
 import models.Dto.CreateContractDto;
 import repository.ContractRepository;
+import services.ContractService;
 import services.SceneManager;
 import services.SessionManager;
 import utils.SceneLocator;
@@ -39,13 +40,12 @@ public class ContractsController extends BaseController {
     private TableColumn<Contract, LocalDateTime> dateColumn;
 
 
-
-    private ContractRepository contractRepository;
+    private ContractService contractService;
 
     @FXML
     public void initialize(){
         try{
-            this.contractRepository = new ContractRepository();
+            this.contractService = new ContractService();
             super.initialize();
             setupTableColumns();
             loadContracts();
@@ -65,16 +65,7 @@ public class ContractsController extends BaseController {
 
     private void loadContracts(){
         try{
-            List<Contract> contracts;
-
-            String role = SessionManager.getInstance().getCurrentRole();
-
-            if ("client".equals(role)){
-                int clientId = SessionManager.getInstance().getCurrentClient().getId();
-                contracts = contractRepository.getByClientId(clientId);
-            }else{
-                contracts = contractRepository.getAll();
-            }
+            List<Contract> contracts = contractService.checkRole();
 
             ObservableList<Contract> data = FXCollections.observableArrayList(contracts);
             contractsTable.setItems(data);
