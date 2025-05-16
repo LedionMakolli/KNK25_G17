@@ -164,6 +164,19 @@ public class BaseController {
         }
     }
 
+    @FXML
+    public void seeReviews() {
+        try {
+            SceneManager.load(SceneLocator.REVIEW_FORM);
+        } catch (Exception e) {
+            showErrorAlert(
+                    "Unable to load Reviews",
+                    "An error occurred while trying to open the Review form."
+            );
+            e.printStackTrace();
+        }
+    }
+
 
     public void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -223,5 +236,7 @@ public class BaseController {
             if(update != null) update.setVisible(false);
         }
     }
+
+
 
 }
