@@ -73,8 +73,7 @@ public class PaymentsFormController extends BaseController{
              Payments payments = new Payments(0,reservationId, paymentType, promocodeId, null,null,  dateTime);
              paymentsService.calculateTotalNoDiscount(payments, reservations);
              paymentsService.calculateTotalAmount(payments);
-             txtFieldTotalNoDiscount.setText(payments.getTotalNoDiscount().toString());
-             txtTotalFinal.setText(payments.getTotalFinal().toString());
+             
              Payments saved = paymentsService.save(payments);
 
 
