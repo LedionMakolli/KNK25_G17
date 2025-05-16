@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ReviewController {
+public class ReviewController extends BaseController{
 
     @FXML private ComboBox<Cars>     cmbCar;
     @FXML private ChoiceBox<Integer> choiceRating;
@@ -36,9 +36,26 @@ public class ReviewController {
     }
 
     @FXML
-    private void initialize() {
+    public void initialize() {
         List<Cars> cars = new CarService().getAllCars();
         cmbCar.setItems(FXCollections.observableArrayList(cars));
+
+        cmbCar.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Cars car, boolean empty) {
+                super.updateItem(car, empty);
+                setText(empty || car == null ? null : car.getModel());
+            }
+        });
+
+        // e rregullon qe me dal modeli pasi te selektohet
+        cmbCar.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Cars car, boolean empty) {
+                super.updateItem(car, empty);
+                setText(empty || car == null ? null : car.getModel());
+            }
+        });
 
         choiceRating.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5));
     }
