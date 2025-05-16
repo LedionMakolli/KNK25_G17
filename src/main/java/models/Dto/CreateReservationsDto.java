@@ -3,6 +3,7 @@ package models.Dto;
 import models.enums.ReservationStatusEnum;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class CreateReservationsDto {
     private int idClient;
@@ -10,13 +11,15 @@ public class CreateReservationsDto {
     private Date startDate;
     private Date endDate;
     private ReservationStatusEnum reservationStatus;
+    private LocalDate currentDate;
 
-    public CreateReservationsDto(int idClient, int idCar, Date startDate, Date endDate, ReservationStatusEnum reservationStatus){
+    public CreateReservationsDto(int idClient, int idCar, Date startDate, Date endDate, ReservationStatusEnum reservationStatus, LocalDate currentDate){
         this.idClient=idClient;
         this.idCar=idCar;
         this.startDate=startDate;
         this.endDate=endDate;
         this.reservationStatus=reservationStatus;
+        this.currentDate=currentDate;
     }
 
     public int getIdClient() {
@@ -57,5 +60,9 @@ public class CreateReservationsDto {
 
     public void setReservationStatus(ReservationStatusEnum reservationStatus) {
         this.reservationStatus = reservationStatus;
+    }
+
+    public LocalDate getCurrentDate() {
+        return currentDate;
     }
 }

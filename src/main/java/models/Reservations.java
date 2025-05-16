@@ -13,15 +13,17 @@ public class Reservations {
     private Date startDate;   //LocalDate
     private Date endDate;
     private ReservationStatusEnum reservationStatus; //mundemi me shtu vetine created_at per kohen e sakte kur eshte shtuar rreshti tek rezervimet
+    private Date createdAt;
 
 
-private Reservations(int id, int idClient, int idCar, Date startDate, Date endDate, ReservationStatusEnum reservationStatus){
+private Reservations(int id, int idClient, int idCar, Date startDate, Date endDate, ReservationStatusEnum reservationStatus,Date createdAt){
     this.id=id;
     this.idClient=idClient;
     this.idCar=idCar;
     this.startDate=startDate;
     this.endDate=endDate;
     this.reservationStatus=reservationStatus;
+    this.createdAt = createdAt;
 }
 public static Reservations getInstance(ResultSet resultSet) throws SQLException {
 int id=resultSet.getInt("id");
@@ -30,12 +32,13 @@ int idCar=resultSet.getInt("idCar");
 Date startDate=resultSet.getDate("startDate");
 Date endDate =resultSet.getDate("endDate");
 String statusString=resultSet.getString("reservationStatus");
+Date currentDate=resultSet.getDate("createdat");
 
 ReservationStatusEnum reservationStatus= ReservationStatusEnum.valueOf(statusString.toUpperCase());
 
 
 
-return new Reservations(id, idClient, idCar, startDate, endDate, reservationStatus);
+return new Reservations(id, idClient, idCar, startDate, endDate, reservationStatus,currentDate);
 }
 
     public int getId() {
@@ -62,6 +65,10 @@ return new Reservations(id, idClient, idCar, startDate, endDate, reservationStat
         return reservationStatus;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
     public void printoTeDhenatRezervimet(){
     System.out.println("ID_Rezervimet: " + getId());
     System.out.println("ID_Klienti: " + getIdClient());
@@ -69,6 +76,7 @@ return new Reservations(id, idClient, idCar, startDate, endDate, reservationStat
     System.out.println("Data_Fillimit: " + getStartDate());
     System.out.println("Data_Mbarimit: " + getEndDate());
     System.out.println("Statusi: " + getReservationStatus());
+    System.out.println("Data_Krijimit: " + getCreatedAt());
     System.out.println("-------------------------------");
     }
 }

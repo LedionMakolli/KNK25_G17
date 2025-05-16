@@ -29,7 +29,6 @@ public class ReservationFormController extends BaseController{
 
     private int clientId;
     private int carId;
-
     public ReservationFormController() {
         super.initialize();
     }
@@ -84,7 +83,8 @@ public class ReservationFormController extends BaseController{
                     carId,
                     start,
                     end,
-                    ReservationStatusEnum.ACTIVE
+                    ReservationStatusEnum.ACTIVE,
+                    today
             );
             Reservations reservation = repo.create(dto);
 

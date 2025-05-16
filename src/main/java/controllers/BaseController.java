@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 public class BaseController {
     protected SceneManager sceneManager = SceneManager.getInstance();
     protected LanguageManager languageManager = LanguageManager.getInstance();
-    
+
     @FXML protected RadioMenuItem txtShqip;
     @FXML protected RadioMenuItem txtEnglish;
     @FXML protected MenuItem seeDocuments;

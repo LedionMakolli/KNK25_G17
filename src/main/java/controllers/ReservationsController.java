@@ -37,7 +37,7 @@ public class ReservationsController extends BaseController{
     private TableColumn<Reservations, ReservationStatusEnum> reservationStatusColumn;
 
     @FXML
-    private TableColumn<Reservations,LocalDateTime> createdAtColumn; // ???
+    private TableColumn<Reservations,LocalDateTime> createdAtColumn;
 
     private ReservationService reservationService;
 
@@ -58,6 +58,7 @@ public class ReservationsController extends BaseController{
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         reservationStatusColumn.setCellValueFactory(new PropertyValueFactory<>("reservationStatus"));
+        createdAtColumn.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
     }
 
     private void loadReservations(){

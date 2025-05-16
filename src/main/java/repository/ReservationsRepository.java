@@ -47,8 +47,8 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
 
     public Reservations create(CreateReservationsDto reservationsDto) {
         String query = """
-        INSERT INTO Reservations (idClient, idCar, startDate, endDate, reservationStatus)
-        VALUES (?,?,?,?,?) RETURNING *
+        INSERT INTO Reservations (idClient, idCar, startDate, endDate, reservationStatus,createdAt)
+        VALUES (?,?,?,?,?,?) RETURNING *
 """;
 
         try (PreparedStatement pstm = connection.prepareStatement(query)) {
@@ -58,6 +58,8 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
             pstm.setDate(3, reservationsDto.getStartDate());
             pstm.setDate(4, reservationsDto.getEndDate());
             pstm.setObject(5, reservationsDto.getReservationStatus(), Types.OTHER);
+            pstm.setDate(6, Date.valueOf(reservationsDto.getCurrentDate()));
+
 
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
@@ -130,7 +132,6 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
         PreparedStatement ptsm = connection.prepareStatement(query);
         ptsm.setInt(1,clientId);
         ResultSet rs = ptsm.executeQuery();
-
         while (rs.next()){
             Reservations reservation = fromResultSet(rs);
             reservations.add(reservation);
