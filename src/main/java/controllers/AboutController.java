@@ -9,5 +9,5 @@ import utils.SceneLocator;
 
 public class AboutController extends BaseController{
 
-    }
+}
 

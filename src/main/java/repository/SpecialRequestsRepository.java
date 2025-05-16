@@ -50,22 +50,22 @@ public class SpecialRequestsRepository extends BaseRepository<SpecialRequests, C
 
 
     public SpecialRequests update(UpdateSpecialRequestsDto specialRequestsDto) {
-        StringBuilder query = new StringBuilder("UPDATE KerkesaSpeciale SET ");
+        StringBuilder query = new StringBuilder("UPDATE Specialrequests SET ");
         List<Object> parameters = new ArrayList<>();
         boolean hasUpdates = false;
 
         if (specialRequestsDto.getIdReservation() > 0) {
-            query.append("idRezervimet=?, ");
+            query.append("idreservation=?, ");
             parameters.add(specialRequestsDto.getIdReservation());
             hasUpdates = true;
         }
         if (specialRequestsDto.getRequest() != null) {
-            query.append("kerkese=?, ");
+            query.append("request=?, ");
             parameters.add(specialRequestsDto.getRequest());
             hasUpdates = true;
         }
         if (specialRequestsDto.isCompleted() != null) {
-            query.append("plotesuar=?, ");
+            query.append("completed=?, ");
             parameters.add(specialRequestsDto.isCompleted());
             hasUpdates = true;
         }

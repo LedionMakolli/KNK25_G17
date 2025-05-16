@@ -68,6 +68,11 @@
                       <RadioMenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
                   </items>
               </Menu>
+              <Menu mnemonicParsing="false" text="%txt.update">
+                  <items>
+                      <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.update" onAction="#handleUpdateTable"/>
+                  </items>
+              </Menu>
               <Menu mnemonicParsing="false" text="%txt.Help">
                   <items>
                       <MenuItem mnemonicParsing="false" text="About" />

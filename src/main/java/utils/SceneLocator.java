@@ -16,5 +16,6 @@ public class SceneLocator {
     public static final String ADD_PENALTY = "/views/add-penalty.fxml";
     public static final String SEE_ABOUT = "/views/aboutProgram.fxml";
     public static final String SEE_ABOUT_STAFF = "/views/aboutProgramStaff.fxml";
+    public static final String UPDATE_PENALTY_REQUESTS="/views/update-penalty&specialRequests.fxml";
 //    ...
 }

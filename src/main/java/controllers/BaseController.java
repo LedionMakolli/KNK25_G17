@@ -139,7 +139,7 @@ public class BaseController {
     }
 
 
-    protected void showAlert(Alert.AlertType alertType, String title, String message) {
+    public void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -147,12 +147,20 @@ public class BaseController {
         alert.showAndWait();
     }
 
-    protected void showErrorAlert(String header, String content) {
+    public void showErrorAlert(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Gabim");
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    public void handleUpdateTable() {
+        try {
+            SceneManager.load(SceneLocator.UPDATE_PENALTY_REQUESTS);
+        } catch (Exception e) {
+            showErrorAlert("Unable to load update Form", "An error occured while trying to load the Update page");
+        }
     }
 
 //    protected void showAlerts(Alert.AlertType type, String key, Object... args) {
