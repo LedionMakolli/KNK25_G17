@@ -72,6 +72,10 @@ public class Payments {
         this.totalFinal = totalFinal;
     }
 
+    public void setTotalNoDiscount(BigDecimal totalNoDiscount){
+        this.totalNoDiscount = totalNoDiscount;
+    }
+
     public void printPaymentDetails() {
         System.out.println("----------------------------------------");
         System.out.println("ID: " + getId());
