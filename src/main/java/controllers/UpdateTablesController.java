@@ -4,13 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import models.Dto.UpdatePenaltyDto;
-import models.Dto.UpdateSpecialRequestsDto;
-import models.SpecialRequests;
-import repository.PenaltiesRepository;
-import repository.SpecialRequestsRepository;
-
-import java.sql.*;
+import services.UpdateTablesService;
 
 public class UpdateTablesController extends BaseController {
 
@@ -26,10 +20,18 @@ public class UpdateTablesController extends BaseController {
     @FXML
     private Button btnUpdate;
 
+    private UpdateTablesService updateTablesService;
+
     @FXML
-    public void initialize() {
+    public void initialize(){
+        super.initialize();
         ObservableList<String> tables = FXCollections.observableArrayList("Penalties", "SpecialRequests");
         txtChooseTable.setItems(tables);
+        try {
+            this.updateTablesService = new UpdateTablesService();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -51,37 +53,20 @@ public class UpdateTablesController extends BaseController {
         int id = Integer.parseInt(idStr);
 
         try {
-            if (selectedTable.equals("Penalties")) {
-                UpdatePenaltyDto dto = new UpdatePenaltyDto(id, isApproved);
-                PenaltiesRepository repo = new PenaltiesRepository();
-                var result = repo.updatePaguar(dto);
+            boolean updated = false;
 
-                if (result != null) {
-                    showAlert("Success", "Penalty updated successfully.");
-                } else {
-                    showAlert("Info", "Penalty not found.");
-                }
+            if (selectedTable.equals("Penalties")) {
+                updated = this.updateTablesService.updatePenalties(id, isApproved);
 
             } else if (selectedTable.equals("SpecialRequests")) {
-                SpecialRequestsRepository specialRequestsRepository = new SpecialRequestsRepository();
-                SpecialRequests specialRequest = specialRequestsRepository.getById(id);
+                updated = this.updateTablesService.updateSpecialRequests(id, isApproved);
+            }
 
-                if (specialRequest != null) {
-                    UpdateSpecialRequestsDto dto = new UpdateSpecialRequestsDto(
-                            specialRequest.getId(),
-                            specialRequest.getIdReservation(),
-                            specialRequest.getRequest(),
-                            isApproved
-                    );
-                    var result = specialRequestsRepository.update(dto);
-                    if (result != null) {
-                        showAlert("Success", "Special request updated successfully.");
-                    } else {
-                        showAlert("Info", "Failed to update special request.");
-                    }
-                } else {
-                    showAlert("Info", "Special request not found.");
-                }
+            if (updated) {
+                showAlert("Success", selectedTable + " updated successfully.");
+                this.resetFields();
+            } else {
+                showAlert("Info", selectedTable + " not found or update failed.");
             }
 
         } catch (Exception e) {
@@ -90,13 +75,16 @@ public class UpdateTablesController extends BaseController {
         }
     }
 
-
-
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    private void resetFields() {
+        txtChooseTable.getSelectionModel().clearSelection();
+        txtId.clear();
+        btnApprovement.setSelected(false);
     }
 }
