@@ -50,8 +50,11 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu fx:id="gotoHomepage" mnemonicParsing="false" text="%txt.Homepage" onAction="#goToHomepage">
-        </Menu>
+          <Menu mnemonicParsing="false" text="%txt.Homepage">
+              <items>
+                  <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" onAction="#goToHomepage" text="Go to Home" />
+              </items>
+          </Menu>
           <Menu mnemonicParsing="false" text="Settings">
               <items>
                   <MenuItem fx:id="changePassword" mnemonicParsing="false" text="%txt.changePassword" onAction="#handleChangePassword"/>
@@ -72,9 +75,9 @@
             <MenuItem fx:id="aboutProgram" mnemonicParsing="false" text="About" onAction="#seeAboutProgram"/>
           </items>
         </Menu>
-          <Menu mnemonicParsing="false" text="%txt.update">
+          <Menu fx:id="update" mnemonicParsing="false" text="%txt.update">
               <items>
-                  <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.update" onAction="#handleUpdateTable"/>
+                  <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.updateTables" onAction="#handleUpdateTable"/>
               </items>
           </Menu>
           <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">

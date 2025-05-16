@@ -32,9 +32,9 @@
                     <MenuItem mnemonicParsing="false" text="About" />
                 </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="%txt.update">
+            <Menu fx:id="update" mnemonicParsing="false" text="%txt.update">
                 <items>
-                    <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.update" onAction="#handleUpdateTable"/>
+                    <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.updateTables" onAction="#handleUpdateTable"/>
                 </items>
             </Menu>
             <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">

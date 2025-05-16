@@ -50,7 +50,10 @@
   <children>
       <MenuBar VBox.vgrow="NEVER">
           <menus>
-              <Menu fx:id="gotoHomepage" mnemonicParsing="false" text="%txt.Homepage" onAction="#goToHomepage">
+              <Menu mnemonicParsing="false" text="%txt.Homepage">
+                  <items>
+                      <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" onAction="#goToHomepage" text="Go to Home" />
+                  </items>
               </Menu>
               <Menu mnemonicParsing="false" text="Settings">
                   <items>
@@ -72,9 +75,9 @@
                       <MenuItem fx:id="aboutProgram" mnemonicParsing="false" text="About" onAction="#seeAboutProgram"/>
                   </items>
               </Menu>
-              <Menu mnemonicParsing="false" text="%txt.update">
+              <Menu fx:id="update" mnemonicParsing="false" text="%txt.update">
                   <items>
-                      <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.update" onAction="#handleUpdateTable"/>
+                      <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.updateTables" onAction="#handleUpdateTable"/>
                   </items>
               </Menu>
               <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
@@ -91,10 +94,10 @@
             <Label layoutX="196.0" layoutY="99.0" text="Tabela" />
             <ComboBox fx:id="txtChooseTable" layoutX="263.0" layoutY="95.0" prefWidth="150.0" />
             <Label layoutX="206.0" layoutY="157.0" text="ID:" />
-            <Label layoutX="176.0" layoutY="219.0" text="Approvement:" />
+            <Label layoutX="176.0" layoutY="219.0" text="%txt.approve" />
             <TextField fx:id="txtId" layoutX="264.0" layoutY="153.0" />
-            <CheckBox fx:id="btnApprovement" layoutX="264.0" layoutY="219.0" mnemonicParsing="false" />
-            <Button fx:id="btnUpdate" layoutX="312.0" layoutY="272.0" mnemonicParsing="false" onAction="#updateSpecificTable" text="Button" />
+            <CheckBox fx:id="btnApprove" layoutX="264.0" layoutY="219.0" mnemonicParsing="false" />
+            <Button fx:id="btnUpdate" layoutX="312.0" layoutY="272.0" mnemonicParsing="false" onAction="#updateSpecificTable" text="%txt.update" />
             <Label layoutX="277.0" layoutY="32.0" text="Update Tables">
                <font>
                   <Font name="System Bold" size="18.0" />
