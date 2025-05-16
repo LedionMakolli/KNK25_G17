@@ -64,6 +64,16 @@
                   <MenuItem fx:id="SignOut" mnemonicParsing="false" text="%txt.SignOut" onAction="#SignOut"/>
               </items>
           </Menu>
+          <Menu fx:id="menuReviews"
+                mnemonicParsing="false"
+                text="Reviews">
+              <items>
+                  <MenuItem fx:id="navReviews"
+                            mnemonicParsing="false"
+                            text="Write/View Reviews"
+                            onAction="#seeReviews"/>
+              </items>
+          </Menu>
         <Menu mnemonicParsing="false" text="%txt.Edit">
             <items>
                 <RadioMenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip"  />
