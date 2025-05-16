@@ -18,6 +18,9 @@ public class LogInController {
     @FXML
     private PasswordField txtPassword;
 
+    @FXML
+    private Button btnLogin;
+
     private LogInService logInService;
 
     public LogInController() {
@@ -27,6 +30,13 @@ public class LogInController {
             e.printStackTrace();
             showAlertWithKeys(Alert.AlertType.ERROR, "error.title", "error.loginServiceInitializationFailed");
         }
+    }
+
+    public void initialize() {
+        btnLogin.setDefaultButton(true);
+
+        txtUsername.setOnAction(e -> btnLogin.fire());
+        txtPassword.setOnAction(e -> btnLogin.fire());
     }
 
     @FXML

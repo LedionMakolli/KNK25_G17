@@ -45,7 +45,7 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnLogin" layoutX="258.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: blue;" text="%btn.login" textAlignment="CENTER" textFill="WHITE" />
+                <Button fx:id="btnLogin" layoutX="258.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: blue;" text="%btn.login" textAlignment="CENTER" textFill="WHITE" defaultButton="true"/>
                 <Label layoutX="191.0" layoutY="124.0" text="%txt.username" />
                 <Label layoutX="193.0" layoutY="168.0" text="%txt.password" />
                 <TextField fx:id="txtUsername" layoutX="258.0" layoutY="120.0" />
