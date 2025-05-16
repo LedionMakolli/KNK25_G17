@@ -122,6 +122,21 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
             throw new RuntimeException("Failed to update reservation: " + e.getMessage(), e);
         }
     }
+
+    public List<Reservations> getByClientId(int clientId) throws SQLException{
+        List<Reservations> reservations = new ArrayList<>();
+        String query = "SELECT * FROM Reservations WHERE idClient = ?";
+
+        PreparedStatement ptsm = connection.prepareStatement(query);
+        ptsm.setInt(1,clientId);
+        ResultSet rs = ptsm.executeQuery();
+
+        while (rs.next()){
+            Reservations reservation = fromResultSet(rs);
+            reservations.add(reservation);
+        }
+        return reservations;
+    }
 }
 
 

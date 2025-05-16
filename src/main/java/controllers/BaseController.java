@@ -1,7 +1,10 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import models.enums.UserTypeEnum;
 import services.LanguageManager;
 import services.SceneManager;
@@ -14,7 +17,7 @@ import java.util.ResourceBundle;
 public class BaseController {
     protected SceneManager sceneManager = SceneManager.getInstance();
     protected LanguageManager languageManager = LanguageManager.getInstance();
-
+    
     @FXML protected RadioMenuItem txtShqip;
     @FXML protected RadioMenuItem txtEnglish;
     @FXML protected MenuItem seeDocuments;
@@ -114,7 +117,17 @@ public class BaseController {
         try {
             SceneManager.load(SceneLocator.SEE_PAYMENTS);
         } catch (Exception e) {
-            showErrorAlert("Unable to load Document Form", "An error occured while trying to load the Documents page");
+            showErrorAlert("Unable to load Payments Form", "An error occured while trying to load the Payments page");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void seeReservations() {
+        try{
+            SceneManager.load(SceneLocator.SEE_RESERVATIONS);
+        }catch (Exception e){
+            showErrorAlert("Unable to load Reservation Form", "An error occured while trying to load the Reservation page");
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
@@ -209,7 +222,6 @@ public class BaseController {
             if(updateTable != null) updateTable.setVisible(false);
             if(update != null) update.setVisible(false);
         }
-
     }
 
 }

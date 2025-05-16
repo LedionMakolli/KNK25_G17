@@ -1,11 +1,14 @@
 package services;
 
 import database.DBConnection;
+import models.Reservations;
 import repository.ReservationsRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 public class ReservationService {
     private final ReservationsRepository repo;
@@ -26,5 +29,17 @@ public class ReservationService {
         } catch (SQLException e) {
             throw new RuntimeException("Failed to expire reservations", e);
         }
+    }
+
+    public List<Reservations> getRole() throws SQLException {
+        List<Reservations> reservations ;
+        String role = SessionManager.getInstance().getCurrentRole();
+        if ("client".equals(role)){
+            int clientId = SessionManager.getInstance().getCurrentClient().getId();
+            reservations = repo.getByClientId(clientId);
+        }else{
+            reservations = repo.getAll();
+        }
+        return reservations;
     }
 }

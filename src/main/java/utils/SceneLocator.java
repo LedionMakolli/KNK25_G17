@@ -8,6 +8,7 @@ public class SceneLocator {
     public static final String HOME_PAGE = "/views/homepage.fxml";
     public static final String SEE_PENALTIES="/views/penalties.fxml";
     public static final String SEE_PAYMENTS="/views/seePayments.fxml";
+    public static final String SEE_RESERVATIONS="/views/seeReservations.fxml";
     public static final String SEE_CONTRACTS="/views/contracts.fxml";
     public static final String SEE_CAR_DETAILS= "/views/car_details.fxml";
     public static final String RESERVATION_FORM= "/views/reservation_form.fxml";
