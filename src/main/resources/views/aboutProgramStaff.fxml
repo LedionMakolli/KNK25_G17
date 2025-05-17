@@ -56,28 +56,28 @@
                             <Insets top="20" right="30" bottom="20" left="30"/>
                         </padding>
 
-                        <Label text="Staff Panel - Rent a Car System" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+                        <Label text="%txt.staffPanelTitle" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
 
-                        <Text wrappingWidth="540" text="Welcome to the staff management interface. This section is designed to help you manage vehicle rentals, client details, contracts, penalties, and maintenance effectively." />
+                        <Text wrappingWidth="540" text="%txt.staffWelcomeText" />
 
-                        <Label text="Contract Management:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="As a staff member, you can add new rental contracts for any client. Specify vehicle details, rental period, and total price to complete the agreement." />
+                        <Label text="%txt.staffContractManagement" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.staffContractManagementText" />
 
-                        <Label text="Penalty Management:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="If a client violates rental terms or causes damage to vehicles, you can apply penalties. These are recorded and associated with the client's account for full transparency." />
+                        <Label text="%txt.staffPenaltyManagement" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.staffPenaltyManagementText" />
 
-                        <Label text="Vehicle Maintenance:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="Ensure all vehicles are in top condition. You can add maintenance records and track service history for each car before assigning it for a new rental." />
+                        <Label text="%txt.staffVehicleMaintenance" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.staffVehicleMaintenanceText" />
 
-                        <Label text="Client Monitoring:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="View all contracts, payments, penalties, and reservations of every client. This provides a complete overview to support decision making and customer service." />
+                        <Label text="%txt.staffClientMonitoring" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.staffClientMonitoringText" />
 
-                        <Label text="Language and Settings:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="Switch the app language, change your password, and configure settings directly from the menu bar." />
+                        <Label text="%txt.staffLanguageSettings" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.staffLanguageSettingsText" />
 
                         <Separator />
 
-                        <Text wrappingWidth="540" text="Thank you for your dedication in ensuring a smooth, reliable, and professional car rental experience!" />
+                        <Text wrappingWidth="540" text="%txt.staffThankYou" />
                     </VBox>
                 </content>
             </ScrollPane>

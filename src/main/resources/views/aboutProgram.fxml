@@ -56,28 +56,28 @@
                             <Insets top="20" right="30" bottom="20" left="30"/>
                         </padding>
 
-                        <Label text="About Our Rent a Car System" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+                        <Label text="%txt.AboutOurRentaCarSystem" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
 
-                        <Text wrappingWidth="540" text="Welcome to our Rent a Car platform. Our system is designed to help you easily reserve vehicles based on your preferences and needs." />
+                        <Text wrappingWidth="540" text="%txt.welcomeRentACar" />
 
-                        <Label text="Reservation Options:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="You can browse our available vehicles and make reservations directly through the app. Simply select the car you want, choose the reservation period, and confirm your booking." />
+                        <Label text="%txt.ReservationOptions" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.BrowseApp" />
 
-                        <Label text="Contracts and Personal Use:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="Each reservation generates a contract for your personal use. This contract includes the car details, rental period, payment information, and terms of use." />
+                        <Label text="%txt.PersonalUse" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.EachReservation" />
 
-                        <Label text="Penalties and Rules:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="Please respect the rental rules. Penalties may be applied in case of rule violations or car damages. All penalties will be visible in your reservation history." />
+                        <Label text="%txt.PenaltiesRules" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.RentalRules" />
 
-                        <Label text="Password Management:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="For your account security, you can change your password at any time from your profile settings." />
+                        <Label text="%txt.PasswordManagement" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.AccountSecurity" />
 
-                        <Label text="Language Options:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Text wrappingWidth="540" text="You can switch between different languages to use the application in the language you prefer." />
+                        <Label text="%txt.LanguageOptions" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Text wrappingWidth="540" text="%txt.SwitchLanguages" />
 
                         <Separator />
 
-                        <Text wrappingWidth="540" text="Thank you for using our service. We wish you a safe and pleasant journey!" />
+                        <Text wrappingWidth="540" text="%txt.ThankYouService" />
                     </VBox>
                 </content>
             </ScrollPane>
