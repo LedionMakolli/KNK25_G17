@@ -108,5 +108,18 @@ public class MaintenanceRepository extends BaseRepository<Maintenance, CreateMai
 
         return null;
     }
+    public List<Maintenance> getStaffById(int staffId) throws SQLException{
+        List<Maintenance> maintenanceList = new ArrayList<>();
+        String query = "SELECT * FROM Maintenance where idStaff = ?";
+
+        PreparedStatement pstm = this.connection.prepareStatement(query);
+        pstm.setInt(1, staffId);
+        ResultSet rs = pstm.executeQuery();
+        while(rs.next()){
+            Maintenance maintenance = Maintenance.getInstance(rs);
+            maintenanceList.add(maintenance);
+        }
+        return maintenanceList;
+    }
 
 }
