@@ -13,6 +13,7 @@ import models.enums.StatusMaintenanceEnum;
 import repository.CarRepository;
 import repository.MaintenanceRepository;
 import repository.StaffRepository;
+import services.MaintenanceService;
 import services.SessionManager;
 
 import java.math.BigDecimal;
@@ -47,12 +48,12 @@ public class MaintenanceFormController extends BaseController{
     private Label labelStaff;
 
     CarRepository carRepository;
-    MaintenanceRepository maintenanceRepository;
+    private MaintenanceService maintenanceService;
     StaffRepository staffRepository;
 
     public void initialize() throws SQLException {
         this.carRepository = new CarRepository();
-        this.maintenanceRepository = new MaintenanceRepository();
+        this.maintenanceService = new MaintenanceService();
         this.staffRepository = new StaffRepository();
 
         List<Cars> allCars = carRepository.getAll();
@@ -108,45 +109,31 @@ public class MaintenanceFormController extends BaseController{
 
 
     @FXML
-    private void handleSaveMaintenance(){
-        try{
+    private void handleSaveMaintenance() {
+        try {
             Cars selectedCar = comboCar.getValue();
             String description = txtDescription.getText();
             Date start = Date.valueOf(dateStart.getValue());
             Date finish = Date.valueOf(dateFinish.getValue());
             BigDecimal cost = new BigDecimal(txtCost.getText());
-            Staff staff = comboStaff.getValue();
+            StatusMaintenanceEnum status = comboStatus.getValue();
+            Staff staff;
 
-            if (description.isEmpty()|| start == null || finish == null) {
-                showAlert(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
-                return;
+
+            if (StaffPositionEnum.STAFF.equals(SessionManager.getInstance().getCurrentStaff().getPosition())) {
+                staff = SessionManager.getInstance().getCurrentStaff();
+            } else {
+                staff = comboStaff.getValue();
             }
-            if (start.after(finish)){
-                showAlert(Alert.AlertType.WARNING,"warning.title", "warning.emptyFields");
-            }
-            if(StaffPositionEnum.STAFF.equals(SessionManager.getInstance().getCurrentStaff().getPosition())){
-                maintenanceRepository.create(new CreateMaintenanceDto(
-                        selectedCar.getId(),
-                        start,
-                        description,
-                        finish,
-                        cost,
-                        comboStatus.getValue(),
-                        SessionManager.getInstance().getCurrentStaff().getId()
-                ));
-            }else{
-                maintenanceRepository.create(new CreateMaintenanceDto(
-                        selectedCar.getId(),
-                        start,
-                        description,
-                        finish,
-                        cost,
-                        comboStatus.getValue(),
-                        staff.getId()
-                ));
-            }
+
+            maintenanceService.createMaintenance(selectedCar, start, description, finish, cost, status, staff);
+
+            new Alert(Alert.AlertType.INFORMATION, "Maintenance record saved successfully.").showAndWait();
+        }catch (IllegalAccessException e){
+            new Alert(Alert.AlertType.WARNING, e.getMessage()).showAndWait();
         }catch (Exception e){
             e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Eror saving maintennace: " + e.getMessage()).showAndWait();
         }
     }
 }
