@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="482.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MaintenanceController">
+  <MenuBar VBox.vgrow="NEVER">
+    <menus>
+      <Menu mnemonicParsing="false" text="%txt.Homepage">
+        <items>
+          <MenuItem fx:id="gotoHomepage" mnemonicParsing="false" onAction="#goToHomepage" text="Go to Home" />
+        </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Settings">
+        <items>
+          <MenuItem fx:id="changePassword" mnemonicParsing="false" onAction="#handleChangePassword" text="%txt.changePassword" />
+          <MenuItem fx:id="seeDocuments" mnemonicParsing="false" onAction="#seeDocuments" text="%txt.seeDocuments" />
+          <MenuItem fx:id="seeContract" mnemonicParsing="false" onAction="#seeContracts" text="%txt.seeContract" />
+          <MenuItem fx:id="seePenalties" mnemonicParsing="false" onAction="#seePenalties" text="%txt.seePenalties" />
+          <MenuItem fx:id="seeMaintenance" mnemonicParsing="false" onAction="#seeMaintenance" text="%txt.seeMaintenance"/>
+          <MenuItem fx:id="signOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
+        </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="%txt.Edit">
+        <items>
+          <RadioMenuItem fx:id="txtShqip" mnemonicParsing="false" onAction="#setAlbanianLanguage" text="Shqip" />
+          <RadioMenuItem fx:id="txtEnglish" mnemonicParsing="false" onAction="#setEnglishLanguage" text="English" />
+        </items>
+      </Menu>
+      <Menu fx:id="update" mnemonicParsing="false" text="%txt.update">
+        <items>
+          <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.updateTables" onAction="#handleUpdateTable"/>
+        </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="%txt.Help">
+        <items>
+          <MenuItem mnemonicParsing="false" text="About" />
+        </items>
+      </Menu>
+
+      <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
+        <items>
+          <MenuItem fx:id="addContract" mnemonicParsing="false" onAction="#handleAddContract" text="%txt.AddContract" />
+          <MenuItem fx:id="addPayment" mnemonicParsing="false" text="%txt.AddPayment" onAction="#handleAddPayment"/>
+          <MenuItem fx:id="addPenalty" mnemonicParsing="false" text="%txt.addPenalty" onAction="#handleAddPenalty"/>
+        </items>
+      </Menu>
+    </menus>
+  </MenuBar>
+  <TableView fx:id="maintenanceTable" layoutX="57.0" layoutY="70.0" prefHeight="259.0" prefWidth="525.0">
+                <columns>
+                  <TableColumn fx:id="idMaintenanceColumn" prefWidth="50" text="ID" />
+                  <TableColumn fx:id="idCarColumn" prefWidth="50" text="ID Car" />
+                  <TableColumn fx:id="description" prefWidth="98.0" text="Description" />
+                  <TableColumn fx:id="dateStartColumn" prefWidth="106.66665649414062" text="Start Date" />
+                  <TableColumn fx:id="dateEndColumn" prefWidth="99.0" text="End Date" />
+                  <TableColumn fx:id="costColumn" prefWidth="99.0" text="Cost"/>
+                  <TableColumn fx:id="maintenanceStatusColumn" prefWidth="121.00003051757812" text="Status" />
+                  <TableColumn fx:id="idStaffColumn" prefWidth="228.0" text="ID Staff" />
+                </columns>
+            </TableView>
+            <Button layoutX="526.0" layoutY="329.0" mnemonicParsing="false" text="Refresh" />
+            <Label layoutX="233.0" layoutY="30.0" prefHeight="25.0" prefWidth="141.0" text="     See Maintenance" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+    </AnchorPane>
+

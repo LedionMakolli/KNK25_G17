@@ -34,6 +34,7 @@ public class BaseController {
     @FXML protected MenuItem aboutProgram;
     @FXML protected MenuItem updateTable;
     @FXML protected Menu update;
+    @FXML protected MenuItem seeMaintenance;
 
 
     public void setAlbanianLanguage() {
@@ -188,6 +189,17 @@ public class BaseController {
         }
     }
 
+    @FXML
+    public void seeMaintenance(){
+        try{
+            SceneManager.load(SceneLocator.SEE_MAINTENANCE);
+        }catch(Exception e){
+            showErrorAlert("Unable to load Maintenances",
+                    "An error occurred while trying to open it");
+            e.printStackTrace();
+        }
+    }
+
 
     public void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -245,6 +257,7 @@ public class BaseController {
             if(addPayment != null) addContract.setVisible(false);
             if(updateTable != null) updateTable.setVisible(false);
             if(update != null) update.setVisible(false);
+            if(seeMaintenance!=null) seeMaintenance.setVisible(false);
         }
     }
 
