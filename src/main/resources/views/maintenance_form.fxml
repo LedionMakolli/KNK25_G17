@@ -104,7 +104,7 @@
                 <Label layoutX="20" layoutY="260" text="Statusi:"/>
                 <ComboBox fx:id="comboStatus" layoutX="150" layoutY="260" prefWidth="150"/>
 
-                <Label fx:id="labelStaff" layoutX="20" layoutY="300" text="Staff:"/>
+                <Label fx:id="labelStaff" layoutX="20" layoutY="300" text="%txt.StaffLabelMaintenance"/>
                 <ComboBox fx:id="comboStaff" layoutX="150" layoutY="300" prefWidth="150"/>
 
                 <Button text="Ruaj" fx:id="btnSave" layoutX="150" layoutY="330" onAction="#handleSaveMaintenance"/>
