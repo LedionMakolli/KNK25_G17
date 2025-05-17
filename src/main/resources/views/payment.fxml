@@ -63,6 +63,7 @@
            <Menu fx:id="update" mnemonicParsing="false" text="%txt.update">
               <items>
                  <MenuItem fx:id="updateTable" mnemonicParsing="false" onAction="#handleUpdateTable" text="%txt.updateTables" />
+                 <MenuItem fx:id="updateMaintenance" mnemonicParsing="false" text="%txt.updateMaintenance" onAction="#handleUpdateMaintenance"/>
               </items>
            </Menu>
            <Menu mnemonicParsing="false" text="%txt.Help">

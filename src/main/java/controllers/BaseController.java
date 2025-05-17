@@ -35,6 +35,7 @@ public class BaseController {
     @FXML protected MenuItem updateTable;
     @FXML protected Menu update;
     @FXML protected MenuItem seeMaintenance;
+    @FXML protected MenuItem updateMaintenance;
 
 
     public void setAlbanianLanguage() {
@@ -225,6 +226,15 @@ public class BaseController {
         }
     }
 
+    public void handleUpdateMaintenance() {
+        try {
+            SceneManager.load(SceneLocator.UPDATE_MAINTENANCE);
+        } catch(Exception e) {
+            showErrorAlert("Unable to load update Form", "An error occured while trying to load the Update page");
+
+        }
+    }
+
 //    protected void showAlerts(Alert.AlertType type, String key, Object... args) {
 //        ResourceBundle rb = LanguageManager.getInstance().getResourceBundle();
 //        Alert alert = new Alert(type);
@@ -258,6 +268,7 @@ public class BaseController {
             if(updateTable != null) updateTable.setVisible(false);
             if(update != null) update.setVisible(false);
             if(seeMaintenance!=null) seeMaintenance.setVisible(false);
+            if(updateMaintenance!=null) updateMaintenance.setVisible(false);
         }
     }
 
