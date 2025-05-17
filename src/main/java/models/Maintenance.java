@@ -33,7 +33,7 @@ public class Maintenance {
         int idCar = resultSet.getInt("idCar");
         String description = resultSet.getString("description");
         Date dateStart = resultSet.getDate("dateStart");
-        Date dateFinish = resultSet.getDate("dateFinish");
+        Date dateFinish = resultSet.getDate("dateFininsh");
         BigDecimal cost = resultSet.getBigDecimal("cost");
         StatusMaintenanceEnum status = StatusMaintenanceEnum.valueOf(resultSet.getString("status"));
         Integer idStaff = resultSet.getInt("idStaff");

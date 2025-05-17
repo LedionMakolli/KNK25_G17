@@ -78,7 +78,7 @@ public class PaymentsFormController extends BaseController{
 
 
             if(saved  != null){
-                SceneManager.load(SceneLocator.HOME_PAGE); //spo di ku duhna me qit
+                SceneManager.load(SceneLocator.SEE_PAYMENTS);
                 showAlert(Alert.AlertType.INFORMATION, "success", "success");
             }else{
                 showAlert(Alert.AlertType.ERROR, "fail", "fail");
