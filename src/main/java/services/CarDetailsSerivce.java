@@ -20,10 +20,11 @@ public class CarDetailsSerivce {
     public BigDecimal getDailyPrice(Cars car){
         this.currentCar = car;
         int carid = currentCar.getId();
+        BigDecimal divider = BigDecimal.valueOf(100);
         BigDecimal regularPrice = carRepository.getDailyPrice(carid);
         if (offersRepository.getByCarId(carid)){
             BigDecimal sale = offersRepository.getSale(carid);
-            return regularPrice.subtract(sale);
+            return regularPrice.subtract( regularPrice.multiply(sale).divide(divider));// kqyre qit rresht
         }
         return regularPrice;
     }

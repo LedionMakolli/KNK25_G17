@@ -42,7 +42,9 @@ public class PaymentsService {
       CarRepository carRepository = new CarRepository();
       if (offersRepository.getByCarId(carId)) {
           BigDecimal sale  = offersRepository.getSale(carId);
-          pricePerDay = carRepository.getDailyPrice(carId).subtract(sale);
+          BigDecimal devider = BigDecimal.valueOf(100);
+          pricePerDay = carRepository.getDailyPrice(carId);
+          pricePerDay = pricePerDay.subtract(sale.multiply(pricePerDay).divide(devider));
       }else{
           pricePerDay = carRepository.getDailyPrice(carId);
       }

@@ -125,12 +125,12 @@ public class CarDetailsController extends BaseController{
     }
 
     private void PopupSale(){
-        if (carPrice.compareTo(RealCarPrice) < 0) {
+        if (carPrice.compareTo(RealCarPrice) < 0 ) {
             showAlert(
                     Alert.AlertType.INFORMATION,
                     "Zbritje në këtë veturë!",
                     "Makina është në ofertë." +
-                            " Çmimi me zbritje është " + carPrice + "€ nga " + RealCarPrice + "€!"
+                            " Çmimi me zbritje është " + carPrice + "€ %txt.carSaleDetailForm " + RealCarPrice + "€!"
             );
         }
     }
