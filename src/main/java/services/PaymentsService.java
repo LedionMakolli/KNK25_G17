@@ -1,11 +1,9 @@
 package services;
 
-import models.Cars;
+import models.*;
 import models.Dto.CreatePaymentsDto;
-import models.Payments;
-import models.PromoCode;
-import models.Reservations;
 import repository.CarRepository;
+import repository.OffersRepository;
 import repository.PaymentsRepository;
 import repository.ReservationsRepository;
 
@@ -20,11 +18,13 @@ public class PaymentsService {
   private final PromoCodeService promoCodeService;
   private final PaymentsRepository paymentsRepository;
   private final ReservationsRepository reservationsRepository;
+  private final OffersRepository offersRepository;
 
   public PaymentsService() throws SQLException{
       this.promoCodeService = new PromoCodeService();
       this.paymentsRepository = new PaymentsRepository();
       this.reservationsRepository = new ReservationsRepository();
+      this.offersRepository = new OffersRepository();
   }
 
   public Reservations getReservationById(int reservationId) throws SQLException{
@@ -33,14 +33,19 @@ public class PaymentsService {
 
   public void calculateTotalNoDiscount(Payments payments, Reservations reservations) throws SQLException{
       int carId = reservations.getIdCar();
+      BigDecimal pricePerDay;
       Date start = reservations.getStartDate();
       Date end = reservations.getEndDate();
 
       long days = (end.getTime()-start.getTime()) / (1000 * 60 * 60 * 24); //kjo long se ma preciz se int edhe sbojke int ashtu kshtu
 //kjo getTime e kthen ne milisekonda e per qata krejt qikjo formule tani - 1000ms=1s, 60s = 1min, 60min = 1h, 24h = 1d
       CarRepository carRepository = new CarRepository();
-      BigDecimal pricePerDay = carRepository.getDailyPrice(carId);
-
+      if (offersRepository.getByCarId(carId)) {
+          BigDecimal sale  = offersRepository.getSale(carId);
+          pricePerDay = carRepository.getDailyPrice(carId).subtract(sale);
+      }else{
+          pricePerDay = carRepository.getDailyPrice(carId);
+      }
       BigDecimal totalNoDiscount = pricePerDay.multiply(BigDecimal.valueOf(days));
       payments.setTotalNoDiscount(totalNoDiscount);
   }

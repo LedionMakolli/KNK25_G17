@@ -61,6 +61,7 @@
                       <MenuItem fx:id="seePenalties" mnemonicParsing="false" onAction="#seePenalties" text="%txt.seePenalties" />
                       <MenuItem fx:id="seePayments" mnemonicParsing="false" onAction="#seePayments" text="%txt.seePayments" />
                       <MenuItem fx:id="seeReservations" mnemonicParsing="false" onAction="#seeReservations" text="%txt.seeReservations" />
+                      <MenuItem fx:id="Offers" mnemonicParsing="false" text="%txt.Offers" onAction="#Offers"/>
                       <MenuItem fx:id="SignOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
                   </items>
               </Menu>
@@ -78,7 +79,7 @@
               </Menu>
               <Menu mnemonicParsing="false" text="%txt.Help">
                   <items>
-                      <MenuItem mnemonicParsing="false" text="About" />
+                      <MenuItem mnemonicParsing="false" text="About" fx:id="aboutProgram" onAction="#seeAboutProgram" />
                   </items>
               </Menu>
 
@@ -92,7 +93,8 @@
               </Menu>
           </menus>
       </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <ImageView fx:id="imgCar" fitHeight="308.0" fitWidth="342.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="btnReserveNow" layoutX="408.0" layoutY="304.0" mnemonicParsing="false" onAction="#onReserveNow" prefHeight="34.0" prefWidth="200.0" text="%txt.ReserveNow">
