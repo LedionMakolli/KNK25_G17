@@ -3,7 +3,9 @@ package repository;
 import models.Dto.CreateOffersDto;
 import models.Dto.UpdateOffersDto;
 import models.Offers;
+import models.Reservations;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -94,4 +96,37 @@ public class OffersRepository extends BaseRepository<Offers, CreateOffersDto, Up
         }
     }
 
+    public boolean getByCarId(int carId){
+        String query = "Select COUNT(*) FROM Offers where idcar = ?";
+        try {
+            PreparedStatement ptsm = connection.prepareStatement(query);
+            ptsm.setInt(1,carId);
+            ResultSet rs = ptsm.executeQuery();
+
+            if (rs.next()){
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public BigDecimal getSale(int carid){
+        String query = "SELECT discount FROM Offers where idcar = ?";
+        try {
+            PreparedStatement ptsm = connection.prepareStatement(query);
+            ptsm.setInt(1,carid);
+            ResultSet rs = ptsm.executeQuery();
+
+            if (rs.next()) {
+                return rs.getBigDecimal("discount");
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

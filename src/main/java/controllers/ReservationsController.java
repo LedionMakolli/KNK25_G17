@@ -41,7 +41,8 @@ public class ReservationsController extends BaseController{
 
     private ReservationService reservationService;
 
-    public void initialize(){
+    public void initialize() throws SQLException {
+        super.initialize();
         try{
             this.reservationService = new ReservationService();
             loadReservations();

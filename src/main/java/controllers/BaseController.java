@@ -281,6 +281,7 @@ public class BaseController {
             if(update != null) update.setVisible(false);
             if(seeMaintenance!=null) seeMaintenance.setVisible(false);
             if(updateMaintenance!=null) updateMaintenance.setVisible(false);
+            if(Offers!=null) Offers.setVisible(false);
         }
     }
 

@@ -54,6 +54,7 @@
                         <MenuItem fx:id="seePenalties" mnemonicParsing="false" onAction="#seePenalties" text="%txt.seePenalties" />
                         <MenuItem fx:id="seePayments" mnemonicParsing="false" onAction="#seePayments" text="%txt.seePayments" />
                         <MenuItem fx:id="seeReservations" mnemonicParsing="false" onAction="#seeReservations" text="%txt.seeReservations" />
+                        <MenuItem fx:id="Offers" mnemonicParsing="false" text="%txt.Offers" onAction="#Offers"/>
                         <MenuItem fx:id="SignOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
                     </items>
                 </Menu>
@@ -71,7 +72,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="%txt.Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" text="About" fx:id="aboutProgram" onAction="#seeAboutProgram" />
                     </items>
                 </Menu>
 
@@ -85,6 +86,7 @@
                 </Menu>
             </menus>
         </MenuBar>
+
         <AnchorPane xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="400">
             <children>
                 <Label layoutX="20" layoutY="20" text="Makina:"/>
