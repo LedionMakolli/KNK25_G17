@@ -3,7 +3,6 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import models.Clients;
 import models.Dto.CreateClientDto;
@@ -13,34 +12,17 @@ import services.SceneManager;
 import services.LanguageManager;
 import utils.SceneLocator;
 
-public class CreateClientController {
+public class CreateClientController extends BaseController {
 
-    @FXML
-    private TextField txtFirstName;
-
-    @FXML
-    private TextField txtLastName;
-
-    @FXML
-    private TextField txtAge;
-
-    @FXML
-    private TextField txtPersonalNumber;
-
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private TextField txtUsername;
-
-    @FXML
-    private PasswordField txtPassword;
-
-    @FXML
-    private PasswordField txtConfirmPassword;
-
-    @FXML
-    private TextField txtTelephoneNumber;
+    @FXML private TextField txtFirstName;
+    @FXML private TextField txtLastName;
+    @FXML private TextField txtAge;
+    @FXML private TextField txtPersonalNumber;
+    @FXML private TextField txtEmail;
+    @FXML private TextField txtUsername;
+    @FXML private PasswordField txtPassword;
+    @FXML private PasswordField txtConfirmPassword;
+    @FXML private TextField txtTelephoneNumber;
 
     private ClientService clientService;
 
@@ -54,7 +36,7 @@ public class CreateClientController {
 
     @FXML
     private void handleCancelClick() throws Exception {
-        this.cleanFields();
+        cleanFields();
         SceneManager.load(SceneLocator.LOGIN_PAGE);
     }
 
@@ -65,22 +47,24 @@ public class CreateClientController {
             String confirmPassword = txtConfirmPassword.getText().trim();
 
             if (!password.equals(confirmPassword)) {
-                showAlert(AlertType.ERROR, "error.title", "error.passwordMismatch");
+                showAlertBasedOnLanguage(AlertType.ERROR, "error.title", "error.passwordMismatch");
                 return;
             }
-            Clients client = this.clientService.create(this.getClientInputData());
-            showAlert(AlertType.INFORMATION, "success.title", "success.clientRegistered");
-            this.cleanFields();
+
+            Clients client = clientService.create(getClientInputData());
+            showAlertBasedOnLanguage(AlertType.INFORMATION, "success.title", "success.clientRegistered");
+            cleanFields();
             SceneManager.load(SceneLocator.LOGIN_PAGE);
+
         } catch (Exception e) {
             e.printStackTrace();
-            if (e.getMessage().equals("Username is already taken")){
-                showAlert(AlertType.ERROR, "error.title", "error.usernameTaken");
-            }if (e.getMessage().equals("Client data is not valid!")){
-                showAlert(AlertType.WARNING,"warning.title","warning.emptyFields");
-            }
-            else {
-                showAlert(AlertType.ERROR, "error.title", "error.registrationFailed");
+            String msg = e.getMessage();
+            if ("Username is already taken".equals(msg)) {
+                showAlertBasedOnLanguage(AlertType.ERROR, "error.title", "error.usernameTaken");
+            } else if ("Client data is not valid!".equals(msg)) {
+                showAlertBasedOnLanguage(AlertType.WARNING, "warning.title", "warning.emptyFields");
+            } else {
+                showAlertBasedOnLanguage(AlertType.ERROR, "error.title", "error.registrationFailed");
             }
         }
     }
@@ -98,26 +82,15 @@ public class CreateClientController {
     }
 
     private CreateClientDto getClientInputData() {
-        String firstName = txtFirstName.getText().trim();
-        String lastName = txtLastName.getText().trim();
-        int age = Integer.parseInt(txtAge.getText().trim());
-        String personalNumber = txtPersonalNumber.getText().trim();
-        String email = txtEmail.getText().trim();
-        String username = txtUsername.getText().trim();
-        String password = txtPassword.getText().trim();
-        String salt = PasswordHasher.generateSalt();
-        String telephoneNumber = txtTelephoneNumber.getText().trim();
-        System.out.println("Salt is: " + salt);
+        String firstName=txtFirstName.getText().trim();
+        String lastName=txtLastName.getText().trim();
+        int age=Integer.parseInt(txtAge.getText().trim());
+        String personalNumber=txtPersonalNumber.getText().trim();
+        String email=txtEmail.getText().trim();
+        String username=txtUsername.getText().trim();
+        String password=txtPassword.getText().trim();
+        String salt=PasswordHasher.generateSalt();
+        String telephoneNumber= txtTelephoneNumber.getText().trim();
         return new CreateClientDto(firstName, lastName, age, personalNumber, email, username, password, salt, telephoneNumber);
-    }
-
-    private void showAlert(AlertType alertType, String titleKey, String messageKey) {
-        String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
-        String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

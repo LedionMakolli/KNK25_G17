@@ -1,7 +1,9 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import models.Dto.CreateOffersDto;
 import services.AddOfferService;
 
@@ -39,12 +41,19 @@ public class AddOffersController extends BaseController {
         );
 
         boolean saved = offerService.createOffer(offer);
-
         if (saved) {
-            showMessage("Sukses", "Oferta u shtua me sukses!");
+            showAlertBasedOnLanguage(
+                    AlertType.INFORMATION,
+                    "alert.success",
+                    "offer.added"
+            );
             clearFields();
         } else {
-            showMessage("Gabim", "Oferta nuk u shtua. Ka mundësi që makina ka ofertë ekzistuese.");
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "offer.exists"
+            );
         }
     }
 
@@ -56,35 +65,59 @@ public class AddOffersController extends BaseController {
 
         if (carIdText.isEmpty() || discountText.isEmpty()
                 || startDate == null || endDate == null) {
-            showMessage("Gabim", "Ju lutem plotësoni të gjitha fushat.");
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "error.fillAllFields"
+            );
             return false;
         }
 
         try {
             Integer.parseInt(carIdText);
         } catch (NumberFormatException e) {
-            showMessage("Gabim", "ID e makinës duhet të jetë numër.");
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "error.invalidCarId"
+            );
             return false;
         }
 
         try {
-            double discount = Double.parseDouble(discountText);
-            if (discount <= 0 || discount > 100) {
-                showMessage("Gabim", "Zbritja duhet të jetë midis 0 dhe 100.");
+            double disc = Double.parseDouble(discountText);
+            if (disc <= 0 || disc > 100) {
+                showAlertBasedOnLanguage(
+                        AlertType.ERROR,
+                        "alert.error",
+                        "error.invalidDiscountRange"
+                );
                 return false;
             }
         } catch (NumberFormatException e) {
-            showMessage("Gabim", "Zbritja duhet të jetë numër valid.");
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "error.invalidDiscountNumber"
+            );
             return false;
         }
 
         if (startDate.isBefore(LocalDate.now())) {
-            showMessage("Gabim", "Data e fillimit nuk mund të jetë në të kaluarën.");
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "error.startDatePast"
+            );
             return false;
         }
 
         if (!endDate.isAfter(startDate)) {
-            showMessage("Gabim", "Data e mbarimit duhet të jetë pas datës së fillimit.");
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "error.endBeforeStart"
+            );
             return false;
         }
 
@@ -101,13 +134,5 @@ public class AddOffersController extends BaseController {
         discount.clear();
         dpStartDate.setValue(null);
         dpEndDate.setValue(null);
-    }
-
-    private void showMessage(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

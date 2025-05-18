@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,18 +13,12 @@ import java.util.List;
 
 public class DocumentsController extends BaseController {
 
-    @FXML
-    private TableView<Documents> documentsTable;
-    @FXML
-    private TableColumn<Documents, Integer> idColumn;
-    @FXML
-    private TableColumn<Documents, Integer> contractIdColumn;
-    @FXML
-    private TableColumn<Documents, String> typeColumn;
-    @FXML
-    private TableColumn<Documents, String> pathColumn;
-    @FXML
-    private TableColumn<Documents, Date> uploadDateColumn;
+    @FXML private TableView<Documents> documentsTable;
+    @FXML private TableColumn<Documents, Integer> idColumn;
+    @FXML private TableColumn<Documents, Integer> contractIdColumn;
+    @FXML private TableColumn<Documents, String> typeColumn;
+    @FXML private TableColumn<Documents, String> pathColumn;
+    @FXML private TableColumn<Documents, Date> uploadDateColumn;
 
     private final DocumentsRepository documentsRepository;
 
@@ -32,8 +27,8 @@ public class DocumentsController extends BaseController {
             this.documentsRepository = new DocumentsRepository();
             super.initialize();
         } catch (Exception e) {
-            showErrorAlert("Initialization Error", "Failed to initialize Documents repository: " + e.getMessage());
-            throw new RuntimeException("Failed to initialize DocumentsRepository", e);
+            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.initDocumentsRepo");
+            throw new RuntimeException(e);
         }
     }
 
@@ -44,8 +39,7 @@ public class DocumentsController extends BaseController {
             setupTableColumns();
             refreshDocuments();
         } catch (Exception e) {
-            showErrorAlert("Initialization Error", "Failed to initialize Documents view: " + e.getMessage());
-            e.printStackTrace();
+            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.initDocumentsView");
         }
     }
 
@@ -57,8 +51,7 @@ public class DocumentsController extends BaseController {
             pathColumn.setCellValueFactory(new PropertyValueFactory<>("path"));
             uploadDateColumn.setCellValueFactory(new PropertyValueFactory<>("dataUpload"));
         } catch (Exception e) {
-            showErrorAlert("Column Setup Error", "Failed to setup table columns: " + e.getMessage());
-            e.printStackTrace();
+            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.columnSetup");
         }
     }
 
@@ -68,8 +61,7 @@ public class DocumentsController extends BaseController {
             List<Documents> documents = documentsRepository.getAll();
             documentsTable.getItems().setAll(documents);
         } catch (Exception e) {
-            showErrorAlert("Load Error", "Failed to load documents: " + e.getMessage());
-            e.printStackTrace();
+            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.loadDocuments");
         }
     }
 }

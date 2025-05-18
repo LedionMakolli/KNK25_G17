@@ -1,19 +1,17 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import services.UpdateMaintenanceService;
 
 public class UpdateMaintenanceController extends BaseController {
 
-    @FXML
-    private TextField txtId;
-
-    @FXML
-    private ComboBox<String> txtChooseStatus;
-
-    @FXML
-    private Button btnUpdate;
+    @FXML private TextField txtId;
+    @FXML private ComboBox<String> txtChooseStatus;
+    @FXML private Button btnUpdate;
 
     private UpdateMaintenanceService updateMaintenanceService;
 
@@ -24,8 +22,11 @@ public class UpdateMaintenanceController extends BaseController {
             this.updateMaintenanceService = new UpdateMaintenanceService();
             txtChooseStatus.getItems().addAll("PLANED", "IN_PROCESS", "FINISHED", "CANCELED");
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Error", "Failed to initialize service: " + e.getMessage());
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "error.initService"
+            );
         }
     }
 
@@ -35,12 +36,20 @@ public class UpdateMaintenanceController extends BaseController {
         String status = txtChooseStatus.getValue();
 
         if (idStr.isEmpty() || status == null) {
-            showAlert("Error", "Please fill all fields.");
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "error.fillAllFields"
+            );
             return;
         }
 
         if (!idStr.matches("\\d+")) {
-            showAlert("Error", "ID must be a number.");
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "error.invalidId"
+            );
             return;
         }
 
@@ -48,25 +57,27 @@ public class UpdateMaintenanceController extends BaseController {
 
         try {
             boolean updated = updateMaintenanceService.updateMaintenanceStatus(id, status);
-
             if (updated) {
-                showAlert("Success", "Maintenance status updated successfully.");
+                showAlertBasedOnLanguage(
+                        AlertType.INFORMATION,
+                        "alert.success",
+                        "maintenance.updated"
+                );
                 resetFields();
             } else {
-                showAlert("Info", "Maintenance record not found or update failed.");
+                showAlertBasedOnLanguage(
+                        AlertType.INFORMATION,
+                        "alert.info",
+                        "maintenance.notFound"
+                );
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Database Error", e.getMessage());
+            showAlertBasedOnLanguage(
+                    AlertType.ERROR,
+                    "alert.error",
+                    "error.database:" + e.getMessage()
+            );
         }
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     private void resetFields() {

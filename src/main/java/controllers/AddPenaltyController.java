@@ -1,7 +1,10 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import models.Dto.CreatePenaltyDto;
 import models.Penalties;
 import services.PenaltyService;
@@ -19,8 +22,6 @@ public class AddPenaltyController extends BaseController {
     @FXML private TextField txtFieldAmount;
     @FXML private DatePicker dpDate;
     @FXML private CheckBox cbPaid;
-    @FXML private Button btnSave;
-    @FXML private Button btnCancel;
 
     private PenaltyService penaltyService;
 
@@ -30,8 +31,7 @@ public class AddPenaltyController extends BaseController {
         try {
             this.penaltyService = new PenaltyService();
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to initialize service");
+            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.initService");
         }
     }
 
@@ -47,27 +47,23 @@ public class AddPenaltyController extends BaseController {
             CreatePenaltyDto dto = new CreatePenaltyDto(reservationId, reason, amount, paid);
             dto.setDate(dateTime);
 
-            PenaltyService penaltyService = new PenaltyService();
             Penalties penalty = penaltyService.addPenalty(dto);
-
             if (penalty != null) {
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Penalty added successfully");
+                showAlertBasedOnLanguage(AlertType.INFORMATION, "alert.success", "penalty.added");
                 clearForm();
                 SceneManager.load(SceneLocator.HOME_PAGE);
             } else {
-                showAlert(Alert.AlertType.ERROR, "Error", "Failed to add penalty");
+                showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "penalty.failedAdd");
             }
 
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Reservation ID and Amount must be valid numbers");
+            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.invalidNumbers");
         } catch (IllegalArgumentException e) {
-            showAlert(Alert.AlertType.ERROR, "Validation Error", e.getMessage());
+            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.validation");
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while saving the penalty");
+            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.savingPenalty");
         }
     }
-
 
     @FXML
     private void handleCancelClick() {
@@ -75,8 +71,7 @@ public class AddPenaltyController extends BaseController {
             clearForm();
             SceneManager.load(SceneLocator.HOME_PAGE);
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to navigate to homepage");
+            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.navigateHome");
         }
     }
 
