@@ -31,11 +31,14 @@ public class BaseController {
     @FXML protected MenuItem addContract;
     @FXML protected MenuItem menuAdd;
     @FXML protected MenuItem addPayment;
+    @FXML protected MenuItem addPenalty;
     @FXML protected MenuItem aboutProgram;
     @FXML protected MenuItem updateTable;
     @FXML protected Menu update;
     @FXML protected MenuItem seeMaintenance;
     @FXML protected MenuItem updateMaintenance;
+    @FXML protected MenuItem Offers;
+
 
 
     public void setAlbanianLanguage() {
@@ -198,6 +201,15 @@ public class BaseController {
             showErrorAlert("Unable to load Maintenances",
                     "An error occurred while trying to open it");
             e.printStackTrace();
+        }
+    }
+
+    public void Offers(){
+        try{
+            SceneManager.load(SceneLocator.OFFERS_FORM);
+        }catch (Exception e){
+            showErrorAlert("Unable to load Offers",
+                    "An error occurred while trying to open it");
         }
     }
 

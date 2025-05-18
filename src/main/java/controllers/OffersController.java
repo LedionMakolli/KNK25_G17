@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class OffersController {
+public class OffersController extends BaseController{
 
     @FXML private TableView<Offers> tblOffers;
     @FXML private TableColumn<Offers, String> colCarModel;
@@ -34,7 +34,7 @@ public class OffersController {
 
     @FXML
     public void initialize() {
-        colCarModel.setCellValueFactory(new PropertyValueFactory<>("carModel"));
+        colCarModel.setCellValueFactory(new PropertyValueFactory<>("carId"));
         colDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
         colStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         colEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
