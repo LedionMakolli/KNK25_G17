@@ -28,8 +28,10 @@ public boolean changePassword(String oldPassword, String newPassword){
                   return false;
               }
 
-              String newHashed = PasswordHasher.generateSaltedHash(newPassword, client.getSalt());
+              String newSalt = PasswordHasher.generateSalt();
+              String newHashed = PasswordHasher.generateSaltedHash(newPassword, newSalt);
               client.setPassword(newHashed);
+              client.setSalt(newSalt);
               UpdateClientDto updateClientDto = new UpdateClientDto(client.getId(), client.getAge(), client.getEmail(),newHashed, client.getSalt(), client.getTelephoneNumber());
               return clientRepository.update(updateClientDto) != null;
           }
@@ -41,8 +43,10 @@ public boolean changePassword(String oldPassword, String newPassword){
                   return false;
               }
 
-              String newHashed = PasswordHasher.generateSaltedHash(newPassword, staff.getSalt());
+              String newSalt = PasswordHasher.generateSalt();
+              String newHashed = PasswordHasher.generateSaltedHash(newPassword, newSalt);
               staff.setPassword(newHashed);
+              staff.setSalt(newSalt);
 
               UpdateStafDto updateStaffDto = new UpdateStafDto(staff.getId(), staff.getAge(), staff.getEmail(), newHashed, staff.getSalt(), staff.getTelephoneNumber(), staff.getPosition(), staff.getSalary());
               return staffRepository.update(updateStaffDto) != null;

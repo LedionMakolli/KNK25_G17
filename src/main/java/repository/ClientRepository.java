@@ -117,6 +117,12 @@ public class ClientRepository extends BaseRepository<Clients, CreateClientDto, U
             parametrat.add(klientetDto.getTelephoneNumber());
             hasUpdates = true;
         }
+        if (klientetDto.getSalt() != null) {
+            query.append("SALT = ?, ");
+            parametrat.add(klientetDto.getSalt());
+            hasUpdates = true;
+        }
+
         if (!hasUpdates) {
             return getById(klientetDto.getId());
         }

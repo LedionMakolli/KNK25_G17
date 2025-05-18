@@ -119,6 +119,11 @@ public class StaffRepository extends BaseRepository<Staff, CreateStafDto, Update
             parametrat.add(stafiDto.getSalary());
             hasUpdates = true;
         }
+        if (stafiDto.getSalt() != null) {
+            query.append("SALT = ?, ");
+            parametrat.add(stafiDto.getSalt());
+            hasUpdates = true;
+        }
 
         if (!hasUpdates) {
             return getById(stafiDto.getId());
