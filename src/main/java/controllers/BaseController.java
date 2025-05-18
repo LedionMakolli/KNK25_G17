@@ -38,6 +38,7 @@ public class BaseController {
     @FXML protected MenuItem seeMaintenance;
     @FXML protected MenuItem updateMaintenance;
     @FXML protected MenuItem Offers;
+    @FXML protected MenuItem addOffer;
 
 
 
@@ -247,6 +248,14 @@ public class BaseController {
         }
     }
 
+    public void handleAddOffer() {
+        try {
+            SceneManager.load(SceneLocator.ADD_OFFER);
+        } catch (Exception e) {
+            showErrorAlert("Unable to load add Offer Form", "An error occured while trying to load the add Offer page");
+        }
+    }
+
 //    protected void showAlerts(Alert.AlertType type, String key, Object... args) {
 //        ResourceBundle rb = LanguageManager.getInstance().getResourceBundle();
 //        Alert alert = new Alert(type);
@@ -282,6 +291,7 @@ public class BaseController {
             if(seeMaintenance!=null) seeMaintenance.setVisible(false);
             if(updateMaintenance!=null) updateMaintenance.setVisible(false);
             if(Offers!=null) Offers.setVisible(false);
+            if(addOffer!=null) addOffer.setVisible(false);
         }
     }
 
