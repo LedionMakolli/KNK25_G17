@@ -6,6 +6,7 @@ import models.Dto.CreateOffersDto;
 import services.AddOfferService;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class AddOffersController extends BaseController {
@@ -19,19 +20,11 @@ public class AddOffersController extends BaseController {
 
     @FXML
     public void initialize() {
-        dpStartDate.setDayCellFactory(picker -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                setDisable(empty || date.isBefore(LocalDate.now()));
-            }
-        });
-
-        dpStartDate.valueProperty().addListener((obs, vjetra, reja) -> {
-            if (reja != null) {
-                dpEndDate.setValue(reja.plusDays(1));
-            }
-        });
+        try {
+            super.initialize();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -56,12 +49,13 @@ public class AddOffersController extends BaseController {
     }
 
     private boolean inputsValid() {
-        String carIdText = carId.getText();
+        String carIdText    = carId.getText();
         String discountText = discount.getText();
         LocalDate startDate = dpStartDate.getValue();
-        LocalDate endDate = dpEndDate.getValue();
+        LocalDate endDate   = dpEndDate.getValue();
 
-        if (carIdText.isEmpty() || discountText.isEmpty() || startDate == null || endDate == null) {
+        if (carIdText.isEmpty() || discountText.isEmpty()
+                || startDate == null || endDate == null) {
             showMessage("Gabim", "Ju lutem plotësoni të gjitha fushat.");
             return false;
         }
@@ -84,7 +78,12 @@ public class AddOffersController extends BaseController {
             return false;
         }
 
-        if (endDate.isBefore(startDate)) {
+        if (startDate.isBefore(LocalDate.now())) {
+            showMessage("Gabim", "Data e fillimit nuk mund të jetë në të kaluarën.");
+            return false;
+        }
+
+        if (!endDate.isAfter(startDate)) {
             showMessage("Gabim", "Data e mbarimit duhet të jetë pas datës së fillimit.");
             return false;
         }
