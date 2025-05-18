@@ -79,13 +79,13 @@ public class PaymentsFormController extends BaseController{
 
             if(saved  != null){
                 SceneManager.load(SceneLocator.SEE_PAYMENTS);
-                showAlert(Alert.AlertType.INFORMATION, "success", "success");
+                showAlert(Alert.AlertType.INFORMATION, "success.title", "success.paymentForm");
             }else{
-                showAlert(Alert.AlertType.ERROR, "fail", "fail");
+                showAlert(Alert.AlertType.ERROR, "error.title", "error.paymentForm");
             }
         }catch (Exception e){
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "fail", "fail");
+            showAlert(Alert.AlertType.ERROR, "error.title", "error.paymentProcess");
         }
     }
 

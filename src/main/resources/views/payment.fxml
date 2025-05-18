@@ -91,26 +91,26 @@
                <children>
                   <HBox spacing="20.0">
                      <children>
-                        <Label fx:id="txtReservationId" prefHeight="25.0" prefWidth="97.0" text="Reservation Id:" />
+                        <Label fx:id="txtReservationId" prefHeight="25.0" prefWidth="97.0" text="%txt.reservationID" />
                         <TextField fx:id="txtFieldReservationId" />
                      </children>
                   </HBox>
                   <HBox spacing="20.0">
                      <children>
-                        <Label fx:id="txtPaymentType" prefHeight="25.0" prefWidth="98.0" text="Type Of Payment:" />
+                        <Label fx:id="txtPaymentType" prefHeight="25.0" prefWidth="98.0" text="%txt.typeOfPayment" />
                         <ComboBox fx:id="cbPaymentType" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox spacing="20.0">
                      <children>
-                        <Label fx:id="txtPromocodeId" prefHeight="25.0" prefWidth="98.0" text="Promocode Id:" />
+                        <Label fx:id="txtPromocodeId" prefHeight="25.0" prefWidth="98.0" text="%txt.promocodeId" />
                         <TextField fx:id="txtFieldPromocodeId" />
                      </children>
                   </HBox>
 
                   <HBox spacing="20.0">
                      <children>
-                        <Label fx:id="txtDate" prefHeight="25.0" prefWidth="98.0" text="Date: " />
+                        <Label fx:id="txtDate" prefHeight="25.0" prefWidth="98.0" text="%txt.date" />
                         <DatePicker fx:id="dpDate" prefHeight="25.0" prefWidth="149.0" />
                      </children>
                   </HBox>
@@ -118,8 +118,8 @@
             </VBox>
             <HBox layoutX="202.0" layoutY="249.0" spacing="40.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="33.0" prefWidth="97.0" text="Cancel" />
-                  <Button mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="33.0" prefWidth="97.0" text="Save" />
+                  <Button mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="33.0" prefWidth="97.0" text="%btn.cancel" />
+                  <Button mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="33.0" prefWidth="97.0" text="%btn.save" />
                </children>
             </HBox>
          </children>

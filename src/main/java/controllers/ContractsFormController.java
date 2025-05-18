@@ -65,13 +65,13 @@ public class ContractsFormController extends BaseController{
 
             if(contract != null){
                 SceneManager.load(SceneLocator.SEE_CONTRACTS);
-                showAlert(Alert.AlertType.INFORMATION, "success", "success");
+                showAlert(Alert.AlertType.INFORMATION, "success.title", "success.contractForm");
             }else {
-                showAlert(Alert.AlertType.ERROR, "fail", "fail");
+                showAlert(Alert.AlertType.ERROR, "error.title", "error.contractForm");
             }
         }catch(Exception e){
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "fail", "fail");
+            showAlert(Alert.AlertType.ERROR, "error.title", "error.contractProcess");
         }
     }
 

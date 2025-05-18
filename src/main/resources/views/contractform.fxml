@@ -92,25 +92,25 @@
                <children>
                   <HBox spacing="20.0">
                      <children>
-                        <Label fx:id="txtReservationId" prefHeight="25.0" prefWidth="99.0" text="Reservation Id:" />
+                        <Label fx:id="txtReservationId" prefHeight="25.0" prefWidth="99.0" text="%txt.reservationID" />
                         <TextField fx:id="txtFieldReservationId" />
                      </children>
                   </HBox>
                   <HBox spacing="20.0">
                      <children>
-                        <Label fx:id="txtPaymentId" prefHeight="25.0" prefWidth="99.0" text="Payment Id:" />
+                        <Label fx:id="txtPaymentId" prefHeight="25.0" prefWidth="99.0" text="%txt.paymentId" />
                         <TextField fx:id="txtFieldPaymentId" />
                      </children>
                   </HBox>
                   <HBox spacing="20.0">
                      <children>
-                        <Label fx:id="txtAmount" prefHeight="25.0" prefWidth="99.0" text="Amount:" />
+                        <Label fx:id="txtAmount" prefHeight="25.0" prefWidth="99.0" text="%txt.amount" />
                         <TextField fx:id="txtFieldAmount" />
                      </children>
                   </HBox>
                   <HBox spacing="20.0">
                      <children>
-                        <Label fx:id="txtDate" prefHeight="25.0" prefWidth="99.0" text="Date:" />
+                        <Label fx:id="txtDate" prefHeight="25.0" prefWidth="99.0" text="%txt.date" />
                         <DatePicker fx:id="dpDate" prefHeight="25.0" prefWidth="149.0" />
                      </children>
                   </HBox>
@@ -118,8 +118,8 @@
             </VBox>
             <HBox layoutX="203.0" layoutY="292.0" spacing="50.0">
                <children>
-                  <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="38.0" prefWidth="99.0" text="Cancel" />
-                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="38.0" prefWidth="99.0" text="Save" />
+                  <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="38.0" prefWidth="99.0" text="btn.cancel" />
+                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="38.0" prefWidth="99.0" text="btn.save" />
                </children>
             </HBox>
          </children>
