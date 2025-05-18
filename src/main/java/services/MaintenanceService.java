@@ -5,6 +5,7 @@ import models.Dto.CreateMaintenanceDto;
 import models.Maintenance;
 import models.Reservations;
 import models.Staff;
+import models.enums.StaffPositionEnum;
 import models.enums.StatusMaintenanceEnum;
 import repository.MaintenanceRepository;
 
@@ -50,13 +51,13 @@ public class MaintenanceService {
         maintenanceRepository.create(dto);
     }
 
-    /////////////////////////////////////
+
 
 public List<Maintenance> getMaintenanceByRole() throws SQLException{
         List<Maintenance> maintenances;
         String role = SessionManager.getInstance().getCurrentRole();
 
-        if("staff".equals(role)){
+        if(SessionManager.getInstance().getCurrentStaff().getPosition().equals(StaffPositionEnum.STAFF)){
             int staffId = SessionManager.getInstance().getCurrentStaff().getId();
             maintenances = maintenanceRepository.getStaffById(staffId);
         } else{
