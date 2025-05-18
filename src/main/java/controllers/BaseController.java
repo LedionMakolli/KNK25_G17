@@ -294,7 +294,13 @@ public class BaseController {
             if(addOffer!=null) addOffer.setVisible(false);
         }
     }
-
-
-
+    protected void showAlertBasedOnLanguage(Alert.AlertType alertType, String titleKey, String messageKey) {
+        String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
+        String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }
