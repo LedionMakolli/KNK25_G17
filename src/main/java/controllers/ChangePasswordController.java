@@ -45,23 +45,23 @@ public class ChangePasswordController extends BaseController {
         String confirmPassword = pwdFieldConfirm.getText().trim();
 
         if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "warning.title", "warning.emptyFields");
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING, "warning.title", "warning.emptyFields");
             return;
         }
         if(!newPassword.equals(confirmPassword)){
-            showAlert(Alert.AlertType.ERROR, "error.title", "error.passwordMismatch");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.passwordMismatch");
             return;
         }
 
         try{
             boolean success = changePasswordService.changePassword(oldPassword, newPassword);
             if(success){
-                showAlert( Alert.AlertType.INFORMATION, "success.title", "success.passwordChanged");
+                showAlertBasedOnLanguage( Alert.AlertType.INFORMATION, "success.title", "success.passwordChanged");
             }else {
-                showAlert(Alert.AlertType.ERROR, "error.title", "error.wrongOldPassword");
+                showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.wrongOldPassword");
             }
         }catch (Exception e){
-            showAlert(Alert.AlertType.ERROR, "error.title", "error.changingPassword");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.changingPassword");
         }
     }
     @FXML

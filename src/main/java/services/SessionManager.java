@@ -9,11 +9,8 @@ public class SessionManager {
     private String currentRole;
     private Clients currentClient;
     private Staff currentStaff;
-    private String theme; //nese nuk e bojna ma mire me fshi
 
-    private SessionManager(){
-        this.theme = "white-theme";
-    }
+
     public static SessionManager getInstance(){
         if(sessionManager == null){
             sessionManager = new SessionManager();
@@ -56,14 +53,6 @@ public class SessionManager {
 
     public void setCurrentRole(String role){
         this.currentRole = role;
-    }
-
-    public void setTheme(String theme){
-        this.theme = theme;
-    }
-
-    public String getTheme(){
-        return this.theme;
     }
 
     public boolean isClient() {

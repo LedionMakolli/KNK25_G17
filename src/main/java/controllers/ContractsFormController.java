@@ -43,10 +43,22 @@ public class ContractsFormController extends BaseController{
             this.contractService = new ContractService();
         }catch(SQLException e){
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "error.title", "error.contractFormError");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.contractFormError");
         }
     }
+    private boolean validateDate(LocalDate dateDp){
+        LocalDate today = LocalDate.now();
 
+        if(dateDp.isBefore(today)){
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.dateNotAccepted");
+            return false;
+        }
+        if(dateDp.isAfter(today)){
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.dateNotAccepted");
+            return false;
+        }
+        return true;
+    }
     @FXML
     private void handleSaveClick(){
         String reservationIdTxt = txtFieldReservationId.getText();
@@ -55,10 +67,12 @@ public class ContractsFormController extends BaseController{
         LocalDate dateDp = dpDate.getValue();
 
         if(reservationIdTxt.isEmpty() || paymentIdTxt.isEmpty() || amountTxt.isEmpty() || dateDp == null){
-            showAlert(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
             return;
         }
-
+        if(!validateDate(dateDp)){
+            return;
+        }
         int reservationId = Integer.parseInt(reservationIdTxt);
         int paymentId = Integer.parseInt(paymentIdTxt);
         double amount = Double.parseDouble(amountTxt);
@@ -70,13 +84,13 @@ public class ContractsFormController extends BaseController{
 
             if(contract != null){
                 SceneManager.load(SceneLocator.SEE_CONTRACTS);
-                showAlert(Alert.AlertType.INFORMATION, "success.title", "success.contractForm");
+                showAlertBasedOnLanguage(Alert.AlertType.INFORMATION, "success.title", "success.contractForm");
             }else {
                 showAlert(Alert.AlertType.ERROR, "error.title", "error.contractForm");
             }
         }catch(Exception e){
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "error.title", "error.contractProcess");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.contractProcess");
         }
     }
 
