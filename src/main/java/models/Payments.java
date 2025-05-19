@@ -31,13 +31,12 @@ public class Payments {
         int id = resultSet.getInt("id");
         int idReservation = resultSet.getInt("idreservation");
         String typeStr = resultSet.getString("type");
-        int promoCodeId = 0;
         Integer promoCode = resultSet.getInt("promoCodeId");
         BigDecimal totalNoDiscount = resultSet.getBigDecimal("totalnodiscount");
         BigDecimal totalFinal = resultSet.getBigDecimal("totalfinal");
         LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
 
-        return new Payments(id, idReservation, typeStr, promoCodeId, totalNoDiscount, totalFinal, date);
+        return new Payments(id, idReservation, typeStr, promoCode, totalNoDiscount, totalFinal, date);
     }
 
     public int getId() {
