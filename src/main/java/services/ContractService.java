@@ -3,6 +3,7 @@ package services;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Contract;
+import models.Dto.CreateContractDto;
 import repository.ContractRepository;
 
 import java.sql.SQLException;
@@ -13,6 +14,10 @@ public class ContractService {
 
     public ContractService() throws SQLException {
         this.contractRepository = new ContractRepository();
+    }
+
+    public Contract createContract(CreateContractDto contractDto) {
+        return contractRepository.create(contractDto);
     }
 
     public List<Contract> checkRole() throws SQLException {

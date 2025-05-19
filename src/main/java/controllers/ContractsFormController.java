@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import models.Contract;
 import models.Dto.CreateContractDto;
 import repository.ContractRepository;
+import services.ContractService;
 import services.SceneManager;
 import utils.SceneLocator;
 
@@ -33,11 +34,17 @@ public class ContractsFormController extends BaseController{
     @FXML
     private Button btnCancel;
 
-
+    private ContractService contractService;
 
     @Override
     public void initialize() throws SQLException {
         super.initialize();
+        try{
+            this.contractService = new ContractService();
+        }catch(SQLException e){
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "error.title", "error.contractFormError");
+        }
     }
 
     @FXML
@@ -59,9 +66,7 @@ public class ContractsFormController extends BaseController{
 
         try{
             CreateContractDto contractDto = new CreateContractDto(paymentId, reservationId, amount, date);
-
-            ContractRepository contractRepository = new ContractRepository();
-            Contract contract = contractRepository.create(contractDto);
+            Contract contract = contractService.createContract(contractDto);
 
             if(contract != null){
                 SceneManager.load(SceneLocator.SEE_CONTRACTS);
