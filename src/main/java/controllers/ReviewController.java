@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -15,17 +16,20 @@ import utils.SceneLocator;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ReviewController extends BaseController{
 
-    @FXML private ComboBox<Cars>     cmbCar;
+    @FXML private ComboBox<String>     cmbCar;
     @FXML private ChoiceBox<Integer> choiceRating;
     @FXML private TextArea           txtReview;
     @FXML private Button             btnSubmitReview;
     @FXML private Button             btnCancelReview;
 
     private final ReviewsRepository repo;
+    private Map<String, Cars> modelToCarMap = new HashMap<>();
 
     public ReviewController() {
         try {
@@ -37,32 +41,25 @@ public class ReviewController extends BaseController{
 
     @FXML
     public void initialize() {
-        List<Cars> cars = new CarService().getAllCars();
-        cmbCar.setItems(FXCollections.observableArrayList(cars));
+        List<Cars> allCars = new CarService().getAllCars();
+        ObservableList<String> carModels = FXCollections.observableArrayList();
 
-        cmbCar.setCellFactory(lv -> new ListCell<>() {
-            @Override
-            protected void updateItem(Cars car, boolean empty) {
-                super.updateItem(car, empty);
-                setText(empty || car == null ? null : car.getModel());
-            }
-        });
+        for (Cars car : allCars) {
+            modelToCarMap.put(car.getModel(), car);
+            carModels.add(car.getModel());
+        }
 
-        // e rregullon qe me dal modeli pasi te selektohet
-        cmbCar.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(Cars car, boolean empty) {
-                super.updateItem(car, empty);
-                setText(empty || car == null ? null : car.getModel());
-            }
-        });
+        cmbCar.setItems(carModels);
+
+
 
         choiceRating.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5));
     }
 
     @FXML
     private void onSubmitReview(ActionEvent event) {
-        Cars selectedCar = cmbCar.getValue();
+        String selectedModel = cmbCar.getValue();
+        Cars selectedCar = modelToCarMap.get(selectedModel);
         Integer rating   = choiceRating.getValue();
         String  text     = txtReview.getText();
 
