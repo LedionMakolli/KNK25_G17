@@ -9,6 +9,7 @@ import models.Cars;
 import models.Dto.CreateReviewsDto;
 import repository.ReviewsRepository;
 import services.CarService;
+import services.ReviewsService;
 import services.SceneManager;
 import services.SessionManager;
 import utils.SceneLocator;
@@ -28,12 +29,12 @@ public class ReviewController extends BaseController{
     @FXML private Button             btnSubmitReview;
     @FXML private Button             btnCancelReview;
 
-    private final ReviewsRepository repo;
+    private final ReviewsService reviewsService;
     private Map<String, Cars> modelToCarMap = new HashMap<>();
 
     public ReviewController() {
         try {
-            this.repo = new ReviewsRepository();
+            this.reviewsService = new ReviewsService();
         } catch (SQLException e) {
             throw new RuntimeException("Unable to initialize ReviewsRepository", e);
         }
@@ -82,7 +83,7 @@ public class ReviewController extends BaseController{
 
 
         try {
-            if (repo.create(dto) != null) {
+            if (reviewsService.createReivew(dto) != null) {
                 new Alert(Alert.AlertType.INFORMATION,
                         "Thank you! Your review has been submitted.")
                         .showAndWait();

@@ -7,6 +7,7 @@ import repository.PenaltiesRepository;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class PenaltyService {
     private final PenaltiesRepository repository;
@@ -33,5 +34,13 @@ public class PenaltyService {
         if (dto.getDate() == null || dto.getDate().isBefore(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0))) {
             throw new IllegalArgumentException("Data duhet të jetë sot ose në të ardhmen.");
         }
+    }
+
+    public List<Penalties> getByClientId(int clientId) throws SQLException {
+        return this.repository.getByClientId(clientId);
+    }
+
+    public List<Penalties> getAll() {
+        return this.repository.getAll();
     }
 }

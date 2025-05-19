@@ -29,11 +29,9 @@ public class HomePageController extends BaseController{
     @FXML private Button btnViewDetailsCClass;
 
     private final CarService carService;
-    private final CarRepository carRepository;
 
     public HomePageController() throws Exception {
         this.carService=new CarService();
-        this.carRepository=new CarRepository();
         super.initialize();
     }
 
@@ -49,7 +47,7 @@ public class HomePageController extends BaseController{
                             SceneLocator.SEE_CAR_DETAILS
                     );
 
-            Cars car = carRepository.getById(carId);
+            Cars car = carService.getById(carId);
 
             SessionManager.getInstance().setSelectedCar(car);
 

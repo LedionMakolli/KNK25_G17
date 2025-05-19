@@ -16,6 +16,7 @@ import repository.StaffRepository;
 import services.CarService;
 import services.MaintenanceService;
 import services.SessionManager;
+import services.StaffService;
 
 import java.math.BigDecimal;
 import java.sql.Array;
@@ -54,14 +55,14 @@ public class MaintenanceFormController extends BaseController{
 
     private CarService carService;
     private MaintenanceService maintenanceService;
-    StaffRepository staffRepository;
+    private StaffService staffService;
     private Map<String, Cars> modelToCarMap = new HashMap<>();
     private Map<String, Staff> usernameToStaffMap = new HashMap<>();
 
     public void initialize() throws SQLException {
         this.carService = new CarService();
         this.maintenanceService = new MaintenanceService();
-        this.staffRepository = new StaffRepository();
+        this.staffService = new StaffService();
 
         List<Cars> allCars = carService.getAllCars();
         ObservableList<String> carModels = FXCollections.observableArrayList();
@@ -71,7 +72,7 @@ public class MaintenanceFormController extends BaseController{
             carModels.add(car.getModel());
         }
 
-        List<Staff> allStaff = staffRepository.getAll();
+        List<Staff> allStaff = staffService.getAllStaff();
         ObservableList<String> staffUsernames = FXCollections.observableArrayList();
 
         for (Staff staff: allStaff){
