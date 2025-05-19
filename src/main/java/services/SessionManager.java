@@ -1,5 +1,6 @@
 package services;
 
+import models.Cars;
 import models.Clients;
 import models.Staff;
 
@@ -75,6 +76,16 @@ public class SessionManager {
 
     public boolean isLoggedIn() {
         return currentClient != null || currentStaff != null;
+    }
+
+    private Cars selectedCar;
+
+    public void setSelectedCar(Cars car) {
+        this.selectedCar = car;
+    }
+
+    public Cars getSelectedCar() {
+        return selectedCar;
     }
 
 }

@@ -53,29 +53,38 @@ public class CarDetailsController extends BaseController{
     }
 
     @FXML
-    public void initialize() throws SQLException {
-        super.initialize();
+    public void initialize() {
 
-        if(SessionManager.getInstance().isStaff()){
+        if (SessionManager.getInstance().isStaff()) {
             btnReserveNow.setDisable(true);
             btnReserveNow.setTooltip(new Tooltip("Only clients can make reservation"));
         }
+
+        Cars selected = SessionManager.getInstance().getSelectedCar();
+        if (selected != null) {
+            try {
+                setCar(selected);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 
     public void setCar(Cars car) throws Exception {
         this.currentCar = car;
-        lblPlates.setText("Targat: " + car.getLicensePlate());
+        lblPlates.setText("Plates: " + car.getLicensePlate());
         lblModel.setText("Model: " + car.getModel());
-        lblColor.setText("Ngjyra: " + car.getColor());
-        lblYear.setText("Viti i Prodhimit: " + car.getYearOfManufacture());
-        lblMileage.setText("Kilometrazha: " + car.getMileage() + " km");
-        lblSeats.setText("Ulëset: " + car.getSeatCount());
-        lblFuel.setText("Lloji i karburantit: " + car.getFuelType());
+        lblColor.setText("Color: " + car.getColor());
+        lblYear.setText("Year: " + car.getYearOfManufacture());
+        lblMileage.setText("Mileage: " + car.getMileage() + " km");
+        lblSeats.setText("Seats: " + car.getSeatCount());
+        lblFuel.setText("Fuel: " + car.getFuelType());
         carPrice = carDetailsSerivce.getDailyPrice(car);
         RealCarPrice = BigDecimal.valueOf(car.getDailyPrice());
-        lblPriceDay.setText("Çmimi ditor: " + carPrice + "€");
-        lblStatus.setText("Statusi: " + car.getStatus());
-        lblTransmissionType.setText("Transmisioni: " + car.getTransmissionType());
+        lblPriceDay.setText("Price/Day: " + carPrice + "€");
+        lblStatus.setText("Status: " + car.getStatus());
+        lblTransmissionType.setText("Transmission Type: " + car.getTransmissionType());
         Image image = new Image(
                 getClass().getResourceAsStream(car.getImagePath())
         );
