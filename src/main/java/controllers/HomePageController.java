@@ -13,10 +13,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import models.Cars;
 import repository.CarRepository;
-import services.CarService;
-import services.CarService2;
-import services.LanguageManager;
-import services.SceneManager;
+import services.*;
 import utils.SceneLocator;
 
 import java.io.IOException;
@@ -42,12 +39,9 @@ public class HomePageController extends BaseController{
 
     @FXML
     private void handleCarButtonClick(ActionEvent event) {
-//        Button source = (Button) event.getSource();
-//        int carId = Integer.parseInt(source.getUserData().toString());
-//        showCarDetails(carId, event);
         try {
             int carId = Integer.parseInt(
-                    ((Button)event.getSource()).getUserData().toString()
+                    ((Button) event.getSource()).getUserData().toString()
             );
 
             CarDetailsController detailsCtrl =
@@ -56,7 +50,9 @@ public class HomePageController extends BaseController{
                     );
 
             Cars car = carRepository.getById(carId);
-            System.out.println("Hellooo");
+
+            SessionManager.getInstance().setSelectedCar(car);
+
             detailsCtrl.setCar(car);
 
         } catch (Exception e) {
@@ -64,9 +60,10 @@ public class HomePageController extends BaseController{
             showErrorAlert(
                     "Unable to load car details",
                     "An error occurred while loading details for car ID " +
-                            ((Button)event.getSource()).getUserData()
+                            ((Button) event.getSource()).getUserData()
             );
         }
     }
+
 }
 

@@ -72,20 +72,20 @@ public class SceneManager {
         }
     }
 
-    private void loadParent(String path) throws Exception{  // nashta me fshi
+    private void loadParent(String path) throws Exception{
         Parent parent = getParent(path);
         this.currentPath = path;
         scene.setRoot(parent);
     }
 
-    private void loadParent(String path, Pane pane) throws Exception { // nashta me fshi
+    private void loadParent(String path, Pane pane) throws Exception {
         pane.getChildren().clear();
 
         Parent parent = getParent(path);
         pane.getChildren().add(parent);
     }
 
-    private Parent getParent(String path) throws Exception{ // me ndrru ne loadParentNode?
+    private Parent getParent(String path) throws Exception{
         FXMLLoader loader = new FXMLLoader(
                 this.getClass().getResource(path)
         );
