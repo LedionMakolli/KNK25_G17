@@ -46,7 +46,19 @@ public class ContractsFormController extends BaseController{
             showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.contractFormError");
         }
     }
+    private boolean validateDate(LocalDate dateDp){
+        LocalDate today = LocalDate.now();
 
+        if(dateDp.isBefore(today)){
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.dateNotAccepted");
+            return false;
+        }
+        if(dateDp.isAfter(today)){
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.dateNotAccepted");
+            return false;
+        }
+        return true;
+    }
     @FXML
     private void handleSaveClick(){
         String reservationIdTxt = txtFieldReservationId.getText();
@@ -58,7 +70,9 @@ public class ContractsFormController extends BaseController{
             showAlertBasedOnLanguage(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
             return;
         }
-
+        if(!validateDate(dateDp)){
+            return;
+        }
         int reservationId = Integer.parseInt(reservationIdTxt);
         int paymentId = Integer.parseInt(paymentIdTxt);
         double amount = Double.parseDouble(amountTxt);
