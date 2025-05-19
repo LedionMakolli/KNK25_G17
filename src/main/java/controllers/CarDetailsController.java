@@ -2,28 +2,20 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import models.Cars;
-import repository.CarRepository;
 import services.CarDetailsSerivce;
-import services.LanguageManager;
 import services.SceneManager;
 import services.SessionManager;
 import utils.SceneLocator;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class CarDetailsController extends BaseController{
 
@@ -57,7 +49,7 @@ public class CarDetailsController extends BaseController{
 
         if (SessionManager.getInstance().isStaff()) {
             btnReserveNow.setDisable(true);
-            btnReserveNow.setTooltip(new Tooltip("Only clients can make reservation"));
+            btnReserveNow.setTooltip(new Tooltip("tooltip.clientCanReserve"));
         }
 
         Cars selected = SessionManager.getInstance().getSelectedCar();
@@ -69,7 +61,6 @@ public class CarDetailsController extends BaseController{
             }
         }
     }
-
 
     public void setCar(Cars car) throws Exception {
         this.currentCar = car;
@@ -90,6 +81,7 @@ public class CarDetailsController extends BaseController{
         );
         imgCar.setImage(image);
         this.PopupSale();
+
     }
     @FXML
     public void goToHomepage(ActionEvent event) throws Exception {
@@ -112,24 +104,11 @@ public class CarDetailsController extends BaseController{
 
         } catch(Exception ex) {
             ex.printStackTrace();
-            showErrorAlert("…", "…");
-        }
-    }
-
-    private void setupReserveButton() {
-        SessionManager sessionManager = SessionManager.getInstance();
-        ResourceBundle rb = LanguageManager.getInstance().getResourceBundle();
-
-        if (sessionManager.isClient()) {
-            btnReserveNow.setDisable(false);
-            btnReserveNow.setVisible(true);
-        } else if (sessionManager.isStaff()) {
-            btnReserveNow.setDisable(true);
-            btnReserveNow.setVisible(false);
-            btnReserveNow.setTooltip(new Tooltip(rb.getString("tooltip.staffCannotReserve")));
-        } else {
-            btnReserveNow.setDisable(true);
-            btnReserveNow.setTooltip(new Tooltip("Please log in as a client to reserve"));
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadReservation.header",
+                    "error.loadReservation.content"
+            );
         }
     }
 
