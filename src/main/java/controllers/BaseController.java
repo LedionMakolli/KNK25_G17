@@ -1,11 +1,7 @@
 package controllers;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import models.enums.UserTypeEnum;
 import services.LanguageManager;
 import services.SceneManager;
 import services.SessionManager;
@@ -13,7 +9,6 @@ import utils.SceneLocator;
 
 import java.sql.SQLException;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class BaseController {
     protected SceneManager sceneManager = SceneManager.getInstance();
@@ -47,7 +42,11 @@ public class BaseController {
             languageManager.setLocale(new Locale("sq"));
             SceneManager.reload();
         }catch (Exception e){
-            showErrorAlert("Error while changing language", e.getMessage());
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.changeLanguage.header",
+                    "error.changeLanguage.content"
+            );
         }
     }
 
@@ -58,7 +57,11 @@ public class BaseController {
             languageManager.setLocale(new Locale("en"));
             SceneManager.reload();
         }catch (Exception e){
-            showErrorAlert("Error while changing language", e.getMessage());
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.changeLanguage.header",
+                    "error.changeLanguage.content"
+            );
         }
     }
 
@@ -66,16 +69,22 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.LOGIN_PAGE);
         }catch (Exception e){
-            showErrorAlert("Unable to load LogIn",
-                    "An error occurred while trying to load the LogIn page.");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadLogin.header",
+                    "error.loadLogin.content"
+            );
         }
     }
     public void seeContracts(){
         try{
             SceneManager.load(SceneLocator.SEE_CONTRACTS);
         }catch (Exception e){
-            showErrorAlert("Unable to load Contracts",
-                    "An error occurred while trying to load the contracts page.");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadContracts.header",
+                    "error.loadContracts.content"
+            );
         }
     }
 
@@ -83,8 +92,11 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.HOME_PAGE);
         }catch (Exception e){
-            showErrorAlert("Unable to load Homepage",
-                    "An error occured while trying to load the homepage");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadHomepage.header",
+                    "error.loadHomepage.content"
+            );
         }
     }
 
@@ -92,8 +104,11 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.CHANGE_PASSWORD_PAGE);
         }catch (Exception e){
-            showErrorAlert("Unable to load ChangePassword",
-                    "An error occured while trying to load the ChangePassword page");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadChangePassword.header",
+                    "error.loadChangePassword.content"
+            );
         }
 }
 
@@ -101,16 +116,24 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.CONTRACT_FORM);
         }catch (Exception e){
-            showErrorAlert("Unable to load Contract Form", "An error occured while trying to load the Contract Form page");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadContractForm.header",
+                    "error.loadContractForm.content"
+            );
         }
     }
 
-    public void handelAddMaintenance(){
+    public void handleAddMaintenance(){
         try{
             SceneManager.load(SceneLocator.MAINTENANCE_FORM);
         }catch (Exception e){
             e.printStackTrace();
-            showErrorAlert("Unable to load Contract Form", "An error occured while trying to load the Maintenance Form page");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadMaintenanceForm.header",
+                    "error.loadMaintenanceForm.content"
+            );
         }
     }
 
@@ -118,7 +141,11 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.PAYMENT_FORM);
         }catch (Exception e){
-            showErrorAlert("Unable to load Payment Form", "An error occured while trying to load the PaymentForm page");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadPaymentForm.header",
+                    "error.loadPaymentForm.content"
+            );
         }
     }
 
@@ -126,7 +153,11 @@ public class BaseController {
         try {
             SceneManager.load(SceneLocator.DOCUMENTS);
         } catch (Exception e) {
-            showErrorAlert("Unable to load Document Form", "An error occured while trying to load the Documents page");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadDocuments.header",
+                    "error.loadDocuments.content"
+            );
         }
     }
 
@@ -134,7 +165,11 @@ public class BaseController {
         try {
             SceneManager.load(SceneLocator.SEE_PAYMENTS);
         } catch (Exception e) {
-            showErrorAlert("Unable to load Payments Form", "An error occured while trying to load the Payments page");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadPayments.header",
+                    "error.loadPayments.content"
+            );
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
@@ -144,8 +179,11 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.SEE_RESERVATIONS);
         }catch (Exception e){
-            showErrorAlert("Unable to load Reservation Form", "An error occured while trying to load the Reservation page");
-            System.out.println(e.getMessage());
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadReservations.header",
+                    "error.loadReservations.content"
+            );            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -154,15 +192,11 @@ public class BaseController {
         try {
             SceneManager.load(SceneLocator.SEE_PENALTIES);
         } catch (Exception e) {
-            showErrorAlert("Unable to load Penalties Form", "An error occured while trying to load the Penalties page");
-        }
-    }
-
-    public void handleAddPenalty() {
-        try {
-            SceneManager.load(SceneLocator.ADD_PENALTY);
-        } catch (Exception e) {
-            showErrorAlert("Unable to load Penalties Form", "An error occured while trying to load the Penalties page");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadPenalties.header",
+                    "error.loadPenalties.content"
+            );
         }
     }
 
@@ -174,10 +208,12 @@ public class BaseController {
                 SceneManager.load(SceneLocator.SEE_ABOUT);
             }
         }catch (Exception e){
-            showErrorAlert("Unable to load About Program view", "An error occured while trying to load the About page");
-            System.out.println(e.getMessage());
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadAboutProgram.header",
+                    "error.loadAboutProgram.content"
+            );            System.out.println(e.getMessage());
             e.printStackTrace();
-            System.out.println("hello4");
         }
     }
 
@@ -186,9 +222,10 @@ public class BaseController {
         try {
             SceneManager.load(SceneLocator.REVIEW_FORM);
         } catch (Exception e) {
-            showErrorAlert(
-                    "Unable to load Reviews",
-                    "An error occurred while trying to open the Review form."
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadReviews.header",
+                    "error.loadReviews.content"
             );
             e.printStackTrace();
         }
@@ -199,8 +236,11 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.SEE_MAINTENANCE);
         }catch(Exception e){
-            showErrorAlert("Unable to load Maintenances",
-                    "An error occurred while trying to open it");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadMaintenances.header",
+                    "error.loadMaintenances.content"
+            );
             e.printStackTrace();
         }
     }
@@ -209,8 +249,11 @@ public class BaseController {
         try{
             SceneManager.load(SceneLocator.OFFERS_FORM);
         }catch (Exception e){
-            showErrorAlert("Unable to load Offers",
-                    "An error occurred while trying to open it");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.loadOffers.header",
+                    "error.loadOffers.content"
+            );
         }
     }
 
@@ -235,7 +278,23 @@ public class BaseController {
         try {
             SceneManager.load(SceneLocator.UPDATE_PENALTY_REQUESTS);
         } catch (Exception e) {
-            showErrorAlert("Unable to load update Form", "An error occured while trying to load the Update page");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.handleUpdateTable.header",
+                    "error.handleUpdateTable.content"
+            );
+        }
+    }
+
+    public void handleAddPenalty() {
+        try {
+            SceneManager.load(SceneLocator.ADD_PENALTY);
+        } catch (Exception e) {
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.handlePenalty.header",
+                    "error.handlePenalty.content"
+            );
         }
     }
 
@@ -243,8 +302,11 @@ public class BaseController {
         try {
             SceneManager.load(SceneLocator.UPDATE_MAINTENANCE);
         } catch(Exception e) {
-            showErrorAlert("Unable to load update Form", "An error occured while trying to load the Update page");
-
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.handleUpdateMaintenance.header",
+                    "error.handleUpdateMaintenance.content"
+            );
         }
     }
 
@@ -252,18 +314,13 @@ public class BaseController {
         try {
             SceneManager.load(SceneLocator.ADD_OFFER);
         } catch (Exception e) {
-            showErrorAlert("Unable to load add Offer Form", "An error occured while trying to load the add Offer page");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.handleAddOffer.header",
+                    "error.handleAddOffer.content"
+            );
         }
     }
-
-//    protected void showAlerts(Alert.AlertType type, String key, Object... args) {
-//        ResourceBundle rb = LanguageManager.getInstance().getResourceBundle();
-//        Alert alert = new Alert(type);
-//        alert.setTitle(rb.getString("alert.title"));
-//        alert.setHeaderText(null);
-//        alert.setContentText(String.format(rb.getString(key), args));
-//        alert.showAndWait();
-//    }
 
     @FXML
     public void initialize() throws SQLException {
@@ -293,6 +350,7 @@ public class BaseController {
             if(addOffer!=null) addOffer.setVisible(false);
         }
     }
+
     protected void showAlertBasedOnLanguage(Alert.AlertType alertType, String titleKey, String messageKey) {
         String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
         String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);
