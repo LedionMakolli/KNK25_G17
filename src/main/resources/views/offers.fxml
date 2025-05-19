@@ -88,7 +88,7 @@
             <MenuItem fx:id="addContract" mnemonicParsing="false" onAction="#handleAddContract" text="%txt.AddContract" />
             <MenuItem fx:id="addPayment" mnemonicParsing="false" text="%txt.AddPayment" onAction="#handleAddPayment"/>
             <MenuItem fx:id="addPenalty" mnemonicParsing="false" text="%txt.addPenalty" onAction="#handleAddPenalty"/>
-            <MenuItem fx:id="addMaintenance" mnemonicParsing="false" text="%txt.AddMaintenance" onAction="#handelAddMaintenance"/>
+            <MenuItem fx:id="addMaintenance" mnemonicParsing="false" text="%txt.AddMaintenance" onAction="#handleAddMaintenance"/>
             <MenuItem fx:id="addOffer" mnemonicParsing="false" text="%txt.addOffer" onAction="#handleAddOffer"/>
           </items>
         </Menu>
