@@ -70,7 +70,7 @@ LocalDate today = LocalDate.now();
         LocalDate dateDp = dpDate.getValue();
 
         if (reservationIdTxt.isEmpty()|| paymentType.isEmpty() || dateDp == null) {
-            showAlert(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
             return;
         }
         if(!validateDate(dateDp)){
@@ -94,13 +94,13 @@ LocalDate today = LocalDate.now();
 
             if(saved  != null){
                 SceneManager.load(SceneLocator.SEE_PAYMENTS);
-                showAlert(Alert.AlertType.INFORMATION, "success.title", "success.paymentForm");
+                showAlertBasedOnLanguage(Alert.AlertType.INFORMATION, "success.title", "success.paymentForm");
             }else{
                 showAlert(Alert.AlertType.ERROR, "error.title", "error.paymentForm");
             }
         }catch (Exception e){
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "error.title", "error.paymentProcess");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.paymentProcess");
         }
     }
 

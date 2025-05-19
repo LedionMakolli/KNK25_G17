@@ -43,7 +43,7 @@ public class ContractsFormController extends BaseController{
             this.contractService = new ContractService();
         }catch(SQLException e){
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "error.title", "error.contractFormError");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.contractFormError");
         }
     }
 
@@ -55,7 +55,7 @@ public class ContractsFormController extends BaseController{
         LocalDate dateDp = dpDate.getValue();
 
         if(reservationIdTxt.isEmpty() || paymentIdTxt.isEmpty() || amountTxt.isEmpty() || dateDp == null){
-            showAlert(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
             return;
         }
 
@@ -70,13 +70,13 @@ public class ContractsFormController extends BaseController{
 
             if(contract != null){
                 SceneManager.load(SceneLocator.SEE_CONTRACTS);
-                showAlert(Alert.AlertType.INFORMATION, "success.title", "success.contractForm");
+                showAlertBasedOnLanguage(Alert.AlertType.INFORMATION, "success.title", "success.contractForm");
             }else {
                 showAlert(Alert.AlertType.ERROR, "error.title", "error.contractForm");
             }
         }catch(Exception e){
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "error.title", "error.contractProcess");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.contractProcess");
         }
     }
 
