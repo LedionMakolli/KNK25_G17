@@ -5,11 +5,18 @@ import models.Dto.UpdateStafDto;
 import models.Staff;
 import repository.StaffRepository;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public class StaffService {
     private StaffRepository staffRepository;
 
-    public StaffService() throws Exception {
-        this.staffRepository = new StaffRepository();
+    public StaffService()  {
+        try {
+            this.staffRepository = new StaffRepository();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Staff getById(int id) throws Exception {
@@ -49,5 +56,9 @@ public class StaffService {
         }
 
         return updatedStaff;
+    }
+
+    public List<Staff> getAllStaff(){
+        return this.staffRepository.getAll();
     }
 }

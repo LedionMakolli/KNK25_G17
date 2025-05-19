@@ -1,5 +1,6 @@
 package services;
 
+import javafx.scene.control.Alert;
 import models.Cars;
 import models.Dto.CreateMaintenanceDto;
 import models.Maintenance;
@@ -11,13 +12,14 @@ import repository.MaintenanceRepository;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.sql.SQLException;
 import java.util.List;
 
 public class MaintenanceService {
 
     private MaintenanceRepository maintenanceRepository;
-    
+
     public MaintenanceService() throws SQLException {
         this.maintenanceRepository = new MaintenanceRepository();
     }
@@ -31,14 +33,6 @@ public class MaintenanceService {
             StatusMaintenanceEnum status,
             Staff staff
     ) throws Exception {
-        if (car == null || start == null || description == null || finish == null || cost == null || status == null || staff == null){
-            throw new IllegalArgumentException("All fields must be filled");
-        }
-
-        if (start.after(finish)){
-            throw new IllegalArgumentException("Start date must be before finish date.");
-        }
-
         CreateMaintenanceDto dto = new CreateMaintenanceDto(
                 car.getId(),
                 start,

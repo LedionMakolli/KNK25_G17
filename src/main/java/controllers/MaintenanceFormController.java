@@ -13,18 +13,23 @@ import models.enums.StatusMaintenanceEnum;
 import repository.CarRepository;
 import repository.MaintenanceRepository;
 import repository.StaffRepository;
+import services.CarService;
 import services.MaintenanceService;
 import services.SessionManager;
+import services.StaffService;
 
 import java.math.BigDecimal;
 import java.sql.Array;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MaintenanceFormController extends BaseController{
     @FXML
-    private ComboBox<Cars> comboCar;
+    private ComboBox<String> comboCar;
 
     @FXML
     private TextArea txtDescription;
@@ -42,60 +47,41 @@ public class MaintenanceFormController extends BaseController{
     private ComboBox<StatusMaintenanceEnum> comboStatus;
 
     @FXML
-    private ComboBox<Staff> comboStaff;
+    private ComboBox<String> comboStaff;
 
     @FXML
     private Label labelStaff;
 
-    CarRepository carRepository;
+
+    private CarService carService;
     private MaintenanceService maintenanceService;
-    StaffRepository staffRepository;
+    private StaffService staffService;
+    private Map<String, Cars> modelToCarMap = new HashMap<>();
+    private Map<String, Staff> usernameToStaffMap = new HashMap<>();
 
     public void initialize() throws SQLException {
-        this.carRepository = new CarRepository();
+        this.carService = new CarService();
         this.maintenanceService = new MaintenanceService();
-        this.staffRepository = new StaffRepository();
+        this.staffService = new StaffService();
 
-        List<Cars> allCars = carRepository.getAll();
+        List<Cars> allCars = carService.getAllCars();
+        ObservableList<String> carModels = FXCollections.observableArrayList();
 
-        List<Staff> allStaff = staffRepository.getAll();
+        for (Cars car : allCars) {
+            modelToCarMap.put(car.getModel(), car);
+            carModels.add(car.getModel());
+        }
 
-        comboCar.setItems(FXCollections.observableArrayList(allCars));
-        comboStaff.setItems(FXCollections.observableArrayList(allStaff));
+        List<Staff> allStaff = staffService.getAllStaff();
+        ObservableList<String> staffUsernames = FXCollections.observableArrayList();
 
-        // e rregullon me dal modelet e makinave ne drop liste
-        comboCar.setCellFactory(lv -> new ListCell<>() {
-            @Override
-            protected void updateItem(Cars car, boolean empty) {
-                super.updateItem(car, empty);
-                setText(empty || car == null ? null : car.getModel());
-            }
-        });
+        for (Staff staff: allStaff){
+            usernameToStaffMap.put(staff.getUsername(),staff);
+            staffUsernames.add(staff.getUsername());
+        }
 
-        // e rregullon qe me dal modeli pasi te selektohet
-        comboCar.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(Cars car, boolean empty) {
-                super.updateItem(car, empty);
-                setText(empty || car == null ? null : car.getModel());
-            }
-        });
-
-        comboStaff.setCellFactory(lv -> new ListCell<>() {
-            @Override
-            protected void updateItem(Staff staff, boolean empty) {
-                super.updateItem(staff, empty);
-                setText(empty || staff == null ? null : staff.getUsername());
-            }
-        });
-
-        comboStaff.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(Staff staff, boolean empty) {
-                super.updateItem(staff, empty);
-                setText(empty || staff == null ? null : staff.getUsername());
-            }
-        });
+        comboCar.setItems(carModels);
+        comboStaff.setItems(staffUsernames);
 
         comboStatus.setItems(FXCollections.observableArrayList(StatusMaintenanceEnum.values()));
 
@@ -111,7 +97,9 @@ public class MaintenanceFormController extends BaseController{
     @FXML
     private void handleSaveMaintenance() {
         try {
-            Cars selectedCar = comboCar.getValue();
+            String selectedModel = comboCar.getValue();
+            Cars selectedCar = modelToCarMap.get(selectedModel);
+
             String description = txtDescription.getText();
             Date start = Date.valueOf(dateStart.getValue());
             Date finish = Date.valueOf(dateFinish.getValue());
@@ -123,17 +111,43 @@ public class MaintenanceFormController extends BaseController{
             if (StaffPositionEnum.STAFF.equals(SessionManager.getInstance().getCurrentStaff().getPosition())) {
                 staff = SessionManager.getInstance().getCurrentStaff();
             } else {
-                staff = comboStaff.getValue();
+                String Username = comboStaff.getValue();
+                staff = usernameToStaffMap.get(Username);
             }
 
-            maintenanceService.createMaintenance(selectedCar, start, description, finish, cost, status, staff);
+            this.createMaintenance(selectedCar, start, description, finish, cost, status, staff);
 
-            new Alert(Alert.AlertType.INFORMATION, "Maintenance record saved successfully.").showAndWait();
-        }catch (IllegalAccessException e){
-            new Alert(Alert.AlertType.WARNING, e.getMessage()).showAndWait();
         }catch (Exception e){
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR,"Eror saving maintennace: " + e.getMessage()).showAndWait();
+        }
+    }
+
+    public void createMaintenance(Cars car,Date start,String description, Date finish, BigDecimal cost, StatusMaintenanceEnum status, Staff staff){
+
+        if (car == null || start == null || description == null || finish == null || cost == null || status == null || staff == null){
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error","fill all the fields");
+        }
+
+        LocalDate startDate = start.toLocalDate();
+        LocalDate finishDate = finish.toLocalDate();
+        LocalDate today = LocalDate.now();
+
+        if(!startDate.isBefore(finishDate)){
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error","fill all the fields");
+        }
+        if (startDate.isBefore(today) || finishDate.isBefore(today)){
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error","fill all the fields");
+        }
+        if (cost.compareTo(BigDecimal.ZERO) < 0){
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error","fill all the fields");
+        }
+        try {
+            maintenanceService.createMaintenance(car, start, description, finish, cost, status, staff);
+            new Alert(Alert.AlertType.INFORMATION, "Maintenance record saved successfully.").showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Error saving maintenance: " + e.getMessage()).showAndWait();
         }
     }
 }

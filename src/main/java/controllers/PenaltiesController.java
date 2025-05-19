@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Penalties;
 import repository.PenaltiesRepository;
+import services.PenaltyService;
 import services.SessionManager;
 
 import java.math.BigDecimal;
@@ -37,12 +38,12 @@ public class PenaltiesController extends BaseController {
     @FXML
     private TableColumn<Penalties, Boolean> paidColumn;
 
-    private PenaltiesRepository penaltiesRepository;
+    private PenaltyService penaltyService;
 
     @FXML
     public void initialize() {
         try {
-            this.penaltiesRepository = new PenaltiesRepository();
+            this.penaltyService = new PenaltyService();
             super.initialize();
             setupTableColumns();
             loadPenalties();
@@ -67,9 +68,9 @@ public class PenaltiesController extends BaseController {
             String role = SessionManager.getInstance().getCurrentRole();
             if ("client".equals(role)) {
                 int clientId = SessionManager.getInstance().getCurrentClient().getId();
-                penalties = penaltiesRepository.getByClientId(clientId);
+                penalties = penaltyService.getByClientId(clientId);
             } else {
-                penalties = penaltiesRepository.getAll();
+                penalties = penaltyService.getAll();
             }
 
             ObservableList<Penalties> data = FXCollections.observableArrayList(penalties);

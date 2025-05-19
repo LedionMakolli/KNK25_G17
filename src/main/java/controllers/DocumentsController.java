@@ -7,6 +7,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Documents;
 import repository.DocumentsRepository;
+import services.DocumentService;
 
 import java.util.Date;
 import java.util.List;
@@ -20,11 +21,11 @@ public class DocumentsController extends BaseController {
     @FXML private TableColumn<Documents, String> pathColumn;
     @FXML private TableColumn<Documents, Date> uploadDateColumn;
 
-    private final DocumentsRepository documentsRepository;
+    private final DocumentService documentService;
 
     public DocumentsController() {
         try {
-            this.documentsRepository = new DocumentsRepository();
+            this.documentService = new DocumentService();
             super.initialize();
         } catch (Exception e) {
             showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.initDocumentsRepo");
@@ -58,7 +59,7 @@ public class DocumentsController extends BaseController {
     @FXML
     private void refreshDocuments() {
         try {
-            List<Documents> documents = documentsRepository.getAll();
+            List<Documents> documents = documentService.getAllDocuments();
             documentsTable.getItems().setAll(documents);
         } catch (Exception e) {
             showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.loadDocuments");
