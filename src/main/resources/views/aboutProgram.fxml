@@ -5,7 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="500" fx:controller="controllers.AboutController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="500" fx:controller="controllers.BaseController">
     <children>
         <VBox spacing="5" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
             <MenuBar VBox.vgrow="NEVER">
