@@ -44,7 +44,11 @@ public class ReservationFormController extends BaseController{
     @FXML
     private void onSubmit(ActionEvent event) {
         if (dpStartDate.getValue() == null || dpEndDate.getValue() == null) {
-            showAlert(Alert.AlertType.WARNING, "Warning", "Please select start and end dates.");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.WARNING,
+                    "warning.selectDates.header",
+                    "warning.selectDates.content"
+            );
             return;
         }
 
@@ -53,12 +57,20 @@ public class ReservationFormController extends BaseController{
         LocalDate today = LocalDate.now();
 
         if (chosenStart.isBefore(today) || chosenEnd.isBefore(today)) {
-            showAlert(Alert.AlertType.ERROR, "Invalid Dates", "You cannot reserve for dates earlier than today.");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.invalidDates.header",
+                    "error.invalidDates.content"
+            );
             return;
         }
 
         if (!chosenStart.isBefore(chosenEnd)) {
-            showAlert(Alert.AlertType.ERROR, "Invalid Range", "Start date must be before end date.");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.invalidRange.header",
+                    "error.invalidRange.content"
+            );
             return;
         }
 
@@ -73,9 +85,11 @@ public class ReservationFormController extends BaseController{
 
             ReservationsRepository repo = new ReservationsRepository();
             if (repo.existsOverlap(carId, start, end)) {
-                showAlert(Alert.AlertType.ERROR, "Error",
-                        "This car is already reserved for the selected dates.");
-                return;
+                showAlertBasedOnLanguage(
+                        Alert.AlertType.ERROR,
+                        "error.overlap.header",
+                        "error.overlap.content"
+                );
             }
 
 
@@ -91,7 +105,11 @@ public class ReservationFormController extends BaseController{
 
 
             if (reservation == null) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Failed to create reservation");
+                showAlertBasedOnLanguage(
+                        Alert.AlertType.ERROR,
+                        "error.createReservation.header",
+                        "error.createReservation.content"
+                );
                 return;
             }
 
@@ -101,18 +119,28 @@ public class ReservationFormController extends BaseController{
                         reservation.getId(), specialRequest, false
                 );
                 if (srRepo.create(srDto) == null) {
-                    showAlert(Alert.AlertType.WARNING, "Warning", "Reservation created but special request not saved.");
+                    showAlertBasedOnLanguage(
+                            Alert.AlertType.WARNING,
+                            "warning.specialRequestNotSaved.header",
+                            "warning.specialRequestNotSaved.content"
+                    );
                 }
             }
 
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Reservation #" + reservation.getId() + " created successfully!");
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.INFORMATION,
+                    "info.reservationSuccess.header",
+                    "info.reservationSuccess.content"
+            );
 
             SceneManager.load(SceneLocator.HOME_PAGE);
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error",
-                    "Failed to create reservation: " + e.getMessage()
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.createReservationException.header",
+                    "error.createReservationException.content"
             );
         }
     }
