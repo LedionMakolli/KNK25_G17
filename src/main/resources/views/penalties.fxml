@@ -56,7 +56,7 @@
         </MenuBar>
 
 
-        <TableView fx:id="penaltiesTable" layoutX="14.0" layoutY="35.0" prefHeight="375.0" prefWidth="572.0">
+        <TableView fx:id="penaltiesTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="551.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
             <TableColumn fx:id="reservationIdColumn" prefWidth="100" text="Reservation ID" />
@@ -67,6 +67,6 @@
         </columns>
     </TableView>
 
-    <Button layoutX="520" layoutY="420" onAction="#initialize" text="Refresh" />
+    <Button layoutX="541.0" layoutY="361.0" onAction="#initialize" text="Refresh" />
     </children>
 </AnchorPane>
