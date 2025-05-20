@@ -25,5 +25,5 @@ public class SceneLocator {
     public static final String SEE_MAINTENANCE = "/views/seemaintenance.fxml";
     public static final String UPDATE_MAINTENANCE="/views/update-maintenance.fxml";
     public static final String ADD_OFFER="/views/add-offers.fxml";
-//    ...
+
 }

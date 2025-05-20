@@ -58,7 +58,7 @@
 
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <Label layoutX="275.0" layoutY="14.0" prefHeight="27.0" prefWidth="129.0" text="%txt.addOffer">
+                <Label layoutX="255.0" layoutY="14.0" prefHeight="27.0" prefWidth="129.0" text="%txt.addOffer">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -94,7 +94,7 @@
                 <HBox layoutX="198.0" layoutY="295.0" spacing="40.0">
                     <children>
                         <Button mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="33.0" prefWidth="97.0" text="%btn.cancel" />
-                        <Button mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="33.0" prefWidth="97.0" text="%btn.save" />
+                        <Button mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: blue;" text="%btn.save" textFill="WHITE" />
                     </children>
                 </HBox>
             </children>

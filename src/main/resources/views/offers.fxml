@@ -103,9 +103,7 @@
       <children>
         <Label layoutX="20" layoutY="10" text="%txt.ActiveOffers" style="-fx-font-size:18px;"/>
 
-        <TableView fx:id="tblOffers"
-                   layoutX="14" layoutY="36"
-                   prefWidth="550" prefHeight="384">
+        <TableView fx:id="tblOffers" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="551.0">
 
           <columns>
             <TableColumn fx:id="colCarModel"
@@ -123,7 +121,7 @@
           </columns>
         </TableView>
       </children>
-      <Button layoutX="498.0" layoutY="428.0" onAction="#initialize" text="Refresh" />
+      <Button layoutX="541.0" layoutY="361.0" onAction="#initialize" text="Refresh" />
     </AnchorPane>
   </children>
 </VBox>

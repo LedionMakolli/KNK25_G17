@@ -32,10 +32,8 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MaintenanceFormController">
     <children>
@@ -55,7 +53,7 @@
                         <MenuItem fx:id="seePayments" mnemonicParsing="false" onAction="#seePayments" text="%txt.seePayments" />
                         <MenuItem fx:id="seeReservations" mnemonicParsing="false" onAction="#seeReservations" text="%txt.seeReservations" />
                         <MenuItem fx:id="seeMaintenance" mnemonicParsing="false" onAction="#seeMaintenance" text="%txt.seeMaintenance" />
-                        <MenuItem fx:id="Offers" mnemonicParsing="false" text="%txt.Offers" onAction="#Offers"/>
+                        <MenuItem fx:id="Offers" mnemonicParsing="false" onAction="#Offers" text="%txt.Offers" />
                         <MenuItem fx:id="SignOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
                     </items>
                 </Menu>
@@ -67,52 +65,60 @@
                 </Menu>
                 <Menu fx:id="update" mnemonicParsing="false" text="%txt.update">
                     <items>
-                        <MenuItem fx:id="updateTable" mnemonicParsing="false" text="%txt.updateTables" onAction="#handleUpdateTable"/>
-                        <MenuItem fx:id="updateMaintenance" mnemonicParsing="false" text="%txt.updateMaintenance" onAction="#handleUpdateMaintenance"/>
+                        <MenuItem fx:id="updateTable" mnemonicParsing="false" onAction="#handleUpdateTable" text="%txt.updateTables" />
+                        <MenuItem fx:id="updateMaintenance" mnemonicParsing="false" onAction="#handleUpdateMaintenance" text="%txt.updateMaintenance" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="%txt.Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" fx:id="aboutProgram" onAction="#seeAboutProgram" />
+                        <MenuItem fx:id="aboutProgram" mnemonicParsing="false" onAction="#seeAboutProgram" text="About" />
                     </items>
                 </Menu>
 
                 <Menu fx:id="menuAdd" mnemonicParsing="false" text="%txt.Add">
                     <items>
                         <MenuItem fx:id="addContract" mnemonicParsing="false" onAction="#handleAddContract" text="%txt.AddContract" />
-                        <MenuItem fx:id="addPayment" mnemonicParsing="false" text="%txt.AddPayment" onAction="#handleAddPayment"/>
-                        <MenuItem fx:id="addPenalty" mnemonicParsing="false" text="%txt.addPenalty" onAction="#handleAddPenalty"/>
-                        <MenuItem fx:id="addMaintenance" mnemonicParsing="false" text="%txt.AddMaintenance" onAction="#handleAddMaintenance"/>
-                        <MenuItem fx:id="addOffer" mnemonicParsing="false" text="%txt.addOffer" onAction="#handleAddOffer"/>
+                        <MenuItem fx:id="addPayment" mnemonicParsing="false" onAction="#handleAddPayment" text="%txt.AddPayment" />
+                        <MenuItem fx:id="addPenalty" mnemonicParsing="false" onAction="#handleAddPenalty" text="%txt.addPenalty" />
+                        <MenuItem fx:id="addMaintenance" mnemonicParsing="false" onAction="#handleAddMaintenance" text="%txt.AddMaintenance" />
+                        <MenuItem fx:id="addOffer" mnemonicParsing="false" onAction="#handleAddOffer" text="%txt.addOffer" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
 
-        <AnchorPane xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="400">
+        <AnchorPane prefHeight="400" prefWidth="600" xmlns:fx="http://javafx.com/fxml">
             <children>
-                <Label layoutX="20" layoutY="20" text="Makina:"/>
-                <ComboBox fx:id="comboCar" layoutX="150" layoutY="20" prefWidth="200"/>
+                <Label layoutX="106.0" layoutY="21.0" text="Makina:" />
+                <ComboBox fx:id="comboCar" layoutX="235.0" layoutY="21.0" prefWidth="200" />
 
-                <Label layoutX="20" layoutY="60" text="Përshkrimi:"/>
-                <TextArea fx:id="txtDescription" layoutX="150" layoutY="60" prefWidth="300" prefHeight="60"/>
+                <Label layoutX="105.0" layoutY="61.0" text="Përshkrimi:" />
+                <TextArea fx:id="txtDescription" layoutX="235.0" layoutY="61.0" prefHeight="60" prefWidth="300" />
+            <VBox layoutX="105.0" layoutY="144.0" spacing="23.0">
+               <children>
+      
+                      <Label text="Data Fillimit:" />
+      
+                      <Label text="Data Përfundimit:" />
+      
+                      <Label text="Kostoja (€):" />
+      
+                      <Label text="Statusi:" />
+      
+                      <Label fx:id="labelStaff" text="%txt.StaffLabelMaintenance" />
+               </children>
+            </VBox>
+            <VBox layoutX="235.0" layoutY="141.0" spacing="15.0">
+               <children>
+                      <DatePicker fx:id="dateStart" />
+                      <DatePicker fx:id="dateFinish" />
+                      <TextField fx:id="txtCost" />
+                      <ComboBox fx:id="comboStatus" prefWidth="150" />
+                      <ComboBox fx:id="comboStaff" prefWidth="150" />
+               </children>
+            </VBox>
 
-                <Label layoutX="20" layoutY="140" text="Data Fillimit:"/>
-                <DatePicker fx:id="dateStart" layoutX="150" layoutY="140"/>
-
-                <Label layoutX="20" layoutY="180" text="Data Përfundimit:"/>
-                <DatePicker fx:id="dateFinish" layoutX="150" layoutY="180"/>
-
-                <Label layoutX="20" layoutY="220" text="Kostoja (€):"/>
-                <TextField fx:id="txtCost" layoutX="150" layoutY="220"/>
-
-                <Label layoutX="20" layoutY="260" text="Statusi:"/>
-                <ComboBox fx:id="comboStatus" layoutX="150" layoutY="260" prefWidth="150"/>
-
-                <Label fx:id="labelStaff" layoutX="20" layoutY="300" text="%txt.StaffLabelMaintenance"/>
-                <ComboBox fx:id="comboStaff" layoutX="150" layoutY="300" prefWidth="150"/>
-
-                <Button text="Ruaj" fx:id="btnSave" layoutX="150" layoutY="330" onAction="#handleSaveMaintenance"/>
+                <Button fx:id="btnSave" layoutX="495.0" layoutY="327.0" onAction="#handleSaveMaintenance" style="-fx-background-color: blue;" text="Ruaj" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>
