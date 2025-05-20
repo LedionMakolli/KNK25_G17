@@ -27,7 +27,7 @@ Ky sistem përfshin këto funksionalitete kryesore:
 ### 🌐 Opsionet e Gjuhës
 - Aktualisht aplikacioni ofron **dy gjuhë**: shqip dhe anglisht
 - Përdoruesit mund të ndërrojnë gjuhën në çdo kohë përmes cilësimeve
-- Sistemi është i ndërtuar në mënyrë që të **mbështesë shtimin e gjuhëve të tjera** në të ardhmen gjuhës në çdo kohë
+- Sistemi është i ndërtuar në mënyrë që të **mbështesë shtimin e gjuhëve të tjera** në të ardhmen
 ---
 
 ## 🛠️ Teknologjitë e Përdorura
