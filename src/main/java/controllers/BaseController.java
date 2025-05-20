@@ -351,6 +351,10 @@ public class BaseController {
         }
     }
 
+    protected boolean isPasswordValid(String password) {
+        return password.length() >= 8 && password.matches(".*[^a-zA-Z0-9].*");
+    }
+
     protected void showAlertBasedOnLanguage(Alert.AlertType alertType, String titleKey, String messageKey) {
         String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
         String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);

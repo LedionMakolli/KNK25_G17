@@ -43,11 +43,22 @@ public class CreateClientController extends BaseController {
     @FXML
     private void handleSaveClick() {
         try {
+            String username = txtUsername.getText().trim();
             String password = txtPassword.getText().trim();
             String confirmPassword = txtConfirmPassword.getText().trim();
 
             if (!password.equals(confirmPassword)) {
                 showAlertBasedOnLanguage(AlertType.ERROR, "error.title", "error.passwordMismatch");
+                return;
+            }
+
+            if(username.length()<4){
+                showAlertBasedOnLanguage(AlertType.ERROR, "error.title", "error.usernameValidation");
+                return;
+            }
+
+            if(!isPasswordValid(password)){
+                showAlertBasedOnLanguage(AlertType.ERROR, "error.title", "error.passwordValid");
                 return;
             }
 

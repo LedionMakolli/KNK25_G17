@@ -48,8 +48,14 @@ public class ChangePasswordController extends BaseController {
             showAlertBasedOnLanguage(Alert.AlertType.WARNING, "warning.title", "warning.emptyFields");
             return;
         }
+
         if(!newPassword.equals(confirmPassword)){
-            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.passwordMismatch");
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.passwordValidation");
+            return;
+        }
+
+        if(!isPasswordValid(newPassword)){
+            showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.passwordValid");
             return;
         }
 
