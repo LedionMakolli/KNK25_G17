@@ -50,7 +50,6 @@ public class AddPenaltyController extends BaseController {
             Penalties penalty = penaltyService.addPenalty(dto);
             if (penalty != null) {
                 showAlertBasedOnLanguage(AlertType.INFORMATION, "alert.success", "penalty.added");
-                clearForm();
                 SceneManager.load(SceneLocator.HOME_PAGE);
             } else {
                 showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "penalty.failedAdd");
@@ -65,21 +64,4 @@ public class AddPenaltyController extends BaseController {
         }
     }
 
-    @FXML
-    private void handleCancelClick() {
-        try {
-            clearForm();
-            SceneManager.load(SceneLocator.HOME_PAGE);
-        } catch (Exception e) {
-            showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.navigateHome");
-        }
-    }
-
-    private void clearForm() {
-        txtFieldReservationId.clear();
-        txtFieldReason.clear();
-        txtFieldAmount.clear();
-        dpDate.setValue(LocalDate.now());
-        cbPaid.setSelected(false);
-    }
 }

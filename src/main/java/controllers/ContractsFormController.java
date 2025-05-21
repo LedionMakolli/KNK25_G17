@@ -93,13 +93,4 @@ public class ContractsFormController extends BaseController{
             showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.contractProcess");
         }
     }
-
-    @FXML
-    private void handleCancelClick(){
-        try{
-            SceneManager.load(SceneLocator.HOME_PAGE);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
 }

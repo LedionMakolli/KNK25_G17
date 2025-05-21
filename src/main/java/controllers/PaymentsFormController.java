@@ -104,13 +104,4 @@ LocalDate today = LocalDate.now();
             showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.paymentProcess");
         }
     }
-
-    @FXML
-    private void handleCancelClick(){
-        try{
-            SceneManager.load(SceneLocator.HOME_PAGE);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
 }

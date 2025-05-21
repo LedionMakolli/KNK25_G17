@@ -119,7 +119,8 @@
                </children>
             </VBox>
 
-                <Button fx:id="btnSave" layoutX="495.0" layoutY="327.0" onAction="#handleSaveMaintenance" style="-fx-background-color: blue;" text="Ruaj" textFill="WHITE" />
+                <Button fx:id="btnSave" layoutX="495.0" layoutY="327.0" onAction="#handleSaveMaintenance" style="-fx-background-color: blue;" text="%btn.save" textFill="WHITE" />
+                <Button  layoutX="550.0" layoutY="327.0" onAction="#handleCancelClick" style="-fx-background-color: grey;" text="%btn.cancel" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>

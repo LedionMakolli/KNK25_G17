@@ -176,6 +176,14 @@ public class BaseController {
         loadSceneWithErrorHandling(SceneLocator.ADD_OFFER, "error.handleAddOffer.header", "error.handleAddOffer.content");
     }
 
+    @FXML
+    private void handleCancelClick(){
+        try{
+            SceneManager.load(SceneLocator.HOME_PAGE);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

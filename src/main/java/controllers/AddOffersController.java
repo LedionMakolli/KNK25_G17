@@ -47,7 +47,6 @@ public class AddOffersController extends BaseController {
                     "alert.success",
                     "offer.added"
             );
-            clearFields();
         } else {
             showAlertBasedOnLanguage(
                     AlertType.ERROR,
@@ -122,17 +121,5 @@ public class AddOffersController extends BaseController {
         }
 
         return true;
-    }
-
-    @FXML
-    private void handleCancelClick() {
-        clearFields();
-    }
-
-    private void clearFields() {
-        carId.clear();
-        discount.clear();
-        dpStartDate.setValue(null);
-        dpEndDate.setValue(null);
     }
 }
