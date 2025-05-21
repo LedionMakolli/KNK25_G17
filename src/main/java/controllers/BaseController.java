@@ -211,7 +211,6 @@ public class BaseController {
         String role = services.SessionManager.getInstance().getCurrentRole();
         if ("client".equals(role)) {
             if (addContract != null) addContract.setVisible(false);
-            if (menuAdd != null) menuAdd.setVisible(false);
             if (seeDocuments != null) seeDocuments.setVisible(false);
             if(addPayment != null) addContract.setVisible(false);
             if(updateTable != null) updateTable.setVisible(false);
@@ -220,6 +219,9 @@ public class BaseController {
             if(updateMaintenance!=null) updateMaintenance.setVisible(false);
             if(addOffer!=null) addOffer.setVisible(false);
             if(seeInsurance!=null) seeInsurance.setVisible(false);
+            if(addMaintenance !=null) addMaintenance.setVisible(false);
+            if(addPenalty!=null) addPenalty.setVisible(false);
+            if(addPayment != null) addPayment.setVisible(false);
         } else if("staff".equals(role)) {
             if(addReview!=null) addReview.setVisible(false);
         }
