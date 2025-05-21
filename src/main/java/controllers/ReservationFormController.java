@@ -13,12 +13,15 @@ import models.SpecialRequests;
 import models.enums.ReservationStatusEnum;
 import repository.ReservationsRepository;
 import repository.SpecialRequestsRepository;
+import services.LanguageManager;
 import services.SceneManager;
 import utils.SceneLocator;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class ReservationFormController extends BaseController{
 
@@ -74,22 +77,25 @@ public class ReservationFormController extends BaseController{
             return;
         }
 
-
-
-
         try {
             Date start = Date.valueOf(dpStartDate.getValue());
-            Date end   = Date.valueOf(dpEndDate.getValue());
+            Date end = Date.valueOf(dpEndDate.getValue());
             String specialRequest = txtSpecialRequests.getText().trim();
 
-
             ReservationsRepository repo = new ReservationsRepository();
+
             if (repo.existsOverlap(carId, start, end)) {
-                showAlertBasedOnLanguage(
-                        Alert.AlertType.ERROR,
-                        "error.overlap.header",
-                        "error.overlap.content"
-                );
+                Reservations conflict = repo.findOverlapReservation(carId, start, end);
+                Date cStart = conflict.getStartDate();
+                Date cEnd = conflict.getEndDate();
+
+                ResourceBundle rb = LanguageManager.getInstance().getResourceBundle();
+                String title = rb.getString("error.overlap.header");
+                String pattern = rb.getString("error.overlap.detail");
+                String content = MessageFormat.format(pattern, cStart, cEnd);
+
+                showAlert(Alert.AlertType.ERROR, title, content);
+                return;
             }
 
 
