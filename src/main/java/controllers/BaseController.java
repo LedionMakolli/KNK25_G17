@@ -35,8 +35,7 @@ public class BaseController {
     @FXML protected MenuItem updateMaintenance;
     @FXML protected MenuItem Offers;
     @FXML protected MenuItem addOffer;
-
-
+    @FXML protected MenuItem addReview;
 
     public void setAlbanianLanguage() {
         try{
@@ -50,8 +49,6 @@ public class BaseController {
             );
         }
     }
-
-
 
     public void setEnglishLanguage() {
         try{
@@ -126,7 +123,7 @@ public class BaseController {
         loadSceneWithErrorHandling(SceneLocator.SEE_PENALTIES, "error.loadPenalties.header", "error.loadPenalties.content");
     }
     @FXML
-    public void seeReviews() {
+    public void addReview() {
         loadSceneWithErrorHandling(SceneLocator.REVIEW_FORM, "error.loadReviews.header", "error.loadReviews.content");
     }
 
@@ -215,6 +212,8 @@ public class BaseController {
             if(seeMaintenance!=null) seeMaintenance.setVisible(false);
             if(updateMaintenance!=null) updateMaintenance.setVisible(false);
             if(addOffer!=null) addOffer.setVisible(false);
+        } else if("staff".equals(role)) {
+            if(addReview!=null) addReview.setVisible(false);
         }
     }
 

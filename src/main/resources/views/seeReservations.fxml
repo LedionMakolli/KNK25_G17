@@ -49,6 +49,7 @@
                     <MenuItem fx:id="addPenalty" mnemonicParsing="false" text="%txt.addPenalty" onAction="#handleAddPenalty"/>
                     <MenuItem fx:id="addMaintenance" mnemonicParsing="false" text="%txt.AddMaintenance" onAction="#handleAddMaintenance"/>
                     <MenuItem fx:id="addOffer" mnemonicParsing="false" text="%txt.addOffer" onAction="#handleAddOffer"/>
+                    <MenuItem fx:id="addReview" mnemonicParsing="false" text="%txt.addReview" onAction="#addReview"/>
                 </items>
             </Menu>
         </menus>
