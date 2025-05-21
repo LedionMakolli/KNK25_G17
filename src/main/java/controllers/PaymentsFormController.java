@@ -92,11 +92,11 @@ LocalDate today = LocalDate.now();
              Payments saved = paymentsService.save(payments);
 
 
-            if(saved  != null){
+            if(saved != null){
                 SceneManager.load(SceneLocator.SEE_PAYMENTS);
-                showAlertBasedOnLanguage(Alert.AlertType.INFORMATION, "success.title", "success.paymentForm");
+                showAlert(Alert.AlertType.INFORMATION, "success.title", "success.paymentForm");
             }else{
-                showAlert(Alert.AlertType.ERROR, "error.title", "error.paymentForm");
+                showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.paymentForm");
             }
         }catch (Exception e){
             e.printStackTrace();
