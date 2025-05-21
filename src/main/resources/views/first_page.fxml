@@ -55,8 +55,14 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="txtShqip" layoutX="243.0" layoutY="238.0" mnemonicParsing="false" onAction="#setAlbanianLanguage" prefHeight="38.0" prefWidth="62.0" text="Shqip" />
-            <Button fx:id="txtEnglish" layoutX="335.0" layoutY="238.0" mnemonicParsing="false" onAction="#setEnglishLanguage" prefHeight="38.0" prefWidth="62.0" text="English" />
+            <Button fx:id="txtShqip" layoutX="243.0" layoutY="238.0" mnemonicParsing="false" onAction="#setAlbanianLanguage" prefHeight="38.0" prefWidth="62.0" style="-fx-background-color: blue;" text="Shqip" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="txtEnglish" layoutX="335.0" layoutY="238.0" mnemonicParsing="false" onAction="#setEnglishLanguage" prefHeight="38.0" prefWidth="62.0" style="-fx-background-color: blue;" text="English" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
     </AnchorPane>
   </children>
