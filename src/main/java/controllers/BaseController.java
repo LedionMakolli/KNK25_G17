@@ -138,7 +138,7 @@ public class BaseController {
     public void Offers() {
         loadSceneWithErrorHandling(SceneLocator.OFFERS_FORM, "error.loadOffers.header", "error.loadOffers.content");
     }
-
+    @FXML
     public void seeAboutProgram(){
         try{
             if("staff".equals(SessionManager.getInstance().getCurrentRole())) {
