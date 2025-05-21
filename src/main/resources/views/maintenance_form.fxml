@@ -90,21 +90,21 @@
 
         <AnchorPane prefHeight="400" prefWidth="600" xmlns:fx="http://javafx.com/fxml">
             <children>
-                <Label layoutX="106.0" layoutY="21.0" text="Makina:" />
+                <Label layoutX="106.0" layoutY="21.0" text="%txt.SelectCar" />
                 <ComboBox fx:id="comboCar" layoutX="235.0" layoutY="21.0" prefWidth="200" />
 
-                <Label layoutX="105.0" layoutY="61.0" text="Përshkrimi:" />
+                <Label layoutX="105.0" layoutY="61.0" text="%txt.description" />
                 <TextArea fx:id="txtDescription" layoutX="235.0" layoutY="61.0" prefHeight="60" prefWidth="300" />
             <VBox layoutX="105.0" layoutY="144.0" spacing="23.0">
                <children>
       
-                      <Label text="Data Fillimit:" />
+                      <Label text="%txt.startDate" />
       
-                      <Label text="Data Përfundimit:" />
+                      <Label text="%txt.endDate" />
       
-                      <Label text="Kostoja (€):" />
+                      <Label text="%txt.carCost" />
       
-                      <Label text="Statusi:" />
+                      <Label text="%txt.Status" />
       
                       <Label fx:id="labelStaff" text="%txt.StaffLabelMaintenance" />
                </children>

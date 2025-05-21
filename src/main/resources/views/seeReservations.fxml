@@ -59,7 +59,7 @@
     <TableView fx:id="reservationsTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="551.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
-            <TableColumn fx:id="ClientColumn" prefWidth="50" text="ID Reservation" />
+            <TableColumn fx:id="ClientColumn" prefWidth="50" text="ID Client" />
             <TableColumn fx:id="CarColumn" prefWidth="100" text="ID Car" />
             <TableColumn fx:id="startDateColumn" prefWidth="150" text="Start Date" />
             <TableColumn fx:id="endDateColumn" prefWidth="100" text="End Date" />
