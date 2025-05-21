@@ -52,6 +52,7 @@
           <MenuItem fx:id="seePayments" mnemonicParsing="false" onAction="#seePayments" text="%txt.seePayments" />
           <MenuItem fx:id="seeReservations" mnemonicParsing="false" onAction="#seeReservations" text="%txt.seeReservations" />
           <MenuItem fx:id="seeMaintenance" mnemonicParsing="false" onAction="#seeMaintenance" text="%txt.seeMaintenance" />
+          <MenuItem fx:id="seeInsurance" mnemonicParsing="false" onAction="#seeInsurance" text="%txt.seeInsurance" />
           <MenuItem fx:id="Offers" mnemonicParsing="false" onAction="#Offers" text="%txt.Offers" />
           <MenuItem fx:id="SignOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
         </items>
@@ -81,13 +82,13 @@
           <MenuItem fx:id="addPenalty" mnemonicParsing="false" onAction="#handleAddPenalty" text="%txt.addPenalty" />
           <MenuItem fx:id="addMaintenance" mnemonicParsing="false" onAction="#handleAddMaintenance" text="%txt.AddMaintenance" />
           <MenuItem fx:id="addOffer" mnemonicParsing="false" onAction="#handleAddOffer" text="%txt.addOffer" />
-          <MenuItem fx:id="addReview" mnemonicParsing="false" text="%txt.addReview" onAction="#addReview"/>
+          <MenuItem fx:id="addReview" mnemonicParsing="false" onAction="#addReview" text="%txt.addReview" />
         </items>
       </Menu>
     </menus>
   </MenuBar>
 
-  <TableView fx:id="maintenanceTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="551.0">
+  <TableView fx:id="maintenanceTable" layoutX="14.0" layoutY="41.0" prefHeight="307.0" prefWidth="572.0">
                 <columns>
                   <TableColumn fx:id="idMaintenanceColumn" prefWidth="50" text="ID" />
                   <TableColumn fx:id="idCarColumn" prefWidth="50" text="ID Car" />

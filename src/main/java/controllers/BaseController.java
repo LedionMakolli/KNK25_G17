@@ -36,6 +36,7 @@ public class BaseController {
     @FXML protected MenuItem Offers;
     @FXML protected MenuItem addOffer;
     @FXML protected MenuItem addReview;
+    @FXML protected MenuItem seeInsurance;
 
     public void setAlbanianLanguage() {
         try{
@@ -136,6 +137,10 @@ public class BaseController {
         loadSceneWithErrorHandling(SceneLocator.OFFERS_FORM, "error.loadOffers.header", "error.loadOffers.content");
     }
     @FXML
+    public void seeInsurance() {
+        loadSceneWithErrorHandling(SceneLocator.SEE_INSURANCE, "error.loadInsurance.header", "error.loadInsurance.content");
+    }
+    @FXML
     public void seeAboutProgram(){
         try{
             if("staff".equals(SessionManager.getInstance().getCurrentRole())) {
@@ -212,6 +217,7 @@ public class BaseController {
             if(seeMaintenance!=null) seeMaintenance.setVisible(false);
             if(updateMaintenance!=null) updateMaintenance.setVisible(false);
             if(addOffer!=null) addOffer.setVisible(false);
+            if(seeInsurance!=null) seeInsurance.setVisible(false);
         } else if("staff".equals(role)) {
             if(addReview!=null) addReview.setVisible(false);
         }

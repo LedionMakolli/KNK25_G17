@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="436.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DocumentsController">
+<AnchorPane prefHeight="500.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SeeInsuranceController">
     <MenuBar VBox.vgrow="NEVER">
         <menus>
             <Menu mnemonicParsing="false" text="%txt.Homepage">
@@ -50,22 +50,23 @@
                     <MenuItem fx:id="addPenalty" mnemonicParsing="false" onAction="#handleAddPenalty" text="%txt.addPenalty" />
                     <MenuItem fx:id="addMaintenance" mnemonicParsing="false" onAction="#handleAddMaintenance" text="%txt.AddMaintenance" />
                     <MenuItem fx:id="addOffer" mnemonicParsing="false" onAction="#handleAddOffer" text="%txt.addOffer" />
-                    <MenuItem fx:id="addReview" mnemonicParsing="false" text="%txt.addReview" onAction="#addReview"/>
+                    <MenuItem fx:id="addReview" mnemonicParsing="false" onAction="#addReview" text="%txt.addReview" />
                 </items>
             </Menu>
         </menus>
     </MenuBar>
 
 
-    <TableView fx:id="documentsTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="551.0">
+    <TableView fx:id="insuranceTable" layoutX="14.0" layoutY="43.0" prefHeight="350.0" prefWidth="481.0">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
-            <TableColumn fx:id="contractIdColumn" prefWidth="100" text="Contract ID" />
-            <TableColumn fx:id="typeColumn" prefWidth="100" text="Type" />
-            <TableColumn fx:id="pathColumn" prefWidth="154.00003051757812" text="Path" />
-            <TableColumn fx:id="uploadDateColumn" prefWidth="159.79998779296875" text="Upload Date" />
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="carIdColumn" text="Car ID" />
+            <TableColumn fx:id="companyColumn" text="Company" />
+            <TableColumn fx:id="startDateColumn" text="Start Date" />
+            <TableColumn fx:id="endDateColumn" text="End Date" />
+            <TableColumn fx:id="costColumn" text="Cost" />
         </columns>
     </TableView>
 
-    <Button layoutX="541.0" layoutY="361.0" onAction="#initialize" text="Refresh" />
+    <Button layoutX="434.0" layoutY="404.0" onAction="#initialize" text="Refresh" />
 </AnchorPane>
