@@ -60,7 +60,7 @@
 
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <Label layoutX="255.0" layoutY="14.0" prefHeight="27.0" prefWidth="129.0" text="%txt.addOffer">
+                <Label layoutX="261.0" layoutY="14.0" prefHeight="27.0" prefWidth="150.0" text="%txt.addOffer">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>

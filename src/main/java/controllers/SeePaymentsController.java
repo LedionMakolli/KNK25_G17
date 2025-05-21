@@ -7,15 +7,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Payments;
-import repository.PaymentsRepository;
 import services.PaymentsService;
-import services.SessionManager;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class PaymentsController extends BaseController{
+public class SeePaymentsController extends BaseController{
     @FXML
     private TableView<Payments> paymentsTable;
 

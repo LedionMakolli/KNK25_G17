@@ -6,21 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Contract;
-import models.Dto.CreateContractDto;
-import repository.ContractRepository;
 import services.ContractService;
-import services.SceneManager;
-import services.SessionManager;
-import utils.SceneLocator;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.sql.Date;
 import java.util.List;
-import java.util.Locale;
 
-public class ContractsController extends BaseController {
+public class SeeContractsController extends BaseController {
     @FXML
     private TableView<Contract> contractsTable;
 

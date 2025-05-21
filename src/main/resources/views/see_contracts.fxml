@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="482.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentsController">
+<AnchorPane prefHeight="469.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SeeContractsController">
     <MenuBar VBox.vgrow="NEVER">
         <menus>
             <Menu mnemonicParsing="false" text="%txt.Homepage">
@@ -56,14 +56,12 @@
         </menus>
     </MenuBar>
 
-    <TableView fx:id="paymentsTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="559.0">
+    <TableView fx:id="contractsTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="551.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
-            <TableColumn fx:id="idReservation" prefWidth="90.4000015258789" text="ID Reservation" />
-            <TableColumn fx:id="typeColumn" prefWidth="84.0" text="Type" />
-            <TableColumn fx:id="promocodeColumn" prefWidth="126.4000244140625" text="Promocode ID" />
-            <TableColumn fx:id="totalDiscountColumn" prefWidth="105.0" text="Total no discount (€)" />
-            <TableColumn fx:id="totalFinalColumn" prefWidth="145.39999389648438" text="Total (€)" />
+            <TableColumn fx:id="paymenIdColumn" prefWidth="100" text="Payment ID" />
+            <TableColumn fx:id="reservationIdColumn" prefWidth="150" text="Reservation ID" />
+            <TableColumn fx:id="amountColumn" prefWidth="100" text="Amount (€)" />
             <TableColumn fx:id="dateColumn" prefWidth="150" text="Date" />
         </columns>
     </TableView>

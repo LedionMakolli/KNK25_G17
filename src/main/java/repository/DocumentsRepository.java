@@ -50,7 +50,7 @@ public class DocumentsRepository extends BaseRepository<Documents, CreateDocumen
     // metoda update
 
     public Documents update(UpdateDocumentsDto DokemntetDto){
-        StringBuilder query = new StringBuilder("UPDATE DOCUMENTS SET ");
+        StringBuilder query = new StringBuilder("UPDATE SEE_DOCUMENTS SET ");
         List<Object> parametrat = new ArrayList<>();
         boolean hasUpdates = false;
 

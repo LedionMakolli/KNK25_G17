@@ -8,7 +8,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Penalties;
-import repository.PenaltiesRepository;
 import services.PenaltyService;
 import services.SessionManager;
 
@@ -16,7 +15,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class PenaltiesController extends BaseController {
+public class SeePenaltiesController extends BaseController {
     @FXML
     private TableView<Penalties> penaltiesTable;
 

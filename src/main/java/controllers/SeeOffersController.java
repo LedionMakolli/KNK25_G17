@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class OffersController extends BaseController{
+public class SeeOffersController extends BaseController{
 
     @FXML private TableView<Offers> tblOffers;
     @FXML private TableColumn<Offers, String> colCarModel;
@@ -24,7 +24,7 @@ public class OffersController extends BaseController{
 
     private final OffersRepository repo;
 
-    public OffersController() {
+    public SeeOffersController() {
         try {
             this.repo = new OffersRepository();
         } catch (SQLException e) {

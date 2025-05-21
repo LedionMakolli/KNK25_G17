@@ -36,7 +36,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ContractsFormController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddContractsController">
   <children>
       <MenuBar VBox.vgrow="NEVER">
           <menus>
@@ -92,11 +92,11 @@
 
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="284.0" layoutY="28.0" prefHeight="27.0" prefWidth="72.0" text="Contract" textAlignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+             <Label layoutX="261.0" layoutY="14.0" prefHeight="27.0" prefWidth="150.0" text="%txt.AddContract">
+                 <font>
+                     <Font name="System Bold" size="18.0" />
+                 </font>
+             </Label>
             <VBox layoutX="193.0" layoutY="85.0" spacing="20.0">
                <children>
                   <HBox spacing="20.0">

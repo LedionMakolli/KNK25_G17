@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="469.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ContractsController">
+<AnchorPane prefHeight="436.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SeeDocumentsController">
     <MenuBar VBox.vgrow="NEVER">
         <menus>
             <Menu mnemonicParsing="false" text="%txt.Homepage">
@@ -56,13 +56,14 @@
         </menus>
     </MenuBar>
 
-    <TableView fx:id="contractsTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="551.0">
+
+    <TableView fx:id="documentsTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="551.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
-            <TableColumn fx:id="paymenIdColumn" prefWidth="100" text="Payment ID" />
-            <TableColumn fx:id="reservationIdColumn" prefWidth="150" text="Reservation ID" />
-            <TableColumn fx:id="amountColumn" prefWidth="100" text="Amount (€)" />
-            <TableColumn fx:id="dateColumn" prefWidth="150" text="Date" />
+            <TableColumn fx:id="contractIdColumn" prefWidth="100" text="Contract ID" />
+            <TableColumn fx:id="typeColumn" prefWidth="100" text="Type" />
+            <TableColumn fx:id="pathColumn" prefWidth="154.00003051757812" text="Path" />
+            <TableColumn fx:id="uploadDateColumn" prefWidth="159.79998779296875" text="Upload Date" />
         </columns>
     </TableView>
 

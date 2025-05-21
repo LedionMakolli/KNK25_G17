@@ -35,7 +35,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="482.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MaintenanceController">
+<AnchorPane prefHeight="482.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SeeMaintenanceController">
   <MenuBar VBox.vgrow="NEVER">
     <menus>
       <Menu mnemonicParsing="false" text="%txt.Homepage">

@@ -1,12 +1,9 @@
 package testim;
 
-import controllers.ChangePasswordController;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import models.Clients;
 import services.LanguageManager;
 import services.SceneManager;
-import services.SessionManager;
 
 import java.util.Locale;
 
@@ -90,7 +87,7 @@ public void start(Stage stage) throws Exception {
     languageManager.setLocale(new Locale("en"));
 
     SceneManager manager = SceneManager.getInstance();
-    SceneManager.load("/views/changepassword.fxml"); // Sigurohu që ky path është i saktë
+    SceneManager.load("/views/change_password.fxml"); // Sigurohu që ky path është i saktë
 
     stage.setScene(manager.getScene());
     stage.setTitle("Ndrysho Fjalëkalimin");

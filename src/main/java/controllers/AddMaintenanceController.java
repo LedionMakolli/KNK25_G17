@@ -1,25 +1,19 @@
 package controllers;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Cars;
-import models.Dto.CreateMaintenanceDto;
 import models.Staff;
 import models.enums.StaffPositionEnum;
 import models.enums.StatusMaintenanceEnum;
-import repository.CarRepository;
-import repository.MaintenanceRepository;
-import repository.StaffRepository;
 import services.CarService;
 import services.MaintenanceService;
 import services.SessionManager;
 import services.StaffService;
 
 import java.math.BigDecimal;
-import java.sql.Array;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -27,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MaintenanceFormController extends BaseController{
+public class AddMaintenanceController extends BaseController{
     @FXML
     private ComboBox<String> comboCar;
 

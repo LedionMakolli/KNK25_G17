@@ -6,13 +6,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Documents;
-import repository.DocumentsRepository;
 import services.DocumentService;
 
 import java.util.Date;
 import java.util.List;
 
-public class DocumentsController extends BaseController {
+public class SeeDocumentsController extends BaseController {
 
     @FXML private TableView<Documents> documentsTable;
     @FXML private TableColumn<Documents, Integer> idColumn;
@@ -23,7 +22,7 @@ public class DocumentsController extends BaseController {
 
     private final DocumentService documentService;
 
-    public DocumentsController() {
+    public SeeDocumentsController() {
         try {
             this.documentService = new DocumentService();
             super.initialize();

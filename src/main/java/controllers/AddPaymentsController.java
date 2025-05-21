@@ -6,26 +6,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import models.Dto.CreatePaymentsDto;
 import models.Payments;
-import models.PromoCode;
 import models.Reservations;
 import models.enums.PaymentEnum;
-import repository.PaymentsRepository;
-import repository.PromoCodeRepository;
 import services.PaymentsService;
-import services.SceneManager;
-import utils.SceneLocator;
 
-import java.awt.*;
-import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
-public class PaymentsFormController extends BaseController{
+public class AddPaymentsController extends BaseController{
     @FXML private TextField txtFieldReservationId;
     @FXML private ComboBox cbPaymentType;
     @FXML private TextField txtFieldPromocodeId;
@@ -35,7 +26,7 @@ public class PaymentsFormController extends BaseController{
 
     private final PaymentsService paymentsService;
 
-     public PaymentsFormController() {
+     public AddPaymentsController() {
          try {
              super.initialize();
              this.paymentsService = new PaymentsService();

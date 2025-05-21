@@ -35,7 +35,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReviewController">
+<?import javafx.scene.text.Font?>
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddReviewController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -77,6 +78,11 @@
 
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
+           <Label layoutX="261.0" layoutY="12.0" prefHeight="27.0" prefWidth="150.0" text="%txt.addReview">
+             <font>
+               <Font name="System Bold" size="18.0" />
+             </font>
+           </Label>
            <Label layoutX="118.0" layoutY="43.0" text="%txt.SelectCar" />
            <ComboBox fx:id="cmbCar" layoutX="218.0" layoutY="39.0" prefWidth="200" />
 

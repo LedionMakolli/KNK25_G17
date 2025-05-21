@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ReservationsController extends BaseController{
+public class SeeReservationsController extends BaseController{
     @FXML
     private TableView<Reservations> reservationsTable;
 

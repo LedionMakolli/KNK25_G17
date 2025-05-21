@@ -7,16 +7,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import models.Contract;
 import models.Dto.CreateContractDto;
-import repository.ContractRepository;
 import services.ContractService;
-import services.SceneManager;
-import utils.SceneLocator;
 
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class ContractsFormController extends BaseController{
+public class AddContractsController extends BaseController{
     @FXML
     private TextField txtFieldReservationId;
 

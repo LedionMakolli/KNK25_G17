@@ -9,7 +9,6 @@ import utils.SceneLocator;
 
 import java.sql.SQLException;
 import java.text.MessageFormat;
-import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -98,19 +97,19 @@ public class BaseController {
     }
     @FXML
     public void handleAddContract() {
-        loadSceneWithErrorHandling(SceneLocator.CONTRACT_FORM, "error.loadContractForm.header", "error.loadContractForm.content");
+        loadSceneWithErrorHandling(SceneLocator.ADD_CONTRACT, "error.loadContractForm.header", "error.loadContractForm.content");
     }
     @FXML
     public void handleAddMaintenance() {
-        loadSceneWithErrorHandling(SceneLocator.MAINTENANCE_FORM, "error.loadMaintenanceForm.header", "error.loadMaintenanceForm.content");
+        loadSceneWithErrorHandling(SceneLocator.ADD_MAINTENANCE, "error.loadMaintenanceForm.header", "error.loadMaintenanceForm.content");
     }
     @FXML
     public void handleAddPayment() {
-        loadSceneWithErrorHandling(SceneLocator.PAYMENT_FORM, "error.loadPaymentForm.header", "error.loadPaymentForm.content");
+        loadSceneWithErrorHandling(SceneLocator.ADD_PAYMENT, "error.loadPaymentForm.header", "error.loadPaymentForm.content");
     }
     @FXML
     public void seeDocuments() {
-        loadSceneWithErrorHandling(SceneLocator.DOCUMENTS, "error.loadDocuments.header", "error.loadDocuments.content");
+        loadSceneWithErrorHandling(SceneLocator.SEE_DOCUMENTS, "error.loadDocuments.header", "error.loadDocuments.content");
     }
 
     @FXML
@@ -127,7 +126,7 @@ public class BaseController {
     }
     @FXML
     public void addReview() {
-        loadSceneWithErrorHandling(SceneLocator.REVIEW_FORM, "error.loadReviews.header", "error.loadReviews.content");
+        loadSceneWithErrorHandling(SceneLocator.ADD_REVIEW, "error.loadReviews.header", "error.loadReviews.content");
     }
 
     @FXML
@@ -161,7 +160,7 @@ public class BaseController {
     }
     @FXML
     public void handleUpdateTable() {
-        loadSceneWithErrorHandling(SceneLocator.UPDATE_PENALTY_REQUESTS, "error.handleUpdateTable.header", "error.handleUpdateTable.content");
+        loadSceneWithErrorHandling(SceneLocator.UPDATE_PENALTIES_AND_REQUESTS, "error.handleUpdateTable.header", "error.handleUpdateTable.content");
     }
     @FXML
     public void handleAddPenalty() {

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="489.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PenaltiesController">
+<AnchorPane prefHeight="489.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SeePenaltiesController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>

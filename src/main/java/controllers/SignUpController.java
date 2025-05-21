@@ -9,10 +9,9 @@ import models.Dto.CreateClientDto;
 import services.ClientService;
 import services.PasswordHasher;
 import services.SceneManager;
-import services.LanguageManager;
 import utils.SceneLocator;
 
-public class CreateClientController extends BaseController {
+public class SignUpController extends BaseController {
 
     @FXML private TextField txtFirstName;
     @FXML private TextField txtLastName;
@@ -26,7 +25,7 @@ public class CreateClientController extends BaseController {
 
     private ClientService clientService;
 
-    public CreateClientController() {
+    public SignUpController() {
         try {
             this.clientService = new ClientService();
         } catch (Exception e) {

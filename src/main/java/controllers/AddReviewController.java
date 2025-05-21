@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Cars;
 import models.Dto.CreateReviewsDto;
-import repository.ReviewsRepository;
 import services.CarService;
 import services.ReviewsService;
 import services.SceneManager;
@@ -21,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ReviewController extends BaseController{
+public class AddReviewController extends BaseController{
 
     @FXML private ComboBox<String> cmbCar;
     @FXML private ChoiceBox<Integer> choiceRating;
@@ -32,7 +31,7 @@ public class ReviewController extends BaseController{
     private final ReviewsService reviewsService;
     private Map<String, Cars> modelToCarMap = new HashMap<>();
 
-    public ReviewController() {
+    public AddReviewController() {
         try {
             this.reviewsService = new ReviewsService();
         } catch (SQLException e) {
