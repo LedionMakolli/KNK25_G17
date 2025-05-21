@@ -36,7 +36,7 @@ public class InsuranceRepository {
     }
 
     public Payments getById(int idInsurance) {
-        String query = "SELECT * FROM Sigurimi WHERE idInsurance=?";
+        String query = "SELECT * FROM INSURANCE WHERE id=?";
         try {
             PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1, idInsurance);
@@ -52,7 +52,7 @@ public class InsuranceRepository {
 
     public Payments create(CreateInsuranceDto InsuranceDto) {
         String query = """
-            INSERT INTO SIGURIMI (IDINSURANCE,COMPANY, STARTDATE, ENDDATE, COST)
+            INSERT INTO SIGURIMI (idCar,COMPANY, STARTDATE, ENDDATE, COST)
             VALUES (?, ?, ?, ?,?)
         """;
         try {
@@ -92,11 +92,11 @@ public class InsuranceRepository {
         }
 
         if (!hasUpdates) {
-            return getById(insuranceDto.getIDInsurance());
+            return getById(insuranceDto.getId());
         }
         query.setLength(query.length() - 2);
         query.append(" WHERE idinsurance=?");
-        parametrat.add(insuranceDto.getIDInsurance());
+        parametrat.add(insuranceDto.getId());
 
         try {
             PreparedStatement pstm = connection.prepareStatement(query.toString());
@@ -104,14 +104,14 @@ public class InsuranceRepository {
                 pstm.setObject(i + 1, parametrat.get(i));
             }
             pstm.executeUpdate();
-            return getById(insuranceDto.getIDInsurance());
+            return getById(insuranceDto.getId());
         } catch (SQLException e) {
             throw new RuntimeException("Error during update!", e);
         }
     }
 
     public boolean delete(int idInsurance) {
-        String query = "DELETE FROM INSURANCE WHERE idinsurance=?";
+        String query = "DELETE FROM INSURANCE WHERE id=?";
         try {
             PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1, idInsurance);

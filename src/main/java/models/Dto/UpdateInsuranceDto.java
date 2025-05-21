@@ -3,22 +3,22 @@ package models.Dto;
 import java.util.Date;
 
 public class UpdateInsuranceDto {
-int idInsurance;
+int id;
 Date startDate;
 Date endDate;
 double cost;
 
 
-    private UpdateInsuranceDto(int idInsurance, Date startDate, Date endDate, double cost) {
+    private UpdateInsuranceDto(int id, Date startDate, Date endDate, double cost) {
 
-        this.idInsurance = idInsurance;
+        this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.cost = cost;
     }
 
-    public int getIDInsurance() {
-        return idInsurance;
+    public int getId() {
+        return id;
     }
     public Date getStartDate() {
         return startDate;
@@ -32,8 +32,8 @@ double cost;
         return cost;
     }
 
-    public void setIDInsurance(int idInsurance){
-        this.idInsurance =idInsurance;
+    public void setId(int id){
+        this.id =id;
     }
     public void setStartDate(Date startDate){
         this.startDate = startDate;

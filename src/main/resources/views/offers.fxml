@@ -62,6 +62,7 @@
             <MenuItem fx:id="seePayments" mnemonicParsing="false" onAction="#seePayments" text="%txt.seePayments" />
             <MenuItem fx:id="seeReservations" mnemonicParsing="false" onAction="#seeReservations" text="%txt.seeReservations" />
             <MenuItem fx:id="seeMaintenance" mnemonicParsing="false" onAction="#seeMaintenance" text="%txt.seeMaintenance" />
+            <MenuItem fx:id="seeInsurance" mnemonicParsing="false" onAction="#seeInsurance" text="%txt.seeInsurance" />
             <MenuItem fx:id="Offers" mnemonicParsing="false" onAction="#Offers" text="%txt.Offers" />
             <MenuItem fx:id="SignOut" mnemonicParsing="false" onAction="#SignOut" text="%txt.SignOut" />
           </items>

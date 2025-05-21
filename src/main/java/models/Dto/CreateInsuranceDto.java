@@ -12,7 +12,7 @@ public class CreateInsuranceDto {
     private double cost;
 
 
-    private CreateInsuranceDto(int id_sigurimi, int idCar, InsuranceCompanyEnum company, Date startDate, Date endDate, double cost) {
+    private CreateInsuranceDto(int idCar, InsuranceCompanyEnum company, Date startDate, Date endDate, double cost) {
         this.idCar = idCar;
         this.company = company;
         this.startDate = startDate;

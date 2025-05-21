@@ -37,7 +37,7 @@ public class CarDetailsController extends BaseController{
     private Cars currentCar;
     private CarDetailsSerivce carDetailsSerivce;
     private BigDecimal carPrice;
-    private BigDecimal RealCarPrice;
+    private BigDecimal realCarPrice;
 
     public CarDetailsController() throws SQLException {
         super.initialize();
@@ -45,7 +45,8 @@ public class CarDetailsController extends BaseController{
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
+        super.initialize();
 
         if (SessionManager.getInstance().isStaff()) {
             btnReserveNow.setDisable(true);
@@ -72,7 +73,7 @@ public class CarDetailsController extends BaseController{
         lblSeats.setText("Seats: " + car.getSeatCount());
         lblFuel.setText("Fuel: " + car.getFuelType());
         carPrice = carDetailsSerivce.getDailyPrice(car);
-        RealCarPrice = BigDecimal.valueOf(car.getDailyPrice());
+        realCarPrice = BigDecimal.valueOf(car.getDailyPrice());
         lblPriceDay.setText("Price/Day: " + carPrice + "€");
         lblStatus.setText("Status: " + car.getStatus());
         lblTransmissionType.setText("Transmission Type: " + car.getTransmissionType());
@@ -80,8 +81,6 @@ public class CarDetailsController extends BaseController{
                 getClass().getResourceAsStream(car.getImagePath())
         );
         imgCar.setImage(image);
-        this.PopupSale();
-
     }
     @FXML
     public void goToHomepage(ActionEvent event) throws Exception {
@@ -112,13 +111,13 @@ public class CarDetailsController extends BaseController{
         }
     }
 
-    private void PopupSale(){
-        if (carPrice.compareTo(RealCarPrice) < 0 ) {
-            showAlert(
+    public void PopupSale(){
+        if (carPrice.compareTo(realCarPrice) < 0 ) {
+            showAlertBasedOnLanguage(
                     Alert.AlertType.INFORMATION,
-                    "Zbritje në këtë veturë!",
-                    "Makina është në ofertë." +
-                            " Çmimi me zbritje është " + carPrice + "€ %txt.carSaleDetailForm " + RealCarPrice + "€!"
+                    "title.sale",
+                    "txt.carSaleDetailForm",
+                    carPrice, realCarPrice
             );
         }
     }

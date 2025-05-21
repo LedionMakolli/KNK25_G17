@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 public class Insurance {
-    private int idInsurance;
+    private int id;
     private int idCar;
     private InsuranceCompanyEnum company;
     private Date startDate;
@@ -15,8 +15,8 @@ public class Insurance {
     private double cost;
 
 
-    private Insurance(int idInsurance, int idCar, InsuranceCompanyEnum company, Date startDate, Date endDate, double cost) {
-        this.idInsurance = idInsurance;
+    private Insurance(int id, int idCar, InsuranceCompanyEnum company, Date startDate, Date endDate, double cost) {
+        this.id = id;
         this.idCar = idCar;
         this.company = company;
         this.startDate = startDate;
@@ -25,18 +25,18 @@ public class Insurance {
     }
 
     public static Insurance getInstance(ResultSet resultSet) throws SQLException {
-        int idInsurance = resultSet.getInt("idInsurance");
+        int id = resultSet.getInt("id");
         int idCar = resultSet.getInt("idCar");
         String companyStr = resultSet.getString("company");
         InsuranceCompanyEnum company = InsuranceCompanyEnum.valueOf(companyStr.toUpperCase());
         Date startDate = resultSet.getDate("startDate");
         Date endDate = resultSet.getDate("endDate");
         double cost = resultSet.getDouble("cost");
-        return new Insurance(idInsurance, idCar, company, startDate, endDate, cost);
+        return new Insurance(id, idCar, company, startDate, endDate, cost);
     }
 
-    public int getIdInsurance() {
-        return idInsurance;
+    public int getId() {
+        return id;
     }
 
     public int getIdCar() {
@@ -62,7 +62,7 @@ public class Insurance {
     public void printoTeDhenatPerSigurimineVetures() {
         System.out.println("----------------------------------------");
         System.out.println("Insurance information:");
-        System.out.println("ID Insurance: " + getIdInsurance());
+        System.out.println("ID Insurance: " + getId());
         System.out.println("ID Car: " + getIdCar());
         System.out.println("Insurance company: " + getCompany());
         System.out.println("Registration Date: " + getStartDate());

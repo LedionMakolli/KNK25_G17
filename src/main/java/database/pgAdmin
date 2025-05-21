@@ -111,9 +111,9 @@ CREATE TABLE Contract (
 CREATE TABLE Insurance (
     id SERIAL PRIMARY KEY,
     idCar INT REFERENCES Cars(id) ON DELETE CASCADE,
-    kompania VARCHAR(255) NOT NULL,
-    dateStart DATE NOT NULL,
-    dateFininsh DATE NOT NULL,
+    company InsuranceCompanyEnum NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
     cost DECIMAL(10,2) NOT NULL
 );
 

@@ -23,11 +23,11 @@ import java.util.Map;
 
 public class ReviewController extends BaseController{
 
-    @FXML private ComboBox<String>     cmbCar;
+    @FXML private ComboBox<String> cmbCar;
     @FXML private ChoiceBox<Integer> choiceRating;
-    @FXML private TextArea           txtReview;
-    @FXML private Button             btnSubmitReview;
-    @FXML private Button             btnCancelReview;
+    @FXML private TextArea txtReview;
+    @FXML private Button btnSubmitReview;
+    @FXML private Button btnCancelReview;
 
     private final ReviewsService reviewsService;
     private Map<String, Cars> modelToCarMap = new HashMap<>();
@@ -61,14 +61,16 @@ public class ReviewController extends BaseController{
     private void onSubmitReview(ActionEvent event) {
         String selectedModel = cmbCar.getValue();
         Cars selectedCar = modelToCarMap.get(selectedModel);
-        Integer rating   = choiceRating.getValue();
-        String  text     = txtReview.getText();
+        Integer rating = choiceRating.getValue();
+        String text = txtReview.getText();
 
 
         if (selectedCar == null || rating == null || text == null || text.isBlank()) {
-            new Alert(Alert.AlertType.WARNING,
-                    "Please select a car, a rating, and enter your review text.")
-                    .showAndWait();
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.WARNING,
+                    "warning.reviewFields.header",
+                    "warning.reviewFields.content"
+            );
             return;
         }
 
@@ -84,20 +86,26 @@ public class ReviewController extends BaseController{
 
         try {
             if (reviewsService.createReivew(dto) != null) {
-                new Alert(Alert.AlertType.INFORMATION,
-                        "Thank you! Your review has been submitted.")
-                        .showAndWait();
+                showAlertBasedOnLanguage(
+                        Alert.AlertType.INFORMATION,
+                        "info.reviewSubmitted.header",
+                        "info.reviewSubmitted.content"
+                );
                 SceneManager.load(SceneLocator.HOME_PAGE);
             } else {
-                new Alert(Alert.AlertType.ERROR,
-                        "Failed to save your review. Please try again.")
-                        .showAndWait();
+                showAlertBasedOnLanguage(
+                        Alert.AlertType.ERROR,
+                        "error.reviewSaveFail.header",
+                        "error.reviewSaveFail.content"
+                );
             }
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR,
-                    "Error saving review: " + e.getMessage())
-                    .showAndWait();
+            showAlertBasedOnLanguage(
+                    Alert.AlertType.ERROR,
+                    "error.saveReviewException.header",
+                    "error.saveReviewException.content"
+            );
         }
     }
 
