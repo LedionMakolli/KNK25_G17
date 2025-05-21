@@ -9,6 +9,7 @@ import utils.SceneLocator;
 
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class BaseController {
     protected SceneManager sceneManager = SceneManager.getInstance();
@@ -64,140 +65,78 @@ public class BaseController {
             );
         }
     }
+    protected void loadSceneWithErrorHandling(String fxmlPath, String errorHeaderKey, String errorContentKey) {
+        try {
+            SceneManager.load(fxmlPath);
+        } catch (Exception e) {
+            ResourceBundle rb = languageManager.getResourceBundle();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(rb.getString(errorHeaderKey));
+            alert.setHeaderText(rb.getString(errorHeaderKey));
+            alert.setContentText(rb.getString(errorContentKey));
+            alert.showAndWait();
 
-    public void SignOut(){
-        try{
-            SceneManager.load(SceneLocator.LOGIN_PAGE);
-        }catch (Exception e){
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadLogin.header",
-                    "error.loadLogin.content"
-            );
-        }
-    }
-    public void seeContracts(){
-        try{
-            SceneManager.load(SceneLocator.SEE_CONTRACTS);
-        }catch (Exception e){
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadContracts.header",
-                    "error.loadContracts.content"
-            );
-        }
-    }
-
-    public void goToHomepage(){
-        try{
-            SceneManager.load(SceneLocator.HOME_PAGE);
-        }catch (Exception e){
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadHomepage.header",
-                    "error.loadHomepage.content"
-            );
-        }
-    }
-
-    public void handleChangePassword(){
-        try{
-            SceneManager.load(SceneLocator.CHANGE_PASSWORD_PAGE);
-        }catch (Exception e){
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadChangePassword.header",
-                    "error.loadChangePassword.content"
-            );
-        }
-}
-
-    public void handleAddContract(){
-        try{
-            SceneManager.load(SceneLocator.CONTRACT_FORM);
-        }catch (Exception e){
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadContractForm.header",
-                    "error.loadContractForm.content"
-            );
-        }
-    }
-
-    public void handleAddMaintenance(){
-        try{
-            SceneManager.load(SceneLocator.MAINTENANCE_FORM);
-        }catch (Exception e){
             e.printStackTrace();
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadMaintenanceForm.header",
-                    "error.loadMaintenanceForm.content"
-            );
         }
     }
 
-    public void handleAddPayment(){
-        try{
-            SceneManager.load(SceneLocator.PAYMENT_FORM);
-        }catch (Exception e){
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadPaymentForm.header",
-                    "error.loadPaymentForm.content"
-            );
-        }
+    @FXML
+    public void SignOut() {
+        loadSceneWithErrorHandling(SceneLocator.LOGIN_PAGE, "error.loadLogin.header", "error.loadLogin.content");
     }
-
+    @FXML
+    public void seeContracts() {
+        loadSceneWithErrorHandling(SceneLocator.SEE_CONTRACTS, "error.loadContracts.header", "error.loadContracts.content");
+    }
+    @FXML
+    public void goToHomepage() {
+        loadSceneWithErrorHandling(SceneLocator.HOME_PAGE, "error.loadHomepage.header", "error.loadHomepage.content");
+    }
+    @FXML
+    public void handleChangePassword() {
+        loadSceneWithErrorHandling(SceneLocator.CHANGE_PASSWORD_PAGE, "error.loadChangePassword.header", "error.loadChangePassword.content");
+    }
+    @FXML
+    public void handleAddContract() {
+        loadSceneWithErrorHandling(SceneLocator.CONTRACT_FORM, "error.loadContractForm.header", "error.loadContractForm.content");
+    }
+    @FXML
+    public void handleAddMaintenance() {
+        loadSceneWithErrorHandling(SceneLocator.MAINTENANCE_FORM, "error.loadMaintenanceForm.header", "error.loadMaintenanceForm.content");
+    }
+    @FXML
+    public void handleAddPayment() {
+        loadSceneWithErrorHandling(SceneLocator.PAYMENT_FORM, "error.loadPaymentForm.header", "error.loadPaymentForm.content");
+    }
+    @FXML
     public void seeDocuments() {
-        try {
-            SceneManager.load(SceneLocator.DOCUMENTS);
-        } catch (Exception e) {
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadDocuments.header",
-                    "error.loadDocuments.content"
-            );
-        }
+        loadSceneWithErrorHandling(SceneLocator.DOCUMENTS, "error.loadDocuments.header", "error.loadDocuments.content");
     }
 
+    @FXML
     public void seePayments() {
-        try {
-            SceneManager.load(SceneLocator.SEE_PAYMENTS);
-        } catch (Exception e) {
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadPayments.header",
-                    "error.loadPayments.content"
-            );
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        loadSceneWithErrorHandling(SceneLocator.SEE_PAYMENTS, "error.loadPayments.header", "error.loadPayments.content");
     }
-
+    @FXML
     public void seeReservations() {
-        try{
-            SceneManager.load(SceneLocator.SEE_RESERVATIONS);
-        }catch (Exception e){
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadReservations.header",
-                    "error.loadReservations.content"
-            );            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        loadSceneWithErrorHandling(SceneLocator.SEE_RESERVATIONS, "error.loadReservations.header", "error.loadReservations.content");
+    }
+    @FXML
+    public void seePenalties() {
+        loadSceneWithErrorHandling(SceneLocator.SEE_PENALTIES, "error.loadPenalties.header", "error.loadPenalties.content");
+    }
+    @FXML
+    public void seeReviews() {
+        loadSceneWithErrorHandling(SceneLocator.REVIEW_FORM, "error.loadReviews.header", "error.loadReviews.content");
     }
 
-    public void seePenalties() {
-        try {
-            SceneManager.load(SceneLocator.SEE_PENALTIES);
-        } catch (Exception e) {
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadPenalties.header",
-                    "error.loadPenalties.content"
-            );
-        }
+    @FXML
+    public void seeMaintenance() {
+        loadSceneWithErrorHandling(SceneLocator.SEE_MAINTENANCE, "error.loadMaintenances.header", "error.loadMaintenances.content");
+    }
+    @FXML
+    public void Offers() {
+        loadSceneWithErrorHandling(SceneLocator.OFFERS_FORM, "error.loadOffers.header", "error.loadOffers.content");
     }
 
     public void seeAboutProgram(){
@@ -216,45 +155,21 @@ public class BaseController {
             e.printStackTrace();
         }
     }
-
     @FXML
-    public void seeReviews() {
-        try {
-            SceneManager.load(SceneLocator.REVIEW_FORM);
-        } catch (Exception e) {
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadReviews.header",
-                    "error.loadReviews.content"
-            );
-            e.printStackTrace();
-        }
+    public void handleUpdateTable() {
+        loadSceneWithErrorHandling(SceneLocator.UPDATE_PENALTY_REQUESTS, "error.handleUpdateTable.header", "error.handleUpdateTable.content");
     }
-
     @FXML
-    public void seeMaintenance(){
-        try{
-            SceneManager.load(SceneLocator.SEE_MAINTENANCE);
-        }catch(Exception e){
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadMaintenances.header",
-                    "error.loadMaintenances.content"
-            );
-            e.printStackTrace();
-        }
+    public void handleAddPenalty() {
+        loadSceneWithErrorHandling(SceneLocator.ADD_PENALTY, "error.handlePenalty.header", "error.handlePenalty.content");
     }
-
-    public void Offers(){
-        try{
-            SceneManager.load(SceneLocator.OFFERS_FORM);
-        }catch (Exception e){
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.loadOffers.header",
-                    "error.loadOffers.content"
-            );
-        }
+    @FXML
+    public void handleUpdateMaintenance() {
+        loadSceneWithErrorHandling(SceneLocator.UPDATE_MAINTENANCE, "error.handleUpdateMaintenance.header", "error.handleUpdateMaintenance.content");
+    }
+    @FXML
+    public void handleAddOffer() {
+        loadSceneWithErrorHandling(SceneLocator.ADD_OFFER, "error.handleAddOffer.header", "error.handleAddOffer.content");
     }
 
 
@@ -272,54 +187,6 @@ public class BaseController {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
-    }
-
-    public void handleUpdateTable() {
-        try {
-            SceneManager.load(SceneLocator.UPDATE_PENALTY_REQUESTS);
-        } catch (Exception e) {
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.handleUpdateTable.header",
-                    "error.handleUpdateTable.content"
-            );
-        }
-    }
-
-    public void handleAddPenalty() {
-        try {
-            SceneManager.load(SceneLocator.ADD_PENALTY);
-        } catch (Exception e) {
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.handlePenalty.header",
-                    "error.handlePenalty.content"
-            );
-        }
-    }
-
-    public void handleUpdateMaintenance() {
-        try {
-            SceneManager.load(SceneLocator.UPDATE_MAINTENANCE);
-        } catch(Exception e) {
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.handleUpdateMaintenance.header",
-                    "error.handleUpdateMaintenance.content"
-            );
-        }
-    }
-
-    public void handleAddOffer() {
-        try {
-            SceneManager.load(SceneLocator.ADD_OFFER);
-        } catch (Exception e) {
-            showAlertBasedOnLanguage(
-                    Alert.AlertType.ERROR,
-                    "error.handleAddOffer.header",
-                    "error.handleAddOffer.content"
-            );
-        }
     }
 
     @FXML

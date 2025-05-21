@@ -12,7 +12,7 @@ import services.UpdateTablesService;
 
 import java.sql.SQLException;
 
-public class UpdateTablesController extends BaseController {
+public class UpdatePenaltiesAndSpecialRequestsController extends BaseController {
 
     @FXML private ComboBox<String> txtChooseTable;
     @FXML private TextField txtId;

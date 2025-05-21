@@ -8,7 +8,7 @@ import utils.SceneLocator;
 
 import java.util.Locale;
 
-public class ChangeLanguageController {
+public class FirstPageController {
     @FXML
     private Button txtShqip;
     @FXML
@@ -17,7 +17,7 @@ public class ChangeLanguageController {
     private SceneManager sceneManager;
     private LanguageManager languageManager;
 
-    public ChangeLanguageController() {
+    public FirstPageController() {
         this.languageManager = LanguageManager.getInstance();
     }
 

@@ -1,11 +1,8 @@
 package app;
 
-import controllers.ChangeLanguageController;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import services.LanguageManager;
 import services.SceneManager;
-import java.util.Locale;
 
 public class Main extends Application {
     @Override
