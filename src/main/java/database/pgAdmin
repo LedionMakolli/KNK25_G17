@@ -202,6 +202,22 @@ CREATE TABLE LogActivity (
     )
 );
 
+----- ReservationsView -----
+
+CREATE OR REPLACE VIEW ReservationsView AS
+  SELECT
+    id,
+    idClient,
+    idCar,
+    startDate,
+    endDate,
+    CASE
+      WHEN endDate < CURRENT_DATE THEN 'ENDED'
+      ELSE reservationStatus
+    END AS reservationStatus,
+    createdAt
+  FROM Reservations;
+
 
 
 -- Veturat per Databaze --
