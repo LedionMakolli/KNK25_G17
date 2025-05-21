@@ -94,7 +94,6 @@
                  <MenuItem fx:id="addPenalty" mnemonicParsing="false" onAction="#handleAddPenalty" text="%txt.addPenalty" />
                  <MenuItem fx:id="addMaintenance" mnemonicParsing="false" onAction="#handleAddMaintenance" text="%txt.AddMaintenance" />
                  <MenuItem fx:id="addOffer" mnemonicParsing="false" onAction="#handleAddOffer" text="%txt.addOffer" />
-                 <MenuItem fx:id="addReview" mnemonicParsing="false" onAction="#addReview" text="%txt.addReview" />
               </items>
            </Menu>
         </menus>
