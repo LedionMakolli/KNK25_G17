@@ -57,7 +57,7 @@
     </MenuBar>
 
 
-    <TableView fx:id="insuranceTable" layoutX="14.0" layoutY="43.0" prefHeight="350.0" prefWidth="481.0">
+    <TableView fx:id="insuranceTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="559.0">
         <columns>
             <TableColumn fx:id="idColumn" text="ID" />
             <TableColumn fx:id="carIdColumn" text="Car ID" />
@@ -68,5 +68,5 @@
         </columns>
     </TableView>
 
-    <Button layoutX="434.0" layoutY="404.0" onAction="#initialize" text="Refresh" />
+    <Button layoutX="541.0" layoutY="361.0" onAction="#initialize" text="Refresh" />
 </AnchorPane>

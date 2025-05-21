@@ -43,6 +43,30 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
         }
     }
 
+    public Reservations findOverlapReservation(int idCar, Date start, Date end) {
+        String sql = """
+                SELECT *
+                  FROM reservations
+                 WHERE idcar = ?
+                   AND reservationstatus = 'ACTIVE'
+                   AND NOT (enddate < ? OR startdate > ?)
+                 LIMIT 1
+                """;
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, idCar);
+            ps.setDate(2, start);
+            ps.setDate(3, end);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return fromResultSet(rs);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching overlapping reservation", e);
+        }
+        return null;
+    }
+
 //3. Metoda create
 
     public Reservations create(CreateReservationsDto reservationsDto) {
@@ -104,18 +128,15 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
         if (!hasUpdates) {
             return getById(reservationsDto.getId());
         }
+
         query.setLength(query.length() - 2);
         query.append("WHERE id = ?");
         params.add(reservationsDto.getId());
 
         try (PreparedStatement pstm = connection.prepareStatement(query.toString())) {
             for (int i = 0; i < params.size(); i++) {
-                Object p = params.get(i);
-                if (p instanceof String && query.toString().contains("reservationstatus")) {
-                    pstm.setObject(i + 1, p, Types.OTHER);
-                } else {
-                    pstm.setObject(i + 1, p);
-                }
+                Object param = params.get(i);
+                pstm.setObject(i + 1, param);
             }
             pstm.executeUpdate();
             return getById(reservationsDto.getId());

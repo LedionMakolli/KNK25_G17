@@ -88,7 +88,7 @@
     </menus>
   </MenuBar>
 
-  <TableView fx:id="maintenanceTable" layoutX="14.0" layoutY="41.0" prefHeight="307.0" prefWidth="572.0">
+  <TableView fx:id="maintenanceTable" layoutX="46.0" layoutY="41.0" prefHeight="307.0" prefWidth="559.0">
                 <columns>
                   <TableColumn fx:id="idMaintenanceColumn" prefWidth="50" text="ID" />
                   <TableColumn fx:id="idCarColumn" prefWidth="50" text="ID Car" />
