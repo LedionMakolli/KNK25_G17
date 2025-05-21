@@ -21,7 +21,7 @@ public class SceneLocator {
     public static final String SEE_ABOUT_STAFF = "/views/aboutProgramStaff.fxml";
     public static final String UPDATE_PENALTY_REQUESTS= "/views/updatePenalties&SpecialRequests.fxml";
     public static final String REVIEW_FORM = "/views/reviews.fxml";
-    public static final String OFFERS_FORM = "/views/offers.fxml";
+    public static final String SEE_OFFERS = "/views/offers.fxml";
     public static final String SEE_MAINTENANCE = "/views/seemaintenance.fxml";
     public static final String UPDATE_MAINTENANCE="/views/update-maintenance.fxml";
     public static final String ADD_OFFER="/views/add-offers.fxml";

@@ -26,7 +26,6 @@ public class SeeInsuranceController extends BaseController {
     public SeeInsuranceController() {
         try {
             this.insuranceService = new InsuranceService();
-            super.initialize();
         } catch (Exception e) {
             showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "error.initInsuranceRepo");
             throw new RuntimeException(e);

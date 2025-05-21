@@ -50,7 +50,7 @@ public class AddPenaltyController extends BaseController {
             Penalties penalty = penaltyService.addPenalty(dto);
             if (penalty != null) {
                 showAlertBasedOnLanguage(AlertType.INFORMATION, "alert.success", "penalty.added");
-                SceneManager.load(SceneLocator.HOME_PAGE);
+                seePenalties();
             } else {
                 showAlertBasedOnLanguage(AlertType.ERROR, "alert.error", "penalty.failedAdd");
             }

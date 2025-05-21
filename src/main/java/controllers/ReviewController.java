@@ -41,19 +41,15 @@ public class ReviewController extends BaseController{
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException{
+        super.initialize();
         List<Cars> allCars = new CarService().getAllCars();
         ObservableList<String> carModels = FXCollections.observableArrayList();
-
         for (Cars car : allCars) {
             modelToCarMap.put(car.getModel(), car);
             carModels.add(car.getModel());
         }
-
         cmbCar.setItems(carModels);
-
-
-
         choiceRating.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5));
     }
 

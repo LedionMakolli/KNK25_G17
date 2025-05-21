@@ -47,6 +47,7 @@ public class MaintenanceController extends BaseController {
     @Override
     public void initialize() {
      try{
+         super.initialize();
          this.maintenanceService = new MaintenanceService();
          loadMaintenance();
          setupTable();

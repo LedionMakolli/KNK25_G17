@@ -60,6 +60,7 @@ public class MaintenanceFormController extends BaseController{
     private Map<String, Staff> usernameToStaffMap = new HashMap<>();
 
     public void initialize() throws SQLException {
+        super.initialize();
         this.carService = new CarService();
         this.maintenanceService = new MaintenanceService();
         this.staffService = new StaffService();
@@ -148,7 +149,7 @@ public class MaintenanceFormController extends BaseController{
         LocalDate today = LocalDate.now();
 
         if(!startDate.isBefore(finishDate)){
-            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error.title","error.endBeforeStart");//
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error.title","error.endBeforeStart");
             return;
         }
         if (startDate.isBefore(today) || finishDate.isBefore(today)){
@@ -161,7 +162,8 @@ public class MaintenanceFormController extends BaseController{
         }
         try {
             maintenanceService.createMaintenance(car, start, description, finish, cost, status, staff);
-            new Alert(Alert.AlertType.INFORMATION, "Maintenance record saved successfully.").showAndWait();//success.maintenanceSaved
+            new Alert(Alert.AlertType.INFORMATION, "Maintenance record saved successfully.").showAndWait();
+            seeMaintenance();
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Error saving maintenance: " + e.getMessage()).showAndWait();

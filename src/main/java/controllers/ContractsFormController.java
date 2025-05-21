@@ -83,8 +83,8 @@ public class ContractsFormController extends BaseController{
             Contract contract = contractService.createContract(contractDto);
 
             if(contract != null){
-                SceneManager.load(SceneLocator.SEE_CONTRACTS);
                 showAlertBasedOnLanguage(Alert.AlertType.INFORMATION, "success.title", "success.contractForm");
+                seeContracts();
             }else {
                 showAlert(Alert.AlertType.ERROR, "error.title", "error.contractForm");
             }

@@ -37,6 +37,7 @@ public class PaymentsFormController extends BaseController{
 
      public PaymentsFormController() {
          try {
+             super.initialize();
              this.paymentsService = new PaymentsService();
          } catch (SQLException e) {
              throw new RuntimeException("Failed to initialize PaymentsService", e);
@@ -94,8 +95,8 @@ LocalDate today = LocalDate.now();
 
 
             if(saved != null){
-                SceneManager.load(SceneLocator.SEE_PAYMENTS);
                 showAlertBasedOnLanguage(Alert.AlertType.INFORMATION, "success.title", "success.paymentForm");
+                seePayments();
             }else{
                 showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.paymentForm");
             }

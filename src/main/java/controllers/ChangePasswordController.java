@@ -63,6 +63,7 @@ public class ChangePasswordController extends BaseController {
             boolean success = changePasswordService.changePassword(oldPassword, newPassword);
             if(success){
                 showAlertBasedOnLanguage( Alert.AlertType.INFORMATION, "success.title", "success.passwordChanged");
+                this.cleanFields();
             }else {
                 showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.wrongOldPassword");
             }
@@ -77,5 +78,11 @@ public class ChangePasswordController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void cleanFields() {
+        pwdFieldOld.clear();
+        pwdFieldNew.clear();
+        pwdFieldConfirm.clear();
     }
 }

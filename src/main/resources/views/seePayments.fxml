@@ -62,7 +62,7 @@
             <TableColumn fx:id="idReservation" prefWidth="90.4000015258789" text="ID Reservation" />
             <TableColumn fx:id="typeColumn" prefWidth="84.0" text="Type" />
             <TableColumn fx:id="promocodeColumn" prefWidth="126.4000244140625" text="Promocode ID" />
-            <TableColumn fx:id="totalDiscountColumn" prefWidth="105.0" text="Discount (€)" />
+            <TableColumn fx:id="totalDiscountColumn" prefWidth="105.0" text="Total no discount (€)" />
             <TableColumn fx:id="totalFinalColumn" prefWidth="145.39999389648438" text="Total (€)" />
             <TableColumn fx:id="dateColumn" prefWidth="150" text="Date" />
         </columns>

@@ -136,7 +136,7 @@ public class BaseController {
     }
     @FXML
     public void Offers() {
-        loadSceneWithErrorHandling(SceneLocator.OFFERS_FORM, "error.loadOffers.header", "error.loadOffers.content");
+        loadSceneWithErrorHandling(SceneLocator.SEE_OFFERS, "error.loadOffers.header", "error.loadOffers.content");
     }
     @FXML
     public void seeInsurance() {

@@ -47,6 +47,7 @@ public class AddOffersController extends BaseController {
                     "alert.success",
                     "offer.added"
             );
+            Offers();
         } else {
             showAlertBasedOnLanguage(
                     AlertType.ERROR,
@@ -57,10 +58,10 @@ public class AddOffersController extends BaseController {
     }
 
     private boolean inputsValid() {
-        String carIdText    = carId.getText();
+        String carIdText = carId.getText();
         String discountText = discount.getText();
         LocalDate startDate = dpStartDate.getValue();
-        LocalDate endDate   = dpEndDate.getValue();
+        LocalDate endDate = dpEndDate.getValue();
 
         if (carIdText.isEmpty() || discountText.isEmpty()
                 || startDate == null || endDate == null) {
