@@ -65,14 +65,15 @@ LocalDate today = LocalDate.now();
     private void handleSaveClick() {
 
         String reservationIdTxt = txtFieldReservationId.getText();
-        String paymentType  = cbPaymentType.getSelectionModel().getSelectedItem().toString();
+        Object selectedPaymentType  = cbPaymentType.getSelectionModel().getSelectedItem();
         String promocodeIdTxt = txtFieldPromocodeId.getText();
         LocalDate dateDp = dpDate.getValue();
 
-        if (reservationIdTxt.isEmpty()|| paymentType.isEmpty() || dateDp == null) {
+        if (reservationIdTxt.isEmpty()|| selectedPaymentType == null || dateDp == null) {
             showAlertBasedOnLanguage(Alert.AlertType.ERROR, "warning.title", "warning.emptyFields");
             return;
         }
+        String paymentType = selectedPaymentType.toString();
         if(!validateDate(dateDp)){
             return;
         }
@@ -94,7 +95,7 @@ LocalDate today = LocalDate.now();
 
             if(saved != null){
                 SceneManager.load(SceneLocator.SEE_PAYMENTS);
-                showAlert(Alert.AlertType.INFORMATION, "success.title", "success.paymentForm");
+                showAlertBasedOnLanguage(Alert.AlertType.INFORMATION, "success.title", "success.paymentForm");
             }else{
                 showAlertBasedOnLanguage(Alert.AlertType.ERROR, "error.title", "error.paymentForm");
             }
