@@ -99,34 +99,48 @@ public class MaintenanceFormController extends BaseController{
         try {
             String selectedModel = comboCar.getValue();
             Cars selectedCar = modelToCarMap.get(selectedModel);
-
             String description = txtDescription.getText();
-            Date start = Date.valueOf(dateStart.getValue());
-            Date finish = Date.valueOf(dateFinish.getValue());
-            BigDecimal cost = new BigDecimal(txtCost.getText());
+            String costText = txtCost.getText();
+            LocalDate startLocalDate = dateStart.getValue();
+            LocalDate finishLocalDate = dateFinish.getValue();
             StatusMaintenanceEnum status = comboStatus.getValue();
+
             Staff staff;
-
-
             if (StaffPositionEnum.STAFF.equals(SessionManager.getInstance().getCurrentStaff().getPosition())) {
                 staff = SessionManager.getInstance().getCurrentStaff();
             } else {
-                String Username = comboStaff.getValue();
-                staff = usernameToStaffMap.get(Username);
+                String username = comboStaff.getValue();
+                staff = usernameToStaffMap.get(username);
             }
 
-            this.createMaintenance(selectedCar, start, description, finish, cost, status, staff);
+            if (selectedCar == null || description == null || description.trim().isEmpty() ||
+                    startLocalDate == null || finishLocalDate == null ||
+                    costText == null || costText.trim().isEmpty() ||
+                    status == null || staff == null) {
+                showAlertBasedOnLanguage(Alert.AlertType.WARNING, "error.title", "warning.emptyFields");
+                return;
+            }
 
-        }catch (Exception e){
+            BigDecimal cost = new BigDecimal(costText);
+            Date start = Date.valueOf(startLocalDate);
+            Date finish = Date.valueOf(finishLocalDate);
+
+            createMaintenance(selectedCar, start, description, finish, cost, status, staff);
+
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.WARNING, "Cost must be a valid number.").showAndWait();
+        } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR,"Eror saving maintennace: " + e.getMessage()).showAndWait();
+            new Alert(Alert.AlertType.ERROR, "Error saving maintenance: " + e.getMessage()).showAndWait();
         }
     }
+
 
     public void createMaintenance(Cars car,Date start,String description, Date finish, BigDecimal cost, StatusMaintenanceEnum status, Staff staff){
 
         if (car == null || start == null || description == null || finish == null || cost == null || status == null || staff == null){
-            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error","fill all the fields");
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error.title","warning.emptyFields");
+            return;
         }
 
         LocalDate startDate = start.toLocalDate();
@@ -134,17 +148,20 @@ public class MaintenanceFormController extends BaseController{
         LocalDate today = LocalDate.now();
 
         if(!startDate.isBefore(finishDate)){
-            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error","fill all the fields");
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error.title","error.endBeforeStart");//
+            return;
         }
         if (startDate.isBefore(today) || finishDate.isBefore(today)){
-            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error","fill all the fields");
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error.title","warning.Date");
+            return;
         }
         if (cost.compareTo(BigDecimal.ZERO) < 0){
-            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error","fill all the fields");
+            showAlertBasedOnLanguage(Alert.AlertType.WARNING,"error.title","error.negativeCost");
+            return;
         }
         try {
             maintenanceService.createMaintenance(car, start, description, finish, cost, status, staff);
-            new Alert(Alert.AlertType.INFORMATION, "Maintenance record saved successfully.").showAndWait();
+            new Alert(Alert.AlertType.INFORMATION, "Maintenance record saved successfully.").showAndWait();//success.maintenanceSaved
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Error saving maintenance: " + e.getMessage()).showAndWait();

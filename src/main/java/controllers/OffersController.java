@@ -33,7 +33,8 @@ public class OffersController extends BaseController{
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
+        super.initialize();
         colCarModel.setCellValueFactory(new PropertyValueFactory<>("carId"));
         colDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
         colStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
