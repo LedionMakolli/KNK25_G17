@@ -22,6 +22,38 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
         }
     }
 
+    @Override
+    public ArrayList<Reservations> getAll() {
+        ArrayList<Reservations> list = new ArrayList<>();
+        String sql = "SELECT * FROM reservationsview";
+        try (Statement st = connection.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) {
+                list.add(fromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public Reservations getById(int id) {
+        String sql = "SELECT * FROM reservationsview WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return fromResultSet(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     public boolean existsOverlap(int idCar, Date start, Date end) {
         String query = """
                 SELECT 1
@@ -148,7 +180,7 @@ public class ReservationsRepository extends BaseRepository<Reservations, CreateR
 
     public List<Reservations> getByClientId(int clientId) throws SQLException{
         List<Reservations> reservations = new ArrayList<>();
-        String query = "SELECT * FROM Reservations WHERE idClient = ?";
+        String query = "SELECT * FROM ReservationsView WHERE idClient = ?";
 
         PreparedStatement ptsm = connection.prepareStatement(query);
         ptsm.setInt(1,clientId);
