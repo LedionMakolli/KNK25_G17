@@ -52,6 +52,7 @@ public class HomePageController extends BaseController{
             SessionManager.getInstance().setSelectedCar(car);
 
             detailsCtrl.setCar(car);
+            detailsCtrl.PopupSale();
 
         } catch (Exception e) {
             e.printStackTrace();

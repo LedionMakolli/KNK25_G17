@@ -8,6 +8,8 @@ import services.SessionManager;
 import utils.SceneLocator;
 
 import java.sql.SQLException;
+import java.text.MessageFormat;
+import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -230,6 +232,19 @@ public class BaseController {
     protected void showAlertBasedOnLanguage(Alert.AlertType alertType, String titleKey, String messageKey) {
         String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
         String message = LanguageManager.getInstance().getResourceBundle().getString(messageKey);
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    protected void showAlertBasedOnLanguage(Alert.AlertType alertType, String titleKey, String messageKey,Object... params) {
+        String title = LanguageManager.getInstance().getResourceBundle().getString(titleKey);
+        ResourceBundle bundle = LanguageManager.getInstance().getResourceBundle();
+        String pattern = bundle.getString(messageKey);
+
+        String message = MessageFormat.format(pattern, params);
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
