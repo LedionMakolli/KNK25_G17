@@ -178,11 +178,7 @@ public class BaseController {
 
     @FXML
     private void handleCancelClick(){
-        try{
-            SceneManager.load(SceneLocator.HOME_PAGE);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        loadSceneWithErrorHandling(SceneLocator.HOME_PAGE, "error.handleHomepage.header", "error.handleHomepage.content");
     }
 
     public void showAlert(Alert.AlertType alertType, String title, String message) {

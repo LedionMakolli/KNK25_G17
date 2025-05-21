@@ -127,7 +127,7 @@ public class MaintenanceFormController extends BaseController{
             Date finish = Date.valueOf(finishLocalDate);
 
             createMaintenance(selectedCar, start, description, finish, cost, status, staff);
-
+            seeMaintenance();
         } catch (NumberFormatException e) {
             new Alert(Alert.AlertType.WARNING, "Cost must be a valid number.").showAndWait();
         } catch (Exception e) {
