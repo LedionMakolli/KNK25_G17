@@ -1,7 +1,7 @@
-# 🚗 Sistemi për Rezervimin e Veturave me Qira
+# 🚗 Sistemi për Rezervimin e Veturave me Qera
 
 Mirë se vini në projektin tonë të zhvilluar në kuadër të lëndës **Komunikimi Njeri-Kompjuter**.  
-Ky sistem është dizajnuar për të ofruar një përvojë të lehtë dhe të qartë për përdoruesit që dëshirojnë të marrin vetura me qira përmes një aplikacioni të thjeshtë dhe funksional.
+Ky sistem është dizajnuar për të ofruar një përvojë të lehtë dhe të qartë për përdoruesit që dëshirojnë të marrin vetura me qera përmes një aplikacioni të thjeshtë dhe funksional.
 
 ---
 
