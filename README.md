@@ -1,62 +1,59 @@
-# 🚗 Sistemi për Rezervimin e Veturave me Qera
+# BudgetMate - Personal Budget Tracker
 
-Mirë se vini në projektin tonë të zhvilluar në kuadër të lëndës **Komunikimi Njeri-Kompjuter**. Ky sistem është dizajnuar për të ofruar një përvojë të lehtë dhe të qartë për përdoruesit që dëshirojnë të marrin vetura me qira përmes një aplikacioni të thjeshtë dhe funksional.
+A mobile application built with React Native to help you manage your personal finances, track expenses, and monitor your budget effectively.
 
----
+## 📱 About The Project
 
-## 📌 Përmbajtja e Projektit
+BudgetMate is a comprehensive budget tracking application that allows users to:
 
-Ky sistem përfshin këto funksionalitete kryesore:
+- **Create an account** and securely log in
+- **Monitor current budget** on the homepage
+- **Track pending expenses** with a clear overview
+- **Add transactions** (both income and expenses)
+- **Review completed expenses** and view total spending
+- **Manage profile** information
 
-### 🔍 Opsionet e Rezervimit
-- Shfletimi i veturave në dispozicion
-- Rezervimi direkt përmes aplikacionit
-- Caktimi i periudhës së rezervimit
+## ✨ Features
 
-### 📝 Kontrata për Përdorim Personal
-- Gjenerimin e kontratës pas çdo rezervimi
-- Përfshirja e detajeve të veturës, rezervimeve dhe kushteve të përdorimit
+- 🔐 **User Authentication** - Secure sign up and login
+- 📈 **Financial History** - Track budget changes and expenses over time
+- 🌍 **Multi-Currency Support** - Real-time currency conversion using exchange rate API
+- 👤 **Profile Management** - Personal user profile section
 
-### ⚠️ Penalizime dhe Rregulla
-- Aplikimi i penalizimeve në rast të shkeljeve të rregullave apo dëmtimeve
-- Regjistrimi i penalizimeve në historinë e rezervimeve
+## 🛠️ Built With
 
-### 🔐 Menaxhimi i Fjalëkalimit
-- Ndryshimi i fjalëkalimit për sigurinë e llogarisë
+- **React Native** - Cross-platform mobile framework
+- **JavaScript/TypeScript** - Programming language
 
-### 🌐 Opsionet e Gjuhës
-- Aktualisht aplikacioni ofron **dy gjuhë**: shqip dhe anglisht
-- Përdoruesit mund të ndërrojnë gjuhën në çdo kohë përmes cilësimeve
-- Sistemi është i ndërtuar në mënyrë që të **mbështesë shtimin e gjuhëve të tjera** në të ardhmen
----
+## 📄 Pages
 
-## 🛠️ Teknologjitë e Përdorura
+1. **Login/Signup** - User authentication
+2. **Homepage** - Current budget overview & pending expenses list
+3. **Add Transaction** - Form to add income or expenses
+4. **Expenses History** - Completed expenses and total calculations
+5. **Profile** - User profile management
 
-- Java & JavaFX
-- PostgreSQL - për menaxhimin e bazës së të dhënave
----
+## 👥 Development Team
 
-## 👥 Autorët
+This project was developed by:
+- **Dua Zogu**
+- **Ledion Makolli** 
+- **Muhamed Jakupi**
+- **Rudina Bulliqi**
+- **Viola Resyli**
+- **Yllka Fejzullahu**
 
-- Dua Zogu
-- Ejonë Analumi
-- Flon Kastrati
-- Ledion Makolli
-- Muhamed Jakupi
+## 🚀 Getting Started
 
----
+### Prerequisites
 
-## 🎓 Projekti për Lëndën
+- Node.js
+- React Native CLI
+- npm or yarn
 
-**Lënda:** Komunikimi Njeri-Kompjuter  
-**Fakulteti:** Fakulteti i Inxhinierisë Elektrike dhe Kompjuterike  
-**Viti:** 2025  
+### Installation
 
----
-
-## 📄 Licenca
-
-Ky projekt është krijuar për qëllime edukative dhe nuk është i destinuar për përdorim komercial.
-
----
-
+1. Clone the repository
+```bash
+git clone https://github.com/muhamedjakupi1/budgetmate
+cd budgetmate
